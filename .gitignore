@@ -2,23 +2,39 @@
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependências do Node.js
+node_modules/
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Build e distribuição
+dist/
+build/
+coverage/
+
+# Pastas e arquivos temporários
+.tmp/
+temp/
+
+# Lockfiles
+package-lock.json
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Arquivos de sistema criados automaticamente (macOS e Windows)
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/*
+.idea
+
+# Ambiente
+.env
+.env.local
+.env.development
+.env.production
+.env.test
