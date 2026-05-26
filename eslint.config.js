@@ -10,7 +10,7 @@ import eslintConfigPrettier from 'eslint-config-prettier/flat';
 
 export default [
   {
-    ignores: ['dist'],
+    ignores: ['dist', 'vite.config.js'],
   },
 
   {
@@ -40,6 +40,7 @@ export default [
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      ...react.configs['jsx-runtime'].rules,
 
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
