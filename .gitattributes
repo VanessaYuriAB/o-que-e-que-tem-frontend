@@ -1,0 +1,18 @@
+# padrão
+* text=auto
+
+# fontes
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+
+# imagens
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# SVG (texto!)
+*.svg text
