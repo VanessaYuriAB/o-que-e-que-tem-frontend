@@ -30,6 +30,7 @@ desktop.ini
 
 # Editor
 .vscode/*
+!.vscode/extensions.json
 .idea
 
 # Ambiente
