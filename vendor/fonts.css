@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Josefin Variable';
+  font-style: normal;
+  font-weight: 100 900; /* intervalo de variação */
+  font-display: swap;
+  src:
+    url('./fonts/josefin-sans-variable.woff') format('woff'),
+    url('./fonts/josefin-sans-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Josefin Variable';
+  font-style: italic;
+  font-weight: 100 900; /* intervalo de variação */
+  font-display: swap;
+  src:
+    url('./fonts/josefin-sans-variable-italic.woff') format('woff'),
+    url('./fonts/josefin-sans-variable-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Love Ya Like A Sister';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('./fonts/love-ya-like-a-sister-regular.woff') format('woff'),
+    url('./fonts/love-ya-like-a-sister-regular.woff2') format('woff2');
+}

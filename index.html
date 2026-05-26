@@ -1,10 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- CSP DEV: usada apenas para desenvolvimento local -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        connect-src 'self' http://localhost:3001 ;
+        img-src 'self' data: https:;
+        script-src 'self' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline';
+      "
+    />
+    <!-- -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>o-que-e-que-tem-frontend</title>
+    <meta name="author" content="Vanessa Yuri A. Brito" />
+    <meta
+      name="description"
+      content="O que é que tem? Na sopa, creme ou patê. é uma aplicação web que propõe uma cozinha sustentável com cardápio dinâmico e modelo de assinatura baseado no aproveitamento consciente de alimentos."
+    />
+    <meta
+      name="keywords"
+      content="cozinha sustentável, receitas sustentáveis, sopa, creme, patê, cardápio dinâmico, assinatura de refeições, aproveitamento de alimentos, foodtech sustentável"
+    />
+    <title>O que é que tem? - Na sopa, creme ou patê | Cozinha sustentável</title>
   </head>
   <body>
     <div id="root"></div>
