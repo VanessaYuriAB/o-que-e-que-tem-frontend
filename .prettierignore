@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+coverage
+vendor/normalize.css
+
+# arquivos gerados/minificados
+*.min.js
+*.min.css
+
+# lockfiles 
+package-lock.json
