@@ -1,0 +1,32 @@
+/* Mobile first (padrão) */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: 'Josefin Variable', 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #b8f0a8dc;
+  color: #503202;
+
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
