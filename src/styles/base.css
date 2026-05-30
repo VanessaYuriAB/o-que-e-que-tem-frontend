@@ -2,6 +2,7 @@
 
 html {
   box-sizing: border-box;
+  font-size: 100%;
 }
 
 *,
@@ -20,13 +21,33 @@ body {
   -moz-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 1rem;
 }
 
-#root {
+.page {
+  width: 95%;
+  max-width: 767px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
+
+  background-color: #2a2b2a1a;
+
+  padding: 1rem;
+}
+
+.content {
+  flex: 1;
+  text-align: center;
 }
 
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .page {
+    max-width: 1440px;
+  }
 }
