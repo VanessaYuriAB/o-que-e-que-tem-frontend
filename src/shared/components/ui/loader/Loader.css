@@ -1,0 +1,11 @@
+/* Mobile first (padrão) */
+
+.loader {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}

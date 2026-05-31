@@ -1,0 +1,27 @@
+/* Mobile first (padrão) */
+
+.page {
+  width: 95%;
+  max-width: 767px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+
+  background-color: #2a2b2a1a;
+
+  padding: 1rem;
+}
+
+.content {
+  flex: 1;
+  text-align: center;
+}
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 1440px;
+  }
+}

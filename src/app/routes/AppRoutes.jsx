@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
-import Layout from '../../shared/components/layout/Layout.jsx';
-import Spinner from '../../shared/components/ui/Spinner.jsx';
+import Layout from '../../shared/components/layout/layout/Layout.jsx';
+import Loader from '../../shared/components/ui/loader/Loader.jsx';
 import NotFound from '../../pages/not-found/NotFound.jsx';
 
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
@@ -13,7 +13,7 @@ const Register = lazy(() => import('../../features/auth/pages/register/Register.
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           {/* Rotas públicas, sem layout global */}
           <Route path="/login" element={<Login />} />
