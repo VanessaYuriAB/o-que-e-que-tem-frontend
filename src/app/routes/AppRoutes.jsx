@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 
 import Layout from '../../shared/components/layout/Layout.jsx';
 import Spinner from '../../shared/components/ui/Spinner.jsx';
+import NotFound from '../../pages/not-found/NotFound.jsx';
 
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
 
@@ -24,6 +25,9 @@ function AppRoutes() {
 
             {/* Rotas protegidas */}
           </Route>
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
