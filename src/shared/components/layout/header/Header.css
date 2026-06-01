@@ -1,0 +1,21 @@
+/* Mobile first (padrão) */
+
+.page__header {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0.5rem;
+
+  background-color: orange;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}

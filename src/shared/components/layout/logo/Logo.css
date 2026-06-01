@@ -1,0 +1,55 @@
+/* Mobile first (padrão) */
+
+.header__logo {
+  flex-shrink: 0;
+}
+
+.logo {
+  /* bloco principal do logo (estrutura BEM) */
+}
+
+.logo__link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo__link:hover {
+  opacity: 0.8;
+}
+
+.logo__link:active {
+  opacity: 0.6;
+}
+
+.logo__text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  font-family: 'Love Ya Like A Sister', 'Gill Sans', Calibri, 'Trebuchet';
+  text-align: center;
+}
+
+.logo__name {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo__span {
+  /* tagline do logo (possível estilização futura) */
+}
+
+.logo__img {
+  width: 52px;
+  height: 60px;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
