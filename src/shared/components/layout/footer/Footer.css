@@ -1,0 +1,20 @@
+/* Mobile first (padrão) */
+
+.page__footer {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 0.5rem;
+
+  background-color: indianred;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}

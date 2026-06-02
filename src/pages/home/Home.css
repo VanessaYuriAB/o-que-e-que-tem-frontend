@@ -1,0 +1,17 @@
+/* Mobile first (padrão) */
+
+.content__home {
+}
+
+.home {
+  background-color: rgb(67, 76, 170);
+}
+
+.home__title {
+  margin-top: 0;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}

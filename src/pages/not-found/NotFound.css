@@ -1,3 +1,5 @@
+/* Mobile first (padrão) */
+
 .not-found__container {
   padding: 10rem 2rem 2rem;
   display: flex;
@@ -27,4 +29,9 @@
 
 .not-found__link:active {
   opacity: 0.8;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
 }
