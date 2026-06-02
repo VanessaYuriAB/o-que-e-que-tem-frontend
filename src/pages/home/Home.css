@@ -5,6 +5,7 @@
 
 .home {
   background-color: rgb(67, 76, 170);
+  border: 1px solid darkgreen;
 }
 
 .home__title {
