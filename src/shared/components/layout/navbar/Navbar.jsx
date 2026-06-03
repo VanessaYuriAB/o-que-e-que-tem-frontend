@@ -14,8 +14,8 @@ function Navbar() {
         <ul className="navbar__list nav__list">
           {navbarLinks.map((link) => (
             <li key={link.to} className={link.liClass}>
-              <NavLink className={customClassName} to={link.to}>
-                <img className={link.imgClass} src={link.imgSrc} alt={link.imgAlt} />
+              <NavLink className={customClassName} to={link.to} aria-label={link.label}>
+                <img className={link.imgClass} src={link.imgSrc} alt="" />
               </NavLink>
             </li>
           ))}

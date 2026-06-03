@@ -37,23 +37,23 @@ export const navbarLinks = [
   {
     to: '/register',
     liClass: itemDesktopOnlyClassName,
+    label: 'Ir para página de cadastro',
     imgClass: 'navbar__icon',
     imgSrc: imgRegister,
-    imgAlt: 'Ícone para incrição de usuário. Um bonequinho com o símbolo de adição.',
   },
   {
     to: '/login',
     liClass: itemDesktopOnlyClassName,
+    label: 'Ir para página de login',
     imgClass: 'navbar__icon',
     imgSrc: imgLogin,
-    imgAlt: 'Ícone para login de usuário. Uma seta indicando entrada.',
   },
   /* Navbar > Mobile e Desktop */
   {
     to: '/checkout',
     liClass: navbarItemMobileAndDesktopClassName,
+    label: 'Ir para carrinho de compras',
     imgClass: 'navbar__icon',
     imgSrc: imgCart,
-    imgAlt: 'Ícone do carrinho de compras.',
   },
 ];
