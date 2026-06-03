@@ -57,3 +57,11 @@ export const navbarLinks = [
     imgSrc: imgCart,
   },
 ];
+
+/* Footer */
+
+export const footerLinks = [
+  { to: '/our-impact', class: 'footer__item', label: 'Nosso impacto' },
+  { to: '/to-be-a-partner-market', class: 'footer__item', label: 'Seja um mercado parceiro' },
+  { to: '/talk-to-us', class: 'footer__item', label: 'Fale conosco' },
+];
