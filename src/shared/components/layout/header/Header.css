@@ -7,13 +7,18 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   flex-wrap: nowrap;
   padding: 0.5rem;
 
   background-color: orange;
   border: 1px solid darkgreen;
+}
+
+.header__navigation {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
 }
 
 /* Tablet e acima */

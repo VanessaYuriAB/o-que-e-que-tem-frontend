@@ -5,7 +5,7 @@
 }
 
 .logo {
-  /* bloco principal do logo (estrutura BEM) */
+  align-self: center;
 }
 
 .logo__link {

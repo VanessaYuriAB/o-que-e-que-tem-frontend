@@ -1,0 +1,79 @@
+/* Mobile first (padrão) */
+
+.header__sidebar {
+}
+
+.sidebar {
+}
+
+.sidebar__details {
+}
+
+.sidebar__summary {
+  cursor: pointer;
+  font-weight: bold;
+  /* Oculta a seta padrão, em alguns navegadores modernos */
+  list-style: none;
+}
+
+.sidebar__summary:hover {
+  opacity: 0.6;
+}
+
+.sidebar__summary:active {
+  opacity: 0.8;
+}
+
+/* Oculta a seta padrão no Chrome/Safari/Edge */
+.sidebar__summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Adiciona novo ícone para o menu fechado */
+.sidebar__summary:after {
+  content: url('../../../../assets/icons/menu.svg');
+}
+
+/* Adiciona novo ícone para o menu aberto */
+.sidebar__details[open] .sidebar__summary:after {
+  content: url('../../../../assets/icons/close-circle.svg');
+}
+
+/* Span apenas para acessibilidade */
+.sidebar__summary-hidden {
+  display: none;
+}
+
+.sidebar__links {
+}
+
+.sidebar__list {
+}
+
+.sidebar__item {
+}
+
+.sidebar__item_mobile-only {
+  display: block;
+}
+
+.sidebar__link {
+}
+
+.sidebar__link:hover {
+}
+
+.sidebar__link:active {
+}
+
+.sidebar__link_active {
+  font-weight: 700;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .sidebar__item_mobile-only {
+    display: none;
+  }
+}

@@ -7,9 +7,11 @@ import './Header.css';
 function Header() {
   return (
     <header className="header page__header">
-      <Sidebar />
-      <Navbar />
       <Logo />
+      <div className="header__navigation">
+        <Sidebar />
+        <Navbar />
+      </div>
     </header>
   );
 }

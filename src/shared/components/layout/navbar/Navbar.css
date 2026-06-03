@@ -1,0 +1,39 @@
+/* Mobile first (padrão) */
+
+.header__navbar {
+}
+
+.navbar {
+}
+
+.navbar__links {
+}
+
+.navbar__list {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.navbar__item {
+}
+
+.navbar__item_desktop-only {
+  display: none;
+}
+
+.navbar__link {
+}
+
+.navbar__link:hover {
+}
+
+.navbar__link:active {
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .navbar__item_desktop-only {
+    display: block;
+  }
+}
