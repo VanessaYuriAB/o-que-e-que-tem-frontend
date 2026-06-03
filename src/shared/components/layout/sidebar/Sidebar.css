@@ -41,7 +41,11 @@
 
 /* Span apenas para acessibilidade */
 .sidebar__summary-hidden {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }
 
 .sidebar__links {
