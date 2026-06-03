@@ -3,6 +3,8 @@
 .page__header {
   width: 95%;
   margin: 0 auto;
+  position: sticky;
+  top: 1rem;
 }
 
 .header {
