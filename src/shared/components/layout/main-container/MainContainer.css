@@ -12,6 +12,7 @@
   border: 1px solid darkgreen;
   display: flex; /* para o 'flex: 1', no .content__not-found */
   justify-content: center;
+  padding: 2rem;
 }
 
 /* Tablet e acima */
