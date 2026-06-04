@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
-
 import Header from '../header/Header.jsx';
 import Footer from '../footer/Footer.jsx';
+
+import MainContainer from '../main-container/MainContainer.jsx';
 
 import './Layout.css';
 
@@ -9,11 +9,7 @@ function Layout() {
   return (
     <div className="page">
       <Header />
-
-      <main className="content page__content">
-        <Outlet />
-      </main>
-
+      <MainContainer />
       <Footer />
     </div>
   );
