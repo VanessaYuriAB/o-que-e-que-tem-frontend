@@ -6,9 +6,10 @@ import Loader from '../../shared/components/ui/loader/Loader.jsx';
 import NotFound from '../../pages/not-found/NotFound.jsx';
 
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
-
 const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
 const Register = lazy(() => import('../../features/auth/pages/register/Register.jsx'));
+const Menu = lazy(() => import('../../features/menu/pages/Menu.jsx'));
+const Contact = lazy(() => import('../../features/contact/pages/Contact.jsx'));
 
 function AppRoutes() {
   return (
@@ -21,13 +22,16 @@ function AppRoutes() {
 
           {/* Rotas com layout global */}
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            {/* index: rota padrão dentro do layout, renderiza quando acessar '/' */}
+            <Route index element={<Home />} />
+            <Route path="menu" element={<Menu />} />
+            <Route path="talk-to-us" element={<Contact />} />
 
             {/* Rotas protegidas */}
-          </Route>
 
-          {/* 404 */}
-          <Route path="*" element={<NotFound />} />
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </Suspense>
     </BrowserRouter>

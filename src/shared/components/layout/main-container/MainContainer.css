@@ -8,8 +8,10 @@
 .content {
   flex: 1;
   text-align: center;
-  background-color: rgb(159, 190, 104);
+  background-color: rgb(139, 193, 48);
   border: 1px solid darkgreen;
+  display: flex; /* para o 'flex: 1', no .content__not-found */
+  justify-content: center;
 }
 
 /* Tablet e acima */

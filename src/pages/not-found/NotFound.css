@@ -1,11 +1,18 @@
 /* Mobile first (padrão) */
 
-.not-found__container {
-  padding: 10rem 2rem 2rem;
+.content__not-found {
+  background-color: rgb(159, 190, 104);
+  flex: 1; /* para ajuste do 'background-color', preenchimento total */
+}
+
+.not-found {
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 1rem;
+  row-gap: 1rem;
+  padding: 2rem;
+  justify-content: center;
 }
 
 .not-found__title,
