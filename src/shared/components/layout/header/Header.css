@@ -19,6 +19,11 @@
   row-gap: 1rem;
 }
 
+.header__logo {
+  flex-shrink: 0;
+  align-self: center;
+}
+
 .header__navigation {
   display: flex;
   justify-content: space-between;

@@ -5,7 +5,7 @@ import './Logo.css';
 
 function Logo() {
   return (
-    <div className="logo header__logo">
+    <div className="logo">
       <Link className="logo__link" to="/" aria-label="Ir para a página inicial">
         <div className="logo__text-box">
           <span className="logo__name">O que é que tem?</span>

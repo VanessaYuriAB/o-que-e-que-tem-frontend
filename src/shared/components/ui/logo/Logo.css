@@ -1,11 +1,6 @@
 /* Mobile first (padrão) */
 
-.header__logo {
-  flex-shrink: 0;
-}
-
 .logo {
-  align-self: center;
 }
 
 .logo__link {
