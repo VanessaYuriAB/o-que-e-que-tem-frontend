@@ -8,8 +8,8 @@ function Logo() {
     <div className="logo">
       <Link className="logo__link" to="/" aria-label="Ir para a página inicial">
         <div className="logo__text-box">
-          <span className="logo__name">O que é que tem?</span>
-          <span className="logo__span"> Na sopa, creme ou patê.</span>
+          <strong className="logo__name">O que é que tem?</strong>
+          <small className="logo__span"> Na sopa, creme ou patê.</small>
         </div>
         <img
           className="logo__img"

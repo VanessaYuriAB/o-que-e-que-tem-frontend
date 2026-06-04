@@ -31,8 +31,8 @@
 }
 
 .logo__name {
-  margin: 0;
   font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .logo__span {
