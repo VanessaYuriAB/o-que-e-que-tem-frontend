@@ -20,24 +20,6 @@
   margin: 0;
 }
 
-.not-found__link {
-  text-decoration: none;
-  padding: 0.5rem;
-  border: 1px solid rgb(28, 56, 30);
-  color: rgb(28, 56, 30);
-  background-color: rgba(28, 56, 30, 0.247);
-  margin-top: 2rem;
-}
-
-.not-found__link:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-.not-found__link:active {
-  opacity: 0.8;
-}
-
 /* Tablet e acima */
 
 @media (min-width: 768px) {
