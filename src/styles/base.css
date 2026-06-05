@@ -29,7 +29,9 @@ body {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
   font-family: 'Love Ya Like A Sister', 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
 }
 

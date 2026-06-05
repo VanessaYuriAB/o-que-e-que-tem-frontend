@@ -4,15 +4,181 @@
 }
 
 .home {
-  background-color: rgb(67, 76, 170);
-  border: 1px solid darkgreen;
+  display: flex;
+  flex-direction: column-reverse;
+  row-gap: 3rem;
 }
 
-.home__title {
+.home__content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.home__title,
+.home__subtitle {
+  margin: 0;
+}
+
+.home__description {
+  text-align: left;
+}
+
+.home__values {
+}
+
+.home__values-title {
+}
+
+.home__values-description {
+  text-align: left;
+}
+
+.home__values-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.home__values-item {
+}
+
+.home__values-item-title {
   margin-top: 0;
+  font-size: 1rem;
+}
+
+.home__values-item-description {
+}
+
+.home__values-item-description_last {
+  margin-bottom: 0;
+}
+
+.home__subscription {
+  margin-bottom: 1rem;
+}
+
+.home__subscription-title {
+}
+
+.home__subscription-description {
+  text-align: left;
+}
+
+.home__subscription-link {
+  margin-top: 0;
+}
+
+.home__order {
+}
+
+.home__order-title {
+}
+
+.home__order-description {
+}
+
+.home__order-link {
+  margin-top: 0;
+}
+
+.home__aside {
+  background-color: rgb(118, 151, 180);
+  font-size: 0.75rem;
+  padding: 0.5rem;
+}
+
+.home__weather {
+}
+
+.home__weather-title {
+  margin: 0;
+}
+
+.home__weather-content {
+  height: 10rem;
+}
+
+.home__recipes {
+  display: none;
+}
+
+.home__recipes-title {
+}
+
+.home__recipe-soup {
+}
+
+.home__recipe-soup-title {
+}
+
+.home__recipe-soup-subtitle {
+}
+
+.home__recipe-pate {
+}
+
+.home__recipe-pate-title {
+}
+
+.home__recipe-pate-subtitle {
 }
 
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .home {
+    flex-direction: row-reverse;
+    column-gap: 2rem;
+  }
+
+  .home__content {
+    width: 70%;
+  }
+
+  .home__values-list {
+    flex-direction: row;
+    column-gap: 0.75rem;
+  }
+
+  .home__values-item {
+    width: calc(100% / 3);
+  }
+
+  .home__values-item-description {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .home__aside {
+    width: 30%;
+  }
+
+  .home__weather {
+    height: 30%;
+  }
+
+  .home__weather-content {
+  }
+
+  .home__recipes {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+  }
+
+  .home__recipes-title {
+    margin: 0;
+  }
+
+  .home__recipe-soup {
+    height: 50%;
+  }
+
+  .home__recipe-pate {
+    height: 50%;
+  }
 }
