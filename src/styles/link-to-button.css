@@ -1,6 +1,6 @@
 /* Mobile first (padrão) */
 
-.link {
+.link-to-button {
   text-decoration: none;
   padding: 0.25em;
   border: 1px solid rgb(28, 56, 30);
@@ -9,12 +9,12 @@
   margin-top: 1rem;
 }
 
-.link:hover {
+.link-to-button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
 
-.link:active {
+.link-to-button:active {
   opacity: 0.8;
 }
 

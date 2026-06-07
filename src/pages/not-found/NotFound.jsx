@@ -6,7 +6,7 @@ function NotFound() {
     <section className="not-found content__not-found">
       <h1 className="not-found__title">404</h1>
       <p className="not-found__content">Página não encontrada</p>
-      <Link className="not-found__link link" to="/">
+      <Link className="not-found__link link-to-button" to="/">
         Voltar para Home
       </Link>
     </section>

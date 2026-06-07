@@ -48,7 +48,7 @@ function Home() {
             definido os dias em que você deseja nossas refeições e a forma de entrega padrão. Os
             pedidos você vai montando conforme consumo.
           </p>
-          <Link className="home__subscription-link link" to="/subscription">
+          <Link className="home__subscription-link link-to-button" to="/subscription">
             Assinatura
           </Link>
         </section>
@@ -57,7 +57,7 @@ function Home() {
           <p className="home__order-description">
             Você pode comprar unitário ou fazer uma assinatura. Rápido, fresco e sempre sustentável.
           </p>
-          <Link className="home__order-link link" to="/menu">
+          <Link className="home__order-link link-to-button" to="/menu">
             Cardápio
           </Link>
         </section>
