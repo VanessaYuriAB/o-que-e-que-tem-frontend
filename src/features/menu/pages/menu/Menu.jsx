@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
+import { menuLinks } from '../../../../shared/constants/navigation';
 import foodPyramidImg from '../../../../assets/images/piramide-alimentar.png';
 
 import './Menu.css';
@@ -17,43 +18,17 @@ function Menu() {
           Aqui estão os ingredientes disponíveis. Você pode escolher o que prefere para juntar na
           sua sopa, creme ou patê.
         </p>
-        <ul className="menu__list">
-          <li className="menu__item">
-            <NavLink className={customClassName} to="carboidratos">
-              Carboidratos
-            </NavLink>
-          </li>
-          <li className="menu__item">
-            <NavLink className={customClassName} to="verduras-legumes">
-              Verduras e legumes
-            </NavLink>
-          </li>
-          <li className="menu__item">
-            <NavLink className={customClassName} to="leites-derivados">
-              Leites e derivados
-            </NavLink>
-          </li>
-          <li className="menu__item">
-            <NavLink className={customClassName} to="carnes-ovos-peixes">
-              Carnes, ovos e peixes
-            </NavLink>
-          </li>
-          <li className="menu__item">
-            <NavLink className={customClassName} to="leguminosas-oleaginosas">
-              Leguminosas e oleaginosas
-            </NavLink>
-          </li>
-          <li className="menu__item">
-            <NavLink className={customClassName} to="oleos-gorduras">
-              Óleos e gorduras
-            </NavLink>
-          </li>
-          <li className="menu__item">
-            <NavLink className={customClassName} to="acucares-doces">
-              Açúcares e Doces
-            </NavLink>
-          </li>
-        </ul>
+        <nav className="menu__links nav">
+          <ul className="menu__list nav__list">
+            {menuLinks.map((link) => (
+              <li key={link.to} className={link.class}>
+                <NavLink className={customClassName} to={link.to}>
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <Outlet />
       </div>
       <aside className="menu__aside">

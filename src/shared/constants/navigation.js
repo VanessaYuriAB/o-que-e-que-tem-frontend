@@ -58,6 +58,24 @@ export const navbarLinks = [
   },
 ];
 
+/* Menu */
+
+const itemMenuClassName = 'menu__item';
+
+export const menuLinks = [
+  { to: 'carboidratos', class: itemMenuClassName, label: 'Carboidratos' },
+  { to: 'verduras-legumes', class: itemMenuClassName, label: 'Verduras e legumes' },
+  { to: 'leites-derivados', class: itemMenuClassName, label: 'Leites e derivados' },
+  { to: 'carnes-ovos-peixes', class: itemMenuClassName, label: 'Carnes, ovos e peixes' },
+  {
+    to: 'leguminosas-oleaginosas',
+    class: itemMenuClassName,
+    label: 'Leguminosas e oleaginosas',
+  },
+  { to: 'oleos-gorduras', class: itemMenuClassName, label: 'Óleos e gorduras' },
+  { to: 'acucares-doces', class: itemMenuClassName, label: 'Açúcares e Doces' },
+];
+
 /* Footer */
 
 export const footerLinks = [

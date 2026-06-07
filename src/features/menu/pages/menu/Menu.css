@@ -21,21 +21,26 @@
 .menu__description {
 }
 
+.menu__links {
+}
+
 .menu__list {
-  list-style-type: none;
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .menu__item {
   background-color: rgb(155, 193, 90);
   padding: 0.5em;
   width: max-content;
+}
+
+.menu__link {
 }
 
 .menu__link_active {
