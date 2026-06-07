@@ -4,9 +4,9 @@ import imgLogin from '../../assets/icons/login.svg';
 
 /* Sidebar */
 
-export const itemMobileOnlyClassName = 'sidebar__item sidebar__item_mobile-only nav__item';
+const itemMobileOnlyClassName = 'sidebar__item sidebar__item_mobile-only nav__item';
 
-export const sidebarItemMobileAndDesktopClassName = 'sidebar__item nav__item';
+const sidebarItemMobileAndDesktopClassName = 'sidebar__item nav__item';
 
 export const sidebarLinks = [
   /* Sidebar > Mobile */
@@ -28,9 +28,9 @@ export const sidebarLinks = [
 
 /* Navbar */
 
-export const itemDesktopOnlyClassName = 'navbar__item navbar__item_desktop-only nav__item';
+const itemDesktopOnlyClassName = 'navbar__item navbar__item_desktop-only nav__item';
 
-export const navbarItemMobileAndDesktopClassName = 'navbar__item nav__item';
+const navbarItemMobileAndDesktopClassName = 'navbar__item nav__item';
 
 export const navbarLinks = [
   /* Navbar > Desktop */
@@ -78,8 +78,10 @@ export const menuLinks = [
 
 /* Footer */
 
+const itemFooterClassName = 'footer__item';
+
 export const footerLinks = [
-  { to: '/our-impact', class: 'footer__item', label: 'Nosso impacto' },
-  { to: '/to-be-a-partner-market', class: 'footer__item', label: 'Seja um mercado parceiro' },
-  { to: '/talk-to-us', class: 'footer__item', label: 'Fale conosco' },
+  { to: '/our-impact', class: itemFooterClassName, label: 'Nosso impacto' },
+  { to: '/to-be-a-partner-market', class: itemFooterClassName, label: 'Seja um mercado parceiro' },
+  { to: '/talk-to-us', class: itemFooterClassName, label: 'Fale conosco' },
 ];
