@@ -1,0 +1,153 @@
+/* Mobile first (padrão) */
+
+.content__menu {
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__content {
+}
+
+.menu__title {
+  margin-top: 0;
+}
+
+.menu__subtitle {
+}
+
+.menu__description {
+}
+
+.menu__list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.menu__item {
+  background-color: rgb(155, 193, 90);
+  padding: 0.5em;
+  width: max-content;
+}
+
+.menu__link_active {
+  font-weight: 700;
+}
+
+.menu__aside {
+  background-color: rgb(134, 89, 157);
+  padding: 0.5rem;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  column-gap: 0.5rem;
+  grid-template-areas:
+    'title title title'
+    'soup cream pate'
+    'img img img';
+  height: max-content;
+}
+
+.menu__aside-title {
+  grid-area: title;
+  margin-top: 0;
+}
+
+.menu__soup {
+  grid-area: soup;
+}
+
+.menu__soup-title {
+}
+
+.menu__soup-description {
+}
+
+.menu__cream {
+  grid-area: cream;
+}
+
+.menu__cream-title {
+}
+
+.menu__cream-description {
+}
+
+.menu__pate {
+  grid-area: pate;
+}
+
+.menu__pate-title {
+}
+
+.menu__pate-description {
+}
+
+.menu__figure {
+  grid-area: img;
+  margin-inline: 0;
+  height: min-content;
+  margin-bottom: 0;
+}
+
+.menu__figure-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  max-width: 400px;
+}
+
+.menu__figcaption {
+  font-style: italic;
+  word-wrap: break-word;
+}
+
+.menu__figcaption-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.menu__figcaption-link:hover {
+  opacity: 0.6;
+}
+
+.menu__figcaption-link:active {
+  opacity: 0.8;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .menu {
+    flex-direction: row;
+    column-gap: 2rem;
+  }
+
+  .menu__content {
+    width: 60%;
+  }
+
+  .menu__aside {
+    width: 40%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu__figure {
+    margin-top: 2rem;
+  }
+
+  .menu__figcaption {
+    font-size: 1rem;
+  }
+}
