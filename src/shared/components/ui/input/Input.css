@@ -1,0 +1,27 @@
+/* Mobile first (padrão) */
+
+.input {
+  padding: 0.25em;
+  line-height: 1.5;
+  color: darkgreen;
+}
+
+.input:focus {
+  border: 4px solid darkgreen;
+}
+
+.input:valid {
+}
+
+.input:invalid {
+  border: 2px solid rgb(153, 255, 0);
+}
+
+.input::placeholder {
+  font-size: 0.75em;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
