@@ -1,0 +1,40 @@
+/* Mobile first (padrão) */
+
+.auth-form-modal {
+  display: flex;
+  justify-content: center;
+  background-color: #b8f0a8dc;
+}
+
+.auth-form-modal__background {
+  width: 95%;
+  min-height: 100dvh;
+  background-color: #2a2b2a1a;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-form-modal__box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  width: 80%;
+  max-width: 613px;
+  padding-top: 5rem;
+}
+
+.auth-form-modal__btn {
+  align-self: flex-end;
+  margin: 0;
+  border: none;
+  background-color: rgba(28, 56, 30, 0.247);
+}
+
+.auth-form-modal__form-box {
+  background-color: rgba(28, 56, 30, 0.247);
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
