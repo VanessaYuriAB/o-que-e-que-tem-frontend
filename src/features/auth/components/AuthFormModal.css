@@ -12,6 +12,7 @@
   background-color: #2a2b2a1a;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .auth-form-modal__box {
@@ -20,7 +21,6 @@
   row-gap: 0.5em;
   width: 80%;
   max-width: 613px;
-  padding-top: 5rem;
 }
 
 .auth-form-modal__btn {
