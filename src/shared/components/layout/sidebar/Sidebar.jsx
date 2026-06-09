@@ -11,7 +11,7 @@ function Sidebar() {
   return (
     <div className="sidebar header__sidebar">
       <details className="sidebar__details">
-        <summary className="sidebar__summary">
+        <summary className="sidebar__summary" title="Menu">
           {/* Apenas para acessibilidade */}
           <span className="sidebar__summary-hidden">Menu</span>
         </summary>
