@@ -1,15 +1,17 @@
-export function fakeApi(data, delay = 500) {
+export function fakeApi(data, status = 200, delay = 500) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(JSON.parse(JSON.stringify(data)));
+      resolve({ data: JSON.parse(JSON.stringify(data)), status });
     }, delay);
   });
 }
 
-export function fakeApiError(message, delay = 500) {
+export function fakeApiError(message, status = 500, data = null, delay = 500) {
   return new Promise((_, reject) => {
     setTimeout(() => {
-      reject(new Error(message));
+      const fakeError = { type: 'api', status, data };
+
+      reject(new Error(message, { cause: fakeError }));
     }, delay);
   });
 }
