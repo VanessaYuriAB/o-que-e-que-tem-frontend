@@ -6,12 +6,14 @@ export function fakeApi(data, status = 200, delay = 500) {
   });
 }
 
-export function fakeApiError(message, status = 500, data = null, delay = 500) {
+/* apiFetch retorna: return { data, status: response.status }; // para o caso de DELETE 204 com data null */
+
+export function fakeApiError(message = 'Erro de api', status = 500, data = null, delay = 500) {
   return new Promise((_, reject) => {
     setTimeout(() => {
-      const fakeError = { type: 'api', status, data };
-
-      reject(new Error(message, { cause: fakeError }));
+      reject({ type: 'api', status, data, message });
     }, delay);
   });
 }
+
+/* apiFetch retorna: { type: 'api', status: response.status, data } ou { type: 'network', message: 'Erro de conexão', error } // mas erro de conexão não é utilizado no fake */
