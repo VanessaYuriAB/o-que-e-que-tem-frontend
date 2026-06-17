@@ -34,7 +34,7 @@ const apiFetch = async (
     if (!response.ok) {
       throw data
         ? { type: 'api', status: response.status, data }
-        : { message: 'Erro na requisição HTTP' }; // lança objeto de erro com objeto (tbm de erro) original da API ou msg fallback // cobre erros da API
+        : { type: 'api', status: response.status, message: 'Erro na requisição HTTP' }; // lança objeto de erro com objeto (tbm de erro) original da API ou msg fallback // cobre erros da API
     }
 
     return { data, status: response.status }; // para o caso de DELETE 204 com data null
