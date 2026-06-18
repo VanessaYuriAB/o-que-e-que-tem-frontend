@@ -1,14 +1,13 @@
 import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
+import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import apiFetch from '../../../services/api.js';
 import { itemsMenu } from '../../../mocks/fakeMenuDb.js';
 
 export async function getMenu() {
   try {
     const mockFn = async () => {
-      const fakeErr = true;
-
-      if (fakeErr) {
+      if (FAKE_ERRORS.getMenu) {
         await fakeApiError('mockFn com err = true no getMenu do menuService');
         // Promise.reject envia para o bloco catch
       }
