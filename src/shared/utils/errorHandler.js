@@ -1,12 +1,12 @@
 export default function errorHandler(error) {
-  console.error('Erro no errorHandler:', error);
+  console.error('Falha no errorHandler:', error);
 
-  if (error.type === 'network') {
+  if (error.cause?.type === 'network') {
     return { message: 'Erro de conexão. Verifique a internet.' };
   }
 
-  if (error.type === 'api') {
-    switch (error.status) {
+  if (error.cause?.type === 'api') {
+    switch (error.cause.status) {
       case 400:
         return {
           message: 'Problema no envio dos dados, a solicitação está incorreta.',

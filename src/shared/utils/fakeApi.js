@@ -16,4 +16,4 @@ export function fakeApiError(message = 'Erro de api', status = 500, data = null,
   });
 }
 
-/* apiFetch retorna: { type: 'api', status: response.status, data } ou { type: 'network', message: 'Erro de conexão', error } // mas erro de conexão não é utilizado no fake */
+/* apiFetch retorna: { type: 'api', status: response.status, data } ou { type: 'api', status: response.status, message: 'Erro na requisição HTTP' } ou { type: 'network', status: null, message: 'Erro de conexão' }, mas erro de conexão não é utilizado no fake */

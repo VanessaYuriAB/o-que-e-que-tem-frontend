@@ -26,7 +26,8 @@ const apiFetch = async (
     if (isJson) {
       try {
         data = await response.json();
-      } catch {
+      } catch (error) {
+        console.warn('Falha ao analisar a resposta JSON:', error);
         data = null;
       }
     }
@@ -42,8 +43,8 @@ const apiFetch = async (
     if (error.type === 'api') {
       throw error;
     } else {
-      // Erro de rede
-      throw { type: 'network', message: 'Erro de conexão', error };
+      // Erro de conexão (rede): TypeError do fetch — sem status, sem body
+      throw { type: 'network', status: null, message: 'Erro de conexão' };
     }
   }
 };
