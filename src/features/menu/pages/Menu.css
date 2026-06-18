@@ -4,8 +4,6 @@
 }
 
 .menu {
-  display: flex;
-  flex-direction: column;
 }
 
 .menu__content {
@@ -48,23 +46,27 @@
 }
 
 .menu__aside {
-  background-color: rgb(134, 89, 157);
-  padding: 0.5rem;
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, auto);
-  column-gap: 0.5rem;
-  grid-template-areas:
-    'title title title'
-    'soup cream pate'
-    'img img img';
+  background-color: rgb(137 100 157);
+  padding: 1.5rem;
+  margin-top: 3rem;
+
   height: max-content;
 }
 
 .menu__aside-title {
-  grid-area: title;
   margin-top: 0;
+}
+
+.menu__aside-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  column-gap: 0.5rem;
+  grid-template-areas:
+    'soup soup soup'
+    'cream cream cream'
+    'pate pate pate'
+    'img img img';
 }
 
 .menu__soup {
@@ -132,27 +134,35 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .menu {
-    flex-direction: row;
-    column-gap: 2rem;
-  }
-
-  .menu__content {
-    width: 60%;
-  }
-
   .menu__aside {
-    width: 40%;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
+  }
+
+  .menu__aside-content {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+      'soup img img'
+      'cream img img'
+      'pate img img';
+    column-gap: 1em;
+    align-items: center;
+    justify-items: center;
+    justify-self: center;
+  }
+
+  .menu__soup,
+  .menu__cream,
+  .menu__pate {
+    width: 90%;
   }
 
   .menu__figure {
-    margin-top: 2rem;
+    justify-self: self-end;
   }
+}
 
-  .menu__figcaption {
-    font-size: 1rem;
+@media (min-width: 1104px) {
+  .menu__aside-content {
+    width: 85%;
   }
 }
