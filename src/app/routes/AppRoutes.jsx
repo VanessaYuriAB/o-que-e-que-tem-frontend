@@ -8,29 +8,10 @@ import NotFound from '../../pages/not-found/NotFound.jsx';
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
 const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
 const Register = lazy(() => import('../../features/auth/pages/register/Register.jsx'));
+
 const Menu = lazy(() => import('../../features/menu/pages/Menu.jsx'));
-const Carboidratos = lazy(
-  () => import('../../features/menu/pages/components/carboidratos/Carboidratos.jsx')
-);
-const VerdurasLegumes = lazy(
-  () => import('../../features/menu/pages/components/verduras-legumes/VerdurasLegumes.jsx')
-);
-const LeitesDerivados = lazy(
-  () => import('../../features/menu/pages/components/leites-derivados/LeitesDerivados.jsx')
-);
-const CarnesOvosPeixes = lazy(
-  () => import('../../features/menu/pages/components/carnes-ovos-peixes/CarnesOvosPeixes.jsx')
-);
-const LeguminosasOleaginosas = lazy(
-  () =>
-    import('../../features/menu/pages/components/leguminosas-oleaginosas/LeguminosasOleaginosas.jsx')
-);
-const OleosGorduras = lazy(
-  () => import('../../features/menu/pages/components/oleos-gorduras/OleosGorduras.jsx')
-);
-const AcucaresDoces = lazy(
-  () => import('../../features/menu/pages/components/acucares-doces/AcucaresDoces.jsx')
-);
+const MenuType = lazy(() => import('../../features/menu/pages/components/MenuType.jsx'));
+
 const Contact = lazy(() => import('../../features/contact/pages/Contact.jsx'));
 const Subscription = lazy(() => import('../../features/subscription/pages/Subscription.jsx'));
 
@@ -49,13 +30,20 @@ function AppRoutes() {
             <Route index element={<Home />} />
 
             <Route path="menu" element={<Menu />}>
-              <Route path="carboidratos" element={<Carboidratos />} />
-              <Route path="verduras-legumes" element={<VerdurasLegumes />} />
-              <Route path="leites-derivados" element={<LeitesDerivados />} />
-              <Route path="carnes-ovos-peixes" element={<CarnesOvosPeixes />} />
-              <Route path="leguminosas-oleaginosas" element={<LeguminosasOleaginosas />} />
-              <Route path="oleos-gorduras" element={<OleosGorduras />} />
-              <Route path="acucares-doces" element={<AcucaresDoces />} />
+              <Route path="todos" element={<MenuType category="todos" />} />
+              <Route path="carboidratos" element={<MenuType category="carboidratos" />} />
+              <Route path="verduras-legumes" element={<MenuType category="verduras-legumes" />} />
+              <Route path="leites-derivados" element={<MenuType category="leites-derivados" />} />
+              <Route
+                path="carnes-ovos-peixes"
+                element={<MenuType category="carnes-ovos-peixes" />}
+              />
+              <Route
+                path="leguminosas-oleaginosas"
+                element={<MenuType category="leguminosas-oleaginosas" />}
+              />
+              <Route path="oleos-gorduras" element={<MenuType category="oleos-gorduras" />} />
+              <Route path="acucares-doces" element={<MenuType category="acucares-doces" />} />
             </Route>
 
             <Route path="talk-to-us" element={<Contact />} />
