@@ -66,6 +66,7 @@ export const navbarLinks = [
 const itemMenuClassName = 'menu__item';
 
 export const menuLinks = [
+  { to: 'todos', class: itemMenuClassName, label: 'Todos' },
   { to: 'carboidratos', class: itemMenuClassName, label: 'Carboidratos' },
   { to: 'verduras-legumes', class: itemMenuClassName, label: 'Verduras e legumes' },
   { to: 'leites-derivados', class: itemMenuClassName, label: 'Leites e derivados' },
