@@ -1,0 +1,50 @@
+/* Mobile first (padrão) */
+
+.menu__section {
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+.menu__section-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: grid;
+  gap: 0.625em;
+
+  /* Cria colunas automáticas com mínimo de 250px e máximo de 1fr, preenchendo a linha com quantas colunas couberem, ajustando os elementos automaticamente */
+  grid-template-columns: repeat(auto-fit, 180px);
+
+  width: 100%;
+  justify-content: center;
+}
+
+.menu__section-item {
+  background-color: rgb(155, 193, 90);
+  padding: 0.5em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.menu__section-title {
+  margin: 0.5em;
+}
+
+.menu__section-type {
+  margin: 0.5em;
+}
+
+.menu__section-btn {
+  margin: 1em;
+  font-size: 0.625rem;
+  border: 1px solid rgb(28, 56, 30);
+  color: rgb(28, 56, 30);
+  background-color: rgba(28, 56, 30, 0.095);
+}
+
+/* Tablet */
+
+@media (min-width: 768px) {
+}
