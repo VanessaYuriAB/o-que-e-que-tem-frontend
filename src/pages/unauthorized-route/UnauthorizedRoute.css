@@ -1,11 +1,34 @@
-.content-protected__title {
+/* Mobile first (padrão) */
+
+.content__protected-route {
 }
 
-.content-protected__logon {
+.protected-route {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.content-protected__signon {
+.protected-route__title {
+  font-size: 1.25rem;
+  margin-bottom: 2em;
 }
 
-.content-protected__backon {
+.protected-route__logon,
+.protected-route__signon {
+  display: block;
+  margin: 1em auto;
+}
+
+.protected-route__backon {
+  margin-bottom: 1em;
+  background-color: rgba(28, 56, 30, 0.247);
+  border: 1px solid rgb(28, 56, 30);
+  color: rgb(28, 56, 30);
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
 }
