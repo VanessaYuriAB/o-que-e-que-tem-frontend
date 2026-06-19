@@ -15,6 +15,8 @@ const MenuType = lazy(() => import('../../features/menu/pages/components/MenuTyp
 const Contact = lazy(() => import('../../features/contact/pages/Contact.jsx'));
 const Subscription = lazy(() => import('../../features/subscription/pages/Subscription.jsx'));
 
+const Profile = lazy(() => import('../../features/profile/pages/Profile.jsx'));
+
 function AppRoutes() {
   return (
     <BrowserRouter>
@@ -51,6 +53,7 @@ function AppRoutes() {
             <Route path="subscription" element={<Subscription />} />
 
             {/* Rotas protegidas */}
+            <Route path="profile" element={<Profile />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
