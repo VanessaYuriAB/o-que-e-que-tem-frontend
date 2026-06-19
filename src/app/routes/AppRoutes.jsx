@@ -5,6 +5,7 @@ import Layout from '../../shared/components/layout/layout/Layout.jsx';
 import Loader from '../../shared/components/ui/loader/Loader.jsx';
 import NotFound from '../../pages/not-found/NotFound.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
+import PublicRoute from './PublicRoute.jsx';
 
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
 const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
@@ -24,10 +25,29 @@ function AppRoutes() {
       <Suspense fallback={<Loader />}>
         <Routes>
           {/* ROTAS SEM LAYOUT GLOBAL, PÚBLICAS */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+
+          {/* Login */}
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+
+          {/* Cadastro */}
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
 
           {/* ROTAS COM LAYOUT GLOBAL */}
+
           {/* PÚBLICAS */}
 
           <Route element={<Layout />}>
