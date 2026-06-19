@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import './Toast.css';
 
-function Toast({ message }) {
+function Toast({ message = '', children = '' }) {
   return (
     <div className="toast">
-      <p className="toast__content">{message}</p>
+      <p className="toast__message">{message}</p>
+      <div className="toast__content">{children}</div>
     </div>
   );
 }
 
 Toast.propTypes = {
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default Toast;
