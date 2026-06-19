@@ -22,15 +22,16 @@ function AppRoutes() {
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          {/* Rotas públicas, sem layout global */}
+          {/* ROTAS PÚBLICAS, SEM LAYOUT GLOBAL */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Rotas com layout global */}
+          {/* ROTAS PÚBLICAS, COM LAYOUT GLOBAL */}
           <Route element={<Layout />}>
             {/* index: rota padrão dentro do layout, renderiza quando acessar '/' */}
             <Route index element={<Home />} />
 
+            {/* Cardápio */}
             <Route path="menu" element={<Menu />}>
               <Route path="todos" element={<MenuType category="todos" />} />
               <Route path="carboidratos" element={<MenuType category="carboidratos" />} />
@@ -48,14 +49,17 @@ function AppRoutes() {
               <Route path="acucares-doces" element={<MenuType category="acucares-doces" />} />
             </Route>
 
+            {/* Fale conosco */}
             <Route path="talk-to-us" element={<Contact />} />
 
+            {/* Assinatura */}
             <Route path="subscription" element={<Subscription />} />
 
-            {/* Rotas protegidas */}
+            {/* ROTAS PROTEGIDAS */}
+            {/* Perfil */}
             <Route path="profile" element={<Profile />} />
 
-            {/* 404 */}
+            {/* 404 - NOT FOUND */}
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
