@@ -8,18 +8,20 @@ function UnauthorizedRoute() {
   const navigate = useNavigate();
 
   return (
-    <Toast>
-      <h1 className="content-protected__title">É preciso estar logado(a)!</h1>
-      <Link className="content-protected__logon" to="/login">
-        Logar
-      </Link>
-      <Link className="content-protected__signon" to="/register">
-        Inscrever-se
-      </Link>
-      <Button className="content-protected__backon" onClick={() => navigate(-1)}>
-        Voltar para página anterior
-      </Button>
-    </Toast>
+    <section className="protected-route content__protected-route">
+      <Toast>
+        <h1 className="protected-route__title">É preciso estar logado(a)!</h1>
+        <Link className="protected-route__logon link-to-button" to="/login">
+          Logar
+        </Link>
+        <Link className="protected-route__signon link-to-button" to="/register">
+          Inscrever-se
+        </Link>
+        <Button className="protected-route__backon" onClick={() => navigate(-1)}>
+          Voltar para página anterior
+        </Button>
+      </Toast>
+    </section>
   );
 }
 
