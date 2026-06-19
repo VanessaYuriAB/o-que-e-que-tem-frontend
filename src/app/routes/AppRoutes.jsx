@@ -4,6 +4,7 @@ import { Suspense, lazy } from 'react';
 import Layout from '../../shared/components/layout/layout/Layout.jsx';
 import Loader from '../../shared/components/ui/loader/Loader.jsx';
 import NotFound from '../../pages/not-found/NotFound.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
 
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
 const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
@@ -22,11 +23,13 @@ function AppRoutes() {
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          {/* ROTAS PÚBLICAS, SEM LAYOUT GLOBAL */}
+          {/* ROTAS SEM LAYOUT GLOBAL, PÚBLICAS */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* ROTAS PÚBLICAS, COM LAYOUT GLOBAL */}
+          {/* ROTAS COM LAYOUT GLOBAL */}
+          {/* PÚBLICAS */}
+
           <Route element={<Layout />}>
             {/* index: rota padrão dentro do layout, renderiza quando acessar '/' */}
             <Route index element={<Home />} />
@@ -55,9 +58,17 @@ function AppRoutes() {
             {/* Assinatura */}
             <Route path="subscription" element={<Subscription />} />
 
-            {/* ROTAS PROTEGIDAS */}
+            {/* PROTEGIDAS */}
+
             {/* Perfil */}
-            <Route path="profile" element={<Profile />} />
+            <Route
+              path="profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
 
             {/* 404 - NOT FOUND */}
             <Route path="*" element={<NotFound />} />
