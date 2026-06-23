@@ -1,6 +1,9 @@
 const FAKE_ERRORS = {
   getMenu: false,
-  getUser: false,
+
+  register: false,
+  login: false,
+  logout: false,
 };
 
 export default FAKE_ERRORS;
