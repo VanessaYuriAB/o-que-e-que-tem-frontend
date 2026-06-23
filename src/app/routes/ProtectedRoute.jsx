@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import UnauthorizedRoute from '../../pages/unauthorized-route/UnauthorizedRoute.jsx';
+import useAuthStore from '../../store/useAuthStore.js';
 
 function ProtectedRoute({ children }) {
-  const isLoggedIn = false;
+  const { user } = useAuthStore();
 
-  return isLoggedIn ? children : <UnauthorizedRoute />;
+  return user ? children : <UnauthorizedRoute />;
 }
 
 ProtectedRoute.propTypes = {

@@ -1,10 +1,11 @@
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import useAuthStore from '../../store/useAuthStore';
 
 function PublicRoute({ children }) {
-  const isLoggedIn = true;
+  const { user } = useAuthStore();
 
-  return isLoggedIn ? <Navigate to="/profile" replace /> : children;
+  return user ? <Navigate to="/profile" replace /> : children;
 }
 
 PublicRoute.propTypes = {
