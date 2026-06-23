@@ -2,9 +2,23 @@ import AuthFormModal from '../../components/AuthFormModal.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../../shared/components/ui/input/Input.jsx';
 
+import useAuthStore from '../../../../store/useAuthStore.js';
+import { useNavigate } from 'react-router-dom';
+import { User } from '../../../../mocks/fakeAuthDb.js';
+import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
+
 import '../../styles/auth-form.css';
 
 function Register() {
+  // Register.jsx — temporário, só para testar
+  const { register, error } = useAuthStore();
+
+  const navigate = useNavigate();
+
+  if (error) {
+    return <Toast message={error.message} />;
+  }
+
   return (
     <AuthFormModal>
       <form className="form-register auth-form" name="register">
@@ -97,6 +111,21 @@ function Register() {
         <div className="form-register__button-box">
           <Button type="submit">ENVIAR</Button>
         </div>
+
+        {/* botão temporário*/}
+        <button
+          onClick={async () => {
+            const result = await register(User);
+
+            if (result.success === true) {
+              console.log('cadastrado');
+              navigate('/login');
+            }
+          }}
+        >
+          Testar cadastro
+        </button>
+        {/* botão temporário*/}
       </form>
     </AuthFormModal>
   );
