@@ -1,5 +1,5 @@
 export default function errorHandler(error) {
-  console.error('Falha no errorHandler:', error);
+  console.error('Falha no errorHandler:', error.cause ? error.cause : error);
 
   if (error.cause?.type === 'network') {
     return { message: 'Erro de conexão. Verifique a internet.' };
@@ -13,7 +13,7 @@ export default function errorHandler(error) {
         };
       case 401:
         return {
-          message: 'Requer autenticação, é necessário fazer login.',
+          message: 'Não autorizado. Os dados enviados são inválidos ou você não está logado.',
           action: 'OPEN_LOGIN',
         };
       case 403:
@@ -23,6 +23,10 @@ export default function errorHandler(error) {
       case 404:
         return {
           message: 'Dado não encontrado, não existe ou foi removido.',
+        };
+      case 409:
+        return {
+          message: 'Usuário já cadastrado.',
         };
       case 429:
         return {
