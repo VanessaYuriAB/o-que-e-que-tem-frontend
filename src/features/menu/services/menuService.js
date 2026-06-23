@@ -8,25 +8,20 @@ export async function getMenu() {
   try {
     const mockFn = async () => {
       if (FAKE_ERRORS.getMenu) {
-        await fakeApiError('mockFn com err = true no getMenu do menuService');
-        // Promise.reject envia para o bloco catch
+        await fakeApiError('mockFn com err = true no getMenu do menuService'); // Promise.reject envia para o bloco catch
       }
 
-      const { data } = await fakeApi({ itemsMenu });
-
-      console.log('Menu:', data);
-      return Array.isArray(data?.itemsMenu) ? data.itemsMenu : [];
+      return await fakeApi({ itemsMenu });
     };
 
     const apiFn = async () => {
-      // Sem parâmetros de 'options' pq é um GET
-      const { data } = await apiFetch('/menu'); // pq a resposta é configurada como { data: ..., status: ... }
-
-      console.log('Menu:', data);
-      return Array.isArray(data?.itemsMenu) ? data.itemsMenu : [];
+      return await apiFetch('/menu'); // sem parâmetros de 'options' pq é um GET
     };
 
-    return await decideMockOrApi(mockFn, apiFn);
+    const { data } = await decideMockOrApi(mockFn, apiFn); // pq a resposta é configurada como { data: ..., status: ... }, tanto em fakeApi quando em api
+
+    console.log('getMenu:', data);
+    return Array.isArray(data?.itemsMenu) ? data.itemsMenu : [];
   } catch (cause) {
     // Erro HTTP ou de rede
     // Mantém erros originais da apiFetch (ou fakes), adicionando contexto - cause tem type, status e data/message; o contexto está na mensagem
