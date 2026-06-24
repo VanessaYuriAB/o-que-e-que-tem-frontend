@@ -17,10 +17,6 @@
 .navbar__item {
 }
 
-.navbar__item_desktop-only {
-  display: none;
-}
-
 .navbar__link {
 }
 
@@ -33,7 +29,4 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .navbar__item_desktop-only {
-    display: block;
-  }
 }

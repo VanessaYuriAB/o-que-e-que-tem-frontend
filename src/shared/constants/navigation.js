@@ -1,6 +1,7 @@
 import imgCart from '../../assets/icons/shopping-cart.svg';
 import imgRegister from '../../assets/icons/user-circle-add.svg';
 import imgLogin from '../../assets/icons/login.svg';
+import imgLogout from '../../assets/icons/logout.svg';
 
 /* Sidebar */
 
@@ -28,38 +29,45 @@ export const sidebarLinks = [
 
 /* Navbar */
 
-const itemDesktopOnlyClassName = 'navbar__item navbar__item_desktop-only nav__item';
+const navbarLinkRegister = {
+  to: '/register',
+  liClass: 'navbar__item nav__item',
+  label: 'Ir para página de cadastro',
+  title: 'Cadastro',
+  imgClass: 'navbar__icon',
+  imgSrc: imgRegister,
+};
 
-const navbarItemMobileAndDesktopClassName = 'navbar__item nav__item';
+const navbarLinkLogin = {
+  to: '/login',
+  liClass: 'navbar__item nav__item',
+  label: 'Ir para página de login',
+  title: 'Login',
+  imgClass: 'navbar__icon',
+  imgSrc: imgLogin,
+};
 
-export const navbarLinks = [
-  /* Navbar > Desktop */
-  {
-    to: '/register',
-    liClass: itemDesktopOnlyClassName,
-    label: 'Ir para página de cadastro',
-    title: 'Cadastro',
-    imgClass: 'navbar__icon',
-    imgSrc: imgRegister,
-  },
-  {
-    to: '/login',
-    liClass: itemDesktopOnlyClassName,
-    label: 'Ir para página de login',
-    title: 'Login',
-    imgClass: 'navbar__icon',
-    imgSrc: imgLogin,
-  },
-  /* Navbar > Mobile e Desktop */
-  {
-    to: '/checkout',
-    liClass: navbarItemMobileAndDesktopClassName,
-    label: 'Ir para carrinho de compras',
-    title: 'Carrinho de compras',
-    imgClass: 'navbar__icon',
-    imgSrc: imgCart,
-  },
-];
+const navbarLinkLogout = {
+  to: '/logout',
+  liClass: 'navbar__item nav__item',
+  label: 'Deslogar',
+  title: 'Logout',
+  imgClass: 'navbar__icon',
+  imgSrc: imgLogout,
+};
+
+const navbarLinkCheckout = {
+  to: '/checkout',
+  liClass: 'navbar__item nav__item',
+  label: 'Ir para carrinho de compras',
+  title: 'Carrinho de compras',
+  imgClass: 'navbar__icon',
+  imgSrc: imgCart,
+};
+
+export const navbarLinksLoggedOn = [navbarLinkLogout, navbarLinkCheckout];
+
+export const navbarLinksLoggedOff = [navbarLinkRegister, navbarLinkLogin, navbarLinkCheckout];
 
 /* Menu */
 

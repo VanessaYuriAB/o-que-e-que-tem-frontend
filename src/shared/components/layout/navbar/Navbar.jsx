@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom';
-
-import { navbarLinks } from '../../../constants/navigation.js';
+import useAuthStore from '../../../../store/useAuthStore.js';
+import { navbarLinksLoggedOff, navbarLinksLoggedOn } from '../../../constants/navigation.js';
 
 import './Navbar.css';
 
 function Navbar() {
+  const { user } = useAuthStore();
+
+  const navbarLinks = user ? navbarLinksLoggedOn : navbarLinksLoggedOff;
+
   const customClassName = ({ isActive }) =>
     `navbar__link nav__link ${isActive ? 'navbar__link_active' : ''}`;
 
