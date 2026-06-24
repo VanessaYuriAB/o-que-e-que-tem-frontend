@@ -4,20 +4,25 @@ import Input from '../../../../shared/components/ui/input/Input.jsx';
 
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { useNavigate } from 'react-router-dom';
-import { User1 } from '../../../../mocks/fakeAuthDb.js';
+import { User } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
+import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 
 import '../../styles/auth-form.css';
 
 function Login() {
-  // Login.jsx — temporário, só para testar
-  const { login, error } = useAuthStore();
+  const { login, loading, error } = useAuthStore();
 
   const navigate = useNavigate();
 
-  if (error) {
-    return <Toast message={error.message} />;
-  }
+  const handleLogin = async () => {
+    const result = await login(User);
+
+    if (result.success === true) {
+      console.log('logado');
+      navigate('/profile');
+    }
+  };
 
   return (
     <AuthFormModal>
@@ -70,24 +75,20 @@ function Login() {
             />
           </label>
         </fieldset>
+
+        {loading && (
+          <Loader className="form-login__loader auth-form__loader">
+            Enviando dados de login...
+          </Loader>
+        )}
+
+        {error && <Toast className="form-login__toast auth-form__toast" message={error.message} />}
+
         <div className="form-login__button-box">
-          <Button type="submit">ENVIAR</Button>
+          <Button type="submit" onClick={handleLogin}>
+            ENVIAR
+          </Button>
         </div>
-
-        {/* botão temporário*/}
-        <button
-          onClick={async () => {
-            const result = await login(User1);
-
-            if (result.success === true) {
-              console.log('logado');
-              navigate('/profile');
-            }
-          }}
-        >
-          Testar login
-        </button>
-        {/* botão temporário*/}
       </form>
     </AuthFormModal>
   );

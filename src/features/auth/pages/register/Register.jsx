@@ -4,20 +4,25 @@ import Input from '../../../../shared/components/ui/input/Input.jsx';
 
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../../../../mocks/fakeAuthDb.js';
+import { User1 } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
+import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 
 import '../../styles/auth-form.css';
 
 function Register() {
-  // Register.jsx — temporário, só para testar
-  const { register, error } = useAuthStore();
+  const { register, loading, error } = useAuthStore();
 
   const navigate = useNavigate();
 
-  if (error) {
-    return <Toast message={error.message} />;
-  }
+  const handleRegister = async () => {
+    const result = await register(User1);
+
+    if (result.success === true) {
+      console.log('cadastrado');
+      navigate('/login');
+    }
+  };
 
   return (
     <AuthFormModal>
@@ -108,24 +113,20 @@ function Register() {
             />
           </label>
         </fieldset>
+
+        {loading && (
+          <Loader className="form-register__loader auth-form__loader">Enviando inscrição...</Loader>
+        )}
+
+        {error && (
+          <Toast className="form-register__toast auth-form__toast" message={error.message} />
+        )}
+
         <div className="form-register__button-box">
-          <Button type="submit">ENVIAR</Button>
+          <Button type="submit" onClick={handleRegister}>
+            ENVIAR
+          </Button>
         </div>
-
-        {/* botão temporário*/}
-        <button
-          onClick={async () => {
-            const result = await register(User);
-
-            if (result.success === true) {
-              console.log('cadastrado');
-              navigate('/login');
-            }
-          }}
-        >
-          Testar cadastro
-        </button>
-        {/* botão temporário*/}
       </form>
     </AuthFormModal>
   );
