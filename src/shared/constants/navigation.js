@@ -5,27 +5,24 @@ import imgLogout from '../../assets/icons/logout.svg';
 
 /* Sidebar */
 
-const itemMobileOnlyClassName = 'sidebar__item sidebar__item_mobile-only nav__item';
+const sidebarLinkOn = { to: '/profile', class: 'sidebar__item nav__item', label: 'Perfil' };
 
-const sidebarItemMobileAndDesktopClassName = 'sidebar__item nav__item';
-
-export const sidebarLinks = [
-  /* Sidebar > Mobile */
-  { to: '/register', class: itemMobileOnlyClassName, label: 'Inscreva-se' },
-  { to: '/login', class: itemMobileOnlyClassName, label: 'Login' },
-  /* Sidebar > Mobile e Desktop */
-  { to: '/', class: sidebarItemMobileAndDesktopClassName, label: 'Home' },
-  { to: '/profile', class: sidebarItemMobileAndDesktopClassName, label: 'Perfil' },
-  { to: '/how-it-works', class: sidebarItemMobileAndDesktopClassName, label: 'Como funciona' },
-  { to: '/subscription', class: sidebarItemMobileAndDesktopClassName, label: 'Assinatura' },
-  { to: '/menu', class: sidebarItemMobileAndDesktopClassName, label: 'Cardápio' },
+const sidebarLinksFixed = [
+  { to: '/', class: 'sidebar__item nav__item', label: 'Home' },
+  { to: '/menu', class: 'sidebar__item nav__item', label: 'Cardápio' },
+  { to: '/how-it-works', class: 'sidebar__item nav__item', label: 'Como funciona' },
+  { to: '/subscription', class: 'sidebar__item nav__item', label: 'Assinatura' },
   {
-    to: '/about-good-food',
-    class: sidebarItemMobileAndDesktopClassName,
-    label: 'Sobre comida boa',
+    to: '/recipes',
+    class: 'sidebar__item nav__item',
+    label: 'Receitas',
   },
-  { to: '/about-us', class: sidebarItemMobileAndDesktopClassName, label: 'Sobre a gente' },
+  { to: '/about-us', class: 'sidebar__item nav__item', label: 'Sobre a gente' },
 ];
+
+export const sidebarLinksLoggedOn = [sidebarLinkOn, ...sidebarLinksFixed];
+
+export const sidebarLinksLoggedOff = sidebarLinksFixed;
 
 /* Navbar */
 

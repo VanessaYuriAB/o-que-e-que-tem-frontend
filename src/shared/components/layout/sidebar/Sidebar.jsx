@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom';
-
-import { sidebarLinks } from '../../../constants/navigation.js';
+import useAuthStore from '../../../../store/useAuthStore.js';
+import { sidebarLinksLoggedOn, sidebarLinksLoggedOff } from '../../../constants/navigation.js';
 
 import './Sidebar.css';
 
 function Sidebar() {
+  const { user } = useAuthStore();
+
+  const sidebarLinks = user ? sidebarLinksLoggedOn : sidebarLinksLoggedOff;
+
   const customClassName = ({ isActive }) =>
     `sidebar__link nav__link ${isActive ? 'sidebar__link_active' : ''}`;
 
