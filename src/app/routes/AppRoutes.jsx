@@ -18,6 +18,7 @@ const Contact = lazy(() => import('../../features/contact/pages/Contact.jsx'));
 const Subscription = lazy(() => import('../../features/subscription/pages/Subscription.jsx'));
 
 const Profile = lazy(() => import('../../features/profile/pages/Profile.jsx'));
+const Logout = lazy(() => import('../../features/auth/pages/logout/Logout.jsx'));
 
 function AppRoutes() {
   return (
@@ -86,6 +87,16 @@ function AppRoutes() {
               element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Logout */}
+            <Route
+              path="logout"
+              element={
+                <ProtectedRoute>
+                  <Logout />
                 </ProtectedRoute>
               }
             />
