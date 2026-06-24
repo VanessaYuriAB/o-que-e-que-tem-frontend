@@ -1,0 +1,36 @@
+/* Mobile first (padrão) */
+
+.content__logout {
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout__title {
+  font-size: 1.25rem;
+  margin: 0;
+  margin-bottom: 2.5rem;
+}
+.logout__toast {
+}
+
+.logout__btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  background-color: rgb(153, 192, 86);
+  border: 1px solid rgb(28, 56, 30);
+  color: rgb(28, 56, 30);
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .logout__title {
+    font-size: 1.5rem;
+  }
+}
