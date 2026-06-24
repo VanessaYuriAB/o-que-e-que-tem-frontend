@@ -9,7 +9,7 @@ function UnauthorizedRoute() {
 
   return (
     <section className="protected-route content__protected-route">
-      <Toast>
+      <Toast className="protected-route__toast">
         <h1 className="protected-route__title">É preciso estar logado(a)!</h1>
         <Link className="protected-route__logon link-to-button" to="/login">
           Logar
