@@ -5,7 +5,14 @@
 
 .protected-route {
   width: 100%;
+}
+
+.protected-route__toast {
+  margin: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -19,6 +26,7 @@
 .protected-route__signon {
   display: block;
   margin: 1em auto;
+  max-width: 135px;
 }
 
 .protected-route__backon {
