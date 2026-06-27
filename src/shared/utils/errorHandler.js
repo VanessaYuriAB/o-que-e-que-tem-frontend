@@ -1,5 +1,5 @@
 export default function errorHandler(error) {
-  console.error('Falha no errorHandler:', error.cause ? error.cause : error);
+  console.error('Falha no errorHandler:', error, error.cause ? error.cause : '');
 
   if (error.cause?.type === 'network') {
     return { message: 'Erro de conexão. Verifique a internet.', scope: 'global' };
