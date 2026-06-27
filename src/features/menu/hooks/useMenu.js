@@ -23,7 +23,7 @@ export default function useMenu() {
         */
 
         const handledError = errorHandler(error); // converte erro
-        setError(handledError); // obj puro para o estado, apenas com msg e action
+        setError(handledError); // obj puro para o estado, contendo: msg, scope, status e action
       } finally {
         setLoading(false);
       }
