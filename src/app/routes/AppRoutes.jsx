@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
 import Layout from '../../shared/components/layout/layout/Layout.jsx';
@@ -22,91 +22,86 @@ const Logout = lazy(() => import('../../features/auth/pages/logout/Logout.jsx'))
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          {/* ROTAS SEM LAYOUT GLOBAL, PÚBLICAS */}
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        {/* ROTAS SEM LAYOUT GLOBAL, PÚBLICAS */}
 
-          {/* Login */}
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                <Login />
-              </PublicRoute>
-            }
-          />
+        {/* Login */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
 
-          {/* Cadastro */}
-          <Route
-            path="/register"
-            element={
-              <PublicRoute>
-                <Register />
-              </PublicRoute>
-            }
-          />
+        {/* Cadastro */}
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
 
-          {/* ROTAS COM LAYOUT GLOBAL */}
+        {/* ROTAS COM LAYOUT GLOBAL */}
 
-          {/* PÚBLICAS */}
+        {/* PÚBLICAS */}
 
-          <Route element={<Layout />}>
-            {/* index: rota padrão dentro do layout, renderiza quando acessar '/' */}
-            <Route index element={<Home />} />
+        <Route element={<Layout />}>
+          {/* index: rota padrão dentro do layout, renderiza quando acessar '/' */}
+          <Route index element={<Home />} />
 
-            {/* Cardápio */}
-            <Route path="menu" element={<Menu />}>
-              <Route path="todos" element={<MenuType category="todos" />} />
-              <Route path="carboidratos" element={<MenuType category="carboidratos" />} />
-              <Route path="verduras-legumes" element={<MenuType category="verduras-legumes" />} />
-              <Route path="leites-derivados" element={<MenuType category="leites-derivados" />} />
-              <Route
-                path="carnes-ovos-peixes"
-                element={<MenuType category="carnes-ovos-peixes" />}
-              />
-              <Route
-                path="leguminosas-oleaginosas"
-                element={<MenuType category="leguminosas-oleaginosas" />}
-              />
-              <Route path="oleos-gorduras" element={<MenuType category="oleos-gorduras" />} />
-              <Route path="acucares-doces" element={<MenuType category="acucares-doces" />} />
-            </Route>
-
-            {/* Fale conosco */}
-            <Route path="talk-to-us" element={<Contact />} />
-
-            {/* Assinatura */}
-            <Route path="subscription" element={<Subscription />} />
-
-            {/* PROTEGIDAS */}
-
-            {/* Perfil */}
+          {/* Cardápio */}
+          <Route path="menu" element={<Menu />}>
+            <Route path="todos" element={<MenuType category="todos" />} />
+            <Route path="carboidratos" element={<MenuType category="carboidratos" />} />
+            <Route path="verduras-legumes" element={<MenuType category="verduras-legumes" />} />
+            <Route path="leites-derivados" element={<MenuType category="leites-derivados" />} />
+            <Route path="carnes-ovos-peixes" element={<MenuType category="carnes-ovos-peixes" />} />
             <Route
-              path="profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
+              path="leguminosas-oleaginosas"
+              element={<MenuType category="leguminosas-oleaginosas" />}
             />
-
-            {/* Logout */}
-            <Route
-              path="logout"
-              element={
-                <ProtectedRoute>
-                  <Logout />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* 404 - NOT FOUND */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="oleos-gorduras" element={<MenuType category="oleos-gorduras" />} />
+            <Route path="acucares-doces" element={<MenuType category="acucares-doces" />} />
           </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+
+          {/* Fale conosco */}
+          <Route path="talk-to-us" element={<Contact />} />
+
+          {/* Assinatura */}
+          <Route path="subscription" element={<Subscription />} />
+
+          {/* PROTEGIDAS */}
+
+          {/* Perfil */}
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Logout */}
+          <Route
+            path="logout"
+            element={
+              <ProtectedRoute>
+                <Logout />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* 404 - NOT FOUND */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
