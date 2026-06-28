@@ -1,32 +1,56 @@
 import AuthFormModal from '../../components/AuthFormModal.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../../shared/components/ui/input/Input.jsx';
-
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../../../../mocks/fakeAuthDb.js';
+import { User1 } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
+import { useState } from 'react';
 
 import '../../styles/auth-form.css';
 
 function Login() {
-  const { login, loading, error } = useAuthStore();
+  const [data, setData] = useState(User1);
+  // { email: '', tel: '', password: '' }
+
+  const [localError, setLocalError] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    const result = await login(User);
+  const { login, loading, globalError } = useAuthStore();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleLogin = async (data) => {
+    if (data.email === '' || data.password === '') {
+      return;
+    }
+
+    const result = await login(data);
+
+    // Se chegou aqui, login ok e cookie (httpOnly) setado pelo backend > Sucesso: cookie já foi definido automaticamente > credentials: 'include' na apiFetch
+    // Front não vê o token, só o sucesso
 
     if (result.success === true) {
       console.log('logado');
       navigate('/profile');
+    } else if (result.success === false && result.error.scope === 'local') {
+      setLocalError(result.error.message);
     }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleLogin(data);
   };
 
   return (
     <AuthFormModal>
-      <form className="form-login auth-form" name="login">
+      <form className="form-login auth-form" name="login" onSubmit={handleSubmit} noValidate>
         <h1 className="form-login__title auth-form__title">Entrar</h1>
         <fieldset className="form-login__field auth-form__field">
           <label className="form-login__label auth-form__label">
@@ -38,8 +62,10 @@ function Login() {
               name="email"
               pattern="^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
               title="E-mail válido: contento apenas letras, números, sublinhados, pontos ou hífens."
-              autoFocus
               placeholder="Digite seu e-mail cadastrado"
+              value={data.email}
+              onChange={handleChange}
+              autoFocus
               required
             />
           </label>
@@ -52,9 +78,11 @@ function Login() {
               name="tel"
               minLength={14}
               maxLength={15}
-              pattern="^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$"
+              /*pattern="^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$"*/
               title="Fixo ou celular. Formato: (xx) xxxx-xxxx."
               placeholder="Digite seu telefone cadastrado, no formato: (xx) xxxx-xxxx"
+              value={data.tel}
+              onChange={handleChange}
               required
               /* ARRUMAR PATTERN */
             />
@@ -71,6 +99,8 @@ function Login() {
               pattern="^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$"
               title="Senha: mínimo 8 caracteres - pelo menos, uma letra minúscula e um número (maiúsculas tbm são permitidas)."
               placeholder="Digite a senha da sua conta"
+              value={data.password}
+              onChange={handleChange}
               required
             />
           </label>
@@ -82,10 +112,16 @@ function Login() {
           </Loader>
         )}
 
-        {error && <Toast className="form-login__toast auth-form__toast" message={error.message} />}
+        {localError && (
+          <Toast className="form-login__toast auth-form__toast" message={localError} />
+        )}
+
+        {globalError && (
+          <Toast className="form-login__toast auth-form__toast" message={globalError.message} />
+        )}
 
         <div className="form-login__button-box">
-          <Button type="submit" onClick={handleLogin}>
+          <Button className="form-login__button" type="submit">
             ENVIAR
           </Button>
         </div>
