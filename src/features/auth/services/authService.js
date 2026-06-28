@@ -34,9 +34,9 @@ export async function register(newUserData) {
         await fakeApiError('Falha no authService.register: Usuário já cadastrado', 409);
       }
 
-      const { name, email, tel } = newUserData; // sem senha
+      const { userName, email, tel } = newUserData; // sem senha
 
-      return await fakeApi({ name, email, tel }, 201);
+      return await fakeApi({ userName, email, tel }, 201);
     };
 
     const apiFn = async () => {
@@ -71,9 +71,9 @@ export async function login(credentials) {
         await fakeApiError('Falha no authService.login: Credenciais inválidas', 401);
       }
 
-      const { name, email, tel } = credentials; // sem senha
+      const { userName, email, tel } = userExists; // dados do usuário a ser logado, sem senha
 
-      return await fakeApi({ name, email, tel });
+      return await fakeApi({ userName, email, tel });
     };
 
     const apiFn = async () => {
