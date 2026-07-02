@@ -3,16 +3,23 @@ import useAuthStore from '../../../../store/useAuthStore.js';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
+import { useShallow } from 'zustand/react/shallow';
 
 import './Logout.css';
 
 function Logout() {
-  const { logout, loading, error } = useAuthStore();
+  const { logoutAction, loading, globalError } = useAuthStore(
+    useShallow((state) => ({
+      logoutAction: state.logoutAction,
+      loading: state.loading,
+      globalError: state.globalError,
+    }))
+  );
 
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const result = await logout();
+    const result = await logoutAction();
 
     if (result.success === true) {
       console.log('deslogado');
@@ -28,7 +35,7 @@ function Logout() {
     <section className="logout content__logout">
       <h1 className="logout__title">Você quer desconectar da sua conta?</h1>
 
-      {error && <Toast className="logout__toast" message={error.message} />}
+      {globalError && <Toast className="logout__toast" message={globalError.message} />}
 
       <Button className="logout__btn" onClick={handleLogout}>
         Deslogar

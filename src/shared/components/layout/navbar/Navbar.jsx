@@ -5,7 +5,7 @@ import { navbarLinksLoggedOff, navbarLinksLoggedOn } from '../../../constants/na
 import './Navbar.css';
 
 function Navbar() {
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
 
   const navbarLinks = user ? navbarLinksLoggedOn : navbarLinksLoggedOff;
 

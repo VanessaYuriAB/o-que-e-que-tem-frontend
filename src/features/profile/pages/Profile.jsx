@@ -3,9 +3,9 @@ import useAuthStore from '../../../store/useAuthStore';
 import './Profile.css';
 
 function Profile() {
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
 
-  console.log(user);
+  console.log('Usuário em Profile:', user);
 
   return (
     <section>

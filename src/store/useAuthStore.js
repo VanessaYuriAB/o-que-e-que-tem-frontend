@@ -4,6 +4,10 @@ import errorHandler from '../shared/utils/errorHandler';
 
 /*
 
+- Nomes de estados definidos apenas com o nome de cada um
+- Nomes de ações definidos com o nome de cada função mais 'Action'
+- Diferencia states e actions, mantendo a store plana para acesso simples
+
 - return { success: true/false };
 Sinaliza para o componente decidir ação
 Retorno da função, não é store
@@ -26,7 +30,7 @@ const useAuthStore = create((set) => ({
   globalError: null,
 
   // register chama authService.register
-  register: async (userData) => {
+  registerAction: async (userData) => {
     set({ loading: true, globalError: null });
     try {
       await authService.register(userData);
@@ -45,7 +49,7 @@ const useAuthStore = create((set) => ({
   },
 
   // login chama authService.login e define user, ativando login
-  login: async (credentials) => {
+  loginAction: async (credentials) => {
     set({ loading: true, globalError: null });
     try {
       const data = await authService.login(credentials);
@@ -65,7 +69,7 @@ const useAuthStore = create((set) => ({
   },
 
   // logout chama authService.logout e reseta user, desativando login
-  logout: async () => {
+  logoutAction: async () => {
     set({ loading: true, globalError: null });
     try {
       await authService.logout();

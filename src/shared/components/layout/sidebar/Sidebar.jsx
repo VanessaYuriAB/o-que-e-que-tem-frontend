@@ -5,7 +5,7 @@ import { sidebarLinksLoggedOn, sidebarLinksLoggedOff } from '../../../constants/
 import './Sidebar.css';
 
 function Sidebar() {
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
 
   const sidebarLinks = user ? sidebarLinksLoggedOn : sidebarLinksLoggedOff;
 

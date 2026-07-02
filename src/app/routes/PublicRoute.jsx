@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useAuthStore from '../../store/useAuthStore';
 
 function PublicRoute({ children }) {
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
 
   return user ? <Navigate to="/profile" replace /> : children;
 }

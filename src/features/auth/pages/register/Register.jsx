@@ -7,6 +7,7 @@ import { User } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import '../../styles/auth-form.css';
 
@@ -31,7 +32,13 @@ function Register() {
 
   /* Store */
 
-  const { register, loading, globalError } = useAuthStore();
+  const { registerAction, loading, globalError } = useAuthStore(
+    useShallow((state) => ({
+      registerAction: state.registerAction,
+      loading: state.loading,
+      globalError: state.globalError,
+    }))
+  );
 
   /* Handles */
 
@@ -48,7 +55,7 @@ function Register() {
   const handleRegister = async (data) => {
     if (data.email === data.confirmEmail && data.password === data.confirmPassword) {
       // Se email e senhas forem confirmados
-      const result = await register(data);
+      const result = await registerAction(data);
 
       if (result.success === true) {
         console.log('cadastrado');

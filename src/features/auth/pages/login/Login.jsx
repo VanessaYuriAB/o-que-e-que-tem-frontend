@@ -7,6 +7,7 @@ import { User1 } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import '../../styles/auth-form.css';
 
@@ -18,7 +19,13 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const { login, loading, globalError } = useAuthStore();
+  const { loginAction, loading, globalError } = useAuthStore(
+    useShallow((state) => ({
+      loginAction: state.loginAction,
+      loadind: state.loading,
+      globalError: state.globalError,
+    }))
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +37,7 @@ function Login() {
       return;
     }
 
-    const result = await login(data);
+    const result = await loginAction(data);
 
     // Se chegou aqui, login ok e cookie (httpOnly) setado pelo backend > Sucesso: cookie já foi definido automaticamente > credentials: 'include' na apiFetch
     // Front não vê o token, só o sucesso

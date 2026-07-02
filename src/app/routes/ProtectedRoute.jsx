@@ -3,7 +3,7 @@ import UnauthorizedRoute from '../../pages/unauthorized-route/UnauthorizedRoute.
 import useAuthStore from '../../store/useAuthStore.js';
 
 function ProtectedRoute({ children }) {
-  const { user } = useAuthStore();
+  const user = useAuthStore((state) => state.user);
 
   return user ? children : <UnauthorizedRoute />;
 }
