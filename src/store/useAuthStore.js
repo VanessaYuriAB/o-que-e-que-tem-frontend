@@ -22,12 +22,15 @@ Só seta erros globais (status >= 500 || status === 0)
 - return { success: false, error: handledError };
 Se for erro local, de api, não seta, apenas retorna
 
+- authChecked: sinaliza se app já tentou autenticar usuário
+
 */
 
 const useAuthStore = create((set) => ({
   user: null,
   loading: false,
   globalError: null,
+  authChecked: false,
 
   // register chama authService.register
   registerAction: async (userData) => {
@@ -85,6 +88,28 @@ const useAuthStore = create((set) => ({
       return { success: false, error: handledError };
     } finally {
       set({ loading: false });
+    }
+  },
+
+  // refresh chama authService.refresh e seta user + authChecked, mantendo login caso credenciais ok ou limpando user caso ñ ok
+  refreshAction: async () => {
+    set({ loading: true, globalError: null });
+    try {
+      const data = await authService.refresh();
+      set({ user: data });
+      return { success: true };
+    } catch (error) {
+      set({ user: null });
+
+      const handledError = errorHandler(error);
+
+      if (handledError.scope === 'global') {
+        set({ globalError: handledError });
+      }
+
+      return { success: false, error: handledError };
+    } finally {
+      set({ loading: false, authChecked: true });
     }
   },
 }));
