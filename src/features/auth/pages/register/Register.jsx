@@ -59,7 +59,7 @@ function Register() {
 
       if (result.success === true) {
         console.log('cadastrado');
-        navigate('/login');
+        navigate('/login', { replace: true });
       } else if (result.success === false && result.error.scope === 'local') {
         setLocalError(result.error.message);
       }

@@ -44,7 +44,7 @@ function Login() {
 
     if (result.success === true) {
       console.log('logado');
-      navigate('/profile');
+      navigate('/profile', { replace: true });
     } else if (result.success === false && result.error.scope === 'local') {
       setLocalError(result.error.message);
     }
