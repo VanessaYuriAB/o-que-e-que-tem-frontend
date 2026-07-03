@@ -48,9 +48,9 @@ function AppRoutes() {
 
         {/* ROTAS COM LAYOUT GLOBAL */}
 
-        {/* PÚBLICAS */}
-
         <Route element={<Layout />}>
+          {/* PÚBLICAS */}
+
           {/* index: rota padrão dentro do layout, renderiza quando acessar '/' */}
           <Route index element={<Home />} />
 
@@ -75,6 +75,9 @@ function AppRoutes() {
           {/* Assinatura */}
           <Route path="subscription" element={<Subscription />} />
 
+          {/* Logout */}
+          <Route path="logout" element={<Logout />} />
+
           {/* PROTEGIDAS */}
 
           {/* Perfil */}
@@ -87,17 +90,7 @@ function AppRoutes() {
             }
           />
 
-          {/* Logout */}
-          <Route
-            path="logout"
-            element={
-              <ProtectedRoute>
-                <Logout />
-              </ProtectedRoute>
-            }
-          />
-
-          {/* 404 - NOT FOUND */}
+          {/* 404 - NOT FOUND (ROTA DE FALLBACK, PÚBLICA) */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
