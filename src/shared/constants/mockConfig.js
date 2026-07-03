@@ -4,6 +4,7 @@ const FAKE_ERRORS = {
   register: false,
   login: false,
   logout: false,
+  refresh: false,
 };
 
 export default FAKE_ERRORS;
