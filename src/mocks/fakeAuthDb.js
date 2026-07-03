@@ -77,3 +77,7 @@ export const Users = [
 /* Logout */
 
 export const logoutMsg = { message: 'Logout realizado' };
+
+/* Refresh */
+
+export const refreshWithoutUserMsg = 'Não autorizado, não existe usuário local salvo (storaged)';

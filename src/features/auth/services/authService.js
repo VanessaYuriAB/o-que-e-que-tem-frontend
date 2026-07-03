@@ -2,7 +2,7 @@ import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import apiFetch from '../../../services/api.js';
 import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
-import { Users, logoutMsg } from '../../../mocks/fakeAuthDb.js';
+import { Users, logoutMsg, refreshWithoutUserMsg } from '../../../mocks/fakeAuthDb.js';
 
 /*
 
@@ -73,6 +73,9 @@ export async function login(credentials) {
 
       const { userName, email, tel } = userExists; // dados do usuário a ser logado, sem senha
 
+      // Seta persistência para fakeApi (refresh)
+      localStorage.setItem('mockUser', JSON.stringify({ userName, email, tel }));
+
       return await fakeApi({ userName, email, tel });
     };
 
@@ -101,6 +104,9 @@ export async function logout() {
         await fakeApiError('mockFn com err = true no logout do authService');
       }
 
+      // Limpa persistência para fakeApi (refresh)
+      localStorage.removeItem('mockUser');
+
       return await fakeApi(logoutMsg);
     };
 
@@ -117,5 +123,36 @@ export async function logout() {
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no authService.logout', { cause });
+  }
+}
+
+export async function refresh() {
+  // Servidor valida o cookie e retorna o user
+  try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.refresh) {
+        await fakeApiError('mockFn com err = true no refresh do authService');
+      }
+
+      // Busca persistência para fakeApi (refresh)
+      const fakeUserStoraged = localStorage.getItem('mockUser');
+
+      if (!fakeUserStoraged) {
+        await fakeApiError(refreshWithoutUserMsg, 401);
+      }
+
+      return await fakeApi(JSON.parse(fakeUserStoraged));
+    };
+
+    const apiFn = async () => {
+      return await apiFetch('/me'); // sem parâmetros de 'options' pq é um GET
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    console.log('authService/refresh:', data);
+    return typeof data === 'object' ? data : {};
+  } catch (cause) {
+    throw new Error('Falha no authService.refresh', { cause });
   }
 }
