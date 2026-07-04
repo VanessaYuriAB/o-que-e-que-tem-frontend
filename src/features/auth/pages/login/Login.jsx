@@ -63,7 +63,7 @@ function Login() {
 
   return (
     <AuthFormModal>
-      <form className="form-login auth-form" name="login" onSubmit={handleSubmit} noValidate>
+      <form className="form-login auth-form" name="login" onSubmit={handleSubmit} /*noValidate*/>
         <h1 className="form-login__title auth-form__title">Entrar</h1>
         <fieldset className="form-login__field auth-form__field">
           <label className="form-login__label auth-form__label">
@@ -91,13 +91,12 @@ function Login() {
               name="tel"
               minLength={14}
               maxLength={15}
-              /*pattern="^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$"*/
-              title="Fixo ou celular. Formato: (xx) xxxx-xxxx."
-              placeholder="Digite seu telefone cadastrado, no formato: (xx) xxxx-xxxx"
+              pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
+              title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
+              placeholder="Digite seu telefone cadastrado, no formato: (XX) XXXXX-XXXX"
               value={data.tel}
               onChange={handleChange}
               required
-              /* ARRUMAR PATTERN */
             />
           </label>
           <div className="form-login__line auth-form__line"></div>

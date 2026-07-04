@@ -79,7 +79,11 @@ function Register() {
 
   return (
     <AuthFormModal>
-      <form className="form-register auth-form" name="register" onSubmit={handleSubmit} noValidate>
+      <form
+        className="form-register auth-form"
+        name="register"
+        onSubmit={handleSubmit} /*noValidate*/
+      >
         <h1 className="form-register__title auth-form__title">Inscrever-se</h1>
         <fieldset className="form-register__field auth-form__field">
           <label className="form-register__label auth-form__label">
@@ -137,9 +141,9 @@ function Register() {
               name="tel"
               minLength={14}
               maxLength={15}
-              /*pattern="^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$"*/
-              title="Fixo ou celular. Formato: (xx) xxxx-xxxx."
-              placeholder="Digite seu telefone para contato, no formato: (XX) XXXX-XXXX"
+              pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
+              title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
+              placeholder="Digite seu telefone para contato, no formato: (XX) XXXXX-XXXX"
               value={data.tel}
               onChange={handleChange}
               required

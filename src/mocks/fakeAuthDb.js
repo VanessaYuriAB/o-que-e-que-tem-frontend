@@ -6,7 +6,7 @@ export const User = {
   userName: 'User',
   email: 'user@email.com',
   confirmEmail: 'user@email.com',
-  tel: '(11) 11111-1111',
+  tel: '(11) 1111-1111',
   password: 'senha123',
   confirmPassword: 'senha123',
 };
