@@ -1,10 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { navbarLinksLoggedOff, navbarLinksLoggedOn } from '../../../constants/navigation.js';
 
 import './Navbar.css';
 
 function Navbar() {
+  const location = useLocation();
+
   const user = useAuthStore((state) => state.user);
 
   const navbarLinks = user ? navbarLinksLoggedOn : navbarLinksLoggedOff;
@@ -21,6 +23,9 @@ function Navbar() {
               <NavLink
                 className={customClassName}
                 to={link.to}
+                state={
+                  link.to === '/login' || link.to === '/register' ? { from: location } : undefined
+                }
                 aria-label={link.label}
                 title={link.title}
               >
