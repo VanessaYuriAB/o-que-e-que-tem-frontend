@@ -2,7 +2,7 @@ import AuthFormModal from '../../components/AuthFormModal.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../../shared/components/ui/input/Input.jsx';
 import useAuthStore from '../../../../store/useAuthStore.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { User } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
@@ -29,6 +29,8 @@ function Register() {
   /* Hook */
 
   const navigate = useNavigate();
+
+  const location = useLocation();
 
   /* Store */
 
@@ -59,7 +61,7 @@ function Register() {
 
       if (result.success === true) {
         console.log('cadastrado');
-        navigate('/login', { replace: true });
+        navigate('/login', { replace: true, state: { from: location.state?.from } });
       } else if (result.success === false && result.error.scope === 'local') {
         setLocalError(result.error.message);
       }

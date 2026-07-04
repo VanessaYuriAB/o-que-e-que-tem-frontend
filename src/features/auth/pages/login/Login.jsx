@@ -2,7 +2,7 @@ import AuthFormModal from '../../components/AuthFormModal.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../../shared/components/ui/input/Input.jsx';
 import useAuthStore from '../../../../store/useAuthStore.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { User1 } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
@@ -19,10 +19,12 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+
   const { loginAction, loading, globalError } = useAuthStore(
     useShallow((state) => ({
       loginAction: state.loginAction,
-      loadind: state.loading,
+      loading: state.loading,
       globalError: state.globalError,
     }))
   );
@@ -44,7 +46,11 @@ function Login() {
 
     if (result.success === true) {
       console.log('logado');
-      navigate('/profile', { replace: true });
+
+      const from = location.state?.from;
+      const redirectPath = from ? `${from.pathname}${from.search}${from.hash}` : '/profile'; // preserva a rota completa originalmente acessada, incluindo query params (?page=2) e âncoras (#section) e o usuário volta exatamente para onde estava
+
+      navigate(redirectPath, { replace: true });
     } else if (result.success === false && result.error.scope === 'local') {
       setLocalError(result.error.message);
     }

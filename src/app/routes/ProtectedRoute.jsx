@@ -3,8 +3,11 @@ import UnauthorizedRoute from '../../pages/unauthorized-route/UnauthorizedRoute.
 import useAuthStore from '../../store/useAuthStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import Loader from '../../shared/components/ui/loader/Loader.jsx';
+import { useLocation } from 'react-router-dom';
 
 function ProtectedRoute({ children }) {
+  const location = useLocation();
+
   const { user, loading, authChecked } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
@@ -18,7 +21,7 @@ function ProtectedRoute({ children }) {
     return <Loader>Validando credenciais...</Loader>;
   }
 
-  return user ? children : <UnauthorizedRoute />;
+  return user ? children : <UnauthorizedRoute from={location} />;
 }
 
 ProtectedRoute.propTypes = {
