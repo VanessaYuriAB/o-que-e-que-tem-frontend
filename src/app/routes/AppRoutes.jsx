@@ -23,6 +23,10 @@ const Logout = lazy(() => import('../../features/auth/pages/logout/Logout.jsx'))
 const UserProfile = lazy(
   () => import('../../features/profile/pages/components/user-profile/UserProfile.jsx')
 );
+const SubscriptionProfile = lazy(
+  () =>
+    import('../../features/profile/pages/components/subscription-profile/SubscriptionProfile.jsx')
+);
 
 function AppRoutes() {
   return (
@@ -111,6 +115,14 @@ function AppRoutes() {
             element={
               <ProtectedRoute>
                 <UserProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="subscription-profile"
+            element={
+              <ProtectedRoute>
+                <SubscriptionProfile />
               </ProtectedRoute>
             }
           />
