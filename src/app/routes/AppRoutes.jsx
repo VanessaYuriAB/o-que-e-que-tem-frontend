@@ -20,6 +20,10 @@ const Subscription = lazy(() => import('../../features/subscription/pages/Subscr
 const Profile = lazy(() => import('../../features/profile/pages/Profile.jsx'));
 const Logout = lazy(() => import('../../features/auth/pages/logout/Logout.jsx'));
 
+const UserProfile = lazy(
+  () => import('../../features/profile/pages/components/user-profile/UserProfile.jsx')
+);
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -88,7 +92,17 @@ function AppRoutes() {
                 <Profile />
               </ProtectedRoute>
             }
-          />
+          >
+            {/* index: rota padrão dentro do perfil, renderiza quando acessar '/profile' */}
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
 
           {/* 404 - NOT FOUND (ROTA DE FALLBACK, PÚBLICA) */}
           <Route path="*" element={<NotFound />} />
