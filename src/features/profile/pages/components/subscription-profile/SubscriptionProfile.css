@@ -1,0 +1,21 @@
+/* Mobile first (padrão) */
+
+.profile__config-subscription {
+  margin: 0 auto;
+}
+
+.config-subscription {
+  width: 80%;
+}
+
+.config-subscription__text {
+  text-align: left;
+}
+
+.config-subscription__button {
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
