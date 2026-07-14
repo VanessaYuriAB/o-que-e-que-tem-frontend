@@ -60,6 +60,9 @@ function AppRoutes() {
 
           {/* Cardápio */}
           <Route path="menu" element={<Menu />}>
+            {/* index: rota padrão dentro do menu, renderiza quando acessar '/menu' */}
+            <Route index element={<MenuType category="todos" />} />
+
             <Route path="todos" element={<MenuType category="todos" />} />
             <Route path="carboidratos" element={<MenuType category="carboidratos" />} />
             <Route path="verduras-legumes" element={<MenuType category="verduras-legumes" />} />
