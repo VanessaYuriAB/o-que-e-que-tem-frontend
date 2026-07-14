@@ -109,23 +109,24 @@ function AppRoutes() {
                 </ProtectedRoute>
               }
             />
+
+            <Route
+              path="user-profile"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="subscription-profile"
+              element={
+                <ProtectedRoute>
+                  <SubscriptionProfile />
+                </ProtectedRoute>
+              }
+            />
           </Route>
-          <Route
-            path="user-profile"
-            element={
-              <ProtectedRoute>
-                <UserProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="subscription-profile"
-            element={
-              <ProtectedRoute>
-                <SubscriptionProfile />
-              </ProtectedRoute>
-            }
-          />
 
           {/* 404 - NOT FOUND (ROTA DE FALLBACK, PÚBLICA) */}
           <Route path="*" element={<NotFound />} />
