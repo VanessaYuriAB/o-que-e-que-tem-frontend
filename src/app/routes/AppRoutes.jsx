@@ -106,6 +106,14 @@ function AppRoutes() {
               }
             />
           </Route>
+          <Route
+            path="user-profile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
 
           {/* 404 - NOT FOUND (ROTA DE FALLBACK, PÚBLICA) */}
           <Route path="*" element={<NotFound />} />
