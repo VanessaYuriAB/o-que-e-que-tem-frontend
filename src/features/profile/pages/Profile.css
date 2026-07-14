@@ -1,0 +1,47 @@
+/* Mobile first (padrão) */
+
+.content__profile {
+}
+
+.profile {
+}
+
+.profile__box {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.profile__title {
+}
+
+.profile__subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2em;
+}
+
+.profile__text {
+}
+
+.profile__nav {
+  margin-top: 3em;
+  margin-bottom: 6em;
+}
+
+.profile__list {
+  display: flex;
+  justify-content: center;
+  column-gap: 1em;
+}
+
+.profile__item {
+}
+
+.profile__link {
+  padding: 0.75em;
+  border: none;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
