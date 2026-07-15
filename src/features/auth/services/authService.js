@@ -71,12 +71,25 @@ export async function login(credentials) {
         await fakeApiError('Falha no authService.login: Credenciais inválidas', 401);
       }
 
-      const { userName, email, tel } = userExists; // dados do usuário a ser logado, sem senha
+      const { userName, email, tel, address, number, complement, district, cep, infoText } =
+        userExists; // dados do usuário a ser logado, sem senha
+
+      const userDataWithoutPassword = {
+        userName,
+        email,
+        tel,
+        address,
+        number,
+        complement,
+        district,
+        cep,
+        infoText,
+      };
 
       // Seta persistência para fakeApi (refresh)
-      localStorage.setItem('mockUser', JSON.stringify({ userName, email, tel }));
+      localStorage.setItem('mockUser', JSON.stringify(userDataWithoutPassword));
 
-      return await fakeApi({ userName, email, tel });
+      return await fakeApi(userDataWithoutPassword);
     };
 
     const apiFn = async () => {
