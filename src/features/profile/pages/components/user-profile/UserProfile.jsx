@@ -5,6 +5,7 @@ import { useShallow } from 'zustand/react/shallow';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../shared/components/ui/input/Input.jsx';
+import Textarea from '../../../../../shared/components/ui/textarea/Textarea.jsx';
 import './UserProfile.css';
 
 function UserProfile() {
@@ -179,7 +180,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="infoText">
         Informação(ões) Adicional(ais):
       </label>
-      <textarea
+      <Textarea
         className="user-form__textarea"
         id="infoText"
         name="infoText"

@@ -20,12 +20,6 @@
   margin-bottom: 1em;
 }
 
-.user-form__textarea {
-  padding: 0.25em;
-  line-height: 1.5;
-  color: darkgreen;
-}
-
 .user-form__loader {
   padding-bottom: 0;
 }
