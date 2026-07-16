@@ -6,7 +6,7 @@ const FAKE_ERRORS = {
   logout: false,
   refresh: false,
 
-  updateUserProfile: false,
+  updateUserProfile: true,
 };
 
 export default FAKE_ERRORS;

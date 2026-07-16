@@ -190,11 +190,13 @@ function UserProfile() {
         disabled={!isEditing}
       />
 
-      {loading && <Loader>Atualizando dados de perfil...</Loader>}
+      {loading && <Loader className="user-form__loader">Atualizando dados de perfil...</Loader>}
 
-      {globalError && !isEditing && <Toast message={globalError.message} />}
+      {globalError && !isEditing && (
+        <Toast className="user-form__toast" message={globalError.message} />
+      )}
 
-      {localError && <Toast message={localError} />}
+      {localError && <Toast className="user-form__toast" message={localError} />}
 
       <div className="user-form__button-box">
         {!isEditing && (
