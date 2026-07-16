@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from 'react-router-dom';
-
 import { menuLinks } from '../../../shared/constants/navigation';
 import foodPyramidImg from '../../../assets/images/piramide-alimentar.png';
 

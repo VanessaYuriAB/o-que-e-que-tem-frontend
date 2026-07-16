@@ -1,6 +1,5 @@
 import { Outlet, NavLink } from 'react-router-dom';
-import useAuthStore from '../../../store/useAuthStore';
-
+import useAuthStore from '../../../store/useAuthStore.js';
 import './Profile.css';
 
 function Profile() {
