@@ -7,6 +7,7 @@ import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../../../shared/components/ui/textarea/Textarea.jsx';
 import './UserProfile.css';
+import '../../../styles/profile-form.css';
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -58,15 +59,15 @@ function UserProfile() {
 
   return (
     <form
-      className="user-form profile__user-form"
+      className="user-form profile__user-form profile-form"
       name="profile-form"
       onSubmit={handleSubmit} /*noValidate*/
     >
-      <label className="user-form__label" htmlFor="userName">
+      <label className="user-form__label profile-form__label" htmlFor="userName">
         Nome completo:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="text"
         id="userName"
         name="userName"
@@ -76,11 +77,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="email">
+      <label className="user-form__label profile-form__label" htmlFor="email">
         E-mail:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="email"
         id="email"
         name="email"
@@ -90,11 +91,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="tel">
+      <label className="user-form__label profile-form__label" htmlFor="tel">
         Telefone:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="tel"
         id="tel"
         name="tel"
@@ -106,11 +107,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="address">
+      <label className="user-form__label profile-form__label" htmlFor="address">
         Endereço:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="text"
         id="address"
         name="address"
@@ -120,11 +121,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="number">
+      <label className="user-form__label profile-form__label" htmlFor="number">
         nº:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="text"
         id="number"
         name="number"
@@ -134,11 +135,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="complement">
+      <label className="user-form__label profile-form__label" htmlFor="complement">
         Complemento:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="text"
         id="complement"
         name="complement"
@@ -148,11 +149,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="district">
+      <label className="user-form__label profile-form__label" htmlFor="district">
         Bairro:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="text"
         id="district"
         name="district"
@@ -162,11 +163,11 @@ function UserProfile() {
         onChange={handleChange}
         disabled={!isEditing}
       />
-      <label className="user-form__label" htmlFor="cep">
+      <label className="user-form__label profile-form__label" htmlFor="cep">
         CEP:
       </label>
       <Input
-        className="user-form__input"
+        className="user-form__input profile-form__input"
         type="text"
         id="cep"
         name="cep"
@@ -177,11 +178,11 @@ function UserProfile() {
         disabled={!isEditing}
       />
 
-      <label className="user-form__label" htmlFor="infoText">
+      <label className="user-form__label profile-form__label" htmlFor="infoText">
         Informação(ões) Adicional(ais):
       </label>
       <Textarea
-        className="user-form__textarea"
+        className="user-form__textarea profile-form__textarea"
         id="infoText"
         name="infoText"
         pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
@@ -192,18 +193,24 @@ function UserProfile() {
         disabled={!isEditing}
       />
 
-      {loading && <Loader className="user-form__loader">Atualizando dados de perfil...</Loader>}
-
-      {globalError && !isEditing && (
-        <Toast className="user-form__toast" message={globalError.message} />
+      {loading && (
+        <Loader className="user-form__loader profile-form__loader ">
+          Atualizando dados de perfil...
+        </Loader>
       )}
 
-      {localError && <Toast className="user-form__toast" message={localError} />}
+      {globalError && !isEditing && (
+        <Toast className="user-form__toast profile-form__toast" message={globalError.message} />
+      )}
+
+      {localError && (
+        <Toast className="user-form__toast profile-form__toast" message={localError} />
+      )}
 
       <div className="user-form__button-box">
         {!isEditing && (
           <Button
-            className="user-form__button"
+            className="user-form__button profile-form__button"
             type="button"
             onClick={() => {
               setLocalError(null);
@@ -215,7 +222,11 @@ function UserProfile() {
         )}
 
         {isEditing && (
-          <Button className="user-form__button" type="submit" disabled={loading}>
+          <Button
+            className="user-form__button profile-form__button"
+            type="submit"
+            disabled={loading}
+          >
             Enviar
           </Button>
         )}

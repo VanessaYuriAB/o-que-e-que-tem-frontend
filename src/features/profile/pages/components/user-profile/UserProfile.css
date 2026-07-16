@@ -4,38 +4,7 @@
   margin: 0 auto;
 }
 
-.user-form {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.5em;
-}
-
-.user-form__label {
-  align-self: flex-start;
-}
-
-.user-form__input,
-.user-form__textarea {
-  margin-bottom: 1em;
-}
-
-.user-form__loader {
-  padding-bottom: 0;
-}
-
-.user-form__toast {
-  margin-bottom: 0.75em;
-}
-
 .user-form__button-box {
-}
-
-.user-form__button {
-  align-self: center;
-  width: 30%;
-  margin-top: 3em;
-  margin-bottom: 0;
 }
 
 /* Tablet e acima */
