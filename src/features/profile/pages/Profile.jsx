@@ -7,6 +7,9 @@ function Profile() {
 
   console.log('Usuário em Profile:', user);
 
+  const customClassName = ({ isActive }) =>
+    `profile__link nav__link link-to-button ${isActive ? 'profile__link_active' : ''}`;
+
   return (
     <section className="profile content__profile">
       <div className="profile__box">
@@ -30,12 +33,12 @@ function Profile() {
       <nav className="profile__nav">
         <ul className="profile__list nav__list">
           <li className="profile__item">
-            <NavLink className="profile__link nav__link link-to-button" to="user-profile">
+            <NavLink className={customClassName} to="user-profile">
               Dados Pessoais
             </NavLink>
           </li>
           <li className="profile__item">
-            <NavLink className="profile__link nav__link link-to-button" to="subscription-profile">
+            <NavLink className={customClassName} to="subscription-profile">
               Configuração de Assinatura
             </NavLink>
           </li>

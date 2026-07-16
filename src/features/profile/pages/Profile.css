@@ -41,6 +41,10 @@
   border: none;
 }
 
+.profile__link_active {
+  opacity: 0.4;
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
