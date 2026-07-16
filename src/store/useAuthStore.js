@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import * as authService from '../features/auth/services/authService.js';
 import errorHandler from '../shared/utils/errorHandler';
+import * as profileService from '../features/profile/services/profileService.js';
 
 /*
 
@@ -110,6 +111,27 @@ const useAuthStore = create((set) => ({
       return { success: false, error: handledError };
     } finally {
       set({ loading: false, authChecked: true });
+    }
+  },
+
+  // updateUser chama profileService.updateUserProfile e seta user, atualizando dados
+  updateUserAction: async (profileFormData) => {
+    set({ loading: true, globalError: null });
+
+    try {
+      const data = await profileService.updateUserProfile(profileFormData);
+      set({ user: data });
+      return { success: true };
+    } catch (error) {
+      const handledError = errorHandler(error);
+
+      if (handledError.scope === 'global') {
+        set({ globalError: handledError });
+      }
+
+      return { success: false, error: handledError };
+    } finally {
+      set({ loading: false });
     }
   },
 }));
