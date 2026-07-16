@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
+import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import './UserProfile.css';
 
 function UserProfile() {
@@ -63,7 +64,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="userName">
         Nome completo:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="text"
         id="userName"
@@ -77,7 +78,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="email">
         E-mail:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="email"
         id="email"
@@ -91,7 +92,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="tel">
         Telefone:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="tel"
         id="tel"
@@ -107,7 +108,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="address">
         Endereço:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="text"
         id="address"
@@ -121,7 +122,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="number">
         nº:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="text"
         id="number"
@@ -135,7 +136,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="complement">
         Complemento:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="text"
         id="complement"
@@ -149,7 +150,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="district">
         Bairro:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="text"
         id="district"
@@ -163,7 +164,7 @@ function UserProfile() {
       <label className="user-form__label" htmlFor="cep">
         CEP:
       </label>
-      <input
+      <Input
         className="user-form__input"
         type="text"
         id="cep"
