@@ -116,4 +116,10 @@ export const logoutMsg = { message: 'Logout realizado' };
 
 /* Refresh */
 
-export const refreshWithoutUserMsg = 'Não autorizado, não existe usuário local salvo (storaged)';
+export const refreshWithoutUserMsg =
+  'Falha no authService.refresh: Não autorizado, não existe usuário local salvo (storaged)';
+
+/* Update */
+
+export const updateWithoutUserMsg =
+  'Falha no profileService.updateUserProfile: Não autorizado, não existe usuário local salvo (storaged)';
