@@ -71,8 +71,19 @@ export async function login(credentials) {
         await fakeApiError('Falha no authService.login: Credenciais inválidas', 401);
       }
 
-      const { userName, email, tel, address, number, complement, district, cep, infoText } =
-        userExists; // dados do usuário a ser logado, sem senha
+      const {
+        userName,
+        email,
+        tel,
+        address,
+        number,
+        complement,
+        district,
+        cep,
+        infoText,
+        subscription,
+        subscriptionStatus,
+      } = userExists; // dados do usuário a ser logado, sem senha
 
       const userDataWithoutPassword = {
         userName,
@@ -84,6 +95,8 @@ export async function login(credentials) {
         district,
         cep,
         infoText,
+        subscription,
+        subscriptionStatus,
       };
 
       // Seta persistência para fakeApi (refresh)
