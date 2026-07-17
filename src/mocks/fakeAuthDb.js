@@ -26,6 +26,8 @@ export const User1 = {
   district: 'Bairro mock 1',
   cep: '99999-999',
   infoText: 'Infos adicionais mock 1',
+  subscription: true,
+  subscriptionStatus: true,
 };
 
 export const User2 = {
@@ -41,6 +43,8 @@ export const User2 = {
   district: 'Bairro mock 2',
   cep: '88888-888',
   infoText: 'Infos adicionais mock 2',
+  subscription: true,
+  subscriptionStatus: false,
 };
 
 export const User3 = {
@@ -56,6 +60,8 @@ export const User3 = {
   district: 'Bairro mock 3',
   cep: '77777-777',
   infoText: '',
+  subscription: false,
+  subscriptionStatus: false,
 };
 
 /* DADOS PARA CONSULTA DE BANCO */
@@ -77,6 +83,8 @@ export const Users = [
     district: 'Bairro mock 1',
     cep: '99999-999',
     infoText: 'Infos adicionais mock 1',
+    subscription: true,
+    subscriptionStatus: true,
   },
   // User 2
   {
@@ -92,6 +100,8 @@ export const Users = [
     district: 'Bairro mock 2',
     cep: '88888-888',
     infoText: 'Infos adicionais mock 2',
+    subscription: true,
+    subscriptionStatus: false,
   },
   // User 3
   {
@@ -107,6 +117,8 @@ export const Users = [
     district: 'Bairro mock 3',
     cep: '77777-777',
     infoText: '',
+    subscription: false,
+    subscriptionStatus: false,
   },
 ];
 
