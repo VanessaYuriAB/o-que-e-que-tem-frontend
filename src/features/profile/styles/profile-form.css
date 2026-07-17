@@ -2,9 +2,17 @@
 
 .profile-form {
   width: 80%;
+}
+
+.profile-form__field {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
+  padding: 1.5em;
+}
+
+.profile-form__title {
+  align-self: flex-start;
 }
 
 .profile-form__label {
