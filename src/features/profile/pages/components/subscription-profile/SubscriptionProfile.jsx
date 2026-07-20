@@ -93,7 +93,7 @@ function SubscriptionProfile() {
   };
 
   return (
-    <>
+    <div className="profile__subscription">
       {user.subscription ? (
         <form
           className="subscription-form profile__subscription-form profile-form"
@@ -381,7 +381,7 @@ function SubscriptionProfile() {
           <> Link</>
         </>
       )}
-    </>
+    </div>
   );
 }
 
