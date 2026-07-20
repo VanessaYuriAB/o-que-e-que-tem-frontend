@@ -139,33 +139,35 @@ function SubscriptionProfile() {
               </div>
             </div>
 
-            <h3 className="subscription-form__title profile-form__title">Início:</h3>
-            <label className="subscription-form__label profile-form__label" htmlFor="begin">
-              <Input
-                className="subscription-form__input profile-form__input"
-                type="date"
-                id="begin"
-                name="begin"
-                pattern=""
-                title="A data de início da sua assinatura."
-                value={formData.begin}
-                disabled
-              />
-            </label>
+            <div className="subscription-form__items-container">
+              <h3 className="subscription-form__title profile-form__title">Início:</h3>
+              <label className="subscription-form__label profile-form__label" htmlFor="begin">
+                <Input
+                  className="subscription-form__input profile-form__input"
+                  type="date"
+                  id="begin"
+                  name="begin"
+                  pattern=""
+                  title="A data de início da sua assinatura."
+                  value={formData.begin}
+                  disabled
+                />
+              </label>
 
-            <h3 className="subscription-form__title profile-form__title">Fim:</h3>
-            <label className="subscription-form__label profile-form__label" htmlFor="end">
-              <Input
-                className="subscription-form__input profile-form__input"
-                type="date"
-                id="end"
-                name="end"
-                pattern=""
-                title="A data final de sua assinatura."
-                value={formData.end}
-                disabled
-              />
-            </label>
+              <h3 className="subscription-form__title profile-form__title">Fim:</h3>
+              <label className="subscription-form__label profile-form__label" htmlFor="end">
+                <Input
+                  className="subscription-form__input profile-form__input"
+                  type="date"
+                  id="end"
+                  name="end"
+                  pattern=""
+                  title="A data final de sua assinatura."
+                  value={formData.end}
+                  disabled
+                />
+              </label>
+            </div>
           </fieldset>
 
           <fieldset className="subscription-form__field profile-form__field">

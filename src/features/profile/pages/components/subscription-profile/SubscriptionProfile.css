@@ -5,6 +5,10 @@
   column-gap: 1em;
 }
 
+.subscription-form__items-container {
+  text-align: left;
+}
+
 .subscription-form__items-box_days-on {
   flex-direction: column;
 }
@@ -37,6 +41,11 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .subscription-form__items-container {
+    display: flex;
+    column-gap: 2em;
+  }
+
   .subscription-form__items-box_days-on {
     flex-direction: row;
   }
