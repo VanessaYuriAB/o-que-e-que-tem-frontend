@@ -55,6 +55,20 @@
   margin-top: 1em;
 }
 
+.profile__subscription-box {
+  margin-bottom: 1.75em;
+}
+
+.profile__subscription-title {
+  font-weight: 500;
+  margin-bottom: 2em;
+}
+
+.profile__subscription-link {
+  padding: 0.5em;
+  background-color: rgb(240, 240, 240);
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import useAuthStore from '../../../../../store/useAuthStore.js';
 import { useShallow } from 'zustand/react/shallow';
+import { Link } from 'react-router-dom';
 import '../../../styles/profile-form.css';
 import './SubscriptionProfile.css';
 
@@ -394,11 +395,12 @@ function SubscriptionProfile() {
           </div>
         </form>
       ) : (
-        <>
-          <>Ainda não é um assinante?</>
-          <> Faça agora sua assinatura :)</>
-          <> Link</>
-        </>
+        <div className="profile__subscription-box">
+          <h3 className="profile__subscription-title">Ainda não é um assinante e quer ser?</h3>
+          <Link className="profile__subscription-link link-to-button" to="/subscription">
+            Assine agora :)
+          </Link>
+        </div>
       )}
     </div>
   );
