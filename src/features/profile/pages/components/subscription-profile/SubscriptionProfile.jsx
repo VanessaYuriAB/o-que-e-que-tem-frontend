@@ -101,207 +101,224 @@ function SubscriptionProfile() {
           onSubmit={handleSubmit} /*noValidate*/
         >
           <fieldset className="subscription-form__field profile-form__field">
-            <h3
-              className="subscription-form__title profile-form__title"
-              title="O status da sua assinatura: on ou off."
-            >
-              Status:
-            </h3>
-            <div className="subscription-form__items-box">
-              <div className="subscription-form__item-box">
-                <label className="subscription-form__label profile-form__label" htmlFor="on">
-                  On
-                </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="radio"
-                  id="on"
-                  name="status"
-                  value="on"
-                  disabled
-                />
-              </div>
-              <div className="subscription-form__item-box">
-                <label
-                  className="subscription-form__label profile-form__label"
-                  htmlFor="drive-thru"
-                >
-                  Off
-                </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="radio"
-                  id="off"
-                  name="status"
-                  value="off"
-                  disabled
-                />
+            <div className="subscription-form__status-box">
+              <h3
+                className="subscription-form__title profile-form__title"
+                title="O status da sua assinatura: on ou off."
+              >
+                Status:
+              </h3>
+              <div className="subscription-form__on-off-box">
+                <div className="subscription-form__item-box">
+                  <label className="subscription-form__label profile-form__label" htmlFor="on">
+                    On
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="radio"
+                    id="on"
+                    name="status"
+                    value="on"
+                    disabled
+                  />
+                </div>
+
+                <div className="subscription-form__item-box">
+                  <label
+                    className="subscription-form__label profile-form__label"
+                    htmlFor="drive-thru"
+                  >
+                    Off
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="radio"
+                    id="off"
+                    name="status"
+                    value="off"
+                    disabled
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="subscription-form__items-container">
-              <h3 className="subscription-form__title profile-form__title">Início:</h3>
-              <label className="subscription-form__label profile-form__label" htmlFor="begin">
-                <Input
-                  className="subscription-form__input profile-form__input"
-                  type="date"
-                  id="begin"
-                  name="begin"
-                  pattern=""
-                  title="A data de início da sua assinatura."
-                  value={formData.begin}
-                  disabled
-                />
-              </label>
-
-              <h3 className="subscription-form__title profile-form__title">Fim:</h3>
-              <label className="subscription-form__label profile-form__label" htmlFor="end">
-                <Input
-                  className="subscription-form__input profile-form__input"
-                  type="date"
-                  id="end"
-                  name="end"
-                  pattern=""
-                  title="A data final de sua assinatura."
-                  value={formData.end}
-                  disabled
-                />
-              </label>
-            </div>
-          </fieldset>
-
-          <fieldset className="subscription-form__field profile-form__field">
-            <h3
-              className="subscription-form__title profile-form__title"
-              title="Os dias da semana selecionados na sua assinatura."
-            >
-              Quais dias da semana:
-            </h3>
-            <div className="subscription-form__items-box subscription-form__items-box_days-on">
-              <div className="subscription-form__item-box subscription-form__item-box_days-on">
-                <label className="subscription-form__label profile-form__label" htmlFor="seg">
-                  Segunda
-                </label>
-                <Input
-                  className="subscription-form__input profile-form__input"
-                  type="checkbox"
-                  id="daysOn"
-                  name="daysOn"
-                  value="seg"
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="subscription-form__item-box subscription-form__item-box_days-on">
-                <label className="subscription-form__label profile-form__label" htmlFor="ter">
-                  Terça
-                </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="checkbox"
-                  id="daysOn"
-                  name="daysOn"
-                  value="ter"
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="subscription-form__item-box subscription-form__item-box_days-on">
-                <label className="subscription-form__label profile-form__label" htmlFor="qua">
-                  Quarta
-                </label>
-                <Input
-                  className="subscription-form__input profile-form__input"
-                  type="checkbox"
-                  id="daysOn"
-                  name="daysOn"
-                  value="qua"
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="subscription-form__item-box subscription-form__item-box_days-on">
-                <label className="subscription-form__label profile-form__label" htmlFor="qui">
-                  Quinta
-                </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="checkbox"
-                  id="daysOn"
-                  name="daysOn"
-                  value="qui"
-                  disabled={!isEditing}
-                />
-              </div>
-              <div className="subscription-form__item-box subscription-form__item-box_days-on">
-                <label className="subscription-form__label profile-form__label" htmlFor="sex">
-                  Sexta
-                </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="checkbox"
-                  id="daysOn"
-                  name="daysOn"
-                  value="sex"
-                  disabled={!isEditing}
-                />
-              </div>
-            </div>
-
-            <h3
-              className="subscription-form__title profile-form__title"
-              title="A forma de entrega selecionada na sua assinatura."
-            >
-              Delivery ou drive-thru:
-            </h3>
-            <div className="subscription-form__items-box">
+            <div className="subscription-form__begin-end-box">
               <div className="subscription-form__item-box">
-                <label className="subscription-form__label profile-form__label" htmlFor="delivery">
-                  Delivery
+                <h3 className="subscription-form__title profile-form__title">Início:</h3>
+                <label className="subscription-form__label profile-form__label" htmlFor="begin">
+                  <Input
+                    className="subscription-form__input profile-form__input"
+                    type="date"
+                    id="begin"
+                    name="begin"
+                    pattern=""
+                    title="A data de início da sua assinatura."
+                    value={formData.begin}
+                    disabled
+                  />
                 </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="radio"
-                  id="delivery"
-                  name="method"
-                  value="delivery"
-                  disabled={!isEditing}
-                />
               </div>
+
               <div className="subscription-form__item-box">
-                <label
-                  className="subscription-form__label profile-form__label"
-                  htmlFor="drive-thru"
-                >
-                  Drive-thru
+                <h3 className="subscription-form__title profile-form__title">Fim:</h3>
+                <label className="subscription-form__label profile-form__label" htmlFor="end">
+                  <Input
+                    className="subscription-form__input profile-form__input"
+                    type="date"
+                    id="end"
+                    name="end"
+                    pattern=""
+                    title="A data final de sua assinatura."
+                    value={formData.end}
+                    disabled
+                  />
                 </label>
-                <Input
-                  className="subscription-form__input  profile-form__input"
-                  type="radio"
-                  id="drive-thru"
-                  name="method"
-                  value="drive-thru"
-                  disabled={!isEditing}
-                />
               </div>
             </div>
           </fieldset>
 
           <fieldset className="subscription-form__field profile-form__field">
-            <h3
-              className="subscription-form__title profile-form__title"
-              title="A data da próxima refeição."
-            >
-              Próxima entrega em:
-            </h3>
-            <label className="subscription-form__label profile-form__label" htmlFor="next">
-              <Input
-                className="subscription-form__input profile-form__input"
-                type="date"
-                id="next"
-                name="next"
-                pattern=""
-                value={formData.next}
-                disabled
-              />
-            </label>
+            <div className="subscription-form__days-on-box">
+              <h3
+                className="subscription-form__title profile-form__title"
+                title="Os dias da semana selecionados na sua assinatura."
+              >
+                Dias da semana:
+              </h3>
+              <div className="subscription-form__days-box">
+                <div className="subscription-form__item-box subscription-form__item-box_days">
+                  <label className="subscription-form__label profile-form__label" htmlFor="seg">
+                    Segunda
+                  </label>
+                  <Input
+                    className="subscription-form__input profile-form__input"
+                    type="checkbox"
+                    id="daysOn"
+                    name="daysOn"
+                    value="seg"
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div className="subscription-form__item-box subscription-form__item-box_days">
+                  <label className="subscription-form__label profile-form__label" htmlFor="ter">
+                    Terça
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="checkbox"
+                    id="daysOn"
+                    name="daysOn"
+                    value="ter"
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div className="subscription-form__item-box subscription-form__item-box_days">
+                  <label className="subscription-form__label profile-form__label" htmlFor="qua">
+                    Quarta
+                  </label>
+                  <Input
+                    className="subscription-form__input profile-form__input"
+                    type="checkbox"
+                    id="daysOn"
+                    name="daysOn"
+                    value="qua"
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div className="subscription-form__item-box subscription-form__item-box_days">
+                  <label className="subscription-form__label profile-form__label" htmlFor="qui">
+                    Quinta
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="checkbox"
+                    id="daysOn"
+                    name="daysOn"
+                    value="qui"
+                    disabled={!isEditing}
+                  />
+                </div>
+                <div className="subscription-form__item-box subscription-form__item-box_days">
+                  <label className="subscription-form__label profile-form__label" htmlFor="sex">
+                    Sexta
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="checkbox"
+                    id="daysOn"
+                    name="daysOn"
+                    value="sex"
+                    disabled={!isEditing}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="subscription-form__method-box">
+              <h3
+                className="subscription-form__title profile-form__title"
+                title="A forma de entrega selecionada na sua assinatura."
+              >
+                Forma de entrega:
+              </h3>
+              <div className="subscription-form__delivery-drive-box">
+                <div className="subscription-form__item-box">
+                  <label
+                    className="subscription-form__label profile-form__label"
+                    htmlFor="delivery"
+                  >
+                    Delivery
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="radio"
+                    id="delivery"
+                    name="method"
+                    value="delivery"
+                    disabled={!isEditing}
+                  />
+                </div>
+
+                <div className="subscription-form__item-box">
+                  <label
+                    className="subscription-form__label profile-form__label"
+                    htmlFor="drive-thru"
+                  >
+                    Drive-thru
+                  </label>
+                  <Input
+                    className="subscription-form__input  profile-form__input"
+                    type="radio"
+                    id="drive-thru"
+                    name="method"
+                    value="drive-thru"
+                    disabled={!isEditing}
+                  />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset className="subscription-form__field profile-form__field">
+            <div className="subscription-form__next-box">
+              <h3
+                className="subscription-form__title profile-form__title"
+                title="A data da próxima refeição."
+              >
+                Próxima entrega em:
+              </h3>
+              <label className="subscription-form__label profile-form__label" htmlFor="next">
+                <Input
+                  className="subscription-form__input profile-form__input"
+                  type="date"
+                  id="next"
+                  name="next"
+                  pattern=""
+                  value={formData.next}
+                  disabled
+                />
+              </label>
+            </div>
           </fieldset>
 
           <p className="subscription-form__note">

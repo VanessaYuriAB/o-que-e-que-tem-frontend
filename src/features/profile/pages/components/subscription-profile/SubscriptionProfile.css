@@ -1,16 +1,11 @@
 /* Mobile first (padrão) */
 
-.subscription-form__items-box {
+.subscription-form__status-box {
+}
+
+.subscription-form__on-off-box {
   display: flex;
   column-gap: 1em;
-}
-
-.subscription-form__items-container {
-  text-align: left;
-}
-
-.subscription-form__items-box_days-on {
-  flex-direction: column;
 }
 
 .subscription-form__item-box {
@@ -19,8 +14,30 @@
   width: fit-content;
 }
 
-.subscription-form__item-box_days-on {
+.subscription-form__item-box_days {
   align-items: flex-start;
+}
+
+.subscription-form__begin-end-box {
+}
+
+.subscription-form__days-on-box {
+}
+
+.subscription-form__days-box {
+}
+
+.subscription-form__method-box {
+}
+
+.subscription-form__delivery-drive-box {
+  display: flex;
+  column-gap: 1em;
+}
+
+.subscription-form__next-box {
+  display: flex;
+  flex-direction: column;
 }
 
 .subscription-form__note {
@@ -41,17 +58,23 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .subscription-form__items-container {
+  .subscription-form__begin-end-box {
     display: flex;
-    column-gap: 2em;
+    column-gap: 3em;
   }
 
-  .subscription-form__items-box_days-on {
-    flex-direction: row;
+  .subscription-form__days-box {
+    display: flex;
+    column-gap: 1.5em;
   }
 
-  .subscription-form__item-box_days-on {
+  .subscription-form__item-box_days {
     align-items: center;
+  }
+
+  .subscription-form__next-box {
+    flex-direction: row;
+    column-gap: 1em;
   }
 
   .subscription-form__button-box {
