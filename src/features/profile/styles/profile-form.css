@@ -12,6 +12,7 @@
 
 .profile-form__title {
   align-self: flex-start;
+  text-align: left;
 }
 
 .profile-form__label {
@@ -22,6 +23,7 @@
 .profile-form__input,
 .profile-form__textarea {
   margin-bottom: 1em;
+  margin-top: 0.5em;
 }
 
 .profile-form__loader {
@@ -34,7 +36,7 @@
 
 .profile-form__button {
   align-self: center;
-  width: 30%;
+  width: 35%;
   margin-top: 3em;
   margin-bottom: 0;
 }

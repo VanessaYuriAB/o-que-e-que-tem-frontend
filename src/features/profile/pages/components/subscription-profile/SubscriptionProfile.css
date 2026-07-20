@@ -1,21 +1,58 @@
 /* Mobile first (padrão) */
 
-.profile__config-subscription {
-  margin: 0 auto;
+.subscription-form__items-box {
+  display: flex;
+  column-gap: 1em;
 }
 
-.config-subscription {
+.subscription-form__items-box_days-on {
+  flex-direction: column;
+}
+
+.subscription-form__item-box {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.subscription-form__item-box_days-on {
+  align-items: flex-start;
+}
+
+.subscription-form__note {
   width: 80%;
+  margin: 0 auto;
+  margin-top: 1.5em;
 }
 
-.config-subscription__text {
-  text-align: left;
+.subscription-form__button-box {
+  display: flex;
+  flex-direction: column;
 }
 
-.config-subscription__button {
+.subscription-form__button:last-of-type {
+  margin-top: 1em;
 }
 
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .subscription-form__items-box_days-on {
+    flex-direction: row;
+  }
+
+  .subscription-form__item-box_days-on {
+    align-items: center;
+  }
+
+  .subscription-form__button-box {
+    flex-direction: row;
+    column-gap: 1em;
+    justify-content: center;
+    margin-bottom: 2em;
+  }
+
+  .subscription-form__button:last-of-type {
+    margin-top: 3em;
+  }
 }
