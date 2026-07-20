@@ -1,7 +1,6 @@
 /* Mobile first (padrão) */
 
 .profile-form {
-  width: 80%;
 }
 
 .profile-form__field {
@@ -17,6 +16,7 @@
 
 .profile-form__label {
   align-self: flex-start;
+  text-align: left;
 }
 
 .profile-form__input,

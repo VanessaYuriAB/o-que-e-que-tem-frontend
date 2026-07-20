@@ -6,7 +6,6 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../../../shared/components/ui/textarea/Textarea.jsx';
-import './UserProfile.css';
 import '../../../styles/profile-form.css';
 
 function UserProfile() {
