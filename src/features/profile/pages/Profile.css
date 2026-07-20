@@ -24,13 +24,13 @@
 
 .profile__nav {
   margin-top: 3em;
-  margin-bottom: 6em;
+  margin-bottom: 3.5em;
 }
 
 .profile__list {
   display: flex;
-  justify-content: center;
-  column-gap: 1em;
+  flex-direction: column;
+  row-gap: 2em;
 }
 
 .profile__item {
@@ -48,4 +48,9 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .profile__list {
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1em;
+  }
 }
