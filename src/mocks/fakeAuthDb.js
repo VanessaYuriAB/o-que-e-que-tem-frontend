@@ -31,7 +31,7 @@ export const User1 = {
   subscriptionDetails: {
     begin: '2026-06-27', // input date : "o formato da data mostrada difere do value atual — o formato da data mostrada será escolhido baseado na localização definida no navegador do usuário, enquanto que a data em value sempre será formatado como yyyy-mm-dd"
     end: '2027-12-27', // input date (begin + 6 meses)
-    daysOn: 'ter | qui', // input checkbox
+    daysOn: ['ter', 'qui'], // input checkbox
     method: 'drive-thru', // input radio
     next: '2026-07-23', // input date
   },
@@ -55,7 +55,7 @@ export const User2 = {
   subscriptionDetails: {
     begin: '2026-07-21',
     end: '2027-01-21',
-    daysOn: 'seg | qua | sex',
+    daysOn: ['seg', 'qua', 'sex'],
     method: 'delivery',
     next: '2026-07-22',
   },
@@ -103,7 +103,7 @@ export const Users = [
     subscriptionDetails: {
       begin: '2026-06-27',
       end: '2027-12-27',
-      daysOn: 'ter | qui',
+      daysOn: ['ter', 'qui'],
       method: 'drive-thru',
       next: '2026-07-23',
     },
@@ -127,7 +127,7 @@ export const Users = [
     subscriptionDetails: {
       begin: '2026-07-21',
       end: '2027-01-21',
-      daysOn: 'seg | qua | sex',
+      daysOn: ['seg', 'qua', 'sex'],
       method: 'delivery',
       next: '2026-07-22',
     },
