@@ -8,6 +8,11 @@
   flex-direction: column;
   row-gap: 0.5em;
   padding: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.profile-form__field:last-of-type {
+  margin-bottom: 0;
 }
 
 .profile-form__title {
