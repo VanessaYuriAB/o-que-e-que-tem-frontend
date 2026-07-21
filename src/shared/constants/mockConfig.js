@@ -7,6 +7,7 @@ const FAKE_ERRORS = {
   refresh: false,
 
   updateUserProfile: false,
+  updateSubscriptionProfile: false,
 };
 
 export default FAKE_ERRORS;

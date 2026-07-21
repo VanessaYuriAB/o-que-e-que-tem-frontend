@@ -39,3 +39,47 @@ export async function updateUserProfile(userProfileData) {
     throw new Error('Falha no updateUserProfile', { cause });
   }
 }
+
+export async function updateSubscriptionProfile(subscriptionProfileData) {
+  try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.updateSubscriptionProfile) {
+        return await fakeApiError(
+          'mockFn com err = true no updateSubscriptionProfile do profileService'
+        );
+      }
+
+      // Busca persistência (armazenamento local), parseando (String JSON → Objeto)
+      const fakeUserStoraged = JSON.parse(localStorage.getItem('mockUser'));
+
+      if (!fakeUserStoraged) {
+        await fakeApiError(updateWithoutUserMsg, 401);
+      }
+
+      // Atualiza obj de detalhes da assinatura do usuário, dentro do obj completo de usuário
+      const fakeUpdatedUser = {
+        ...fakeUserStoraged,
+        subscriptionDetails: {
+          ...fakeUserStoraged.subscriptionDetails,
+          ...subscriptionProfileData,
+        },
+      };
+
+      // Atualiza persistência, stringficando (Objeto → String JSON)
+      localStorage.setItem('mockUser', JSON.stringify(fakeUpdatedUser));
+
+      return await fakeApi(fakeUpdatedUser);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch('/me', { method: 'PATCH', reqBody: subscriptionProfileData });
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    console.log('profileService/updateSubscriptionProfile:', data);
+    return typeof data === 'object' ? data : {};
+  } catch (cause) {
+    throw new Error('Falha no updateSubscriptionProfile', { cause });
+  }
+}
