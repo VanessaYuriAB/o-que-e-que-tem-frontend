@@ -11,6 +11,7 @@ import '../../../styles/profile-form.css';
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [localError, setLocalError] = useState(null);
+  const [confirmAction, setConfirmAction] = useState(null);
 
   const { user, updateUserAction, loading, globalError } = useAuthStore(
     useShallow((state) => ({
@@ -20,6 +21,8 @@ function UserProfile() {
       globalError: state.globalError,
     }))
   );
+
+  console.log('Usuário em UserProfile:', user);
 
   const [formData, setFormData] = useState({
     userName: user.userName ?? '',
@@ -45,6 +48,9 @@ function UserProfile() {
     // Se o fetch não for bem sucedido e o erro for local, define msg de erro
     if (result.success === false && result.error.scope === 'local') {
       setLocalError(result.error.message);
+    } else if (result.success === true) {
+      // Se bem sucedido, define msg de sucesso
+      setConfirmAction('Perfil atualizado');
     }
 
     // Reativa 'disabled', desativando edição e voltando para botão 'Editar'
@@ -216,6 +222,10 @@ function UserProfile() {
           <Toast className="user-form__toast profile-form__toast" message={localError} />
         )}
 
+        {confirmAction && (
+          <Toast className="user-form__toast profile-form__toast" message={confirmAction}></Toast>
+        )}
+
         <div className="user-form__button-box">
           {!isEditing && (
             <Button
@@ -223,6 +233,7 @@ function UserProfile() {
               type="button"
               onClick={() => {
                 setLocalError(null);
+                setConfirmAction(null);
                 setIsEditing(true); // desativa atributo 'disabled', habilitando edição e alternando para botão 'Enviar'
               }}
             >

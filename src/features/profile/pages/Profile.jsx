@@ -5,8 +5,6 @@ import './Profile.css';
 function Profile() {
   const user = useAuthStore((state) => state.user);
 
-  console.log('Usuário em Profile:', user);
-
   const customClassName = ({ isActive }) =>
     `profile__link nav__link link-to-button ${isActive ? 'profile__link_active' : ''}`;
 
