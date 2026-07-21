@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 import '../../../styles/profile-form.css';
 import './SubscriptionProfile.css';
 
-/* CASO SEJA ASSINANTE, RENDERIZAR PERFIL DE ASSINATURA - CASO NÃO, RENDERIZAR REDIRECIONAMENTO PARA ASSINATURA */
-
 function SubscriptionProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [localError, setLocalError] = useState(null);
@@ -24,15 +22,15 @@ function SubscriptionProfile() {
   );
 
   const [formData, setFormData] = useState({
-    status: '',
-    begin: '',
-    end: '',
-    daysOn: '',
-    method: '',
-    next: '',
+    status: user?.subscriptionStatus ?? '',
+    begin: user?.subscriptionDetails?.begin ?? '',
+    end: user?.subscriptionDetails?.end ?? '',
+    daysOn: user?.subscriptionDetails?.daysOn ?? '',
+    method: user?.subscriptionDetails?.method ?? '',
+    next: user?.subscriptionDetails?.next ?? '',
   });
 
-  const [isActive, setIsActive] = useState(user.subscriptionStatus);
+  const [isActive, setIsActive] = useState(user?.subscriptionStatus ?? '');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -95,6 +93,8 @@ function SubscriptionProfile() {
 
   return (
     <div className="profile__subscription">
+      {/* Se usuário for assinante, renderiza página de perfil de assinatura; se não, renderiza link de redirecionamento para assinatura */}
+
       {user.subscription ? (
         <form
           className="subscription-form profile__subscription-form profile-form"
@@ -120,6 +120,7 @@ function SubscriptionProfile() {
                     id="on"
                     name="status"
                     value="on"
+                    checked={formData.status}
                     disabled
                   />
                 </div>
@@ -137,6 +138,7 @@ function SubscriptionProfile() {
                     id="off"
                     name="status"
                     value="off"
+                    checked={!formData.status}
                     disabled
                   />
                 </div>
@@ -197,6 +199,7 @@ function SubscriptionProfile() {
                     id="daysOn"
                     name="daysOn"
                     value="seg"
+                    checked={formData.daysOn.includes('seg')}
                     disabled={!isEditing}
                   />
                 </div>
@@ -210,6 +213,7 @@ function SubscriptionProfile() {
                     id="daysOn"
                     name="daysOn"
                     value="ter"
+                    checked={formData.daysOn.includes('ter')}
                     disabled={!isEditing}
                   />
                 </div>
@@ -223,6 +227,7 @@ function SubscriptionProfile() {
                     id="daysOn"
                     name="daysOn"
                     value="qua"
+                    checked={formData.daysOn.includes('qua')}
                     disabled={!isEditing}
                   />
                 </div>
@@ -236,6 +241,7 @@ function SubscriptionProfile() {
                     id="daysOn"
                     name="daysOn"
                     value="qui"
+                    checked={formData.daysOn.includes('qui')}
                     disabled={!isEditing}
                   />
                 </div>
@@ -249,6 +255,7 @@ function SubscriptionProfile() {
                     id="daysOn"
                     name="daysOn"
                     value="sex"
+                    checked={formData.daysOn.includes('sex')}
                     disabled={!isEditing}
                   />
                 </div>
@@ -276,6 +283,7 @@ function SubscriptionProfile() {
                     id="delivery"
                     name="method"
                     value="delivery"
+                    checked={formData.method.includes('delivery')}
                     disabled={!isEditing}
                   />
                 </div>
@@ -293,6 +301,7 @@ function SubscriptionProfile() {
                     id="drive-thru"
                     name="method"
                     value="drive-thru"
+                    checked={formData.method.includes('drive-thru')}
                     disabled={!isEditing}
                   />
                 </div>
