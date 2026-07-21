@@ -134,6 +134,27 @@ const useAuthStore = create((set) => ({
       set({ loading: false });
     }
   },
+
+  // updateSubscription chama profileService.updateSubscriptionProfile e seta user, atualizando dados
+  updateSubscriptionAction: async (profileFormData) => {
+    set({ loading: true, globalError: null });
+
+    try {
+      const data = await profileService.updateSubscriptionProfile(profileFormData);
+      set({ user: data });
+      return { success: true };
+    } catch (error) {
+      const handledError = errorHandler(error);
+
+      if (handledError.scope === 'global') {
+        set({ globalError: handledError });
+      }
+
+      return { success: false, error: handledError };
+    } finally {
+      set({ loading: false });
+    }
+  },
 }));
 
 export default useAuthStore;
