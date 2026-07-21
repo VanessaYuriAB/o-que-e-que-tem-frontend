@@ -57,19 +57,25 @@ function SubscriptionProfile() {
       setLocalError(result.error.message);
     }
 
+    // Se o envio for de edição
+    if (action === 'send') {
+      setIsEditing(false);
+    }
+
     // Se bem sucedido
     if (result.success === true) {
+      setLocalError(null);
+
       if (action === 'send') {
         setConfirmAction('Assinatura atualizada');
-        setIsEditing(false);
-      } else if (action === 'pause') {
-        setLocalError(null);
-        setConfirmAction(null);
+      }
+
+      if (action === 'pause') {
         setConfirmAction('Assinatura pausada');
         setIsActive(false); // alterar user.subscriptionStatus !
-      } else if (action === 'retake') {
-        setLocalError(null);
-        setConfirmAction(null);
+      }
+
+      if (action === 'retake') {
         setConfirmAction('Assinatura retomada');
         setIsActive(true); // alterar user.subscriptionStatus !
       }
