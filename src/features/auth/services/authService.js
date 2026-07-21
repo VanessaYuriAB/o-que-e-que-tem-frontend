@@ -83,6 +83,7 @@ export async function login(credentials) {
         infoText,
         subscription,
         subscriptionStatus,
+        subscriptionDetails,
       } = userExists; // dados do usuário a ser logado, sem senha
 
       const userDataWithoutPassword = {
@@ -97,6 +98,7 @@ export async function login(credentials) {
         infoText,
         subscription,
         subscriptionStatus,
+        subscriptionDetails,
       };
 
       // Seta persistência para fakeApi (refresh)
