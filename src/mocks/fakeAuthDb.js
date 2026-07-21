@@ -28,6 +28,13 @@ export const User1 = {
   infoText: 'Infos adicionais mock 1',
   subscription: true,
   subscriptionStatus: true,
+  subscriptionDetails: {
+    begin: '2026-06-27', // input date : "o formato da data mostrada difere do value atual — o formato da data mostrada será escolhido baseado na localização definida no navegador do usuário, enquanto que a data em value sempre será formatado como yyyy-mm-dd"
+    end: '2027-12-27', // input date (begin + 6 meses)
+    daysOn: 'ter | qui', // input checkbox
+    method: 'drive-thru', // input radio
+    next: '2026-07-23', // input date
+  },
 };
 
 export const User2 = {
@@ -45,6 +52,13 @@ export const User2 = {
   infoText: 'Infos adicionais mock 2',
   subscription: true,
   subscriptionStatus: false,
+  subscriptionDetails: {
+    begin: '2026-07-21',
+    end: '2027-01-21',
+    daysOn: 'seg | qua | sex',
+    method: 'delivery',
+    next: '2026-07-22',
+  },
 };
 
 export const User3 = {
@@ -62,6 +76,7 @@ export const User3 = {
   infoText: '',
   subscription: false,
   subscriptionStatus: false,
+  subscriptionDetails: {}, // role: admin
 };
 
 /* DADOS PARA CONSULTA DE BANCO */
@@ -85,6 +100,13 @@ export const Users = [
     infoText: 'Infos adicionais mock 1',
     subscription: true,
     subscriptionStatus: true,
+    subscriptionDetails: {
+      begin: '2026-06-27',
+      end: '2027-12-27',
+      daysOn: 'ter | qui',
+      method: 'drive-thru',
+      next: '2026-07-23',
+    },
   },
   // User 2
   {
@@ -102,6 +124,13 @@ export const Users = [
     infoText: 'Infos adicionais mock 2',
     subscription: true,
     subscriptionStatus: false,
+    subscriptionDetails: {
+      begin: '2026-07-21',
+      end: '2027-01-21',
+      daysOn: 'seg | qua | sex',
+      method: 'delivery',
+      next: '2026-07-22',
+    },
   },
   // User 3
   {
@@ -119,6 +148,7 @@ export const Users = [
     infoText: '',
     subscription: false,
     subscriptionStatus: false,
+    subscriptionDetails: {}, // role: admin
   },
 ];
 
