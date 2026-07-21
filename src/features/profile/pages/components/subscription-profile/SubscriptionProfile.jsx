@@ -5,6 +5,7 @@ import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import useAuthStore from '../../../../../store/useAuthStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import { Link } from 'react-router-dom';
+import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import '../../../styles/profile-form.css';
 import './SubscriptionProfile.css';
 
@@ -13,13 +14,16 @@ function SubscriptionProfile() {
   const [localError, setLocalError] = useState(null);
   const [confirmAction, setConfirmAction] = useState(null);
 
-  const { user, loading, globalError } = useAuthStore(
+  const { user, updateSubscriptionAction, loading, globalError } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
+      updateSubscriptionAction: state.updateSubscriptionAction,
       loading: state.loading,
       globalError: state.globalError,
     }))
   );
+
+  console.log('Usuário em SubscriptionProfile:', user);
 
   const [formData, setFormData] = useState({
     status: user?.subscriptionStatus ?? '',
@@ -34,61 +38,51 @@ function SubscriptionProfile() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'daysOn') {
+      // concatena os novos valores dos checkboxs
+    }
+
     setFormData((prevData) => {
       return { ...prevData, [name]: value };
     });
   };
 
+  const handleUpdate = async (data, action) => {
+    // Envia dados de atualização e seta perfil
+    const result = await updateSubscriptionAction(data);
+
+    // Se o fetch não for bem sucedido e o erro for local, define msg de erro
+    if (result.success === false && result.error.scope === 'local') {
+      setLocalError(result.error.message);
+    }
+
+    // Se bem sucedido
+    if (result.success === true) {
+      if (action === 'send') {
+        setConfirmAction('Assinatura atualizada');
+        setIsEditing(false);
+      } else if (action === 'pause') {
+        setLocalError(null);
+        setConfirmAction(null);
+        setConfirmAction('Assinatura pausada');
+        setIsActive(false); // alterar user.subscriptionStatus !
+      } else if (action === 'retake') {
+        setLocalError(null);
+        setConfirmAction(null);
+        setConfirmAction('Assinatura retomada');
+        setIsActive(true); // alterar user.subscriptionStatus !
+      }
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Diferenciação dos envios
+    // Diferenciação dos envios de dados (enviar, pausar ou retomar)
     const action = event.nativeEvent.submitter.value;
 
-    if (action === 'send') {
-      // Enviar
-      // ...
-
-      // Se erro local, seta toast e retorna
-      // setLocalError('Erro local');
-      // return;
-
-      // Se bem sucedido, reativa 'disabled'
-      setConfirmAction('Assinatura atualizada');
-      setIsEditing(false);
-    } else if (action === 'pause') {
-      // Pausar
-
-      // Limpa msgs de Toasts
-      setLocalError(null);
-      setConfirmAction(null);
-
-      // ...
-
-      // Se erro local, seta toast e retorna
-      // setLocalError('Erro local');
-      // return;
-
-      // Se bem sucedido, desativa 'isActive'
-      setConfirmAction('Assinatura pausada');
-      setIsActive(false); // alterar user.subscriptionStatus !
-    } else if (action === 'retake') {
-      // Retomar
-
-      // Limpa msgs de Toasts
-      setLocalError(null);
-      setConfirmAction(null);
-
-      // ...
-
-      // Se erro local, seta toast e retorna
-      // setLocalError('Erro local');
-      // return;
-
-      // Se bem sucedido, ativa 'isActive'
-      setConfirmAction('Assinatura retomada');
-      setIsActive(true); // alterar user.subscriptionStatus !
-    }
+    handleUpdate(formData, action);
   };
 
   return (
@@ -154,7 +148,6 @@ function SubscriptionProfile() {
                     type="date"
                     id="begin"
                     name="begin"
-                    pattern=""
                     title="A data de início da sua assinatura."
                     value={formData.begin}
                     disabled
@@ -170,7 +163,6 @@ function SubscriptionProfile() {
                     type="date"
                     id="end"
                     name="end"
-                    pattern=""
                     title="A data final de sua assinatura."
                     value={formData.end}
                     disabled
@@ -200,6 +192,7 @@ function SubscriptionProfile() {
                     name="daysOn"
                     value="seg"
                     checked={formData.daysOn.includes('seg')}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -214,6 +207,7 @@ function SubscriptionProfile() {
                     name="daysOn"
                     value="ter"
                     checked={formData.daysOn.includes('ter')}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -228,6 +222,7 @@ function SubscriptionProfile() {
                     name="daysOn"
                     value="qua"
                     checked={formData.daysOn.includes('qua')}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -242,6 +237,7 @@ function SubscriptionProfile() {
                     name="daysOn"
                     value="qui"
                     checked={formData.daysOn.includes('qui')}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -256,6 +252,7 @@ function SubscriptionProfile() {
                     name="daysOn"
                     value="sex"
                     checked={formData.daysOn.includes('sex')}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -283,7 +280,8 @@ function SubscriptionProfile() {
                     id="delivery"
                     name="method"
                     value="delivery"
-                    checked={formData.method.includes('delivery')}
+                    checked={formData.method === 'delivery'}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -301,7 +299,8 @@ function SubscriptionProfile() {
                     id="drive-thru"
                     name="method"
                     value="drive-thru"
-                    checked={formData.method.includes('drive-thru')}
+                    checked={formData.method === 'drive-thru'}
+                    onChange={handleChange}
                     disabled={!isEditing}
                   />
                 </div>
@@ -323,7 +322,6 @@ function SubscriptionProfile() {
                   type="date"
                   id="next"
                   name="next"
-                  pattern=""
                   value={formData.next}
                   disabled
                 />
@@ -336,7 +334,18 @@ function SubscriptionProfile() {
             pausá-la por um período máximo de 2 meses, uma vez ao ano.
           </p>
 
-          {/* loader profile-form__loader */}
+          {loading && (
+            <Loader className="subscription-form__loader profile-form__loader ">
+              Atualizando configuração de assinatura...
+            </Loader>
+          )}
+
+          {globalError && !isEditing && (
+            <Toast
+              className="subscription-form__toast profile-form__toast"
+              message={globalError.message}
+            />
+          )}
 
           {localError && (
             <Toast
@@ -344,8 +353,6 @@ function SubscriptionProfile() {
               message={localError}
             ></Toast>
           )}
-
-          {/* toast global profile-form__toast */}
 
           {confirmAction && (
             <Toast
@@ -374,7 +381,7 @@ function SubscriptionProfile() {
                     className="subscription-form__button profile-form__button"
                     type="submit"
                     value="pause"
-                    /*disabled={loading}*/
+                    disabled={loading}
                   >
                     Pausar
                   </Button>
@@ -383,7 +390,7 @@ function SubscriptionProfile() {
                     className="subscription-form__button profile-form__button"
                     type="submit"
                     value="retake"
-                    /*disabled={loading}*/
+                    disabled={loading}
                   >
                     Retomar
                   </Button>
@@ -396,7 +403,7 @@ function SubscriptionProfile() {
                 className="subscription-form__button profile-form__button"
                 type="submit"
                 value="send"
-                /*disabled={loading}*/
+                disabled={loading}
               >
                 Enviar
               </Button>
