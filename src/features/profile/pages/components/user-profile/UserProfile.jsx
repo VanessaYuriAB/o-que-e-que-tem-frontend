@@ -64,7 +64,7 @@ function UserProfile() {
         onSubmit={handleSubmit} /*noValidate*/
       >
         <fieldset className="user-form__field profile-form__field">
-          <h3 className="user-form__title profile-form__title">Contato</h3>
+          <legend className="user-form__title profile-form__title">Dados de Contato</legend>
           <label className="user-form__label profile-form__label" htmlFor="userName">
             Nome completo:
           </label>
@@ -111,9 +111,9 @@ function UserProfile() {
           />
         </fieldset>
         <fieldset className="user-form__field profile-form__field">
-          <h3 className="user-form__title profile-form__title">Endereço</h3>
+          <legend className="user-form__title profile-form__title">Dados de Endereço</legend>
           <label className="user-form__label profile-form__label" htmlFor="address">
-            Endereço:
+            Logradouro (rua, avenida, praça, etc):
           </label>
           <Input
             className="user-form__input profile-form__input"
@@ -150,6 +150,7 @@ function UserProfile() {
             name="complement"
             pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
             title="O complemento do seu endereço para delivery: apenas números e/ou letras."
+            placeholder="Opcional"
             value={formData.complement}
             onChange={handleChange}
             disabled={!isEditing}
@@ -184,9 +185,9 @@ function UserProfile() {
           />
         </fieldset>
         <fieldset className="user-form__field profile-form__field">
-          <h3 className="user-form__title profile-form__title">Adicional</h3>
+          <legend className="user-form__title profile-form__title">Informações Adicionais</legend>
           <label className="user-form__label profile-form__label" htmlFor="infoText">
-            Informação(ões) Adicional(ais):
+            Observação:
           </label>
           <Textarea
             className="user-form__textarea profile-form__textarea"
@@ -194,7 +195,7 @@ function UserProfile() {
             name="infoText"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
             title="Informações relevantes, exemplo: ponto de referência ou contato para entrega (nome e RG/CPF)."
-            placeholder="Por exemplo, um ponto de referência ou um contato oficial para entrega (nome e RG/CPF)."
+            placeholder="Opcional. Por exemplo, um ponto de referência ou um contato oficial para entrega (nome e RG/CPF)."
             value={formData.infoText}
             onChange={handleChange}
             disabled={!isEditing}
