@@ -43,8 +43,12 @@ function SubscriptionProfile() {
   };
 
   const handleUpdate = async (data, action) => {
+    // Configura data para cada ação de envio
+    const payload =
+      action === 'pause' ? { status: false } : action === 'retake' ? { status: true } : data;
+
     // Envia dados de atualização e seta perfil
-    const result = await updateSubscriptionAction(data);
+    const result = await updateSubscriptionAction(payload);
 
     // Se o fetch não for bem sucedido e o erro for local, define msg de erro
     if (result.success === false && result.error.scope === 'local') {
