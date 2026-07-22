@@ -26,15 +26,9 @@ function SubscriptionProfile() {
   console.log('Usuário em SubscriptionProfile:', user);
 
   const [formData, setFormData] = useState({
-    status: user?.subscriptionStatus ?? '',
-    begin: user?.subscriptionDetails?.begin ?? '',
-    end: user?.subscriptionDetails?.end ?? '',
-    daysOn: user?.subscriptionDetails?.daysOn ?? '',
+    daysOn: user?.subscriptionDetails?.daysOn ?? [],
     method: user?.subscriptionDetails?.method ?? '',
-    next: user?.subscriptionDetails?.next ?? '',
   });
-
-  const [isActive, setIsActive] = useState(user?.subscriptionStatus ?? '');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,12 +66,10 @@ function SubscriptionProfile() {
 
       if (action === 'pause') {
         setConfirmAction('Assinatura pausada');
-        setIsActive(false); // alterar user.subscriptionStatus !
       }
 
       if (action === 'retake') {
         setConfirmAction('Assinatura retomada');
-        setIsActive(true); // alterar user.subscriptionStatus !
       }
     }
   };
@@ -120,7 +112,7 @@ function SubscriptionProfile() {
                     id="on"
                     name="status"
                     value="on"
-                    checked={formData.status}
+                    checked={user.subscriptionDetails.status === true}
                     disabled
                   />
                 </div>
@@ -138,7 +130,7 @@ function SubscriptionProfile() {
                     id="off"
                     name="status"
                     value="off"
-                    checked={!formData.status}
+                    checked={user.subscriptionDetails.status === false}
                     disabled
                   />
                 </div>
@@ -155,7 +147,7 @@ function SubscriptionProfile() {
                     id="begin"
                     name="begin"
                     title="A data de início da sua assinatura."
-                    value={formData.begin}
+                    value={user.subscriptionDetails.begin}
                     disabled
                   />
                 </label>
@@ -170,7 +162,7 @@ function SubscriptionProfile() {
                     id="end"
                     name="end"
                     title="A data final de sua assinatura."
-                    value={formData.end}
+                    value={user.subscriptionDetails.end}
                     disabled
                   />
                 </label>
@@ -328,7 +320,7 @@ function SubscriptionProfile() {
                   type="date"
                   id="next"
                   name="next"
-                  value={formData.next}
+                  value={user.subscriptionDetails.next}
                   disabled
                 />
               </label>
@@ -382,7 +374,7 @@ function SubscriptionProfile() {
                   Editar
                 </Button>
 
-                {isActive ? (
+                {user.subscriptionDetails.status === true ? (
                   <Button
                     className="subscription-form__button profile-form__button"
                     type="submit"
