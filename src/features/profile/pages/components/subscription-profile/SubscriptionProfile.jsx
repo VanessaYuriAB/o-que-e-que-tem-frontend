@@ -186,7 +186,7 @@ function SubscriptionProfile() {
                   <Input
                     className="subscription-form__input profile-form__input"
                     type="checkbox"
-                    id="daysOn"
+                    id="seg"
                     name="daysOn"
                     value="seg"
                     checked={formData.daysOn.includes('seg')}
@@ -201,7 +201,7 @@ function SubscriptionProfile() {
                   <Input
                     className="subscription-form__input  profile-form__input"
                     type="checkbox"
-                    id="daysOn"
+                    id="ter"
                     name="daysOn"
                     value="ter"
                     checked={formData.daysOn.includes('ter')}
@@ -216,7 +216,7 @@ function SubscriptionProfile() {
                   <Input
                     className="subscription-form__input profile-form__input"
                     type="checkbox"
-                    id="daysOn"
+                    id="qua"
                     name="daysOn"
                     value="qua"
                     checked={formData.daysOn.includes('qua')}
@@ -231,7 +231,7 @@ function SubscriptionProfile() {
                   <Input
                     className="subscription-form__input  profile-form__input"
                     type="checkbox"
-                    id="daysOn"
+                    id="qui"
                     name="daysOn"
                     value="qui"
                     checked={formData.daysOn.includes('qui')}
@@ -246,7 +246,7 @@ function SubscriptionProfile() {
                   <Input
                     className="subscription-form__input  profile-form__input"
                     type="checkbox"
-                    id="daysOn"
+                    id="sex"
                     name="daysOn"
                     value="sex"
                     checked={formData.daysOn.includes('sex')}
