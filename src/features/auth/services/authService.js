@@ -82,7 +82,6 @@ export async function login(credentials) {
         cep,
         infoText,
         subscription,
-        subscriptionStatus,
         subscriptionDetails,
       } = userExists; // dados do usuário a ser logado, sem senha
 
@@ -97,7 +96,6 @@ export async function login(credentials) {
         cep,
         infoText,
         subscription,
-        subscriptionStatus,
         subscriptionDetails,
       };
 
