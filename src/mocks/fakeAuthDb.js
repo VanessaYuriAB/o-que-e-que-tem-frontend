@@ -27,8 +27,8 @@ export const User1 = {
   cep: '99999-999',
   infoText: 'Infos adicionais mock 1',
   subscription: true,
-  subscriptionStatus: true,
   subscriptionDetails: {
+    status: true,
     begin: '2026-06-27', // input date : "o formato da data mostrada difere do value atual — o formato da data mostrada será escolhido baseado na localização definida no navegador do usuário, enquanto que a data em value sempre será formatado como yyyy-mm-dd"
     end: '2027-12-27', // input date (begin + 6 meses)
     daysOn: ['ter', 'qui'], // input checkbox
@@ -51,8 +51,8 @@ export const User2 = {
   cep: '88888-888',
   infoText: 'Infos adicionais mock 2',
   subscription: true,
-  subscriptionStatus: false,
   subscriptionDetails: {
+    status: false,
     begin: '2026-07-21',
     end: '2027-01-21',
     daysOn: ['seg', 'qua', 'sex'],
@@ -75,7 +75,6 @@ export const User3 = {
   cep: '77777-777',
   infoText: '',
   subscription: false,
-  subscriptionStatus: false,
   subscriptionDetails: {}, // role: admin
 };
 
@@ -99,8 +98,8 @@ export const Users = [
     cep: '99999-999',
     infoText: 'Infos adicionais mock 1',
     subscription: true,
-    subscriptionStatus: true,
     subscriptionDetails: {
+      status: true,
       begin: '2026-06-27',
       end: '2027-12-27',
       daysOn: ['ter', 'qui'],
@@ -123,8 +122,8 @@ export const Users = [
     cep: '88888-888',
     infoText: 'Infos adicionais mock 2',
     subscription: true,
-    subscriptionStatus: false,
     subscriptionDetails: {
+      status: false,
       begin: '2026-07-21',
       end: '2027-01-21',
       daysOn: ['seg', 'qua', 'sex'],
@@ -147,7 +146,6 @@ export const Users = [
     cep: '77777-777',
     infoText: '',
     subscription: false,
-    subscriptionStatus: false,
     subscriptionDetails: {}, // role: admin
   },
 ];
