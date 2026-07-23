@@ -53,8 +53,8 @@ const navbarLinkLogout = {
   imgSrc: imgLogout,
 };
 
-const navbarLinkCheckout = {
-  to: '/checkout',
+const navbarLinkCart = {
+  to: '/cart',
   liClass: 'navbar__item nav__item',
   label: 'Ir para carrinho de compras',
   title: 'Carrinho de compras',
@@ -62,9 +62,9 @@ const navbarLinkCheckout = {
   imgSrc: imgCart,
 };
 
-export const navbarLinksLoggedOn = [navbarLinkLogout, navbarLinkCheckout];
+export const navbarLinksLoggedOn = [navbarLinkLogout, navbarLinkCart];
 
-export const navbarLinksLoggedOff = [navbarLinkRegister, navbarLinkLogin, navbarLinkCheckout];
+export const navbarLinksLoggedOff = [navbarLinkRegister, navbarLinkLogin, navbarLinkCart];
 
 /* Menu */
 
