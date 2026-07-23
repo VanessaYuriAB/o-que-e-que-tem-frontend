@@ -31,15 +31,24 @@ function SubscriptionProfile() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
-    if (name === 'daysOn') {
-      // concatena os novos valores dos checkboxs
+    // Se o input for do tipo checkbox, o campo daysOn, por aceitar múltiplos valores, é atualizado de forma diferente: adicionando o valor selecionado ao array com spread (...) ou removendo-o com filter(), devolvendo um novo array contendo apenas os dias diferentes do valor desmarcado - ambos de acordo com o estado de checked
+    if (type === 'checkbox') {
+      setFormData((prevData) => {
+        return {
+          ...prevData,
+          daysOn:
+            checked === true
+              ? [...prevData.daysOn, value]
+              : prevData.daysOn.filter((day) => day !== value),
+        };
+      });
+    } else {
+      setFormData((prevData) => {
+        return { ...prevData, [name]: value };
+      });
     }
-
-    setFormData((prevData) => {
-      return { ...prevData, [name]: value };
-    });
   };
 
   const handleUpdate = async (data, action) => {
