@@ -1,0 +1,18 @@
+/* Mobile first (padrão) */
+
+.content__cart {
+}
+
+.cart {
+}
+
+.cart__title {
+}
+
+.cart__strong {
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
