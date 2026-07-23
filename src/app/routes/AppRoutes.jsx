@@ -28,6 +28,8 @@ const SubscriptionProfile = lazy(
     import('../../features/profile/pages/components/subscription-profile/SubscriptionProfile.jsx')
 );
 
+const Cart = lazy(() => import('../../features/cart/pages/Cart.jsx'));
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -79,6 +81,9 @@ function AppRoutes() {
             <Route path="oleos-gorduras" element={<MenuType category="oleos-gorduras" />} />
             <Route path="acucares-doces" element={<MenuType category="acucares-doces" />} />
           </Route>
+
+          {/* Carrinho */}
+          <Route path="cart" element={<Cart />} />
 
           {/* Fale conosco */}
           <Route path="talk-to-us" element={<Contact />} />
