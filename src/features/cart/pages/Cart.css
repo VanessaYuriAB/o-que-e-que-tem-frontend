@@ -12,7 +12,26 @@
 .cart__strong {
 }
 
+.cart__null-box {
+  padding: 3rem 3rem 1.75rem;
+}
+
+.cart__null-title {
+  font-size: 1.25rem;
+}
+
+.cart__null-text {
+  margin: 2rem auto 3rem;
+}
+
+.cart__null-link {
+  padding: 0.5em;
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .cart__null-box {
+    padding: 5rem 5rem 2.75rem;
+  }
 }
