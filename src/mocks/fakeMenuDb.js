@@ -30,7 +30,7 @@ export const itemsMenu = [
     inventoryLotId: 4,
     productName: 'Mandioca',
     category: 'carboidratos',
-    qtyAvailable: 20,
+    qtyAvailable: 0,
     partnerName: 'Mercado 1',
     availableUntil: new Date().toISOString(),
   },

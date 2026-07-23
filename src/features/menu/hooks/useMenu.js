@@ -29,7 +29,11 @@ export default function useMenu() {
       }
     }
 
-    fetchMenu();
+    fetchMenu(); // primeira carga imediata
+
+    const interval = setInterval(fetchMenu, 60000); // atualização periódica, polling
+
+    return () => clearInterval(interval); // limpeza
   }, []);
 
   return { menuItems, loading, error };
