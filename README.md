@@ -98,6 +98,7 @@ A equipe de triagem atua em duas frentes:
 ### Atualmente implementadas
 
 - Cardápio dinâmico baseado na disponibilidade de ingredientes
+- Atualização periódica da disponibilidade através de polling
 - Filtragem de ingredientes por categoria alimentar
 - Cadastro e autenticação de usuários
 - Rotas públicas e protegidas
@@ -167,15 +168,16 @@ Mock API / Backend
 **Exemplo:**
 
 ```
-Component
-↓
-useMenu()
-↓
-menuService.js
-↓
-api.js
-↓
-fakeApi() / Backend real
+Componente (Menu)
+├─ useMenu()
+│  ↓
+│  menuService.js
+│  ↓
+│  fakeApi() / Backend real
+│
+└─ Outlet Context
+    ↓
+    MenuType
 ```
 
 Essa separação facilita:
@@ -237,7 +239,7 @@ shared/ → recursos reutilizáveis por toda a aplicação
 services/ → camada de infraestrutura responsável pela comunicação com APIs e serviços externos de
 acesso a dados
 
-store → gerenciamento de estado global da aplicação utilizando Zustand; responsável pela
+store/ → gerenciamento de estado global da aplicação utilizando Zustand; responsável pela
 autenticação, controle de loading, erros globais, atualização de perfil, sincronização de sessão
 
 mocks/ → backend fake com dados simulados, persistência durante o desenvolvimento do frontend
@@ -346,6 +348,82 @@ apiFetch
 ```
 
 permitindo substituir o backend fake pelo backend real com mínimo impacto.
+
+### Compartilhamento de estado entre rotas aninhadas
+
+O módulo de cardápio utiliza rotas aninhadas do React Router.
+
+Para evitar requisições duplicadas ao trocar de categoria, o estado do cardápio é obtido no
+componente pai (`Menu`) e compartilhado com as rotas filhas através do `Outlet Context`.
+
+Fluxo:
+
+```
+Menu
+↓
+useMenu()
+↓
+Outlet Context
+↓
+MenuType
+```
+
+Benefícios:
+
+- único fetch para todas as categorias;
+- estado compartilhado entre rotas filhas;
+- menor quantidade de requisições;
+- atualização consistente dos dados exibidos.
+
+### Atualização periódica de disponibilidade (Polling)
+
+A disponibilidade dos ingredientes pode mudar ao longo da navegação do usuário.
+
+Para reduzir a divergência entre o estoque disponível e o cardápio exibido, o módulo de cardápio
+realiza atualizações periódicas através de polling com `setInterval`.
+
+**Exemplo conceitual:**
+
+```
+useEffect()
+↓
+fetch inicial
+↓
+setInterval()
+↓
+novo fetch periódico
+```
+
+Benefícios:
+
+- atualização automática do cardápio;
+- sincronização frequente com a fonte de dados;
+- preparação para integração com backend real.
+
+### Simulação de alterações de estoque no ambiente de desenvolvimento
+
+Durante o desenvolvimento foi utilizada uma simulação de atualização de estoque através de
+`setTimeout`.
+
+O objetivo é reproduzir mudanças de disponibilidade sem depender de um backend real.
+
+Fluxo:
+
+```
+Mock inicial
+↓
+setTimeout()
+↓
+alteração da quantidade disponível
+↓
+polling identifica a mudança
+↓
+interface atualizada
+```
+
+Essa abordagem permite validar a lógica de atualização automática antes da integração com a API
+definitiva. Em ambiente de desenvolvimento, a alteração é simulada em memória. Em produção, as
+atualizações serão provenientes da API e refletidas pelo mecanismo de polling.
 
 ### Tratamento de erros em múltiplas camadas
 
@@ -629,6 +707,8 @@ Durante o desenvolvimento foram explorados pela primeira vez conceitos como:
 - separação clara de responsabilidades;
 - contratos de API;
 - mock backend;
+- Outlet Context do React Router;
+- polling com setInterval;
 - autenticação baseada em JWT `httpOnly`;
 - tooling profissional;
 - organização de projetos para crescimento futuro.
@@ -647,9 +727,9 @@ modelagem de produto.
 usuário, preparada para futuras integrações com APIs RESTful, autenticação via JWT com cookies
 HttpOnly e persistência em MongoDB.
 
----
+## 🌱 Autora
 
 ##### Desenvolvido por Vanessa Yuri A. Brito
 
 Projeto autoral desenvolvido para portfólio e evolução para uma solução Full Stack MERN com foco em
-sustentabilidade, economia circular e redução do desperdício alimentar. 🌱
+sustentabilidade, economia circular e redução do desperdício alimentar.
