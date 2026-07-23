@@ -1,10 +1,13 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { menuLinks } from '../../../shared/constants/navigation';
 import foodPyramidImg from '../../../assets/images/piramide-alimentar.png';
+import useMenu from '../hooks/useMenu.js';
 
 import './Menu.css';
 
 function Menu() {
+  const menuState = useMenu();
+
   const customClassName = ({ isActive }) =>
     `menu__link nav__link ${isActive ? 'menu__link_active' : ''}`;
 
@@ -28,7 +31,7 @@ function Menu() {
             ))}
           </ul>
         </nav>
-        <Outlet />
+        <Outlet context={menuState} />
       </div>
 
       <aside className="menu__aside">
