@@ -8,14 +8,20 @@ import { useMemo } from 'react';
 import './MenuType.css';
 
 function MenuType({ category }) {
-  // HOOKS PRIMEIRO, ANTES DE QLQR RETURN
+  /* HOOKS PRIMEIRO, ANTES DE QLQR RETURN */
 
   const { menuItems, loading, error } = useMenu();
 
+  // Verifica disponibilidade
+  const availableMenuItems = useMemo(
+    () => menuItems.filter((item) => item.qtyAvailable > 0),
+    [menuItems]
+  );
+
   // Ordem alfabética
   const orderedMenuItems = useMemo(
-    () => [...menuItems].sort((a, b) => a.productName.localeCompare(b.productName)),
-    [menuItems]
+    () => [...availableMenuItems].sort((a, b) => a.productName.localeCompare(b.productName)),
+    [availableMenuItems]
   );
 
   // Filtro por categoria
@@ -27,7 +33,7 @@ function MenuType({ category }) {
     [orderedMenuItems, category]
   );
 
-  // EARLY RETURNS DEPOIS DE HOOKS
+  /* EARLY RETURNS DEPOIS DE HOOKS */
   if (loading) {
     return <Loader />;
   }
