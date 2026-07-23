@@ -160,7 +160,7 @@ function SubscriptionProfile() {
                     id="begin"
                     name="begin"
                     title="A data de início da sua assinatura."
-                    value={user.subscriptionDetails.begin}
+                    defaultValue={user.subscriptionDetails.begin}
                     disabled
                   />
                 </label>
