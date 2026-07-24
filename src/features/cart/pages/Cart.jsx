@@ -3,14 +3,64 @@ import { Link } from 'react-router-dom';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
 import Button from '../../../shared/components/ui/button/Button.jsx';
+import { useState } from 'react';
+import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 
 function Cart() {
+  const [confirmAction, setConfirmAction] = useState(null);
+
+  const [formData, setFormData] = useState({
+    method: '',
+    userName: '',
+    email: '',
+    tel: '',
+    address: '',
+    number: '',
+    complement: '',
+    district: '',
+    cep: '',
+    infoText: '',
+  });
+
   const isItem = true;
-  const total = 'R$25,00';
-  const isDelivery = true;
+  const isDelivery = formData.method === 'delivery' ? true : false;
+  const subtotal = 25;
+  const total = isDelivery ? subtotal + 10 : subtotal;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => {
+      return { ...prevData, [name]: value };
+    });
+  };
+
+  const handleOrder = async () => {
+    // chamar service
+    // ...
+
+    // se success
+    setConfirmAction('Pedido enviado');
+    setFormData({
+      method: '',
+      userName: '',
+      email: '',
+      tel: '',
+      address: '',
+      number: '',
+      complement: '',
+      district: '',
+      cep: '',
+      infoText: '',
+    });
+
+    // se erro
+    // ...
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleOrder();
   };
 
   return (
@@ -46,16 +96,16 @@ function Cart() {
                 <div className="cart__order-card-line"></div>
                 <div className="cart__order-card-box">
                   <p className="cart__order-card-text">Subtotal</p>
-                  <p className="cart__order-card-text">R$</p>
+                  <p className="cart__order-card-text">R$ {subtotal},00</p>
                 </div>
                 <div className="cart__order-card-box">
                   <p className="cart__order-card-text">Entrega</p>
-                  <p className="cart__order-card-text">R$</p>
+                  <p className="cart__order-card-text">R$ {isDelivery === true ? 10 : 0},00</p>
                 </div>
                 <div className="cart__order-card-line"></div>
                 <div className="cart__order-card-box">
                   <p className="cart__order-card-text">Total</p>
-                  <p className="cart__order-card-text">R$</p>
+                  <p className="cart__order-card-text">R$ {total},00</p>
                 </div>
                 <p className="cart__order-card-msg">Mais um pouco menos de desperdício :)</p>
               </div>
@@ -79,7 +129,7 @@ function Cart() {
                       id="delivery"
                       name="method"
                       value="delivery"
-                      // onChange={handleChange}
+                      onChange={handleChange}
                     />
                   </div>
                   <span className="order-form__span">Entregue na sua porta (R$10,00)</span>
@@ -95,7 +145,7 @@ function Cart() {
                       id="drive-thru"
                       name="method"
                       value="drive-thru"
-                      // onChange={handleChange}
+                      onChange={handleChange}
                     />
                   </div>
                   <span className="order-form__span">Retire no nosso endereço (grátis)</span>
@@ -116,8 +166,8 @@ function Cart() {
                     pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
                     title="Seu nome: não são permitidos '<' e '>'."
                     placeholder="Seu nome completo"
-                    // value={data.userName}
-                    // onChange={handleChange}
+                    value={formData.userName}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -133,8 +183,8 @@ function Cart() {
                     pattern="^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
                     title="E-mail válido: contento apenas letras, números, sublinhados, pontos ou hífens."
                     placeholder="Um e-mail para contato"
-                    // value={data.email}
-                    // onChange={handleChange}
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -152,8 +202,8 @@ function Cart() {
                     pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
                     title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
                     placeholder="Formato: (XX) XXXXX-XXXX"
-                    // value={data.tel}
-                    // onChange={handleChange}
+                    value={formData.tel}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -173,9 +223,9 @@ function Cart() {
                     pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
                     title="Seu endereço para delivery: não são permitidos '<' e '>'."
                     placeholder="Endereço para entrega"
-                    // value={formData.address}
-                    // onChange={handleChange}
-                    required={isDelivery}
+                    value={formData.address}
+                    onChange={handleChange}
+                    required={isDelivery === true}
                   />
                 </div>
 
@@ -191,9 +241,9 @@ function Cart() {
                     pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
                     title="O número do seu endereço para delivery: apenas números e/ou letras."
                     placeholder="Nº do endereço"
-                    // value={formData.number}
-                    // onChange={handleChange}
-                    required={isDelivery}
+                    value={formData.number}
+                    onChange={handleChange}
+                    required={isDelivery === true}
                   />
                 </div>
 
@@ -209,9 +259,9 @@ function Cart() {
                     pattern="^[a-zA-Z0-9\s-]*$" /* apenas números, letras, espaços em branco e traços */
                     title="O complemento do seu endereço para delivery: apenas números, letras, espaços em branco e/ou traços."
                     placeholder="Se não houver, digite traço (-)."
-                    // value={formData.complement}
-                    // onChange={handleChange}
-                    required={isDelivery}
+                    value={formData.complement}
+                    onChange={handleChange}
+                    required={isDelivery === true}
                   />
                 </div>
 
@@ -227,9 +277,9 @@ function Cart() {
                     pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
                     title="O bairro do seu endereço para delivery: apenas números e/ou letras."
                     placeholder="O bairro do local"
-                    // value={formData.district}
-                    // onChange={handleChange}
-                    required={isDelivery}
+                    value={formData.district}
+                    onChange={handleChange}
+                    required={isDelivery === true}
                   />
                 </div>
 
@@ -245,9 +295,9 @@ function Cart() {
                     pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
                     title="O CEP do seu endereço para delivery: apenas números e traço."
                     placeholder="Formato: XXXXX-XXX"
-                    // value={formData.cep}
-                    // onChange={handleChange}
-                    required={isDelivery}
+                    value={formData.cep}
+                    onChange={handleChange}
+                    required={isDelivery === true}
                   />
                 </div>
               </fieldset>
@@ -265,14 +315,18 @@ function Cart() {
                     pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
                     title="Informações relevantes, exemplo: ponto de referência ou contato para entrega (nome e RG/CPF)."
                     placeholder="Opcional. Ex: um ponto de referência ou um contato oficial para entrega (nome e RG/CPF)."
-                    // value={formData.infoText}
-                    // onChange={handleChange}
+                    value={formData.infoText}
+                    onChange={handleChange}
                   />
                 </div>
               </fieldset>
 
+              {confirmAction && (
+                <Toast className="order-form__toast" message={confirmAction}></Toast>
+              )}
+
               <Button className="order-form__button" type="submit" /*disabled={loading}*/>
-                Finalizar compra: {total}
+                Finalizar compra: R$ {total},00
               </Button>
             </form>
           </div>
