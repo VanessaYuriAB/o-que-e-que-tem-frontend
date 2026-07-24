@@ -129,6 +129,7 @@ function Cart() {
                       id="delivery"
                       name="method"
                       value="delivery"
+                      checked={formData.method === 'delivery'}
                       onChange={handleChange}
                     />
                   </div>
@@ -145,6 +146,7 @@ function Cart() {
                       id="drive-thru"
                       name="method"
                       value="drive-thru"
+                      checked={formData.method === 'drive-thru'}
                       onChange={handleChange}
                     />
                   </div>
