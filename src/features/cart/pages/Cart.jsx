@@ -206,8 +206,8 @@ function Cart() {
                     type="text"
                     id="complement"
                     name="complement"
-                    pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
-                    title="O complemento do seu endereço para delivery: apenas números e/ou letras."
+                    pattern="^[a-zA-Z0-9\s-]*$" /* apenas números, letras, espaços em branco e traços */
+                    title="O complemento do seu endereço para delivery: apenas números, letras, espaços em branco e/ou traços."
                     placeholder="Se não houver, digite traço (-)."
                     // value={formData.complement}
                     // onChange={handleChange}
