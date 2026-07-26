@@ -63,7 +63,11 @@ export default function errorHandler(error) {
   }
 
   return {
-    message: 'Erro inesperado (desconhecido).',
+    message: error.message.includes('removeItemToCart')
+      ? 'Erro ao remover item, tente novamente.'
+      : error.message.includes('addItemToCart')
+        ? 'Erro ao adicionar item, tente novamente.'
+        : 'Erro inesperado (desconhecido).',
     scope: 'global',
   };
 }
