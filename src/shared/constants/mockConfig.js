@@ -8,6 +8,9 @@ const FAKE_ERRORS = {
 
   updateUserProfile: false,
   updateSubscriptionProfile: false,
+
+  addItemToCart: false,
+  removeItemToCart: true,
 };
 
 export default FAKE_ERRORS;
