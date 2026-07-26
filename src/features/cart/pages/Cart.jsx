@@ -28,6 +28,8 @@ function Cart() {
   const subtotal = formData.meal === 'pate' ? 35 : formData.meal === 'creme' ? 30 : 25;
   const total = formData.method === 'delivery' ? subtotal + 10 : subtotal;
 
+  const typeOfMeal = formData.meal === 'pate' ? 'patê' : formData.meal;
+
   const { cartItems, removeItemToCartAction, cleanCartItemsAction } = useCartStore(
     useShallow((state) => ({
       cartItems: state.cartItems,
@@ -119,6 +121,11 @@ function Cart() {
                   })}
                 </ul>
 
+                <div className="cart__order-card-line"></div>
+                <div className="cart__order-card-box">
+                  <p className="cart__order-card-text">Tipo de refeição</p>
+                  <p className="cart__order-card-text">{formData.meal === '' ? '-' : typeOfMeal}</p>
+                </div>
                 <div className="cart__order-card-line"></div>
                 <div className="cart__order-card-box">
                   <p className="cart__order-card-text">Subtotal</p>
@@ -402,7 +409,7 @@ function Cart() {
               )}
 
               <Button className="order-form__button" type="submit" /*disabled={loading}*/>
-                Finalizar compra: R$ {total},00
+                Finalizar {typeOfMeal}: R$ {total},00
               </Button>
             </form>
           </div>
