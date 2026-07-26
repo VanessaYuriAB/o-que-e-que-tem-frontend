@@ -7,9 +7,13 @@ import { useState } from 'react';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useCartStore from '../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
+import errorHandler from '../../../shared/utils/errorHandler.js';
+import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 
 function Cart() {
   const [confirmAction, setConfirmAction] = useState(null);
+  const [localRemovedError, setLocalRemovedError] = useState(null);
+  //const [localOrderError, setLocalOrderError] = useState(null);
 
   const [formData, setFormData] = useState({
     meal: '',
@@ -30,15 +34,26 @@ function Cart() {
 
   const typeOfMeal = formData.meal === 'pate' ? 'patê' : formData.meal;
 
-  const { cartItems, removeItemToCartAction, cleanCartItemsAction } = useCartStore(
+  const { cartItems, removeItemToCartAction, cleanCartItemsAction, loading } = useCartStore(
     useShallow((state) => ({
       cartItems: state.cartItems,
       removeItemToCartAction: state.removeItemToCartAction,
       cleanCartItemsAction: state.cleanCartItemsAction,
+      loading: state.loading,
     }))
   );
 
   console.log(cartItems);
+
+  const handleRemoveItem = async (item) => {
+    try {
+      await removeItemToCartAction(item);
+      setLocalRemovedError(null);
+    } catch (error) {
+      const handledError = errorHandler(error);
+      setLocalRemovedError(handledError.message);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -113,13 +128,19 @@ function Cart() {
                           <Button
                             className="cart__order-card-button"
                             type="button"
-                            onClick={() => removeItemToCartAction(item)}
+                            onClick={() => handleRemoveItem(item)}
                           ></Button>
                         </div>
                       </li>
                     );
                   })}
                 </ul>
+
+                {loading && <Loader className="cart__order-card-loader">Removendo item...</Loader>}
+
+                {localRemovedError && (
+                  <Toast className="cart__order-card-toast" message={localRemovedError}></Toast>
+                )}
 
                 <div className="cart__order-card-line"></div>
                 <div className="cart__order-card-box">
@@ -408,7 +429,11 @@ function Cart() {
                 <Toast className="order-form__toast" message={confirmAction}></Toast>
               )}
 
-              <Button className="order-form__button" type="submit" /*disabled={loading}*/>
+              {/*{localOrderError && (
+                <Toast className="order-form__toast" message={localOrderError}></Toast>
+              )}*/}
+
+              <Button className="order-form__button" type="submit">
                 Finalizar {typeOfMeal}: R$ {total},00
               </Button>
             </form>
