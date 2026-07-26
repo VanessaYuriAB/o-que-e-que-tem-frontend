@@ -10,6 +10,7 @@ function Cart() {
   const [confirmAction, setConfirmAction] = useState(null);
 
   const [formData, setFormData] = useState({
+    meal: '',
     method: '',
     userName: '',
     email: '',
@@ -24,7 +25,7 @@ function Cart() {
 
   const isItem = true;
   const isDelivery = formData.method === 'delivery' ? true : false;
-  const subtotal = 25;
+  const subtotal = formData.meal === 'pate' ? 35 : formData.meal === 'creme' ? 30 : 25;
   const total = isDelivery ? subtotal + 10 : subtotal;
 
   const handleChange = (e) => {
@@ -42,6 +43,7 @@ function Cart() {
     // se success
     setConfirmAction('Pedido enviado');
     setFormData({
+      meal: '',
       method: '',
       userName: '',
       email: '',
@@ -116,6 +118,52 @@ function Cart() {
               name="order"
               onSubmit={handleSubmit} /*noValidate*/
             >
+              <fieldset className="order-form__field order-form__field_radio">
+                <legend className="order-form__legend">Sua opção de refeição:</legend>
+                <div className="order-form__input-box order-form__input-box_radio">
+                  <label className="order-form__label" htmlFor="sopa">
+                    Sopa
+                  </label>
+                  <Input
+                    className="order-form__input order-form__input_radio"
+                    type="radio"
+                    id="sopa"
+                    name="meal"
+                    value="sopa"
+                    checked={formData.meal === 'sopa'}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="order-form__input-box order-form__input-box_radio">
+                  <label className="order-form__label" htmlFor="creme">
+                    Creme
+                  </label>
+                  <Input
+                    className="order-form__input order-form__input_radio"
+                    type="radio"
+                    id="creme"
+                    name="meal"
+                    value="creme"
+                    checked={formData.meal === 'creme'}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="order-form__input-box order-form__input-box_radio">
+                  <label className="order-form__label" htmlFor="pate">
+                    Patê
+                  </label>
+                  <Input
+                    className="order-form__input order-form__input_radio"
+                    type="radio"
+                    id="pate"
+                    name="meal"
+                    value="pate"
+                    checked={formData.meal === 'pate'}
+                    onChange={handleChange}
+                  />
+                </div>
+              </fieldset>
+
               <fieldset className="order-form__field order-form__field_radio">
                 <legend className="order-form__legend">Forma de entrega:</legend>
                 <div className="order-form__radio-box">
