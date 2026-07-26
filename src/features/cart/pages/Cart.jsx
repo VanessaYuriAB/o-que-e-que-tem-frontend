@@ -5,6 +5,8 @@ import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import { useState } from 'react';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
+import useCartStore from '../../../store/useCartStore.js';
+import { useShallow } from 'zustand/react/shallow';
 
 function Cart() {
   const [confirmAction, setConfirmAction] = useState(null);
@@ -23,10 +25,18 @@ function Cart() {
     infoText: '',
   });
 
-  const isItem = true;
-  const isDelivery = formData.method === 'delivery' ? true : false;
   const subtotal = formData.meal === 'pate' ? 35 : formData.meal === 'creme' ? 30 : 25;
-  const total = isDelivery ? subtotal + 10 : subtotal;
+  const total = formData.method === 'delivery' ? subtotal + 10 : subtotal;
+
+  const { cartItems, removeItemToCartAction, cleanCartItemsAction } = useCartStore(
+    useShallow((state) => ({
+      cartItems: state.cartItems,
+      removeItemToCartAction: state.removeItemToCartAction,
+      cleanCartItemsAction: state.cleanCartItemsAction,
+    }))
+  );
+
+  console.log(cartItems);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,6 +65,10 @@ function Cart() {
       cep: '',
       infoText: '',
     });
+    setTimeout(() => {
+      cleanCartItemsAction();
+      setConfirmAction(null);
+    }, 3000);
 
     // se erro
     // ...
@@ -72,7 +86,7 @@ function Cart() {
 
       {/* se não houver items, renderiza mensagem; se houver, renderiza carrinho*/}
 
-      {isItem === false ? (
+      {cartItems.length === 0 ? (
         <div className="cart__null-box">
           <h2 className="cart__null-title">Está vazio, no momento!</h2>
           <p className="cart__null-text">Veja o que está disponível em nosso cardápio :)</p>
@@ -87,14 +101,24 @@ function Cart() {
             <aside className="cart__order-aside">
               <div className="cart__order-card">
                 <h3 className="cart__order-card-title">Detalhes do pedido:</h3>
-                <div className="cart__order-card-box">
-                  <p className="cart__order-card-item">Item</p>
-                  <Button
-                    className="cart__order-card-button"
-                    type="button"
-                    // onClick={handleRemove}
-                  ></Button>
-                </div>
+
+                <ul className="cart__order-card-list nav__list">
+                  {cartItems.map((item) => {
+                    return (
+                      <li className="cart__order-card-item" key={item.inventoryLotId}>
+                        <div className="cart__order-card-box">
+                          <p className="cart__order-card-product">{item.productName}</p>
+                          <Button
+                            className="cart__order-card-button"
+                            type="button"
+                            onClick={() => removeItemToCartAction(item)}
+                          ></Button>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+
                 <div className="cart__order-card-line"></div>
                 <div className="cart__order-card-box">
                   <p className="cart__order-card-text">Subtotal</p>
@@ -102,7 +126,9 @@ function Cart() {
                 </div>
                 <div className="cart__order-card-box">
                   <p className="cart__order-card-text">Entrega</p>
-                  <p className="cart__order-card-text">R$ {isDelivery === true ? 10 : 0},00</p>
+                  <p className="cart__order-card-text">
+                    R$ {formData.method === 'delivery' ? 10 : 0},00
+                  </p>
                 </div>
                 <div className="cart__order-card-line"></div>
                 <div className="cart__order-card-box">
@@ -275,7 +301,7 @@ function Cart() {
                     placeholder="Endereço para entrega"
                     value={formData.address}
                     onChange={handleChange}
-                    required={isDelivery === true}
+                    required={formData.method === 'delivery'}
                   />
                 </div>
 
@@ -293,7 +319,7 @@ function Cart() {
                     placeholder="Nº do endereço"
                     value={formData.number}
                     onChange={handleChange}
-                    required={isDelivery === true}
+                    required={formData.method === 'delivery'}
                   />
                 </div>
 
@@ -311,7 +337,7 @@ function Cart() {
                     placeholder="Se não houver, digite traço (-)."
                     value={formData.complement}
                     onChange={handleChange}
-                    required={isDelivery === true}
+                    required={formData.method === 'delivery'}
                   />
                 </div>
 
@@ -329,7 +355,7 @@ function Cart() {
                     placeholder="O bairro do local"
                     value={formData.district}
                     onChange={handleChange}
-                    required={isDelivery === true}
+                    required={formData.method === 'delivery'}
                   />
                 </div>
 
@@ -347,7 +373,7 @@ function Cart() {
                     placeholder="Formato: XXXXX-XXX"
                     value={formData.cep}
                     onChange={handleChange}
-                    required={isDelivery === true}
+                    required={formData.method === 'delivery'}
                   />
                 </div>
               </fieldset>
