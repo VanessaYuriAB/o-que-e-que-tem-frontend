@@ -6,23 +6,36 @@ const useCartStore = create(
   persist(
     (set) => ({
       cartItems: [],
+      loading: false,
 
       // addItem chama cartService.addItemToCard
       addItemToCartAction: async (item) => {
-        await addItemToCart(item);
-        set((state) => ({
-          cartItems: [...state.cartItems, item],
-        }));
+        set({ loading: true });
+
+        try {
+          await addItemToCart(item);
+          set((state) => ({
+            cartItems: [...state.cartItems, item],
+          }));
+        } finally {
+          set({ loading: false });
+        }
       },
 
       // removeItem chama cartService.removeItemToCard
       removeItemToCartAction: async (item) => {
-        await removeItemToCart(item);
-        set((state) => ({
-          cartItems: state.cartItems.filter(
-            (cardItem) => item.productName !== cardItem.productName
-          ),
-        }));
+        set({ loading: true });
+
+        try {
+          await removeItemToCart(item);
+          set((state) => ({
+            cartItems: state.cartItems.filter(
+              (cardItem) => item.productName !== cardItem.productName
+            ),
+          }));
+        } finally {
+          set({ loading: false });
+        }
       },
 
       // cleanCartItems limpa estado
