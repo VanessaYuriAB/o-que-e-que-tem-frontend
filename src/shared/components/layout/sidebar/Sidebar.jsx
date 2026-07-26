@@ -20,7 +20,7 @@ function Sidebar() {
           <span className="sidebar__summary-hidden">Menu</span>
         </summary>
         <nav className="sidebar__links nav" aria-label="Menu principal">
-          <ul className="sidebar__list nav__list">
+          <ul className="sidebar__list nav__list nav__list_sidebar">
             {sidebarLinks.map((link) => (
               <li key={link.to} className={link.class}>
                 <NavLink className={customClassName} to={link.to}>

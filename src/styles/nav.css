@@ -9,6 +9,11 @@
   padding: 0;
 }
 
+.nav__list_sidebar {
+  margin-top: 0.5rem;
+  margin-left: 0.25rem;
+}
+
 .nav__item {
 }
 
