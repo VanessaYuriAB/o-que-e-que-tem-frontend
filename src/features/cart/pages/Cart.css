@@ -46,8 +46,16 @@
 
 .cart__order-card-box {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  margin-inline: 2em;
+}
+
+.cart__order-card-toast {
+  padding: 0.5em;
+  margin: 1.5em auto;
+  margin-top: 1em;
+  width: 80%;
 }
 
 .cart__order-card-line {
