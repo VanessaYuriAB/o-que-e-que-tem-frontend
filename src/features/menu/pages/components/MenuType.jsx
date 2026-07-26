@@ -4,12 +4,16 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import { useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import useCartStore from '../../../../store/useCartStore.js';
 
 import './MenuType.css';
 
 function MenuType({ category }) {
   /* HOOKS PRIMEIRO, ANTES DE QLQR RETURN */
+
   const { menuItems, loading, error } = useOutletContext();
+
+  const addItemToCartAction = useCartStore((state) => state.addItemToCartAction);
 
   // Verifica disponibilidade
   const availableMenuItems = useMemo(
@@ -35,6 +39,7 @@ function MenuType({ category }) {
   );
 
   /* EARLY RETURNS DEPOIS DE HOOKS */
+
   if (loading) {
     return <Loader />;
   }
@@ -55,7 +60,9 @@ function MenuType({ category }) {
 
               {category === 'todos' && <p className="menu__section-type">{item.category}</p>}
 
-              <Button className="menu__section-btn">ADICIONAR</Button>
+              <Button className="menu__section-btn" onClick={() => addItemToCartAction(item)}>
+                ADICIONAR
+              </Button>
             </li>
           );
         })}
