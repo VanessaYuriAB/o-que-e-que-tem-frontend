@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 
 const useCartStore = create(
   persist(
-    (set) => ({
+    (set, get) => ({
       cartItems: [],
       loading: false,
 
@@ -13,6 +13,12 @@ const useCartStore = create(
         set({ loading: true });
 
         try {
+          const alreadyExists = get().cartItems.some(
+            (cartItem) => cartItem.productName === item.productName
+          );
+
+          if (alreadyExists) return;
+
           await addItemToCart(item);
           set((state) => ({
             cartItems: [...state.cartItems, item],
