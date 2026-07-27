@@ -12,11 +12,8 @@
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 0.5rem;
-
   background-color: orange;
   border: 1px solid darkgreen;
-
-  row-gap: 1rem;
 }
 
 .header__logo {
