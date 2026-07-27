@@ -4,13 +4,13 @@ import errorHandler from '../../../shared/utils/errorHandler.js';
 
 export default function useMenu() {
   const [menuItems, setMenuItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [loadingMenu, setLoadingMenu] = useState(false);
+  const [errorMenu, setErrorMenu] = useState(null);
 
   useEffect(() => {
     async function fetchMenu() {
-      setLoading(true);
-      setError(null);
+      setLoadingMenu(true);
+      setErrorMenu(null);
 
       try {
         const menuData = await getMenu();
@@ -23,9 +23,9 @@ export default function useMenu() {
         */
 
         const handledError = errorHandler(error); // converte erro
-        setError(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+        setErrorMenu(handledError); // obj puro para o estado, contendo: msg, scope, status e action
       } finally {
-        setLoading(false);
+        setLoadingMenu(false);
       }
     }
 
@@ -36,5 +36,5 @@ export default function useMenu() {
     return () => clearInterval(interval); // limpeza
   }, []);
 
-  return { menuItems, loading, error };
+  return { menuItems, loadingMenu, errorMenu };
 }

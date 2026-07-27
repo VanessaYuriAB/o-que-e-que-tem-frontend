@@ -2,18 +2,28 @@ import PropTypes from 'prop-types';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import useCartStore from '../../../../store/useCartStore.js';
+import errorHandler from '../../../../shared/utils/errorHandler.js';
+import { useShallow } from 'zustand/react/shallow';
 
 import './MenuType.css';
 
 function MenuType({ category }) {
   /* HOOKS PRIMEIRO, ANTES DE QLQR RETURN */
 
-  const { menuItems, loading, error } = useOutletContext();
+  const [localActionError, setLocalActionError] = useState(null);
 
-  const addItemToCartAction = useCartStore((state) => state.addItemToCartAction);
+  const { menuItems, loadingMenu, errorMenu } = useOutletContext();
+
+  const { addItemToCartAction, loading, cartItems } = useCartStore(
+    useShallow((state) => ({
+      addItemToCartAction: state.addItemToCartAction,
+      loading: state.loading,
+      cartItems: state.cartItems,
+    }))
+  );
 
   // Verifica disponibilidade
   const availableMenuItems = useMemo(
@@ -38,14 +48,25 @@ function MenuType({ category }) {
     [orderedMenuItems, category]
   );
 
+  // Handle
+  const handleAddItem = async (item) => {
+    try {
+      await addItemToCartAction(item);
+      setLocalActionError(null);
+    } catch (error) {
+      const handledError = errorHandler(error);
+      setLocalActionError(handledError.message);
+    }
+  };
+
   /* EARLY RETURNS DEPOIS DE HOOKS */
 
-  if (loading) {
+  if (loadingMenu) {
     return <Loader />;
   }
 
-  if (error) {
-    return <Toast message={error.message} />;
+  if (errorMenu) {
+    return <Toast message={errorMenu.message} />;
   }
 
   /* RETURN: TODOS OU POR CATEGORIA */
@@ -54,14 +75,26 @@ function MenuType({ category }) {
     <section className="menu__section">
       <ul className="menu__section-list">
         {typeItems.map((item) => {
+          const isItemAdded =
+            cartItems?.some((cartItem) => cartItem.productName === item.productName) ?? false;
+
           return (
             <li className="menu__section-item" key={item.inventoryLotId}>
               <h3 className="menu__section-title">{item.productName}</h3>
-
               {category === 'todos' && <p className="menu__section-type">{item.category}</p>}
 
-              <Button className="menu__section-btn" onClick={() => addItemToCartAction(item)}>
-                ADICIONAR
+              {loading && <Loader className="menu__section-loader">Adicionando item...</Loader>}
+
+              {localActionError && (
+                <Toast className="menu__section-toast" message={localActionError}></Toast>
+              )}
+
+              <Button
+                className={`menu__section-btn ${isItemAdded ? 'menu__section-btn_added' : ''}`}
+                onClick={() => handleAddItem(item)}
+                disabled={isItemAdded}
+              >
+                {isItemAdded ? 'ADICIONADO' : 'ADICIONAR'}
               </Button>
             </li>
           );
