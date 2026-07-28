@@ -113,20 +113,20 @@ function Cart() {
         </div>
       ) : (
         <>
-          <h2 className="cart__order-title">Finalize sua compra</h2>
-          <div className="cart__order-box">
-            <aside className="cart__order-aside">
-              <div className="cart__order-card">
-                <h3 className="cart__order-card-title">Detalhes do pedido:</h3>
+          <h2 className="cart__pack-title">Finalize seu pedido</h2>
+          <div className="cart__pack-box">
+            <aside className="cart__pack-aside">
+              <div className="cart__pack-card">
+                <h3 className="cart__pack-card-title">Detalhes do pedido:</h3>
 
-                <ul className="cart__order-card-list nav__list">
+                <ul className="cart__pack-card-list nav__list">
                   {cartItems.map((item) => {
                     return (
-                      <li className="cart__order-card-item" key={item.inventoryLotId}>
-                        <div className="cart__order-card-box">
-                          <p className="cart__order-card-product">{item.productName}</p>
+                      <li className="cart__pack-card-item" key={item.inventoryLotId}>
+                        <div className="cart__pack-card-box">
+                          <p className="cart__pack-card-product">{item.productName}</p>
                           <Button
-                            className="cart__order-card-button"
+                            className="cart__pack-card-button"
                             type="button"
                             onClick={() => handleRemoveItem(item)}
                           ></Button>
@@ -136,50 +136,50 @@ function Cart() {
                   })}
                 </ul>
 
-                {loading && <Loader className="cart__order-card-loader">Removendo item...</Loader>}
+                {loading && <Loader className="cart__pack-card-loader">Removendo item...</Loader>}
 
                 {localRemovedError && (
-                  <Toast className="cart__order-card-toast" message={localRemovedError}></Toast>
+                  <Toast className="cart__pack-card-toast" message={localRemovedError}></Toast>
                 )}
 
-                <div className="cart__order-card-line"></div>
-                <div className="cart__order-card-box">
-                  <p className="cart__order-card-text">Tipo de refeição</p>
-                  <p className="cart__order-card-text">{formData.meal === '' ? '-' : typeOfMeal}</p>
+                <div className="cart__pack-card-line"></div>
+                <div className="cart__pack-card-box">
+                  <p className="cart__pack-card-text">Tipo de refeição</p>
+                  <p className="cart__pack-card-text">{formData.meal === '' ? '-' : typeOfMeal}</p>
                 </div>
-                <div className="cart__order-card-line"></div>
-                <div className="cart__order-card-box">
-                  <p className="cart__order-card-text">Subtotal</p>
-                  <p className="cart__order-card-text">R$ {subtotal},00</p>
+                <div className="cart__pack-card-line"></div>
+                <div className="cart__pack-card-box">
+                  <p className="cart__pack-card-text">Subtotal</p>
+                  <p className="cart__pack-card-text">R$ {subtotal},00</p>
                 </div>
-                <div className="cart__order-card-box">
-                  <p className="cart__order-card-text">Entrega</p>
-                  <p className="cart__order-card-text">
+                <div className="cart__pack-card-box">
+                  <p className="cart__pack-card-text">Entrega</p>
+                  <p className="cart__pack-card-text">
                     R$ {formData.method === 'delivery' ? 10 : 0},00
                   </p>
                 </div>
-                <div className="cart__order-card-line"></div>
-                <div className="cart__order-card-box">
-                  <p className="cart__order-card-text">Total</p>
-                  <p className="cart__order-card-text">R$ {total},00</p>
+                <div className="cart__pack-card-line"></div>
+                <div className="cart__pack-card-box">
+                  <p className="cart__pack-card-text">Total</p>
+                  <p className="cart__pack-card-text">R$ {total},00</p>
                 </div>
-                <p className="cart__order-card-msg">Mais um pouco menos de desperdício :)</p>
+                <p className="cart__pack-card-msg">Mais um pouco menos de desperdício :)</p>
               </div>
             </aside>
 
             <form
-              className="order-form cart__order-form"
-              name="order"
+              className="pack-form cart__pack-form"
+              name="pack"
               onSubmit={handleSubmit} /*noValidate*/
             >
-              <fieldset className="order-form__field order-form__field_radio">
-                <legend className="order-form__legend">Sua opção de refeição:</legend>
-                <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label" htmlFor="sopa">
+              <fieldset className="pack-form__field pack-form__field_radio">
+                <legend className="pack-form__legend">Sua opção de refeição:</legend>
+                <div className="pack-form__input-box pack-form__input-box_radio">
+                  <label className="pack-form__label" htmlFor="sopa">
                     Sopa
                   </label>
                   <Input
-                    className="order-form__input order-form__input_radio"
+                    className="pack-form__input pack-form__input_radio"
                     type="radio"
                     id="sopa"
                     name="meal"
@@ -188,12 +188,12 @@ function Cart() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label" htmlFor="creme">
+                <div className="pack-form__input-box pack-form__input-box_radio">
+                  <label className="pack-form__label" htmlFor="creme">
                     Creme
                   </label>
                   <Input
-                    className="order-form__input order-form__input_radio"
+                    className="pack-form__input pack-form__input_radio"
                     type="radio"
                     id="creme"
                     name="meal"
@@ -202,12 +202,12 @@ function Cart() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label" htmlFor="pate">
+                <div className="pack-form__input-box pack-form__input-box_radio">
+                  <label className="pack-form__label" htmlFor="pate">
                     Patê
                   </label>
                   <Input
-                    className="order-form__input order-form__input_radio"
+                    className="pack-form__input pack-form__input_radio"
                     type="radio"
                     id="pate"
                     name="meal"
@@ -218,15 +218,15 @@ function Cart() {
                 </div>
               </fieldset>
 
-              <fieldset className="order-form__field order-form__field_radio">
-                <legend className="order-form__legend">Forma de entrega:</legend>
-                <div className="order-form__radio-box">
-                  <div className="order-form__input-box order-form__input-box_radio">
-                    <label className="order-form__label" htmlFor="delivery">
+              <fieldset className="pack-form__field pack-form__field_radio">
+                <legend className="pack-form__legend">Forma de entrega:</legend>
+                <div className="pack-form__radio-box">
+                  <div className="pack-form__input-box pack-form__input-box_radio">
+                    <label className="pack-form__label" htmlFor="delivery">
                       Delivery
                     </label>
                     <Input
-                      className="order-form__input order-form__input_radio"
+                      className="pack-form__input pack-form__input_radio"
                       type="radio"
                       id="delivery"
                       name="method"
@@ -235,15 +235,15 @@ function Cart() {
                       onChange={handleChange}
                     />
                   </div>
-                  <span className="order-form__span">Entregue na sua porta (R$10,00)</span>
+                  <span className="pack-form__span">Entregue na sua porta (R$10,00)</span>
                 </div>
-                <div className="order-form__radio-box">
-                  <div className="order-form__input-box order-form__input-box_radio">
-                    <label className="order-form__label" htmlFor="drive-thru">
+                <div className="pack-form__radio-box">
+                  <div className="pack-form__input-box pack-form__input-box_radio">
+                    <label className="pack-form__label" htmlFor="drive-thru">
                       Drive-thru
                     </label>
                     <Input
-                      className="order-form__input order-form__input_radio"
+                      className="pack-form__input pack-form__input_radio"
                       type="radio"
                       id="drive-thru"
                       name="method"
@@ -252,18 +252,18 @@ function Cart() {
                       onChange={handleChange}
                     />
                   </div>
-                  <span className="order-form__span">Retire no nosso endereço (grátis)</span>
+                  <span className="pack-form__span">Retire no nosso endereço (grátis)</span>
                 </div>
               </fieldset>
 
-              <fieldset className="order-form__field">
-                <legend className="order-form__legend">Informações de contato:</legend>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="userName">
+              <fieldset className="pack-form__field">
+                <legend className="pack-form__legend">Informações de contato:</legend>
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="userName">
                     Nome completo:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="text"
                     id="userName"
                     name="userName"
@@ -275,12 +275,12 @@ function Cart() {
                     required
                   />
                 </div>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="email">
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="email">
                     E-mail:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="email"
                     id="email"
                     name="email"
@@ -292,12 +292,12 @@ function Cart() {
                     required
                   />
                 </div>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="tel">
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="tel">
                     Telefone:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="tel"
                     id="tel"
                     name="tel"
@@ -313,14 +313,14 @@ function Cart() {
                 </div>
               </fieldset>
 
-              <fieldset className="order-form__field">
-                <legend className="order-form__legend">Endereço para entrega:</legend>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="address">
+              <fieldset className="pack-form__field">
+                <legend className="pack-form__legend">Endereço para entrega:</legend>
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="address">
                     Logradouro (rua, avenida, praça, etc):
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="text"
                     id="address"
                     name="address"
@@ -333,12 +333,12 @@ function Cart() {
                   />
                 </div>
 
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="number">
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="number">
                     Nº:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="text"
                     id="number"
                     name="number"
@@ -351,12 +351,12 @@ function Cart() {
                   />
                 </div>
 
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="complement">
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="complement">
                     Complemento:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="text"
                     id="complement"
                     name="complement"
@@ -369,12 +369,12 @@ function Cart() {
                   />
                 </div>
 
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="district">
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="district">
                     Bairro:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="text"
                     id="district"
                     name="district"
@@ -387,12 +387,12 @@ function Cart() {
                   />
                 </div>
 
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="cep">
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="cep">
                     CEP:
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="pack-form__input"
                     type="text"
                     id="cep"
                     name="cep"
@@ -406,14 +406,14 @@ function Cart() {
                 </div>
               </fieldset>
 
-              <fieldset className="order-form__field">
-                <legend className="order-form__legend">Informações adicionais:</legend>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="infoText">
+              <fieldset className="pack-form__field">
+                <legend className="pack-form__legend">Informações adicionais:</legend>
+                <div className="pack-form__input-box">
+                  <label className="pack-form__label" htmlFor="infoText">
                     Observações relevantes:
                   </label>
                   <Textarea
-                    className="order-form__textarea"
+                    className="pack-form__textarea"
                     id="infoText"
                     name="infoText"
                     pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
@@ -433,7 +433,7 @@ function Cart() {
                 <Toast className="order-form__toast" message={localOrderError}></Toast>
               )}*/}
 
-              <Button className="order-form__button" type="submit">
+              <Button className="pack-form__button" type="submit">
                 Finalizar {typeOfMeal}: R$ {total},00
               </Button>
             </form>

@@ -27,47 +27,47 @@
   padding: 0.5em;
 }
 
-.cart__order-title {
+.cart__pack-title {
   margin-top: 3.5rem;
   margin-bottom: 3rem;
 }
 
-.cart__order-aside {
+.cart__pack-aside {
   width: 80%;
   margin-inline: auto;
 }
 
-.cart__order-card {
+.cart__pack-card {
   text-align: center;
   padding-bottom: 1em;
 }
 
-.cart__order-card-title {
+.cart__pack-card-title {
   max-width: 90%;
   margin-inline: auto;
 }
 
-.cart__order-card-box {
+.cart__pack-card-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-inline: 2em;
 }
 
-.cart__order-card-toast {
+.cart__pack-card-toast {
   padding: 0.5em;
   margin: 1.5em auto;
   margin-top: 1em;
   width: 80%;
 }
 
-.cart__order-card-line {
+.cart__pack-card-line {
   width: 90%;
   border: 0.5px solid rgb(214, 210, 210);
   margin: 0 auto;
 }
 
-.cart__order-card-button {
+.cart__pack-card-button {
   padding: 0.5em;
   margin: 1em 0;
   width: 25px;
@@ -77,7 +77,7 @@
   border: none;
 }
 
-.cart__order-card-msg {
+.cart__pack-card-msg {
   background-color: #503202;
   padding: 0.25em;
   color: antiquewhite;
@@ -87,42 +87,42 @@
   font-weight: 350;
 }
 
-.cart__order-form {
+.cart__pack-form {
   text-align: left;
   margin-top: 3rem;
 }
 
-.order-form__field {
+.pack-form__field {
   margin-bottom: 1rem;
 }
 
-.order-form__field_radio {
+.pack-form__field_radio {
   display: flex;
   flex-direction: column;
   row-gap: 0.75rem;
   padding: 0.75rem;
 }
 
-.order-form__input-box {
+.pack-form__input-box {
   display: flex;
   flex-direction: column;
   padding: 0.75rem;
 }
 
-.order-form__input-box_radio {
+.pack-form__input-box_radio {
   display: block;
   padding: 0;
 }
 
-.order-form__input {
+.pack-form__input {
   padding: 0;
 }
 
-.order-form__input_radio {
+.pack-form__input_radio {
   margin-left: 0.5em;
 }
 
-.order-form__button {
+.pack-form__button {
   width: 100%;
 }
 
@@ -132,36 +132,36 @@
   .cart__null-box {
   }
 
-  .cart__order-title {
+  .cart__pack-title {
     margin-bottom: 3rem;
   }
 
-  .cart__order-box {
+  .cart__pack-box {
     display: flex;
     justify-content: center;
     column-gap: 1rem;
   }
 
-  .cart__order-aside {
+  .cart__pack-aside {
     width: 30%;
     margin-top: 0.5rem;
   }
 
-  .cart__order-card {
+  .cart__pack-card {
     border: 1px solid rgb(240, 240, 240);
   }
 
-  .cart__order-form {
+  .cart__pack-form {
     width: 65%;
     margin-top: 0;
   }
 
-  .order-form__field_radio {
+  .pack-form__field_radio {
     flex-direction: row;
     justify-content: space-evenly;
   }
 
-  .order-form__radio-box:last-of-type {
+  .pack-form__radio-box:last-of-type {
     margin-left: 0.5rem;
   }
 }
