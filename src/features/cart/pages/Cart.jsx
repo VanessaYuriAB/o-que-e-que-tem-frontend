@@ -63,7 +63,7 @@ function Cart() {
     });
   };
 
-  const handleOrder = async () => {
+  const handleCart = async (data) => {
     // chamar service
     // ...
 
@@ -93,7 +93,7 @@ function Cart() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleOrder();
+    handleCart(formData);
   };
 
   return (
