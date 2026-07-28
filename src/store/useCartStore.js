@@ -1,12 +1,23 @@
 import { create } from 'zustand';
-import { addItemToCart, removeItemToCart } from '../features/cart/services/cartService.js';
+import {
+  addItemToCart,
+  removeItemToCart,
+  setPackData,
+} from '../features/cart/services/cartService.js';
 import { persist } from 'zustand/middleware';
+/*import errorHandler from '../shared/utils/errorHandler.js';*/
 
 const useCartStore = create(
   persist(
     (set, get) => ({
       cartItems: [],
-      loading: false,
+      cartPacks: [],
+
+      loading: false, // add e send (componentes diferentes)
+      globalError: null,
+
+      removeLoading: false, // Cart
+      setLoading: false, // Cart
 
       // addItem chama cartService.addItemToCard
       addItemToCartAction: async (item) => {
@@ -30,7 +41,7 @@ const useCartStore = create(
 
       // removeItem chama cartService.removeItemToCard
       removeItemToCartAction: async (item) => {
-        set({ loading: true });
+        set({ removeLoading: true });
 
         try {
           await removeItemToCart(item);
@@ -40,17 +51,60 @@ const useCartStore = create(
             ),
           }));
         } finally {
-          set({ loading: false });
+          set({ removeLoading: false });
         }
       },
 
-      // cleanCartItems limpa estado
+      // setPackData chama cartService.setPackData
+      setPackDataAction: async (pack) => {
+        set({ setLoading: true });
+
+        try {
+          /* verificar se pack já existe
+
+          const alreadyExists = get().cartPacks.some(
+            (cartPack) => cartPack.productName === pack.productName
+          );
+
+          if (alreadyExists) return;*/
+
+          await setPackData(pack);
+          set((state) => ({
+            cartPacks: [...state.cartPacks, pack],
+          }));
+        } finally {
+          set({ setLoading: false });
+        }
+      },
+
+      // sendOrder chama checkoutService.sendOrderToServer
+      /*sendOrderToServerAction: async (order) => {
+        set({ loading: true, globalError: null });
+
+        try {
+          await sendOrderToServer(order);
+          return { success: true };
+        } catch (error) {
+          const handledError = errorHandler(error);
+
+          if (handledError.scope === 'global') {
+            set({ globalError: handledError });
+          }
+
+          return { success: false, error: handledError };
+        } finally {
+          set({ loading: false });
+        }
+      },*/
+
+      // cleanCartItems limpa estado + persistência
       cleanCartItemsAction: () => {
         set(() => ({
           cartItems: [],
         }));
       },
     }),
+
     {
       name: 'cartData',
 
