@@ -53,6 +53,11 @@ const useCartStore = create(
     }),
     {
       name: 'cartData',
+
+      partialize: (state) => ({
+        cartItems: state.cartItems,
+        cartPacks: state.cartPacks,
+      }),
     }
   )
 );
