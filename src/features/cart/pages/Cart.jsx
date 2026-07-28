@@ -434,7 +434,7 @@ function Cart() {
               )}*/}
 
               <Button className="pack-form__button" type="submit">
-                Finalizar {typeOfMeal}: R$ {total},00
+                {typeOfMeal !== '' ? `Finalizar ${typeOfMeal}: R$ ${total},00` : 'Finalizar'}
               </Button>
             </form>
           </div>
