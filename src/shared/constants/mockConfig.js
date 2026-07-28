@@ -10,7 +10,8 @@ const FAKE_ERRORS = {
   updateSubscriptionProfile: false,
 
   addItemToCart: false,
-  removeItemToCart: true,
+  removeItemToCart: false,
+  setPackData: false,
 };
 
 export default FAKE_ERRORS;
