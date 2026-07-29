@@ -200,6 +200,13 @@ function Checkout() {
               <Button className="order-form__button" type="submit" /*disabled={}*/>
                 Comprar {formData.pay !== '' && `no ${typeOfPay}`}
               </Button>
+
+              <Link className="order-form__link link-to-button" to="/menu">
+                Voltar ao cardápio
+              </Link>
+              <Link className="order-form__link link-to-button" to="/cart">
+                Voltar ao carrinho
+              </Link>
             </form>
 
             <aside className="checkout__aside">

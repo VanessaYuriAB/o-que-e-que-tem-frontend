@@ -77,6 +77,11 @@
 }
 
 .order-form__button {
+  margin-bottom: 1em;
+}
+
+.order-form__link {
+  display: block;
 }
 
 .checkout__aside {
