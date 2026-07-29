@@ -38,6 +38,68 @@
   max-width: 75%;
 }
 
+.checkout__title {
+}
+
+.checkout__box {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.checkout__order-form {
+}
+
+.order-form__field {
+}
+
+.order-form__legend {
+}
+
+.order-form__input-box {
+}
+
+.order-form__label {
+}
+
+.order-form__input {
+}
+
+.order-form__pix-box {
+}
+
+.order-form__pix-code {
+}
+
+.order-form__pix-qr {
+}
+
+.order-form__toast {
+}
+
+.order-form__button {
+}
+
+.checkout__aside {
+}
+
+.checkout__subtitle {
+}
+
+.checkout__item-box {
+}
+
+.checkout__item-title {
+}
+
+.checkout__item-list {
+}
+
+.checkout__item-item {
+}
+
+.checkout__item-description {
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
@@ -56,5 +118,14 @@
     padding: 0.5em;
     margin-inline: 0;
     width: 20%;
+  }
+
+  .checkout__box {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .checkout__subtitle {
+    margin-top: 0;
   }
 }
