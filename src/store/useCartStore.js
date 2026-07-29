@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import {
   addItemToCart,
   removeItemToCart,
-  setPackData,
+  setCartData,
 } from '../features/cart/services/cartService.js';
 import { persist } from 'zustand/middleware';
 /*import errorHandler from '../shared/utils/errorHandler.js';*/
@@ -11,7 +11,7 @@ const useCartStore = create(
   persist(
     (set, get) => ({
       cartItems: [],
-      cartPacks: [],
+      cartData: {},
 
       loading: false, // add e send (componentes diferentes)
       globalError: null,
@@ -55,22 +55,14 @@ const useCartStore = create(
         }
       },
 
-      // setPackData chama cartService.setPackData
-      setPackDataAction: async (pack) => {
+      // setCartData chama cartService.setCartData
+      setCartDataAction: async (data) => {
         set({ setLoading: true });
 
         try {
-          /* verificar se pack já existe
-
-          const alreadyExists = get().cartPacks.some(
-            (cartPack) => cartPack.productName === pack.productName
-          );
-
-          if (alreadyExists) return;*/
-
-          await setPackData(pack);
-          set((state) => ({
-            cartPacks: [...state.cartPacks, pack],
+          await setCartData(data);
+          set(() => ({
+            cartData: data,
           }));
         } finally {
           set({ setLoading: false });
@@ -101,7 +93,7 @@ const useCartStore = create(
       cleanCartAction: () => {
         set(() => ({
           cartItems: [],
-          cartPacks: [],
+          cartData: {},
         }));
       },
     }),
@@ -111,7 +103,7 @@ const useCartStore = create(
 
       partialize: (state) => ({
         cartItems: state.cartItems,
-        cartPacks: state.cartPacks,
+        cartData: state.cartData,
       }),
     }
   )

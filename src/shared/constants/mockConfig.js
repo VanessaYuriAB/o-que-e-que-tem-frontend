@@ -11,7 +11,7 @@ const FAKE_ERRORS = {
 
   addItemToCart: false,
   removeItemToCart: false,
-  setPackData: false,
+  setCartData: false,
 };
 
 export default FAKE_ERRORS;

@@ -20,32 +20,32 @@ function Cart() {
     cartItems,
     removeItemToCartAction,
     removeLoading,
-    setPackDataAction,
+    setCartDataAction,
     setLoading,
-    cartPacks,
+    cartData,
   } = useCartStore(
     useShallow((state) => ({
       cartItems: state.cartItems,
       removeItemToCartAction: state.removeItemToCartAction,
       removeLoading: state.removeLoading,
-      setPackDataAction: state.setPackDataAction,
+      setCartDataAction: state.setCartDataAction,
       setLoading: state.setLoading,
-      cartPacks: state.cartPacks,
+      cartData: state.cartData,
     }))
   );
 
   const [formData, setFormData] = useState({
-    meal: cartPacks?.[0]?.meal || '',
-    method: cartPacks?.[0]?.method || '',
-    userName: cartPacks?.[0]?.userName || '',
-    email: cartPacks?.[0]?.email || '',
-    tel: cartPacks?.[0]?.tel || '',
-    address: cartPacks?.[0]?.address || '',
-    number: cartPacks?.[0]?.number || '',
-    complement: cartPacks?.[0]?.complement || '',
-    district: cartPacks?.[0]?.district || '',
-    cep: cartPacks?.[0]?.cep || '',
-    infoText: cartPacks?.[0]?.infoText || '',
+    meal: cartData.meal || '',
+    method: cartData.method || '',
+    userName: cartData.userName || '',
+    email: cartData.email || '',
+    tel: cartData.tel || '',
+    address: cartData.address || '',
+    number: cartData.number || '',
+    complement: cartData.complement || '',
+    district: cartData.district || '',
+    cep: cartData.cep || '',
+    infoText: cartData.infoText || '',
   });
 
   const subtotal = formData.meal === 'pate' ? 35 : formData.meal === 'creme' ? 30 : 25;
@@ -73,7 +73,7 @@ function Cart() {
 
   const handleCart = async (data) => {
     try {
-      await setPackDataAction(data);
+      await setCartDataAction(data);
       setFormData({
         meal: '',
         method: '',

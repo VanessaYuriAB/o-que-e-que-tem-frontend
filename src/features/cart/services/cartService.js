@@ -29,16 +29,16 @@ export async function removeItemToCart(item) {
   return data;
 }
 
-export async function setPackData(pack) {
-  if (FAKE_ERRORS.setPackData) {
+export async function setCartData(cartData) {
+  if (FAKE_ERRORS.setCartData) {
     return fakeApiError(
-      'setPackData com err = true no cartService, desconsiderar status e type, pois a persistência do carrinho está configurada apenas no armazenamento local, sem api (por enquanto)'
+      'setCartData com err = true no cartService, desconsiderar status e type, pois a persistência do carrinho está configurada apenas no armazenamento local, sem api (por enquanto)'
     );
   }
 
-  console.log('cartService/setPackData:', pack);
+  console.log('cartService/setCartData:', cartData);
 
-  const { data } = fakeApi(pack);
+  const { data } = fakeApi(cartData);
 
   return data;
 }
