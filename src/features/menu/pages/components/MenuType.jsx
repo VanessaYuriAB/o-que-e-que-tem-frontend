@@ -13,6 +13,8 @@ import './MenuType.css';
 function MenuType({ category }) {
   /* HOOKS PRIMEIRO, ANTES DE QLQR RETURN */
 
+  const [activeItemId, setActiveItemId] = useState(null);
+
   const [localActionError, setLocalActionError] = useState(null);
 
   const { menuItems, loadingMenu, errorMenu } = useOutletContext();
@@ -51,11 +53,17 @@ function MenuType({ category }) {
   // Handle
   const handleAddItem = async (item) => {
     try {
+      setActiveItemId(item.inventoryLotId);
+
       await addItemToCartAction(item);
+
       setLocalActionError(null);
     } catch (error) {
       const handledError = errorHandler(error);
+
       setLocalActionError(handledError.message);
+    } finally {
+      setActiveItemId(null);
     }
   };
 
@@ -83,7 +91,9 @@ function MenuType({ category }) {
               <h3 className="menu__section-title">{item.productName}</h3>
               {category === 'todos' && <p className="menu__section-type">{item.category}</p>}
 
-              {loading && <Loader className="menu__section-loader">Adicionando item...</Loader>}
+              {loading && activeItemId === item.inventoryLotId && (
+                <Loader className="menu__section-loader">Adicionando item...</Loader>
+              )}
 
               {localActionError && (
                 <Toast className="menu__section-toast" message={localActionError}></Toast>
