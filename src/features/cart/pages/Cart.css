@@ -61,6 +61,18 @@
   width: 80%;
 }
 
+.cart__pack-card-link-box {
+  margin-bottom: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.cart__pack-card-link {
+  background-color: rgb(240, 240, 240);
+  padding-top: 0.5em;
+  border: none;
+  color: #503202;
+}
+
 .cart__pack-card-line {
   width: 90%;
   border: 0.5px solid rgb(214, 210, 210);

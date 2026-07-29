@@ -148,6 +148,12 @@ function Cart() {
                   <Toast className="cart__pack-card-toast" message={localRemovedError}></Toast>
                 )}
 
+                <div className="cart__pack-card-link-box">
+                  <Link className="cart__pack-card-link link-to-button" to="/menu">
+                    Voltar ao cardápio
+                  </Link>
+                </div>
+
                 <div className="cart__pack-card-line"></div>
                 <div className="cart__pack-card-box">
                   <p className="cart__pack-card-text">Tipo de refeição</p>
