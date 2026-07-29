@@ -1,5 +1,5 @@
 import './Cart.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
 import Button from '../../../shared/components/ui/button/Button.jsx';
@@ -11,39 +11,47 @@ import errorHandler from '../../../shared/utils/errorHandler.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 
 function Cart() {
-  const [confirmAction, setConfirmAction] = useState(null);
+  const navigate = useNavigate();
+
   const [localRemovedError, setLocalRemovedError] = useState(null);
-  //const [localOrderError, setLocalOrderError] = useState(null);
+  const [localCartError, setLocalCartError] = useState(null);
+
+  const {
+    cartItems,
+    removeItemToCartAction,
+    removeLoading,
+    setPackDataAction,
+    setLoading,
+    cartPacks,
+  } = useCartStore(
+    useShallow((state) => ({
+      cartItems: state.cartItems,
+      removeItemToCartAction: state.removeItemToCartAction,
+      removeLoading: state.removeLoading,
+      setPackDataAction: state.setPackDataAction,
+      setLoading: state.setLoading,
+      cartPacks: state.cartPacks,
+    }))
+  );
 
   const [formData, setFormData] = useState({
-    meal: '',
-    method: '',
-    userName: '',
-    email: '',
-    tel: '',
-    address: '',
-    number: '',
-    complement: '',
-    district: '',
-    cep: '',
-    infoText: '',
+    meal: cartPacks?.[0]?.meal || '',
+    method: cartPacks?.[0]?.method || '',
+    userName: cartPacks?.[0]?.userName || '',
+    email: cartPacks?.[0]?.email || '',
+    tel: cartPacks?.[0]?.tel || '',
+    address: cartPacks?.[0]?.address || '',
+    number: cartPacks?.[0]?.number || '',
+    complement: cartPacks?.[0]?.complement || '',
+    district: cartPacks?.[0]?.district || '',
+    cep: cartPacks?.[0]?.cep || '',
+    infoText: cartPacks?.[0]?.infoText || '',
   });
 
   const subtotal = formData.meal === 'pate' ? 35 : formData.meal === 'creme' ? 30 : 25;
   const total = formData.method === 'delivery' ? subtotal + 10 : subtotal;
 
   const typeOfMeal = formData.meal === 'pate' ? 'patê' : formData.meal;
-
-  const { cartItems, removeItemToCartAction, cleanCartItemsAction, loading } = useCartStore(
-    useShallow((state) => ({
-      cartItems: state.cartItems,
-      removeItemToCartAction: state.removeItemToCartAction,
-      cleanCartItemsAction: state.cleanCartItemsAction,
-      loading: state.loading,
-    }))
-  );
-
-  console.log(cartItems);
 
   const handleRemoveItem = async (item) => {
     try {
@@ -64,31 +72,27 @@ function Cart() {
   };
 
   const handleCart = async (data) => {
-    // chamar service
-    // ...
-
-    // se success
-    setConfirmAction('Pedido enviado');
-    setFormData({
-      meal: '',
-      method: '',
-      userName: '',
-      email: '',
-      tel: '',
-      address: '',
-      number: '',
-      complement: '',
-      district: '',
-      cep: '',
-      infoText: '',
-    });
-    setTimeout(() => {
-      cleanCartItemsAction();
-      setConfirmAction(null);
-    }, 3000);
-
-    // se erro
-    // ...
+    try {
+      await setPackDataAction(data);
+      setFormData({
+        meal: '',
+        method: '',
+        userName: '',
+        email: '',
+        tel: '',
+        address: '',
+        number: '',
+        complement: '',
+        district: '',
+        cep: '',
+        infoText: '',
+      });
+      setLocalCartError(null);
+      navigate('/checkout');
+    } catch (error) {
+      const handledError = errorHandler(error);
+      setLocalCartError(handledError.message);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -136,7 +140,9 @@ function Cart() {
                   })}
                 </ul>
 
-                {loading && <Loader className="cart__pack-card-loader">Removendo item...</Loader>}
+                {removeLoading && (
+                  <Loader className="cart__pack-card-loader">Removendo item...</Loader>
+                )}
 
                 {localRemovedError && (
                   <Toast className="cart__pack-card-toast" message={localRemovedError}></Toast>
@@ -425,16 +431,16 @@ function Cart() {
                 </div>
               </fieldset>
 
-              {confirmAction && (
-                <Toast className="order-form__toast" message={confirmAction}></Toast>
+              {localCartError && (
+                <Toast className="pack-form__toast" message={localCartError}></Toast>
               )}
 
-              {/*{localOrderError && (
-                <Toast className="order-form__toast" message={localOrderError}></Toast>
-              )}*/}
-
               <Button className="pack-form__button" type="submit">
-                {typeOfMeal !== '' ? `Finalizar ${typeOfMeal}: R$ ${total},00` : 'Finalizar'}
+                {!setLoading && typeOfMeal !== ''
+                  ? `Finalizar ${typeOfMeal}: R$ ${total},00`
+                  : setLoading && typeOfMeal !== ''
+                    ? 'Finalizando...'
+                    : 'Finalizar'}
               </Button>
             </form>
           </div>
