@@ -35,6 +35,29 @@ function Checkout() {
 
   const isCartReady = hasCartItems && hasCartData;
 
+  const order = {
+    items: cartItems.map((item) => item.productName),
+    itemsDetails: cartItems,
+    meal: cartData.meal,
+    method: cartData.method,
+    userName: cartData.userName,
+    userContact: {
+      email: cartData.email,
+      tel: cartData.tel,
+    },
+    userAddress: {
+      address: cartData.address,
+      number: cartData.number,
+      complement: cartData.complement,
+      district: cartData.district,
+      cep: cartData.cep,
+    },
+    obs: cartData.infoText,
+    payment: formData.pay,
+  };
+
+  console.log('Order', order);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -43,9 +66,11 @@ function Checkout() {
     });
   };
 
+  const handleCheckout = () => {};
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handleCheckout()
+    handleCheckout(order);
   };
 
   return (
