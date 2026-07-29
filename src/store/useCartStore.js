@@ -97,10 +97,11 @@ const useCartStore = create(
         }
       },*/
 
-      // cleanCartItems limpa estado + persistência
-      cleanCartItemsAction: () => {
+      // cleanCart limpa estado + persistência
+      cleanCartAction: () => {
         set(() => ({
           cartItems: [],
+          cartPacks: [],
         }));
       },
     }),
