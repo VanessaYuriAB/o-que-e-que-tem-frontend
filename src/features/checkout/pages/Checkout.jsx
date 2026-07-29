@@ -5,11 +5,14 @@ import { useState } from 'react';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import useCartStore from '../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
+import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 
 function Checkout() {
   const [formData, setFormData] = useState({
     pay: '',
   });
+
+  const [localError, setLocalError] = useState('Ajuste de Toast Error.');
 
   const typeOfPay =
     formData.pay === 'debito'
@@ -77,6 +80,10 @@ function Checkout() {
     // redireciona para infos do pedido
 
     // se error
+    // local
+    setLocalError('Erro ao finalizar a compra, tente novamente.');
+    // global
+    // ...
   };
 
   const handleSubmit = (e) => {
@@ -232,6 +239,8 @@ function Checkout() {
                   </div>
                 </fieldset>
               )}
+
+              {localError && <Toast className="order-form__toast" message={localError}></Toast>}
 
               <Button className="order-form__button" type="submit" /*disabled={}*/>
                 Comprar {formData.pay !== '' && `no ${typeOfPay}`}

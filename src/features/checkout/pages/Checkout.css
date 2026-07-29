@@ -74,6 +74,8 @@
 }
 
 .order-form__toast {
+  padding: 1em;
+  margin: 2rem auto 0;
 }
 
 .order-form__button {
@@ -128,6 +130,10 @@
   .checkout__box {
     flex-direction: row;
     justify-content: space-evenly;
+  }
+
+  .order-form__toast {
+    width: 70%;
   }
 
   .checkout__subtitle {
