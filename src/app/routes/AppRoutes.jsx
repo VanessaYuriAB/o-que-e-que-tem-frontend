@@ -30,6 +30,8 @@ const SubscriptionProfile = lazy(
 
 const Cart = lazy(() => import('../../features/cart/pages/Cart.jsx'));
 
+const Checkout = lazy(() => import('../../features/checkout/pages/Checkout.jsx'));
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -84,6 +86,9 @@ function AppRoutes() {
 
           {/* Carrinho */}
           <Route path="cart" element={<Cart />} />
+
+          {/* Checkout */}
+          <Route path="checkout" element={<Checkout />} />
 
           {/* Fale conosco */}
           <Route path="talk-to-us" element={<Contact />} />
