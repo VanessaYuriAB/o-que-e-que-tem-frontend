@@ -36,6 +36,11 @@
   margin: 0.5em;
 }
 
+.menu__section-toast {
+  padding: 0;
+  margin: 0.5rem auto;
+}
+
 .menu__section-btn {
   margin: 1em;
   font-size: 0.625rem;
@@ -53,4 +58,7 @@
 /* Tablet */
 
 @media (min-width: 768px) {
+  .menu__section-toast {
+    width: 70%;
+  }
 }
