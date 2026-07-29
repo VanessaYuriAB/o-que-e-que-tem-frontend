@@ -20,9 +20,10 @@ function Checkout() {
           ? 'PIX'
           : '';
 
-  const { cartItems, cartData } = useCartStore(
+  const { cartItems, cleanCartAction, cartData } = useCartStore(
     useShallow((state) => ({
       cartItems: state.cartItems,
+      cleanCartAction: state.cleanCartAction,
       cartData: state.cartData,
     }))
   );
@@ -66,7 +67,17 @@ function Checkout() {
     });
   };
 
-  const handleCheckout = () => {};
+  const handleCheckout = () => {
+    // service
+    // ...
+
+    // se success
+    setFormData({ pay: '' });
+    cleanCartAction();
+    // redireciona para infos do pedido
+
+    // se error
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
