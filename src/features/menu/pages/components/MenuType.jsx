@@ -15,7 +15,10 @@ function MenuType({ category }) {
 
   const [activeItemId, setActiveItemId] = useState(null);
 
-  const [localActionError, setLocalActionError] = useState(null);
+  const [localItemError, setLocalItemError] = useState({
+    id: null,
+    message: null,
+  });
 
   const { menuItems, loadingMenu, errorMenu } = useOutletContext();
 
@@ -57,11 +60,17 @@ function MenuType({ category }) {
 
       await addItemToCartAction(item);
 
-      setLocalActionError(null);
+      setLocalItemError({
+        id: null,
+        message: null,
+      });
     } catch (error) {
       const handledError = errorHandler(error);
 
-      setLocalActionError(handledError.message);
+      setLocalItemError({
+        id: item.inventoryLotId,
+        message: handledError.message,
+      });
     } finally {
       setActiveItemId(null);
     }
@@ -95,8 +104,8 @@ function MenuType({ category }) {
                 <Loader className="menu__section-loader">Adicionando item...</Loader>
               )}
 
-              {localActionError && (
-                <Toast className="menu__section-toast" message={localActionError}></Toast>
+              {localItemError.id === item.inventoryLotId && (
+                <Toast className="menu__section-toast" message={localItemError.message}></Toast>
               )}
 
               <Button
