@@ -9,12 +9,15 @@ import useCartStore from '../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
+import useAuthStore from '../../../store/useAuthStore.js';
 
 function Cart() {
   const navigate = useNavigate();
 
   const [localRemovedError, setLocalRemovedError] = useState(null);
   const [localCartError, setLocalCartError] = useState(null);
+
+  const user = useAuthStore((state) => state.user);
 
   const {
     cartItems,
@@ -37,15 +40,15 @@ function Cart() {
   const [formData, setFormData] = useState({
     meal: cartData.meal || '',
     method: cartData.method || '',
-    userName: cartData.userName || '',
-    email: cartData.email || '',
-    tel: cartData.tel || '',
-    address: cartData.address || '',
-    number: cartData.number || '',
-    complement: cartData.complement || '',
-    district: cartData.district || '',
-    cep: cartData.cep || '',
-    infoText: cartData.infoText || '',
+    userName: cartData.userName || user?.userName || '',
+    email: cartData.email || user?.email || '',
+    tel: cartData.tel || user?.tel || '',
+    address: cartData.address || user?.address || '',
+    number: cartData.number || user?.number || '',
+    complement: cartData.complement || user?.complement || '',
+    district: cartData.district || user?.district || '',
+    cep: cartData.cep || user?.cep || '',
+    infoText: cartData.infoText || user?.infoText || '',
   });
 
   const subtotal = formData.meal === 'pate' ? 35 : formData.meal === 'creme' ? 30 : 25;
