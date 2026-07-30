@@ -194,6 +194,7 @@ function Checkout() {
                     value="pix"
                     checked={formData.pay === 'pix'}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="order-form__input-box order-form__input-box_radio">

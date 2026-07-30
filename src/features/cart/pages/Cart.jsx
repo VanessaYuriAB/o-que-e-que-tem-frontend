@@ -202,6 +202,7 @@ function Cart() {
                     value="sopa"
                     checked={formData.meal === 'sopa'}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="pack-form__input-box pack-form__input-box_radio">
@@ -249,6 +250,7 @@ function Cart() {
                       value="delivery"
                       checked={formData.method === 'delivery'}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                   <span className="pack-form__span">Entregue na sua porta (R$10,00)</span>
