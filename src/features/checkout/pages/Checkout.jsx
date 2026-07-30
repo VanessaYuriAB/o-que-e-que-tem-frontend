@@ -35,7 +35,7 @@ function Checkout() {
   console.log('Items:', cartItems);
 
   const hasCartItems = cartItems.length > 0;
-  const hasCartData = (cartData.meal !== '') & (cartData.meal !== undefined);
+  const hasCartData = cartData.meal !== '' && cartData.meal !== undefined;
 
   const isCartReady = hasCartItems && hasCartData;
 
