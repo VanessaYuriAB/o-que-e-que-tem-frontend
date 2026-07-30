@@ -73,7 +73,8 @@ function Cart() {
 
   const handleCart = async (data) => {
     try {
-      await setCartDataAction(data);
+      const orderData = { ...data, amount: total };
+      await setCartDataAction(orderData);
       setFormData({
         meal: '',
         method: '',
