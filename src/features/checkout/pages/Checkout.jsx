@@ -50,13 +50,16 @@ function Checkout() {
       email: cartData.email,
       tel: cartData.tel,
     },
-    userAddress: {
-      address: cartData.address,
-      number: cartData.number,
-      complement: cartData.complement,
-      district: cartData.district,
-      cep: cartData.cep,
-    },
+    userAddress:
+      cartData.method === 'delivery'
+        ? {
+            address: cartData.address,
+            number: cartData.number,
+            complement: cartData.complement,
+            district: cartData.district,
+            cep: cartData.cep,
+          }
+        : undefined,
     obs: cartData.infoText,
     payment: formData.pay,
     amount: cartData.amount,
