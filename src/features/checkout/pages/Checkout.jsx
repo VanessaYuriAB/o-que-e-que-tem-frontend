@@ -59,6 +59,7 @@ function Checkout() {
     },
     obs: cartData.infoText,
     payment: formData.pay,
+    amount: cartData.amount,
   };
 
   console.log('Order', order);
@@ -164,7 +165,7 @@ function Checkout() {
 
                 <div className="checkout__item-box">
                   <h3 className="checkout__item-title">Total:</h3>
-                  <p className="checkout__item-description"> R$ xx,xx</p>
+                  <p className="checkout__item-description"> R$ {cartData.amount},00</p>
                 </div>
               </div>
             </aside>
