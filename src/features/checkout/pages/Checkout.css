@@ -37,7 +37,7 @@
 
 .checkout__box {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   margin-top: 3rem;
 }
 
@@ -130,6 +130,42 @@
 }
 
 .checkout__aside {
+}
+
+.checkout__aside-box {
+  width: 85%;
+  margin-inline: auto;
+}
+
+.checkout__item-list {
+  list-style: decimal-leading-zero;
+  padding-left: 2.5rem;
+  color: #1d5121;
+}
+
+.checkout__item-item {
+  width: fit-content;
+}
+
+.checkout__item-box {
+  display: flex;
+  column-gap: 0.75rem;
+  align-items: center;
+}
+
+.checkout__item-box_list {
+  column-gap: 0;
+}
+
+.checkout__item-box_address,
+.checkout__item-box_obs {
+  flex-direction: column;
+  align-items: start;
+}
+
+.checkout__item-description {
+  text-align: left;
+  color: #1d5121;
 }
 
 /* Tablet e acima */

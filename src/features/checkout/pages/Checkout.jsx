@@ -120,6 +120,55 @@ function Checkout() {
         <>
           <h1 className="checkout__title">Finalize sua compra</h1>
           <div className="checkout__box">
+            <aside className="checkout__aside">
+              <h2 className="checkout__subtitle">Detalhes do pedido:</h2>
+              <div className="checkout__aside-box">
+                <div className="checkout__item-box checkout__item-box_list">
+                  <h3 className="checkout__item-title">Items:</h3>
+                  <ul className="checkout__item-list nav__list">
+                    {cartItems.map((item) => {
+                      return (
+                        <li className="checkout__item-item nav__item" key={item.inventoryLotId}>
+                          <p className="checkout__item-description">{item.productName}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+
+                <div className="checkout__item-box">
+                  <h3 className="checkout__item-title">Tipo:</h3>
+                  <p className="checkout__item-description">{cartData.meal}</p>
+                </div>
+
+                <div className="checkout__item-box">
+                  <h3 className="checkout__item-title">Entrega:</h3>
+                  <p className="checkout__item-description">{cartData.method}</p>
+                </div>
+
+                <div className="checkout__item-box checkout__item-box_address">
+                  <h3 className="checkout__item-title">Endereço:</h3>
+                  <p className="checkout__item-description">
+                    {cartData.address}, {cartData.number},
+                    {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
+                    {cartData.district}, {cartData.cep}
+                  </p>
+                </div>
+
+                {cartData.infoText !== '' && (
+                  <div className="checkout__item-box checkout__item-box_obs">
+                    <h3 className="checkout__item-title">Observação:</h3>
+                    <p className="checkout__item-description">{cartData.infoText}</p>
+                  </div>
+                )}
+
+                <div className="checkout__item-box">
+                  <h3 className="checkout__item-title">Total:</h3>
+                  <p className="checkout__item-description"> R$ xx,xx</p>
+                </div>
+              </div>
+            </aside>
+
             <form
               className="order-form checkout__order-form"
               name="order"
@@ -262,53 +311,6 @@ function Checkout() {
                 Voltar ao carrinho
               </Link>
             </form>
-
-            <aside className="checkout__aside">
-              <h2 className="checkout__subtitle">Detalhes do pedido:</h2>
-              <div className="checkout__item-box">
-                <h3 className="checkout__item-title">Items:</h3>
-                <ul className="checkout__item-list">
-                  {cartItems.map((item) => {
-                    return (
-                      <li className="checkout__item-item" key={item.inventoryLotId}>
-                        <p className="checkout__item-description">{item.productName}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-
-              <div className="checkout__item-box">
-                <h3 className="checkout__item-title">Tipo:</h3>
-                <p className="checkout__item-description">{cartData.meal}</p>
-              </div>
-
-              <div className="checkout__item-box">
-                <h3 className="checkout__item-title">Entrega:</h3>
-                <p className="checkout__item-description">{cartData.method}</p>
-              </div>
-
-              <div className="checkout__item-box">
-                <h3 className="checkout__item-title">Endereço:</h3>
-                <p className="checkout__item-description">
-                  {cartData.address}, {cartData.number},
-                  {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
-                  {cartData.district}, {cartData.cep}
-                </p>
-              </div>
-
-              {cartData.infoText !== '' && (
-                <div className="checkout__item-box">
-                  <h3 className="checkout__item-title">Observação:</h3>
-                  <p className="checkout__item-description">{cartData.infoText}</p>
-                </div>
-              )}
-
-              <div className="checkout__item-box">
-                <h3 className="checkout__item-title">Total:</h3>
-                <p className="checkout__item-description"> R$ xx,xx</p>
-              </div>
-            </aside>
           </div>
         </>
       )}
