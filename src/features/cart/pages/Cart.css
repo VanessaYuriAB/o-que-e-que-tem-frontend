@@ -134,6 +134,10 @@
   margin-left: 0.5em;
 }
 
+.pack-form__input_radio:hover {
+  cursor: pointer;
+}
+
 .pack-form__toast {
   margin-bottom: 0.75rem;
 }

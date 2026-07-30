@@ -60,6 +60,10 @@
   margin-top: 3rem;
 }
 
+.order-form__input_radio:hover {
+  cursor: pointer;
+}
+
 .order-form__pix-box {
   display: flex;
   justify-content: center;
