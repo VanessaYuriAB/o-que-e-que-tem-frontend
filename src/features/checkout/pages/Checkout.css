@@ -1,8 +1,5 @@
 /* Mobile first (padrão) */
 
-.content__checkout {
-}
-
 .checkout {
   width: 100%;
 }
@@ -38,39 +35,79 @@
   max-width: 75%;
 }
 
-.checkout__title {
-}
-
 .checkout__box {
   display: flex;
   flex-direction: column-reverse;
+  margin-top: 3rem;
 }
 
 .checkout__order-form {
 }
 
-.order-form__field {
-}
-
 .order-form__legend {
+  font-weight: 650;
 }
 
-.order-form__input-box {
+.order-form__field {
+  margin-top: 1.5rem;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 1.5rem;
 }
 
-.order-form__label {
-}
-
-.order-form__input {
+.order-form__field_radio {
+  padding: 2rem;
+  margin-top: 3rem;
 }
 
 .order-form__pix-box {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5rem;
 }
 
-.order-form__pix-code {
+.order-form__pix-label {
+  font-weight: 600;
+  text-wrap-mode: nowrap;
 }
 
-.order-form__pix-qr {
+.order-form__pix-qr-img {
+  width: 100px;
+  height: 100px;
+}
+
+.order-form__input-box {
+  margin-bottom: 0.5rem;
+  width: max-content;
+  margin-inline: auto;
+}
+
+.order-form__input-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.order-form__input-box_radio {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 0.5rem;
+  margin-inline: 0;
+}
+
+.order-form__label {
+  font-weight: 600;
+  text-wrap-mode: nowrap;
+  margin-right: 0.25rem;
+}
+
+.order-form__input {
+  padding: 0.25em;
+}
+
+.order-form__notice {
+  width: 80%;
+  max-width: 432px;
+  margin-inline: auto;
+  margin-bottom: 0;
 }
 
 .order-form__toast {
@@ -79,32 +116,20 @@
 }
 
 .order-form__button {
-  margin-bottom: 1em;
+  margin-bottom: 0;
+  margin-top: 4em;
 }
 
 .order-form__link {
   display: block;
+  margin-top: 3rem;
+}
+
+.order-form__link:last-of-type {
+  margin-top: 1.5rem;
 }
 
 .checkout__aside {
-}
-
-.checkout__subtitle {
-}
-
-.checkout__item-box {
-}
-
-.checkout__item-title {
-}
-
-.checkout__item-list {
-}
-
-.checkout__item-item {
-}
-
-.checkout__item-description {
 }
 
 /* Tablet e acima */
@@ -129,11 +154,33 @@
 
   .checkout__box {
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
+    column-gap: 3rem;
+    margin-top: 5rem;
+  }
+
+  .checkout__order-form {
+    width: min-content;
+  }
+
+  .order-form__field_radio {
+    margin-top: 0;
+  }
+
+  .order-form__notice {
+    width: 100%;
   }
 
   .order-form__toast {
     width: 70%;
+  }
+
+  .order-form__link {
+    width: 80%;
+    margin-inline: auto;
+  }
+
+  .checkout__aside {
   }
 
   .checkout__subtitle {

@@ -1,18 +1,19 @@
 import './Checkout.css';
 import { Link } from 'react-router-dom';
-import Input from '../../../shared/components/ui/input/Input.jsx';
 import { useState } from 'react';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import useCartStore from '../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
+import qrCodeImg from '../../../assets/images/qrcode.jpg';
+import Input from '../../../shared/components/ui/input/Input.jsx';
 
 function Checkout() {
   const [formData, setFormData] = useState({
     pay: '',
   });
 
-  const [localError, setLocalError] = useState('Ajuste de Toast Error.');
+  const [localError, setLocalError] = useState(null);
 
   const typeOfPay =
     formData.pay === 'debito'
@@ -124,14 +125,16 @@ function Checkout() {
               name="order"
               onSubmit={handleSubmit} /*noValidate*/
             >
-              <fieldset className="order-form__field">
-                <legend className="order-form__legend">Forma de pagamento:</legend>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="pix">
+              <fieldset className="order-form__field order-form__field_radio">
+                <legend className="order-form__legend order-form__legend_radio">
+                  Forma de pagamento:
+                </legend>
+                <div className="order-form__input-box order-form__input-box_radio">
+                  <label className="order-form__label order-form__label_radio" htmlFor="pix">
                     PIX
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="order-form__input order-form__input_radio"
                     type="radio"
                     id="pix"
                     name="pay"
@@ -140,12 +143,12 @@ function Checkout() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="debito">
+                <div className="order-form__input-box order-form__input-box_radio">
+                  <label className="order-form__label order-form__label_radio" htmlFor="debito">
                     Cartão de débito
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="order-form__input order-form__input_radio"
                     type="radio"
                     id="debito"
                     name="pay"
@@ -154,12 +157,12 @@ function Checkout() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="order-form__input-box">
-                  <label className="order-form__label" htmlFor="credito">
+                <div className="order-form__input-box order-form__input-box_radio">
+                  <label className="order-form__label order-form__label_radio" htmlFor="credito">
                     Cartão de crédito
                   </label>
                   <Input
-                    className="order-form__input"
+                    className="order-form__input order-form__input_radio"
                     type="radio"
                     id="credito"
                     name="pay"
@@ -174,13 +177,15 @@ function Checkout() {
                 <fieldset className="order-form__field">
                   <legend className="order-form__legend">Dados para PIX:</legend>
                   <div className="order-form__pix-box">
-                    <p className="order-form__pix-code">Código:</p>
-                    <p className="order-form__pix-code">xxxxxxxxxx</p>
+                    <p className="order-form__pix-label">Chave PIX: </p>
+                    <p className="order-form__pix-code">portfolio@exemplo.com</p>
                   </div>
-                  <div className="order-form__pix-box">
-                    <p className="order-form__pix-qr">QR Code:</p>
-                    <img className="order-form__pix-qr" src="" alt="Imagem do QR Code do PIX" />
-                  </div>
+                  <p className="order-form__pix-label">QR Code:</p>
+                  <img
+                    className="order-form__pix-qr-img"
+                    src={qrCodeImg}
+                    alt="Imagem demonstrativa de um QR Code com desenho centralizado de coração."
+                  />
                 </fieldset>
               )}
 
@@ -189,23 +194,23 @@ function Checkout() {
                   <legend className="order-form__legend">Dados do cartão de débito:</legend>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nome: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nº do cartão: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Bandeira: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Validade: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Código: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                 </fieldset>
               )}
@@ -215,30 +220,34 @@ function Checkout() {
                   <legend className="order-form__legend">Dados do cartão de crédito:</legend>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nome: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nº do cartão: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Bandeira: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Validade: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Código: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Parcelas: </label>
-                    <Input className="order-form__input" />
+                    <input className="order-form__input" />
                   </div>
                 </fieldset>
               )}
+
+              <p className="order-form__notice">
+                ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
+              </p>
 
               {localError && <Toast className="order-form__toast" message={localError}></Toast>}
 
