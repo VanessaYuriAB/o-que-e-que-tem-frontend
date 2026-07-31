@@ -132,7 +132,7 @@ function Checkout() {
         </div>
       ) : (
         <>
-          <h1 className="checkout__title">Finalize sua compra</h1>
+          <h1 className="checkout__title">Finalize sua compra (:</h1>
           <div className="checkout__box">
             <aside className="checkout__aside">
               <h2 className="checkout__subtitle">Detalhes do pedido:</h2>
@@ -315,7 +315,11 @@ function Checkout() {
                 ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
               </p>
 
-              {loading && <Loader className="order-form__loader">Enviando pedido...</Loader>}
+              {loading && (
+                <Loader className="order-form__loader">
+                  Mais um pouco menos de desperdício... Enviando pedido...
+                </Loader>
+              )}
 
               {localError && <Toast className="order-form__toast" message={localError}></Toast>}
 
