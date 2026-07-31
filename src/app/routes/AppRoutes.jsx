@@ -32,6 +32,8 @@ const Cart = lazy(() => import('../../features/cart/pages/Cart.jsx'));
 
 const Checkout = lazy(() => import('../../features/checkout/pages/Checkout.jsx'));
 
+const SuccessOrder = lazy(() => import('../../pages/success-order/SuccessOrder.jsx'));
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -89,6 +91,9 @@ function AppRoutes() {
 
           {/* Checkout */}
           <Route path="checkout" element={<Checkout />} />
+
+          {/* SuccessOrder */}
+          <Route path="success-order" element={<SuccessOrder />} />
 
           {/* Fale conosco */}
           <Route path="talk-to-us" element={<Contact />} />
