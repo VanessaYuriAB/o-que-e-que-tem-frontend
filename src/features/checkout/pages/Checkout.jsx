@@ -161,14 +161,16 @@ function Checkout() {
                   <p className="checkout__item-description">{cartData.method}</p>
                 </div>
 
-                <div className="checkout__item-box checkout__item-box_address">
-                  <h3 className="checkout__item-title">Endereço:</h3>
-                  <p className="checkout__item-description">
-                    {cartData.address}, {cartData.number},
-                    {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
-                    {cartData.district}, {cartData.cep}
-                  </p>
-                </div>
+                {cartData.method === 'delivery' && (
+                  <div className="checkout__item-box checkout__item-box_address">
+                    <h3 className="checkout__item-title">Endereço:</h3>
+                    <p className="checkout__item-description">
+                      {cartData.address}, {cartData.number},
+                      {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
+                      {cartData.district}, {cartData.cep}
+                    </p>
+                  </div>
+                )}
 
                 {cartData.infoText !== '' && (
                   <div className="checkout__item-box checkout__item-box_obs">
