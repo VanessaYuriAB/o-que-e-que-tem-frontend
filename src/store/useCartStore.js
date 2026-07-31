@@ -5,7 +5,8 @@ import {
   setCartData,
 } from '../features/cart/services/cartService.js';
 import { persist } from 'zustand/middleware';
-/*import errorHandler from '../shared/utils/errorHandler.js';*/
+import errorHandler from '../shared/utils/errorHandler.js';
+import sendOrderToServer from '../features/checkout/services/checkoutService.js';
 
 const useCartStore = create(
   persist(
@@ -70,7 +71,7 @@ const useCartStore = create(
       },
 
       // sendOrder chama checkoutService.sendOrderToServer
-      /*sendOrderToServerAction: async (order) => {
+      sendOrderToServerAction: async (order) => {
         set({ loading: true, globalError: null });
 
         try {
@@ -87,7 +88,7 @@ const useCartStore = create(
         } finally {
           set({ loading: false });
         }
-      },*/
+      },
 
       // cleanCart limpa estado + persistência
       cleanCartAction: () => {
