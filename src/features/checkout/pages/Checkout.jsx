@@ -7,6 +7,7 @@ import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import qrCodeImg from '../../../assets/images/qrcode.jpg';
 import Input from '../../../shared/components/ui/input/Input.jsx';
+import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 
 function Checkout() {
   const [formData, setFormData] = useState({
@@ -24,13 +25,17 @@ function Checkout() {
           ? 'PIX'
           : '';
 
-  const { cartItems, cleanCartAction, cartData } = useCartStore(
-    useShallow((state) => ({
-      cartItems: state.cartItems,
-      cleanCartAction: state.cleanCartAction,
-      cartData: state.cartData,
-    }))
-  );
+  const { cartItems, cleanCartAction, cartData, sendOrderToServerAction, loading, globalError } =
+    useCartStore(
+      useShallow((state) => ({
+        cartItems: state.cartItems,
+        cleanCartAction: state.cleanCartAction,
+        cartData: state.cartData,
+        sendOrderToServerAction: state.sendOrderToServerAction,
+        loading: state.loading,
+        globalError: state.globalError,
+      }))
+    );
 
   console.log('Pedido:', cartData);
   console.log('Items:', cartItems);
@@ -75,20 +80,26 @@ function Checkout() {
     });
   };
 
-  const handleCheckout = () => {
-    // service
-    // ...
+  const handleCheckout = async (orderData) => {
+    setLocalError(null);
 
-    // se success
-    setFormData({ pay: '' });
-    cleanCartAction();
-    // redireciona para infos do pedido
+    // Service (+ action/store)
+    const result = await sendOrderToServerAction(orderData);
 
-    // se error
-    // local
-    setLocalError('Erro ao finalizar a compra, tente novamente.');
-    // global
-    // ...
+    if (result.success === true) {
+      // Se success
+      console.log('Pedido enviado', orderData);
+
+      setFormData({ pay: '' });
+      cleanCartAction();
+      // redireciona para infos do pedido
+    } else if (result.error.scope === 'local') {
+      // Se error
+      // Local
+      setLocalError(result.error.message);
+    }
+
+    // Global definido por estado local da store
   };
 
   const handleSubmit = (e) => {
@@ -303,9 +314,15 @@ function Checkout() {
                 ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
               </p>
 
+              {loading && <Loader className="order-form__loader">Enviando pedido...</Loader>}
+
               {localError && <Toast className="order-form__toast" message={localError}></Toast>}
 
-              <Button className="order-form__button" type="submit" /*disabled={}*/>
+              {globalError && (
+                <Toast className="order-form__toast" message={globalError.message}></Toast>
+              )}
+
+              <Button className="order-form__button" type="submit">
                 Comprar {formData.pay !== '' && `no ${typeOfPay}`}
               </Button>
 
