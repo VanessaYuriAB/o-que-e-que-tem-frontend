@@ -1,5 +1,5 @@
 import './Checkout.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import useCartStore from '../../../store/useCartStore.js';
@@ -10,6 +10,8 @@ import Input from '../../../shared/components/ui/input/Input.jsx';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 
 function Checkout() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     pay: '',
   });
@@ -65,7 +67,7 @@ function Checkout() {
 
       setFormData({ pay: '' });
       cleanCartAction();
-      // redireciona para infos do pedido
+      navigate('/success-order');
     } else if (result.error.scope === 'local') {
       // Se error
       // Local
