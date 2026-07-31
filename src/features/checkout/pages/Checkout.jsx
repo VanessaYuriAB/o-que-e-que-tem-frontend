@@ -261,23 +261,23 @@ function Checkout() {
                   <legend className="order-form__legend">Dados do cartão de débito:</legend>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nome: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nº do cartão: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Bandeira: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Validade: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Código: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                 </fieldset>
               )}
@@ -287,27 +287,27 @@ function Checkout() {
                   <legend className="order-form__legend">Dados do cartão de crédito:</legend>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nome: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Nº do cartão: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Bandeira: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Validade: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Código: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                   <div className="order-form__input-box">
                     <label className="order-form__label">Parcelas: </label>
-                    <input className="order-form__input" />
+                    <input className="order-form__input" disabled />
                   </div>
                 </fieldset>
               )}
