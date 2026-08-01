@@ -5,11 +5,17 @@ import useAuthStore from '../../store/useAuthStore.js';
 function SuccessOrder() {
   const user = useAuthStore((state) => state.user);
 
-  const hasOrder = true;
+  let hasOrder = null;
+
+  try {
+    hasOrder = JSON.parse(localStorage.getItem('successOrder'));
+  } catch {
+    hasOrder = null;
+  }
 
   return (
     <section className="order content__order">
-      {hasOrder ? (
+      {hasOrder !== null ? (
         <>
           <h1 className="order__title">Pedido enviado com sucesso</h1>
           <div className="order__box">
@@ -23,39 +29,56 @@ function SuccessOrder() {
             <p className="order__text">Agradecemos muito :)</p>
           </div>
 
-          <h2 className="order__subtitle">Aqui estão as informações (da sua) (refeição):</h2>
+          <h2 className="order__subtitle">
+            Aqui estão as informações {hasOrder.meal === 'sopa' ? 'da sua' : 'do seu'}{' '}
+            {hasOrder.meal === 'pate' ? 'patê' : hasOrder.meal}:
+          </h2>
           <div className="order__details">
-            <div className="order__item-box">
+            <div className="order__item-box order__item-box_inline">
               <p className="order__item-label">Nº do pedido:</p>
-              <p className="order__item"></p>
+              <p className="order__item">?</p>
             </div>
-            <div className="order__item-box">
+            <div className="order__item-box order__item-box_inline">
               <p className="order__item-label">Forma de entrega:</p>
-              <p className="order__item"></p>
+              <p className="order__item">{hasOrder.method}</p>
             </div>
-            <div className="order__item-box">
-              <p className="order__item-label">Endereço:</p>
-              <p className="order__item">(caso delivery)</p>
-            </div>
+            {hasOrder.method === 'delivery' && (
+              <div className="order__item-box">
+                <p className="order__item-label">Endereço:</p>
+                <p className="order__item">
+                  {hasOrder.userAddress.address}, {hasOrder.userAddress.number}
+                  {hasOrder.userAddress.complement !== '-' &&
+                    `, ${hasOrder.userAddress.complement}`}
+                  , {hasOrder.userAddress.district}, {hasOrder.userAddress.cep}
+                </p>
+              </div>
+            )}
             <div className="order__item-box">
               <p className="order__item-label">Contato:</p>
               <p className="order__item">
-                (nome e telefone, se houver) (alterar, tbm, campo de infos adicionais)
+                {hasOrder.userName} | {hasOrder.userContact.email} | {hasOrder.userContact.tel}
               </p>
             </div>
-            <div className="order__item-box">
+
+            <div className="order__item-box order__item-box_inline">
               <p className="order__item-label">Forma de pagamento:</p>
-              <p className="order__item"></p>
+              <p className="order__item">{hasOrder.payment}</p>
+            </div>
+            <div className="order__item-box order__item-box_inline">
+              <p className="order__item-label">Tipo de refeição:</p>
+              <p className="order__item">{hasOrder.meal}</p>
             </div>
             <div className="order__item-box">
               <p className="order__item-label">Ingredientes:</p>
-              <div className="order__ingredients-box">
-                <p className="order__item"></p>
-              </div>
-            </div>
-            <div className="order__item-box">
-              <p className="order__item-label">Tipo de refeição:</p>
-              <p className="order__item"></p>
+              <ul className="order__ingredients-list nav__list">
+                {hasOrder.itemsDetails.map((item) => {
+                  return (
+                    <li className="order__item" key={item.inventoryLotId}>
+                      {item.productName}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </>
