@@ -63,7 +63,7 @@ function UserProfile() {
   };
 
   return (
-    <div className="profile__user">
+    <section className="profile__user">
       <form
         className="user-form profile__user-form profile-form"
         name="profile-form"
@@ -252,7 +252,7 @@ function UserProfile() {
           )}
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

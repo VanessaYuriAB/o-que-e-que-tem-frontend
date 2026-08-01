@@ -97,7 +97,7 @@ function SubscriptionProfile() {
   };
 
   return (
-    <div className="profile__subscription">
+    <section className="profile__subscription">
       {/* Se usuário for assinante, renderiza página de perfil de assinatura; se não, renderiza link de redirecionamento para assinatura */}
 
       {user.subscription ? (
@@ -429,7 +429,7 @@ function SubscriptionProfile() {
           </Link>
         </div>
       )}
-    </div>
+    </section>
   );
 }
 
