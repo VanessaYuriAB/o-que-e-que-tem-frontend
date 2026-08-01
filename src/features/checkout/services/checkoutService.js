@@ -10,6 +10,9 @@ async function sendOrderToServer(order) {
         await fakeApiError('mockFn com err = true no sendOrderToServer do checkoutService');
       }
 
+      // Seta persistência
+      localStorage.setItem('successOrder', JSON.stringify(order));
+
       return await fakeApi(order, 201);
     };
 
@@ -34,13 +37,13 @@ export default sendOrderToServer;
 
 /*
 
-implementar toast de erro (local + global) e redirecionamento para sucesso com infos do pedido > service + store > order precisa de um id, nº de pedido?
+(alterar, tbm, campo de infos adicionais)
+
+redirecionamento para sucesso com infos do pedido > order precisa de um id, nº de pedido? > almoço ou janta, horário de retirada ou entrega?
 
 refatorar classes como componente à parte, ex: cart__pack-card-link-box
 
-separar forms de Cart e Checkout, jsx e css?
-
-mockar cart e order?
+separar forms de Cart e Checkout, jsx e css
 
 ajustar botão Subscription em active, no Profile em mobile
 
