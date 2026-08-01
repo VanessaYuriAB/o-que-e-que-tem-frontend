@@ -34,6 +34,10 @@ const Checkout = lazy(() => import('../../features/checkout/pages/Checkout.jsx')
 
 const SuccessOrder = lazy(() => import('../../pages/success-order/SuccessOrder.jsx'));
 
+const OrdersProfile = lazy(
+  () => import('../../features/profile/pages/components/orders-profile/OrdersProfile.jsx')
+);
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -138,6 +142,14 @@ function AppRoutes() {
               element={
                 <ProtectedRoute>
                   <SubscriptionProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="orders-profile"
+              element={
+                <ProtectedRoute>
+                  <OrdersProfile />
                 </ProtectedRoute>
               }
             />
