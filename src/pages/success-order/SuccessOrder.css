@@ -1,6 +1,73 @@
 /* Mobile first (padrão) */
 
+.content__order {
+}
+
+.order {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding-bottom: 21.44px; /* margin-top do title */
+}
+
+.order__title {
+}
+
+.order__box {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.order__text {
+}
+
+.order__subtitle {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.order__details {
+  text-align: left;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.order__item-box {
+}
+
+.order__item-label {
+  font-weight: 600;
+}
+
+.order__item {
+}
+
+.order__ingredients-box {
+}
+
+.order__empty-title {
+  width: 90%;
+  margin-inline: auto;
+  margin-bottom: 2.5rem;
+}
+
+.order__empty-prompt {
+  margin-top: 2.5rem;
+}
+
+.order__empty-prompt:first-of-type {
+  margin-top: 0;
+}
+
+.order__empty-link {
+  width: 50%;
+  margin-inline: auto;
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .order__empty-title {
+    width: 80%;
+  }
 }
