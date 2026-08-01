@@ -40,6 +40,11 @@ function Profile() {
               Configuração de Assinatura
             </NavLink>
           </li>
+          <li className="profile__item">
+            <NavLink className={customClassName} to="orders-profile">
+              Seus pedidos
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <Outlet />
