@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import './SuccessOrder.css';
+import useAuthStore from '../../store/useAuthStore.js';
 
 function SuccessOrder() {
+  const user = useAuthStore((state) => state.user);
+
   const hasOrder = true;
-  const user = true;
 
   return (
     <section className="order content__order">
@@ -62,7 +64,7 @@ function SuccessOrder() {
           <h1 className="order__empty-title">
             Ops, você não tem um pedido finalizado e enviado agora
           </h1>
-          {user && (
+          {user !== null && (
             <>
               <p className="order__empty-prompt">Quer ver seu histórico de pedidos?</p>
               <Link className="order__empty-link link-to-button" to="/profile/orders-profile">
