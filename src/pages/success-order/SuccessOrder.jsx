@@ -69,6 +69,10 @@ function SuccessOrder() {
               <p className="order__item">{hasOrder.payment}</p>
             </div>
             <div className="order__item-box order__item-box_inline">
+              <p className="order__item-label">R$:</p>
+              <p className="order__item">{hasOrder.amount},00</p>
+            </div>
+            <div className="order__item-box order__item-box_inline">
               <p className="order__item-label">Tipo de refeição:</p>
               <p className="order__item">{hasOrder.meal}</p>
             </div>
