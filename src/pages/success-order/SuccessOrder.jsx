@@ -54,6 +54,10 @@ function SuccessOrder() {
               </div>
             )}
             <div className="order__item-box">
+              <p className="order__item-label">Infos adicionais:</p>
+              <p className="order__item">{hasOrder.obs}</p>
+            </div>
+            <div className="order__item-box">
               <p className="order__item-label">Contato:</p>
               <p className="order__item">
                 {hasOrder.userName} | {hasOrder.userContact.email} | {hasOrder.userContact.tel}
