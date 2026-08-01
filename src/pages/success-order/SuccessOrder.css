@@ -67,6 +67,11 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .order__item-box_inline {
+    display: flex;
+    column-gap: 0.5rem;
+  }
+
   .order__empty-title {
     width: 80%;
   }
