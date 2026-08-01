@@ -1,6 +1,76 @@
 /* Mobile first (padrão) */
 
+.profile__orders {
+}
+
+.profile__orders-title {
+}
+
+.profile__orders-list {
+  list-style: decimal;
+}
+
+.profile__orders-item {
+  border: 1px solid lightgrey;
+  width: 90%;
+  margin-inline: auto;
+  padding: 1rem;
+  margin-top: 2.5rem;
+}
+
+.profile__orders-item-box {
+}
+
+.profile__orders-item-box_inline {
+  display: flex;
+  column-gap: 0.5rem;
+  justify-content: center;
+}
+
+.profile__orders-label {
+  font-weight: 700;
+}
+
+.profile__orders-value {
+}
+
+.profile__orders-value-list {
+  list-style: decimal-leading-zero;
+  padding-left: 1.5rem;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.profile__orders-value_list {
+  text-align: left;
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .profile__orders-item {
+    width: 80%;
+  }
+
+  .profile__orders-item-box {
+    display: flex;
+    column-gap: 0.5rem;
+  }
+
+  .profile__orders-item-box_inline {
+    justify-content: left;
+  }
+
+  .profile__orders-item-box_center {
+    justify-content: center;
+  }
+
+  .profile__orders-value {
+    text-align: left;
+  }
+
+  .profile__orders-value-list {
+    margin-inline: 0;
+    padding-left: 2rem;
+  }
 }
