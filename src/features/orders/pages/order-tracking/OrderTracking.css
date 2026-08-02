@@ -1,6 +1,60 @@
 /* Mobile first (padrão) */
 
+.tracker__content {
+}
+
+.tracker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tracker__title {
+}
+
+.tracker__form {
+}
+
+.tracker__field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.tracker__legend {
+  margin-bottom: 2rem;
+}
+
+.tracker__input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.tracker__label {
+}
+
+.tracker__input {
+  width: 90%;
+  align-self: center;
+}
+
+.tracker__button {
+  width: 50%;
+  align-self: center;
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .tracker__input-box {
+    flex-direction: row;
+    column-gap: 0.5rem;
+    align-self: center;
+    align-items: center;
+    width: 90%;
+  }
+
+  .tracker__label {
+    width: 30%;
+  }
 }
