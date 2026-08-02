@@ -8,6 +8,7 @@ import imgLogout from '../../assets/icons/logout.svg';
 const sidebarLinkOn = { to: '/profile', class: 'sidebar__item nav__item', label: 'PERFIL' };
 
 const sidebarLinksFixed = [
+  { to: '/order-tracker', class: 'sidebar__item nav__item', label: 'LOCALIZAR PEDIDO' },
   { to: '/', class: 'sidebar__item nav__item', label: 'HOME' },
   { to: '/menu', class: 'sidebar__item nav__item', label: 'CARDÁPIO' },
   { to: '/how-it-works', class: 'sidebar__item nav__item', label: 'COMO FUNCIONA' },
