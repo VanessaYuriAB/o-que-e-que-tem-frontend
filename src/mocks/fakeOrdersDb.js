@@ -88,6 +88,8 @@ const order2 = {
     tel: '(11) 77777-7777',
   },
 
+  addressSnapshot: undefined,
+
   itemsSnapshot: [
     {
       inventoryLotId: 3,

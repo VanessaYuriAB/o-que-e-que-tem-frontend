@@ -75,8 +75,8 @@ const useCartStore = create(
         set({ loading: true, globalError: null });
 
         try {
-          await sendOrderToServer(order);
-          return { success: true };
+          const dataToStorage = await sendOrderToServer(order);
+          return { success: true, data: dataToStorage };
         } catch (error) {
           const handledError = errorHandler(error);
 

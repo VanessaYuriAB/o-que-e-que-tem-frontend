@@ -63,7 +63,10 @@ function Checkout() {
 
     if (result.success === true) {
       // Se success
-      console.log('Pedido enviado', orderData);
+      console.log('Pedido enviado', result.data);
+
+      // Seta persistência para SucessOrder com dados retornados da API ou fake
+      localStorage.setItem('successOrder', JSON.stringify(result.data));
 
       setFormData({ pay: '' });
       cleanCartAction();
@@ -81,16 +84,18 @@ function Checkout() {
     e.preventDefault();
 
     const order = {
-      items: cartItems.map((item) => item.productName),
-      itemsDetails: cartItems,
       meal: cartData.meal,
       method: cartData.method,
-      userName: cartData.userName,
-      userContact: {
+      payment: formData.pay,
+      amount: cartData.amount,
+
+      customerSnapshot: {
+        userName: cartData.userName,
         email: cartData.email,
         tel: cartData.tel,
       },
-      userAddress:
+
+      addressSnapshot:
         cartData.method === 'delivery'
           ? {
               address: cartData.address,
@@ -100,9 +105,10 @@ function Checkout() {
               cep: cartData.cep,
             }
           : undefined,
+
+      itemsSnapshot: cartItems,
+
       obs: cartData.infoText,
-      payment: formData.pay,
-      amount: cartData.amount,
     };
 
     handleCheckout(order);

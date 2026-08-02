@@ -72,6 +72,7 @@ export async function login(credentials) {
       }
 
       const {
+        _id,
         userName,
         email,
         tel,
@@ -86,6 +87,7 @@ export async function login(credentials) {
       } = userExists; // dados do usuário a ser logado, sem senha
 
       const userDataWithoutPassword = {
+        _id,
         userName,
         email,
         tel,

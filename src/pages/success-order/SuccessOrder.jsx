@@ -13,6 +13,8 @@ function SuccessOrder() {
     hasOrder = null;
   }
 
+  console.log('hasOrder', hasOrder);
+
   return (
     <section className="order content__order">
       {hasOrder !== null ? (
@@ -36,7 +38,7 @@ function SuccessOrder() {
           <div className="order__details">
             <div className="order__item-box order__item-box_inline">
               <p className="order__item-label">Nº do pedido:</p>
-              <p className="order__item">?</p>
+              <p className="order__item">{hasOrder.orderNumber}</p>
             </div>
             <div className="order__item-box order__item-box_inline">
               <p className="order__item-label">Forma de entrega:</p>
@@ -46,10 +48,10 @@ function SuccessOrder() {
               <div className="order__item-box">
                 <p className="order__item-label">Endereço:</p>
                 <p className="order__item">
-                  {hasOrder.userAddress.address}, {hasOrder.userAddress.number}
-                  {hasOrder.userAddress.complement !== '-' &&
-                    `, ${hasOrder.userAddress.complement}`}
-                  , {hasOrder.userAddress.district}, {hasOrder.userAddress.cep}
+                  {hasOrder.addressSnapshot.address}, {hasOrder.addressSnapshot.number}
+                  {hasOrder.addressSnapshot.complement !== '-' &&
+                    `, ${hasOrder.addressSnapshot.complement}`}
+                  , {hasOrder.addressSnapshot.district}, {hasOrder.addressSnapshot.cep}
                 </p>
               </div>
             )}
@@ -60,7 +62,8 @@ function SuccessOrder() {
             <div className="order__item-box">
               <p className="order__item-label">Contato:</p>
               <p className="order__item">
-                {hasOrder.userName} | {hasOrder.userContact.email} | {hasOrder.userContact.tel}
+                {hasOrder.customerSnapshot.userName} | {hasOrder.customerSnapshot.email} |{' '}
+                {hasOrder.customerSnapshot.tel}
               </p>
             </div>
 
@@ -79,7 +82,7 @@ function SuccessOrder() {
             <div className="order__item-box">
               <p className="order__item-label">Ingredientes:</p>
               <ul className="order__ingredients-list nav__list">
-                {hasOrder.itemsDetails.map((item) => {
+                {hasOrder.itemsSnapshot.map((item) => {
                   return (
                     <li className="order__item" key={item.inventoryLotId}>
                       {item.productName}

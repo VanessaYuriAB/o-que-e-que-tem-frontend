@@ -14,6 +14,7 @@ export const User = {
 /* Register (409) e Login (success) */
 
 export const User1 = {
+  _id: 'user-1',
   userName: 'User 1',
   email: 'user1@email.com',
   confirmEmail: 'user1@email.com',
@@ -38,6 +39,7 @@ export const User1 = {
 };
 
 export const User2 = {
+  _id: 'user-2',
   userName: 'User 2',
   email: 'user2@email.com',
   confirmEmail: 'user2@email.com',
@@ -62,6 +64,7 @@ export const User2 = {
 };
 
 export const User3 = {
+  _id: 'user-3',
   userName: 'User 3',
   email: 'user3@email.com',
   confirmEmail: 'user3@email.com',
@@ -85,7 +88,7 @@ export const User3 = {
 export const Users = [
   // User 1
   {
-    id: 1,
+    _id: 'user-1',
     userName: 'User 1',
     email: 'user1@email.com',
     tel: '(11) 99999-9999',
@@ -109,7 +112,7 @@ export const Users = [
   },
   // User 2
   {
-    id: 2,
+    _id: 'user-2',
     userName: 'User 2',
     email: 'user2@email.com',
     tel: '(11) 88888-8888',
@@ -133,7 +136,7 @@ export const Users = [
   },
   // User 3
   {
-    id: 3,
+    _id: 'user-3',
     userName: 'User 3',
     email: 'user3@email.com',
     tel: '(11) 77777-7777',
