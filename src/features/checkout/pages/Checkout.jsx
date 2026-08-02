@@ -150,7 +150,7 @@ function Checkout() {
                   <ul className="checkout__item-list nav__list">
                     {cartItems.map((item) => {
                       return (
-                        <li className="checkout__item-item nav__item" key={item.inventoryLotId}>
+                        <li className="checkout__item-item nav__item" key={item._id}>
                           <p className="checkout__item-description">{item.productName}</p>
                         </li>
                       );

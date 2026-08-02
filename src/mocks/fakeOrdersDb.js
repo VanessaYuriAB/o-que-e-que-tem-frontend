@@ -26,7 +26,7 @@ const order1 = {
 
   itemsSnapshot: [
     {
-      inventoryLotId: 1,
+      _id: 1,
       productName: 'Abóbora',
       category: 'verduras-legumes',
       qtyAvailable: 10,
@@ -34,7 +34,7 @@ const order1 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 2,
+      _id: 2,
       productName: 'Espinafre',
       category: 'verduras-legumes',
       qtyAvailable: 10,
@@ -42,7 +42,7 @@ const order1 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 7,
+      _id: 7,
       productName: 'Grão de bico',
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 25,
@@ -50,7 +50,7 @@ const order1 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 10,
+      _id: 10,
       productName: 'Leite de soja',
       category: 'leites-derivados',
       qtyAvailable: 15,
@@ -58,7 +58,7 @@ const order1 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 16,
+      _id: 16,
       productName: 'Azeite de oliva',
       category: 'oleos-gorduras',
       qtyAvailable: 8,
@@ -92,7 +92,7 @@ const order2 = {
 
   itemsSnapshot: [
     {
-      inventoryLotId: 3,
+      _id: 3,
       productName: 'Cenoura',
       category: 'verduras-legumes',
       qtyAvailable: 10,
@@ -100,7 +100,7 @@ const order2 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 4,
+      _id: 4,
       productName: 'Mandioca',
       category: 'carboidratos',
       qtyAvailable: 0,
@@ -108,7 +108,7 @@ const order2 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 8,
+      _id: 8,
       productName: 'Feijão preto',
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
@@ -116,7 +116,7 @@ const order2 = {
       availableUntil: new Date().toISOString(),
     },
     {
-      inventoryLotId: 9,
+      _id: 9,
       productName: 'Linhaça',
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,

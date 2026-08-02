@@ -56,7 +56,7 @@ function MenuType({ category }) {
   // Handle
   const handleAddItem = async (item) => {
     try {
-      setActiveItemId(item.inventoryLotId);
+      setActiveItemId(item._id);
 
       await addItemToCartAction(item);
 
@@ -68,7 +68,7 @@ function MenuType({ category }) {
       const handledError = errorHandler(error);
 
       setLocalItemError({
-        id: item.inventoryLotId,
+        id: item._id,
         message: handledError.message,
       });
     } finally {
@@ -96,15 +96,15 @@ function MenuType({ category }) {
             cartItems?.some((cartItem) => cartItem.productName === item.productName) ?? false;
 
           return (
-            <li className="menu__section-item" key={item.inventoryLotId}>
+            <li className="menu__section-item" key={item._id}>
               <h3 className="menu__section-title">{item.productName}</h3>
               {category === 'todos' && <p className="menu__section-type">{item.category}</p>}
 
-              {loading && activeItemId === item.inventoryLotId && (
+              {loading && activeItemId === item._id && (
                 <Loader className="menu__section-loader">Adicionando item...</Loader>
               )}
 
-              {localItemError.id === item.inventoryLotId && (
+              {localItemError.id === item._id && (
                 <Toast className="menu__section-toast" message={localItemError.message}></Toast>
               )}
 

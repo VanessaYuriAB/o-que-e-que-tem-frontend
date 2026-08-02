@@ -84,7 +84,7 @@ function SuccessOrder() {
               <ul className="order__ingredients-list nav__list">
                 {hasOrder.itemsSnapshot.map((item) => {
                   return (
-                    <li className="order__item" key={item.inventoryLotId}>
+                    <li className="order__item" key={item._id}>
                       {item.productName}
                     </li>
                   );

@@ -1,7 +1,7 @@
 export const itemsMenu = [
   // verduras e legumes
   {
-    inventoryLotId: 1,
+    _id: 1,
     productName: 'Abóbora',
     category: 'verduras-legumes',
     qtyAvailable: 10,
@@ -9,7 +9,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 2,
+    _id: 2,
     productName: 'Espinafre',
     category: 'verduras-legumes',
     qtyAvailable: 10,
@@ -17,7 +17,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 3,
+    _id: 3,
     productName: 'Cenoura',
     category: 'verduras-legumes',
     qtyAvailable: 10,
@@ -27,7 +27,7 @@ export const itemsMenu = [
 
   // carboidratos
   {
-    inventoryLotId: 4,
+    _id: 4,
     productName: 'Mandioca',
     category: 'carboidratos',
     qtyAvailable: 0,
@@ -35,7 +35,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 5,
+    _id: 5,
     productName: 'Batata',
     category: 'carboidratos',
     qtyAvailable: 20,
@@ -43,7 +43,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 6,
+    _id: 6,
     productName: 'Macarrão integral',
     category: 'carboidratos',
     qtyAvailable: 20,
@@ -53,7 +53,7 @@ export const itemsMenu = [
 
   // leguminosas e oleaginosas
   {
-    inventoryLotId: 7,
+    _id: 7,
     productName: 'Grão de bico',
     category: 'leguminosas-oleaginosas',
     qtyAvailable: 25,
@@ -61,7 +61,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 8,
+    _id: 8,
     productName: 'Feijão preto',
     category: 'leguminosas-oleaginosas',
     qtyAvailable: 30,
@@ -69,7 +69,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 9,
+    _id: 9,
     productName: 'Linhaça',
     category: 'leguminosas-oleaginosas',
     qtyAvailable: 30,
@@ -79,7 +79,7 @@ export const itemsMenu = [
 
   // leites e derivados
   {
-    inventoryLotId: 10,
+    _id: 10,
     productName: 'Leite de soja',
     category: 'leites-derivados',
     qtyAvailable: 15,
@@ -87,7 +87,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 11,
+    _id: 11,
     productName: 'Queijo muçarela',
     category: 'leites-derivados',
     qtyAvailable: 12,
@@ -95,7 +95,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 12,
+    _id: 12,
     productName: 'Leite integral',
     category: 'leites-derivados',
     qtyAvailable: 18,
@@ -105,7 +105,7 @@ export const itemsMenu = [
 
   // carnes, ovos e peixes
   {
-    inventoryLotId: 13,
+    _id: 13,
     productName: 'Peito de frango',
     category: 'carnes-ovos-peixes',
     qtyAvailable: 18,
@@ -113,7 +113,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 14,
+    _id: 14,
     productName: 'Carne de soja (PTS)',
     category: 'carnes-ovos-peixes',
     qtyAvailable: 60,
@@ -121,7 +121,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 15,
+    _id: 15,
     productName: 'Ovo de codorna',
     category: 'carnes-ovos-peixes',
     qtyAvailable: 60,
@@ -131,7 +131,7 @@ export const itemsMenu = [
 
   // óleos e gorduras
   {
-    inventoryLotId: 16,
+    _id: 16,
     productName: 'Azeite de oliva',
     category: 'oleos-gorduras',
     qtyAvailable: 8,
@@ -139,7 +139,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 17,
+    _id: 17,
     productName: 'Óleo de gergelim',
     category: 'oleos-gorduras',
     qtyAvailable: 22,
@@ -147,7 +147,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 18,
+    _id: 18,
     productName: 'Manteiga',
     category: 'oleos-gorduras',
     qtyAvailable: 8,
@@ -157,7 +157,7 @@ export const itemsMenu = [
 
   // açucares e doces
   {
-    inventoryLotId: 19,
+    _id: 19,
     productName: 'Açúcar mascavo',
     category: 'acucares-doces',
     qtyAvailable: 40,
@@ -165,7 +165,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 20,
+    _id: 20,
     productName: 'Mel',
     category: 'acucares-doces',
     qtyAvailable: 14,
@@ -173,7 +173,7 @@ export const itemsMenu = [
     availableUntil: new Date().toISOString(),
   },
   {
-    inventoryLotId: 21,
+    _id: 21,
     productName: 'Melado de cana',
     category: 'acucares-doces',
     qtyAvailable: 14,

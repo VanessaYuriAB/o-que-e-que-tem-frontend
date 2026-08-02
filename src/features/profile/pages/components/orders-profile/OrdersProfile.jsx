@@ -66,7 +66,7 @@ function OrdersProfile() {
                     return (
                       <li
                         className="profile__orders-value profile__orders-value_list"
-                        key={item.inventoryLotId}
+                        key={item._id}
                       >
                         {item.productName}
                       </li>

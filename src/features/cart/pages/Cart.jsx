@@ -130,7 +130,7 @@ function Cart() {
                 <ul className="cart__pack-card-list nav__list">
                   {cartItems.map((item) => {
                     return (
-                      <li className="cart__pack-card-item" key={item.inventoryLotId}>
+                      <li className="cart__pack-card-item" key={item._id}>
                         <div className="cart__pack-card-box">
                           <p className="cart__pack-card-product">{item.productName}</p>
                           <Button
