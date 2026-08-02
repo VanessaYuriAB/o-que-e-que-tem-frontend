@@ -200,8 +200,8 @@ function UserProfile() {
             id="infoText"
             name="infoText"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
-            title="Informações relevantes, exemplo: ponto de referência ou contato para entrega (nome e RG/CPF)."
-            placeholder="Opcional. Por exemplo, um ponto de referência ou um contato oficial para entrega (nome e RG/CPF)."
+            title="Informações relevantes, exemplo: ponto de referência ou contato para entrega (nome, tel e RG/CPF)."
+            placeholder="Opcional. Por exemplo, um ponto de referência ou um contato oficial para entrega (nome, tel e RG/CPF)."
             value={formData.infoText}
             onChange={handleChange}
             disabled={!isEditing}
