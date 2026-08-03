@@ -17,7 +17,7 @@ async function sendOrderToServer(order) {
         _id: 'order-mock',
         owner: user?._id ?? null,
         createdAt: new Date().toISOString(),
-        orderNumber: 202608010001,
+        orderNumber: '202608010001',
         ...order,
       };
 

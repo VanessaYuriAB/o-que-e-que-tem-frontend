@@ -3,7 +3,7 @@ const order1 = {
   owner: 'user-1',
   createdAt: new Date().toISOString(),
 
-  orderNumber: 202608013417,
+  orderNumber: '202608013417',
 
   meal: 'pate',
   method: 'delivery',
@@ -75,7 +75,7 @@ const order2 = {
   owner: 'user-3',
   createdAt: new Date().toISOString(),
 
-  orderNumber: 202608014517,
+  orderNumber: '202608014517',
 
   meal: 'sopa',
   method: 'drive-thru',
