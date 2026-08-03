@@ -14,6 +14,8 @@ const FAKE_ERRORS = {
   setCartData: false,
 
   sendOrderToServer: false,
+
+  getOrderByNumber: false,
 };
 
 export default FAKE_ERRORS;
