@@ -38,6 +38,12 @@
   align-self: center;
 }
 
+.tracker__toast {
+  margin: 2rem auto 0;
+  width: 90%;
+  padding: 1em;
+}
+
 .tracker__button {
   width: 50%;
   align-self: center;
