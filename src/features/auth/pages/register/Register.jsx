@@ -139,6 +139,7 @@ function Register() {
               type="tel"
               id="tel"
               name="tel"
+              inputMode="numeric"
               minLength={14}
               maxLength={15}
               pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"

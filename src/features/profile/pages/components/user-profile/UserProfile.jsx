@@ -107,6 +107,7 @@ function UserProfile() {
             type="tel"
             id="tel"
             name="tel"
+            inputMode="numeric"
             minLength={14}
             maxLength={15}
             pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
@@ -140,6 +141,7 @@ function UserProfile() {
             type="text"
             id="number"
             name="number"
+            inputMode="numeric"
             pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
             title="O número do seu endereço para delivery: apenas números e/ou letras."
             value={formData.number}
@@ -183,6 +185,7 @@ function UserProfile() {
             type="text"
             id="cep"
             name="cep"
+            inputMode="numeric"
             pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
             title="O CEP do seu endereço para delivery: apenas números e traço."
             value={formData.cep}
