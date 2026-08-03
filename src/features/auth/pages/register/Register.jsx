@@ -3,7 +3,7 @@ import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../../shared/components/ui/input/Input.jsx';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { User } from '../../../../mocks/fakeAuthDb.js';
+import { user } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
@@ -14,15 +14,17 @@ import '../../styles/auth-form.css';
 function Register() {
   /* Estados */
 
-  const [data, setData] = useState(User);
-  // {
-  //  userName: '',
-  //  email: '',
-  //  confirmEmail: '',
-  //  tel: '',
-  //  password: '',
-  //  confirmPassword: '',
-  // }
+  const [data, setData] = useState(user);
+  /*
+  {
+    userName: '',
+    email: '',
+    confirmEmail: '',
+    tel: '',
+    password: '',
+    confirmPassword: '',
+  }
+  */
 
   const [localError, setLocalError] = useState(null);
 

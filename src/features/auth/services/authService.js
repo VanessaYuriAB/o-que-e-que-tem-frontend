@@ -2,7 +2,7 @@ import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import apiFetch from '../../../services/api.js';
 import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
-import { Users, logoutMsg, refreshWithoutUserMsg } from '../../../mocks/fakeAuthDb.js';
+import { users, logoutMsg, refreshWithoutUserMsg } from '../../../mocks/fakeAuthDb.js';
 
 /*
 
@@ -26,7 +26,7 @@ export async function register(newUserData) {
         await fakeApiError('mockFn com err = true no register do authService');
       }
 
-      const userExists = Users.find((u) => {
+      const userExists = users.find((u) => {
         return u.email === newUserData.email;
       });
 
@@ -63,7 +63,7 @@ export async function login(credentials) {
         await fakeApiError('mockFn com err = true no login do authService');
       }
 
-      const userExists = Users.find((u) => {
+      const userExists = users.find((u) => {
         return u.email === credentials.email && u.password === credentials.password;
       });
 

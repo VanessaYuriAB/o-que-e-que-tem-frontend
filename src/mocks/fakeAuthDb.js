@@ -2,7 +2,7 @@
 
 /* Register (success) e Login (401) */
 
-export const User = {
+export const user = {
   userName: 'User',
   email: 'user@email.com',
   confirmEmail: 'user@email.com',
@@ -13,7 +13,7 @@ export const User = {
 
 /* Register (409) e Login (success) */
 
-export const User1 = {
+export const user1 = {
   _id: 'user-1',
   userName: 'User 1',
   email: 'user1@email.com',
@@ -38,7 +38,7 @@ export const User1 = {
   },
 };
 
-export const User2 = {
+export const user2 = {
   _id: 'user-2',
   userName: 'User 2',
   email: 'user2@email.com',
@@ -63,7 +63,7 @@ export const User2 = {
   },
 };
 
-export const User3 = {
+export const user3 = {
   _id: 'user-3',
   userName: 'User 3',
   email: 'user3@email.com',
@@ -83,10 +83,10 @@ export const User3 = {
 
 /* DADOS PARA CONSULTA DE BANCO */
 
-/* Users */
+/* users */
 
-export const Users = [
-  // User 1
+export const users = [
+  // user 1
   {
     _id: 'user-1',
     userName: 'User 1',
@@ -110,7 +110,7 @@ export const Users = [
       next: '2026-07-23',
     },
   },
-  // User 2
+  // user 2
   {
     _id: 'user-2',
     userName: 'User 2',
@@ -134,7 +134,7 @@ export const Users = [
       next: '2026-07-22',
     },
   },
-  // User 3
+  // user 3
   {
     _id: 'user-3',
     userName: 'User 3',
