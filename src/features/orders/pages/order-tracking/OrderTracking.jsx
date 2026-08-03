@@ -7,18 +7,57 @@ function OrderTracking() {
   return (
     <section className="tracker tracker__content">
       <h1 className="tracker__title">Quer saber sobre um pedido feito?</h1>
-      <form className="tracker__form">
+      <form
+        className="tracker__form"
+        name="tracker-form" /*onSubmit={handleSubmit}*/ /*noValidate*/
+      >
         <fieldset className="tracker__field">
           <legend className="tracker__legend">Rastreamento de pedidos:</legend>
           <div className="tracker__input-box">
-            <label className="tracker__label">Nº do pedido:</label>
-            <Input className="tracker__input" />
+            <label className="tracker__label" htmlFor="order">
+              Nº do pedido:
+            </label>
+            <Input
+              className="tracker__input"
+              type="text"
+              id="order"
+              name="order"
+              inputMode="numeric"
+              minLength={12}
+              maxLength={12}
+              pattern="^[0-9]{12}$"
+              title="O número do pedido que você deseja reastrear: ele contém apenas números, tem o total de 12 dígitos."
+              placeholder="Qual o número do pedido?"
+              /*value={}
+              onChange={handleChange}*/
+              autoFocus
+              required
+            />
           </div>
           <div className="tracker__input-box">
-            <label className="tracker__label">E-mail:</label>
-            <Input className="tracker__input" />
+            <label className="tracker__label" htmlFor="email">
+              E-mail:
+            </label>
+            <Input
+              className="tracker__input"
+              type="email"
+              id="email"
+              name="email"
+              pattern="^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+              title="Seu e-mail utilizado na compra: contento apenas letras, números, sublinhados, pontos ou hífens."
+              placeholder="Digite o e-mail utilizado na compra."
+              /*value={data.email}
+              onChange={handleChange}*/
+              required
+            />
           </div>
-          <Button className="tracker__button">Rastrear</Button>
+          <Button
+            className="tracker__button"
+            type="submit"
+            /*disabled={}*/
+          >
+            Rastrear
+          </Button>
         </fieldset>
       </form>
 
