@@ -3,12 +3,16 @@ import Input from '../../../../shared/components/ui/input/Input.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import useOrders from '../../hooks/useOrders.js';
+import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 
 function OrderTracking() {
   const [formData, setFormData] = useState({
     orderNumber: '',
     email: '',
   });
+
+  const { orderTracked, loadingTracker, errorTracker, trackOrder } = useOrders();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,12 +22,21 @@ function OrderTracking() {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await trackOrder(formData);
+  };
+
+  console.log('orderTracked', orderTracked);
+
   return (
     <section className="tracker tracker__content">
       <h1 className="tracker__title">Quer saber sobre um pedido feito?</h1>
       <form
         className="tracker__form"
-        name="tracker-form" /*onSubmit={handleSubmit}*/ /*noValidate*/
+        name="tracker-form"
+        onSubmit={handleSubmit}
+        /*noValidate*/
       >
         <fieldset className="tracker__field">
           <legend className="tracker__legend">Rastreamento de pedidos:</legend>
@@ -65,12 +78,11 @@ function OrderTracking() {
               required
             />
           </div>
-          <Button
-            className="tracker__button"
-            type="submit"
-            /*disabled={}*/
-          >
-            Rastrear
+
+          {errorTracker && <Toast className="tracker__toast" message={errorTracker.message} />}
+
+          <Button className="tracker__button" type="submit">
+            {loadingTracker ? 'Rastreando...' : 'Rastrear'}
           </Button>
         </fieldset>
       </form>
