@@ -9,32 +9,36 @@ export default function errorHandler(error) {
     switch (error.cause.status) {
       case 400:
         return {
-          message: 'Problema no envio dos dados, a solicitação está incorreta.',
+          message: 'Os dados enviados são inválidos ou estão incompletos.',
           scope: 'local',
           status: error.cause.status,
         };
       case 401:
         return {
-          message: 'Não autorizado, os dados enviados são inválidos.',
+          message:
+            error.cause.message ??
+            'Não foi possível autenticar sua solicitação. E-mail ou senha inválidos.',
           scope: 'local',
           status: error.cause.status,
           action: 'OPEN_LOGIN',
         };
       case 403:
         return {
-          message: 'Acesso não autorizado para este recurso.',
+          message: 'Você não tem permissão para acessar este recurso.',
           scope: 'local',
           status: error.cause.status,
         };
       case 404:
         return {
-          message: 'Dado não encontrado, não existe ou foi removido.',
+          message: error.cause.message ?? 'Nenhum resultado foi encontrado.',
           scope: 'local',
           status: error.cause.status,
         };
       case 409:
         return {
-          message: 'Usuário já cadastrado.',
+          message:
+            error.cause.message ??
+            'Não foi possível concluir a operação devido a um conflito de dados. O dado enviado já consta cadastrado.',
           scope: 'local',
           status: error.cause.status,
         };
