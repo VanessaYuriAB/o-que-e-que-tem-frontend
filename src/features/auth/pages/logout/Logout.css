@@ -15,14 +15,14 @@
   margin: 0;
   margin-bottom: 2.5rem;
 }
+
 .logout__toast {
 }
 
-.logout__btn {
+.logout__button {
   display: block;
   margin: 0 auto;
   margin-top: 1.5rem;
-  background-color: rgb(153, 192, 86);
   border: 1px solid rgb(28, 56, 30);
   color: rgb(28, 56, 30);
 }
