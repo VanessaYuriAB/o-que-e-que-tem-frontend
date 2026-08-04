@@ -33,9 +33,10 @@
 }
 
 .menu__item {
-  background-color: rgba(240, 240, 240);
+  background-color: rgba(28, 56, 30, 0.247);
   padding: 0.5em;
   width: max-content;
+  color: rgb(28, 56, 30);
 }
 
 .menu__link {
