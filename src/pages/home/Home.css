@@ -4,9 +4,6 @@
 }
 
 .home {
-  display: flex;
-  flex-direction: column-reverse;
-  row-gap: 3rem;
 }
 
 .home__content {
@@ -17,7 +14,7 @@
 
 .home__title,
 .home__subtitle {
-  margin: 0;
+  margin-top: 0;
 }
 
 .home__description {
@@ -91,6 +88,7 @@
   background-color: rgb(118, 151, 180);
   font-size: 0.75rem;
   padding: 0.5rem;
+  margin-top: 3rem;
 }
 
 .home__weather {
