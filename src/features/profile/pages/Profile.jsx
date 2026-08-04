@@ -28,7 +28,7 @@ function Profile() {
           Além de adquirir um super prato nutrivito, você ajuda a evitar o desperdício, é demais! s2
         </p>
       </div>
-      <nav className="profile__nav">
+      <nav className="profile__nav" aria-label="Ações do perfil.">
         <ul className="profile__list nav__list">
           <li className="profile__item">
             <NavLink className={customClassName} to="user-profile">

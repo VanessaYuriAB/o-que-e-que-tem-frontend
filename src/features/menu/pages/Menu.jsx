@@ -19,7 +19,7 @@ function Menu() {
           Aqui estão os ingredientes disponíveis, separados por categoria. Você pode escolher o que
           prefere para juntar na sua sopa, creme ou patê.
         </p>
-        <nav className="menu__links">
+        <nav className="menu__links" aria-label="Categorias dos ingredientes disponíveis.">
           <ul className="menu__list nav__list">
             {menuLinks.map((link) => (
               <li key={link.to} className={link.class}>
