@@ -56,10 +56,13 @@ function SuccessOrder() {
                   </dd>
                 </div>
               )}
-              <div className="order__detail-box">
-                <dt className="order__term">Infos adicionais:</dt>
-                <dd className="order__description">{hasOrder.obs}</dd>
-              </div>
+              {hasOrder.obs && (
+                <div className="order__detail-box">
+                  <dt className="order__term">Infos adicionais:</dt>
+                  <dd className="order__description">{hasOrder.obs}</dd>
+                </div>
+              )}
+
               <div className="order__detail-box">
                 <dt className="order__term">Contato:</dt>
                 <dd className="order__description">
