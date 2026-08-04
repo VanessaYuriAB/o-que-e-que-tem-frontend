@@ -546,7 +546,8 @@ Práticas implementadas:
 - aria-live="polite";
 - menu colapsável utilizando `<details>` e `<summary>`;
 - conteúdo visualmente oculto para leitores de tela;
-- semântica HTML;
+- semântica HTML, com uso de elementos como `<section>`, `<fieldset>`, `<legend>`, `<dl>`, `<dt>`,
+  `<dd>`, `<address>` e `<strong>`;
 - navegação por teclado;
 - texto alternativo para imagens.
 
@@ -703,6 +704,9 @@ Durante o desenvolvimento foram explorados pela primeira vez conceitos como:
 - arquitetura escalável;
 - `feature-based architecture`;
 - `component-driven design`;
+- semântica HTML avançada (fieldset, legend, dl, dt, dd, address);
+- acessibilidade desde a modelagem dos componentes;
+- recursos modernos de CSS, como: `margin-inline`, `dvh` e `decimal-leading-zero`;
 - gerenciamento de estado com Zustand;
 - separação clara de responsabilidades;
 - contratos de API;
