@@ -112,19 +112,19 @@ function Cart() {
       {/* se não houver items, renderiza mensagem; se houver, renderiza carrinho*/}
 
       {cartItems.length === 0 ? (
-        <div className="cart__null-box">
+        <section className="cart__null-box">
           <h2 className="cart__null-title">Está vazio, no momento!</h2>
           <p className="cart__null-text">Veja o que está disponível em nosso cardápio :)</p>
           <Link className="cart__null-link link-to-button" to="/menu">
             Acesse o menu aqui
           </Link>
-        </div>
+        </section>
       ) : (
-        <>
+        <section className="cart__pack">
           <h2 className="cart__pack-title">Finalize seu pedido</h2>
           <div className="cart__pack-box">
             <aside className="cart__pack-aside">
-              <div className="cart__pack-card">
+              <section className="cart__pack-card">
                 <h3 className="cart__pack-card-title">Detalhes do pedido:</h3>
 
                 <ul className="cart__pack-card-list nav__list">
@@ -158,29 +158,33 @@ function Cart() {
                   </Link>
                 </div>
 
-                <div className="cart__pack-card-line"></div>
-                <div className="cart__pack-card-box">
-                  <p className="cart__pack-card-text">Tipo de refeição</p>
-                  <p className="cart__pack-card-text">{formData.meal === '' ? '-' : typeOfMeal}</p>
-                </div>
-                <div className="cart__pack-card-line"></div>
-                <div className="cart__pack-card-box">
-                  <p className="cart__pack-card-text">Subtotal</p>
-                  <p className="cart__pack-card-text">R$ {subtotal},00</p>
-                </div>
-                <div className="cart__pack-card-box">
-                  <p className="cart__pack-card-text">Entrega</p>
-                  <p className="cart__pack-card-text">
-                    R$ {formData.method === 'delivery' ? 10 : 0},00
-                  </p>
-                </div>
-                <div className="cart__pack-card-line"></div>
-                <div className="cart__pack-card-box">
-                  <p className="cart__pack-card-text">Total</p>
-                  <p className="cart__pack-card-text">R$ {total},00</p>
-                </div>
+                <dl className="cart__pack-card-details">
+                  <div className="cart__pack-card-line"></div>
+                  <div className="cart__pack-card-box">
+                    <dt className="cart__pack-card-term">Tipo de refeição</dt>
+                    <dd className="cart__pack-card-description">
+                      {formData.meal === '' ? '-' : typeOfMeal}
+                    </dd>
+                  </div>
+                  <div className="cart__pack-card-line"></div>
+                  <div className="cart__pack-card-box">
+                    <dt className="cart__pack-card-term">Subtotal</dt>
+                    <dd className="cart__pack-card-description">R$ {subtotal},00</dd>
+                  </div>
+                  <div className="cart__pack-card-box">
+                    <dt className="cart__pack-card-term">Entrega</dt>
+                    <dd className="cart__pack-card-description">
+                      R$ {formData.method === 'delivery' ? 10 : 0},00
+                    </dd>
+                  </div>
+                  <div className="cart__pack-card-line"></div>
+                  <div className="cart__pack-card-box">
+                    <dt className="cart__pack-card-term">Total</dt>
+                    <dd className="cart__pack-card-description">R$ {total},00</dd>
+                  </div>
+                </dl>
                 <p className="cart__pack-card-msg">Mais um pouco menos de desperdício :)</p>
-              </div>
+              </section>
             </aside>
 
             <form
@@ -459,7 +463,7 @@ function Cart() {
               </Button>
             </form>
           </div>
-        </>
+        </section>
       )}
     </section>
   );
