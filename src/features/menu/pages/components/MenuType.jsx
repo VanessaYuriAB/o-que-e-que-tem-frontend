@@ -109,7 +109,7 @@ function MenuType({ category }) {
               )}
 
               <Button
-                className={`menu__section-btn ${isItemAdded ? 'menu__section-btn_added' : ''}`}
+                className={`menu__section-button ${isItemAdded ? 'menu__section-button_added' : ''}`}
                 onClick={() => handleAddItem(item)}
                 disabled={isItemAdded}
               >

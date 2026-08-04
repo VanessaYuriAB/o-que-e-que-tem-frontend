@@ -43,7 +43,7 @@
   margin: 0.5rem auto;
 }
 
-.menu__section-btn {
+.menu__section-button {
   margin: 1em;
   font-size: 0.625rem;
   border: 1px solid rgb(28, 56, 30);
@@ -51,7 +51,7 @@
   background-color: rgba(28, 56, 30, 0.095);
 }
 
-.menu__section-btn_added {
+.menu__section-button_added {
   background-color: #503202;
   color: antiquewhite;
   border-color: antiquewhite;
