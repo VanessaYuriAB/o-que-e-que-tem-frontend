@@ -22,14 +22,13 @@
   margin-bottom: 2em;
 }
 
-.protected-route__logon,
-.protected-route__signon {
+.protected-route__link {
   display: block;
   margin: 1em auto;
   max-width: 135px;
 }
 
-.protected-route__backon {
+.protected-route__button {
   margin-bottom: 1em;
   background-color: rgba(28, 56, 30, 0.247);
   border: 1px solid rgb(28, 56, 30);

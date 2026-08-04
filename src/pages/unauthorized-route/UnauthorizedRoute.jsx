@@ -12,13 +12,13 @@ function UnauthorizedRoute({ from }) {
     <section className="protected-route content__protected-route">
       <Toast className="protected-route__toast">
         <h1 className="protected-route__title">É preciso estar logado(a)!</h1>
-        <Link className="protected-route__logon link-to-button" to="/login" state={{ from }}>
+        <Link className="protected-route__link link-to-button" to="/login" state={{ from }}>
           Logar
         </Link>
-        <Link className="protected-route__signon link-to-button" to="/register" state={{ from }}>
+        <Link className="protected-route__link link-to-button" to="/register" state={{ from }}>
           Inscrever-se
         </Link>
-        <Button className="protected-route__backon" onClick={() => navigate(-1)}>
+        <Button className="protected-route__button" onClick={() => navigate(-1)}>
           Voltar para página anterior
         </Button>
       </Toast>
