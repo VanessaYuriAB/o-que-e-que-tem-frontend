@@ -49,6 +49,52 @@
   align-self: center;
 }
 
+.tracker__infos {
+  margin-top: 1rem;
+}
+
+.tracker__subtitle {
+}
+
+.tracker__details {
+  text-align: left;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.tracker__detail-box {
+  margin-bottom: 0.5rem;
+}
+
+.tracker__detail-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.tracker__detail-box_inline {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.tracker__detail {
+  font-weight: 650;
+}
+
+.tracker__description {
+  margin-left: 0;
+}
+
+.tracker__address {
+  font-style: normal;
+}
+
+.tracker__items-list {
+  list-style: decimal-leading-zero;
+  padding-left: 1.75rem;
+}
+
+.tracker__item-list {
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
@@ -62,5 +108,18 @@
 
   .tracker__label {
     width: 30%;
+  }
+
+  .tracker__infos {
+    margin-top: 2rem;
+  }
+
+  .tracker__details {
+    width: 80%;
+  }
+
+  .tracker__detail-box {
+    display: flex;
+    column-gap: 0.5rem;
   }
 }
