@@ -111,8 +111,16 @@ function SuccessOrder() {
       ) : (
         <>
           <h1 className="order__empty-title">
-            Ops, você não tem um pedido finalizado e enviado agora
+            Ops, você não tem um pedido finalizado e enviado salvo no seu navegador
           </h1>
+
+          <p className="order__empty-prompt">
+            Você pode rastrear um pedido pelo nº do pedido + e-mail
+          </p>
+          <Link className="order__empty-link link-to-button" to="/order-tracker">
+            Rastrear um pedido
+          </Link>
+
           {user !== null && (
             <>
               <p className="order__empty-prompt">Quer ver seu histórico de pedidos?</p>
