@@ -44,10 +44,11 @@ function Logout() {
 
       {globalError && <Toast className="logout__toast" message={globalError.message} />}
 
-      <Button className="logout__btn" onClick={handleLogout}>
+      <Button className="logout__button" onClick={handleLogout}>
         Deslogar
       </Button>
-      <Button className="logout__btn" onClick={() => navigate(-1)}>
+
+      <Button className="logout__button" onClick={() => navigate(-1)}>
         Voltar para página anterior
       </Button>
     </section>
