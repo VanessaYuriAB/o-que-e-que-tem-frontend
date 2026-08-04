@@ -29,20 +29,27 @@
 .order__details {
   text-align: left;
   width: 90%;
-  margin-inline: auto;
+  margin: 0 auto;
 }
 
-.order__item-box {
+.order__detail-box {
+  margin-bottom: 1rem;
 }
 
-.order__item-label {
-  font-weight: 600;
+.order__detail-box:last-of-type {
+  margin-bottom: 0;
 }
 
-.order__item {
+.order__term {
+  font-weight: 650;
 }
 
-.order__ingredients-box {
+.order__description {
+  margin-left: 0;
+}
+
+.order__address {
+  font-style: normal;
 }
 
 .order__empty-title {
@@ -67,7 +74,11 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .order__item-box_inline {
+  .order__detail-box {
+    margin-bottom: 1.5rem;
+  }
+
+  .order__detail-box_inline {
     display: flex;
     column-gap: 0.5rem;
   }
