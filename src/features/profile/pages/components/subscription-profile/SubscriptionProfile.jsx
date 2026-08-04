@@ -422,12 +422,12 @@ function SubscriptionProfile() {
           </div>
         </form>
       ) : (
-        <div className="profile__subscription-box">
+        <section className="profile__no-subscription">
           <h3 className="profile__subscription-title">Ainda não é um assinante e quer ser?</h3>
           <Link className="profile__subscription-link link-to-button" to="/subscription">
             Assine agora :)
           </Link>
-        </div>
+        </section>
       )}
     </section>
   );
