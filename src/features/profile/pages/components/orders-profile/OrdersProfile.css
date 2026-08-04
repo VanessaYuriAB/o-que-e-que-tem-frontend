@@ -10,7 +10,7 @@
   list-style: decimal;
 }
 
-.profile__orders-item {
+.profile__orders-details {
   border: 1px solid lightgrey;
   width: 90%;
   margin-inline: auto;
@@ -19,6 +19,11 @@
 }
 
 .profile__orders-item-box {
+  margin-bottom: 1rem;
+}
+
+.profile__orders-item-box:last-of-type {
+  margin-bottom: 0;
 }
 
 .profile__orders-item-box_inline {
@@ -27,28 +32,33 @@
   justify-content: center;
 }
 
-.profile__orders-label {
+.profile__orders-term {
   font-weight: 700;
 }
 
-.profile__orders-value {
+.profile__orders-description {
+  margin-left: 0;
 }
 
-.profile__orders-value-list {
+.profile__orders-contact-info {
+  font-style: normal;
+}
+
+.profile__orders-description-list {
   list-style: decimal-leading-zero;
   padding-left: 1.5rem;
   width: fit-content;
   margin-inline: auto;
 }
 
-.profile__orders-value_list {
+.profile__orders-description_list {
   text-align: left;
 }
 
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .profile__orders-item {
+  .profile__orders-details {
     width: 80%;
   }
 
@@ -65,11 +75,11 @@
     justify-content: center;
   }
 
-  .profile__orders-value {
+  .profile__orders-description {
     text-align: left;
   }
 
-  .profile__orders-value-list {
+  .profile__orders-description-list {
     margin-inline: 0;
     padding-left: 2rem;
   }
