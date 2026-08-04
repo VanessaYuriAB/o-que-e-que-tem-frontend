@@ -24,7 +24,6 @@
 }
 
 .cart__null-link {
-  padding: 0.5em;
 }
 
 .cart__pack-title {
@@ -68,7 +67,7 @@
 
 .cart__pack-card-link {
   background-color: rgb(240, 240, 240);
-  padding-top: 0.5em;
+  padding-top: 0.75em;
   border: none;
   color: #503202;
 }

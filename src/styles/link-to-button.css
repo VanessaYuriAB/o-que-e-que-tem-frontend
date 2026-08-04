@@ -2,10 +2,10 @@
 
 .link-to-button {
   text-decoration: none;
-  padding: 0.25em;
+  padding: 0.5em;
   border: 1px solid rgb(28, 56, 30);
   color: rgb(28, 56, 30);
-  background-color: rgba(28, 56, 30, 0.247);
+  background-color: rgb(240, 240, 240);
   margin-top: 1rem;
 }
 

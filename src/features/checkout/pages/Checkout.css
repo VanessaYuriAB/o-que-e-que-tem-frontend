@@ -218,7 +218,6 @@
   }
 
   .checkout__empty-link {
-    padding: 0.5em;
     margin-inline: 0;
     max-width: fit-content;
   }
