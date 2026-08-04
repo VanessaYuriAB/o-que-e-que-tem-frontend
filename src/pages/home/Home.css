@@ -66,6 +66,7 @@
 
 .home__subscription-description {
   text-align: left;
+  margin-bottom: 1.75rem;
 }
 
 .home__subscription-link {
@@ -79,6 +80,7 @@
 }
 
 .home__order-description {
+  margin-bottom: 1.75rem;
 }
 
 .home__order-link {
