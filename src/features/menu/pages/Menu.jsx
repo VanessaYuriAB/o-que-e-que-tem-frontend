@@ -2,7 +2,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { menuLinks } from '../../../shared/constants/navigation';
 import foodPyramidImg from '../../../assets/images/piramide-alimentar.png';
 import useMenu from '../hooks/useMenu.js';
-
 import './Menu.css';
 
 function Menu() {
@@ -13,14 +12,14 @@ function Menu() {
 
   return (
     <section className="menu content__menu">
-      <div className="menu__content">
-        <h1 className="menu__title"> Será que tem?</h1>
+      <h1 className="menu__title"> Será que tem?</h1>
+      <section className="menu__content">
         <h2 className="menu__subtitle">Descubra nossa seleção de ingredientes de hoje. </h2>
         <p className="menu__description">
           Aqui estão os ingredientes disponíveis, separados por categoria. Você pode escolher o que
           prefere para juntar na sua sopa, creme ou patê.
         </p>
-        <nav className="menu__links nav">
+        <nav className="menu__links">
           <ul className="menu__list nav__list">
             {menuLinks.map((link) => (
               <li key={link.to} className={link.class}>
@@ -32,7 +31,7 @@ function Menu() {
           </ul>
         </nav>
         <Outlet context={menuState} />
-      </div>
+      </section>
 
       <aside className="menu__aside">
         <h3 className="menu__aside-title">Como é cada produto?</h3>
@@ -54,6 +53,7 @@ function Menu() {
             <h4 className="menu__pate-title">Patê</h4>
             <p className="menu__pate-description">É gelado, denso e tudo é batido. </p>
           </section>
+
           <figure className="menu__figure">
             <img
               className="menu__figure-img"
