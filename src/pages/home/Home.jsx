@@ -5,14 +5,15 @@ import './Home.css';
 function Home() {
   return (
     <section className="home content__home">
+      <h1 className="home__title">🍲 Cozinha Sustentável</h1>
+      <h2 className="home__subtitle">(Delivery & Drive-thru)</h2>
+      <p className="home__description">
+        Você vê o que está disponível, escolhe os ingredientes, decide entre sopa/creme ou patê, se
+        quer congelado ou in-natura e se prefere entrega em domicílio ou retirada no nosso
+        drive-thru.
+      </p>
+
       <div className="home__content">
-        <h1 className="home__title">🍲 Cozinha Sustentável</h1>
-        <h2 className="home__subtitle">(Delivery & Drive-thru)</h2>
-        <p className="home__description">
-          Você vê o que está disponível, escolhe os ingredientes, decide entre sopa/creme ou patê,
-          se quer congelado ou in-natura e se prefere entrega em domicílio ou retirada no nosso
-          drive-thru.
-        </p>
         <section className="home__values">
           <h2 className="home__values-title">Proposta de valor </h2>
           <p className="home__values-description">
@@ -41,6 +42,7 @@ function Home() {
             </li>
           </ul>
         </section>
+
         <section className="home__subscription">
           <h2 className="home__subscription-title">Você também pode ser um assinante!</h2>
           <p className="home__subscription-description">
@@ -52,6 +54,7 @@ function Home() {
             Assinatura
           </Link>
         </section>
+
         <section className="home__order">
           <h2 className="home__order-title">Pronto para fazer seu pedido?</h2>
           <p className="home__order-description">
@@ -62,6 +65,7 @@ function Home() {
           </Link>
         </section>
       </div>
+
       <aside className="home__aside">
         <article className="home__weather">
           <h3 className="home__weather-title">Como está o clima hoje?</h3>
