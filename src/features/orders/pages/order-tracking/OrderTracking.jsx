@@ -116,13 +116,11 @@ function OrderTracking() {
               <div className="tracker__detail-box">
                 <dt className="tracker__detail">Endereço:</dt>
                 <dd className="tracker__description">
-                  <address className="tracker__address">
-                    {orderTracked.addressSnapshot.address}, {orderTracked.addressSnapshot.number}
-                    {orderTracked.addressSnapshot.complement !== '-'
-                      ? `, ${orderTracked.addressSnapshot.complement}`
-                      : ''}
-                    , {orderTracked.addressSnapshot.district}, {orderTracked.addressSnapshot.cep}
-                  </address>
+                  {orderTracked.addressSnapshot.address}, {orderTracked.addressSnapshot.number}
+                  {orderTracked.addressSnapshot.complement !== '-'
+                    ? `, ${orderTracked.addressSnapshot.complement}`
+                    : ''}
+                  , {orderTracked.addressSnapshot.district}, {orderTracked.addressSnapshot.cep}
                 </dd>
               </div>
             )}

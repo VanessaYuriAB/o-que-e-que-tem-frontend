@@ -182,11 +182,9 @@ function Checkout() {
                   <div className="checkout__detail checkout__detail_address">
                     <dt className="checkout__item-term">Endereço:</dt>
                     <dd className="checkout__item-description">
-                      <address className="checkout__item-address">
-                        {cartData.address}, {cartData.number},
-                        {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
-                        {cartData.district}, {cartData.cep}
-                      </address>
+                      {cartData.address}, {cartData.number},
+                      {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
+                      {cartData.district}, {cartData.cep}
                     </dd>
                   </div>
                 )}

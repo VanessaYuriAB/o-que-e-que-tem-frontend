@@ -83,10 +83,6 @@
   margin-left: 0;
 }
 
-.tracker__address {
-  font-style: normal;
-}
-
 .tracker__items-list {
   list-style: decimal-leading-zero;
   padding-left: 1.75rem;
