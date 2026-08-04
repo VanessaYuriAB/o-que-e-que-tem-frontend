@@ -50,7 +50,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-inline: 2em;
+  margin: 1rem 1rem;
+}
+
+.cart__pack-card-product {
+  text-align: left;
 }
 
 .cart__pack-card-toast {
@@ -78,6 +82,14 @@
   margin: 0 auto;
 }
 
+.cart__pack-card-term {
+  text-align: left;
+}
+
+.cart__pack-card-description {
+  margin-left: 0;
+}
+
 .cart__pack-card-button {
   padding: 0.5em;
   margin: 1em 0;
@@ -85,6 +97,8 @@
   height: 25px;
   background-image: url('../../../assets//icons/trash.svg');
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   border: none;
 }
 
