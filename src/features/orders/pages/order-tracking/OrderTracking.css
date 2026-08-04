@@ -45,7 +45,7 @@
 }
 
 .tracker__button {
-  width: 50%;
+  width: fit-content;
   align-self: center;
 }
 
