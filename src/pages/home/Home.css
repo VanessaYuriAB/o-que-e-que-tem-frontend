@@ -131,12 +131,31 @@
 
 @media (min-width: 768px) {
   .home {
-    flex-direction: row-reverse;
+    display: grid;
+    grid-template-areas:
+      'aside title'
+      'aside subtitle'
+      'aside description'
+      'aside div-content';
     column-gap: 2rem;
+    grid-template-columns: 30% 70%;
+    width: 90%;
+  }
+
+  .home__title {
+    grid-area: title;
+  }
+
+  .home__subtitle {
+    grid-area: subtitle;
+  }
+
+  .home__description {
+    grid-area: description;
   }
 
   .home__content {
-    width: 70%;
+    grid-area: div-content;
   }
 
   .home__values-list {
@@ -153,14 +172,11 @@
   }
 
   .home__aside {
-    width: 30%;
+    grid-area: aside;
   }
 
   .home__weather {
     height: 30%;
-  }
-
-  .home__weather-content {
   }
 
   .home__recipes {
