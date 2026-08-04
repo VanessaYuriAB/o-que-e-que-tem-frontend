@@ -117,80 +117,92 @@ function Checkout() {
   return (
     <section className="checkout content__checkout">
       {!isCartReady ? (
-        <div className="checkout__empty-box">
+        <section className="checkout__empty-box">
           <h1 className="checkout__empty-title">Não há checkout a ser realizado!</h1>
-          <strong className="checkout__empty-text">
-            O carrinho está vazio ou incompleto, não existem produtos selecionados e/ou informações
-            de compra.
-          </strong>
+          <p className="checkout__empty-text">
+            <strong className="checkout__empty-text">
+              O carrinho está vazio ou incompleto, não existem produtos selecionados e/ou
+              informações de compra.
+            </strong>
+          </p>
           <div className="checkout__empty-links-box">
             <p className="checkout__empty-text">
               Selecione os ingredientes para montar a sua sopa, creme ou patê e/ou preencha os dados
               do carrinho para finalizar o pagamento.
             </p>
-            <div className="checkout__empty-links">
-              <Link className="checkout__empty-link link-to-button" to="/menu">
-                Cardápio
-              </Link>
-              <Link className="checkout__empty-link link-to-button" to="/cart">
-                Carrinho
-              </Link>
-            </div>
+            <nav className="checkout__empty-links" aria-label="Ações para continuar a compra">
+              <ul className="checkout__empty-list nav__list">
+                <li className="checkout__empty-list-item">
+                  <Link className="checkout__empty-link link-to-button" to="/menu">
+                    Cardápio
+                  </Link>
+                </li>
+                <li className="checkout__empty-list-item">
+                  <Link className="checkout__empty-link link-to-button" to="/cart">
+                    Carrinho
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
-        </div>
+        </section>
       ) : (
-        <>
+        <section className="checkout__container">
           <h1 className="checkout__title">Finalize sua compra (:</h1>
           <div className="checkout__box">
             <aside className="checkout__aside">
               <h2 className="checkout__subtitle">Detalhes do pedido:</h2>
-              <div className="checkout__aside-box">
-                <div className="checkout__item-box checkout__item-box_list">
-                  <h3 className="checkout__item-title">Items:</h3>
-                  <ul className="checkout__item-list nav__list">
-                    {cartItems.map((item) => {
-                      return (
-                        <li className="checkout__item-item nav__item" key={item._id}>
-                          <p className="checkout__item-description">{item.productName}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
+              <dl className="checkout__details">
+                <div className="checkout__detail checkout__detail_list">
+                  <dt className="checkout__item-term">Items:</dt>
+                  <dd className="checkout__item-description">
+                    <ul className="checkout__item-list nav__list">
+                      {cartItems.map((item) => {
+                        return (
+                          <li className="checkout__item-item" key={item._id}>
+                            {item.productName}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </dd>
                 </div>
 
-                <div className="checkout__item-box">
-                  <h3 className="checkout__item-title">Tipo:</h3>
-                  <p className="checkout__item-description">{cartData.meal}</p>
+                <div className="checkout__detail">
+                  <dt className="checkout__item-term">Tipo:</dt>
+                  <dd className="checkout__item-description">{cartData.meal}</dd>
                 </div>
 
-                <div className="checkout__item-box">
-                  <h3 className="checkout__item-title">Entrega:</h3>
-                  <p className="checkout__item-description">{cartData.method}</p>
+                <div className="checkout__detail">
+                  <dt className="checkout__item-term">Entrega:</dt>
+                  <dd className="checkout__item-description">{cartData.method}</dd>
                 </div>
 
                 {cartData.method === 'delivery' && (
-                  <div className="checkout__item-box checkout__item-box_address">
-                    <h3 className="checkout__item-title">Endereço:</h3>
-                    <p className="checkout__item-description">
-                      {cartData.address}, {cartData.number},
-                      {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
-                      {cartData.district}, {cartData.cep}
-                    </p>
+                  <div className="checkout__detail checkout__detail_address">
+                    <dt className="checkout__item-term">Endereço:</dt>
+                    <dd className="checkout__item-description">
+                      <address className="checkout__item-address">
+                        {cartData.address}, {cartData.number},
+                        {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
+                        {cartData.district}, {cartData.cep}
+                      </address>
+                    </dd>
                   </div>
                 )}
 
                 {cartData.infoText !== '' && (
-                  <div className="checkout__item-box checkout__item-box_obs">
-                    <h3 className="checkout__item-title">Observação:</h3>
-                    <p className="checkout__item-description">{cartData.infoText}</p>
+                  <div className="checkout__detail checkout__detail_obs">
+                    <dt className="checkout__item-term">Observação:</dt>
+                    <dd className="checkout__item-description">{cartData.infoText}</dd>
                   </div>
                 )}
 
-                <div className="checkout__item-box">
-                  <h3 className="checkout__item-title">Total:</h3>
-                  <p className="checkout__item-description"> R$ {cartData.amount},00</p>
+                <div className="checkout__detail">
+                  <dt className="checkout__item-term">Total:</dt>
+                  <dd className="checkout__item-description"> R$ {cartData.amount},00</dd>
                 </div>
-              </div>
+              </dl>
             </aside>
 
             <form
@@ -199,11 +211,9 @@ function Checkout() {
               onSubmit={handleSubmit} /*noValidate*/
             >
               <fieldset className="order-form__field order-form__field_radio">
-                <legend className="order-form__legend order-form__legend_radio">
-                  Forma de pagamento:
-                </legend>
+                <legend className="order-form__legend ">Forma de pagamento:</legend>
                 <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label order-form__label_radio" htmlFor="pix">
+                  <label className="order-form__label" htmlFor="pix">
                     PIX
                   </label>
                   <Input
@@ -218,7 +228,7 @@ function Checkout() {
                   />
                 </div>
                 <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label order-form__label_radio" htmlFor="debito">
+                  <label className="order-form__label" htmlFor="debito">
                     Cartão de débito
                   </label>
                   <Input
@@ -232,7 +242,7 @@ function Checkout() {
                   />
                 </div>
                 <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label order-form__label_radio" htmlFor="credito">
+                  <label className="order-form__label" htmlFor="credito">
                     Cartão de crédito
                   </label>
                   <Input
@@ -250,10 +260,11 @@ function Checkout() {
               {formData.pay === 'pix' && (
                 <fieldset className="order-form__field">
                   <legend className="order-form__legend">Dados para PIX:</legend>
-                  <div className="order-form__pix-box">
-                    <p className="order-form__pix-label">Chave PIX: </p>
-                    <p className="order-form__pix-code">portfolio@exemplo.com</p>
-                  </div>
+                  <dl className="order-form__pix-details">
+                    <dt className="order-form__pix-term">Chave PIX: </dt>
+                    <dd className="order-form__pix-description">portfolio@exemplo.com</dd>
+                  </dl>
+
                   <p className="order-form__pix-label">QR Code:</p>
                   <img
                     className="order-form__pix-qr-img"
@@ -339,15 +350,23 @@ function Checkout() {
                 Comprar {formData.pay !== '' && `no ${typeOfPay}`}
               </Button>
 
-              <Link className="order-form__link link-to-button" to="/menu">
-                Voltar ao cardápio
-              </Link>
-              <Link className="order-form__link link-to-button" to="/cart">
-                Voltar ao carrinho
-              </Link>
+              <nav className="order-form__links" aria-label="Ações para editar a compra">
+                <ul className="order-form__list nav__list">
+                  <li className="order-form__item">
+                    <Link className="order-form__link link-to-button" to="/menu">
+                      Voltar ao cardápio
+                    </Link>
+                  </li>
+                  <li className="order-form__item">
+                    <Link className="order-form__link link-to-button" to="/cart">
+                      Voltar ao carrinho
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
             </form>
           </div>
-        </>
+        </section>
       )}
     </section>
   );
