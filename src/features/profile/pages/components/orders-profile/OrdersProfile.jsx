@@ -1,14 +1,33 @@
 import './OrdersProfile.css';
 import { Link } from 'react-router-dom';
-
-import orders from '../../../../../mocks/fakeOrdersDb.js';
+import useAuthStore from '../../../../../store/useAuthStore.js';
+import useOrders from '../../../../orders/hooks/useOrders.js';
+import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
+import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
+import { useEffect } from 'react';
 
 function OrdersProfile() {
+  const user = useAuthStore((state) => state.user);
+
+  const { userOrders, loadingProfile, errorProfile, getUserOrders } = useOrders();
+
+  useEffect(() => {
+    getUserOrders(user._id);
+  }, [user._id, getUserOrders]);
+
+  if (loadingProfile) {
+    return <Loader className="profile__orders-loader" />;
+  }
+
+  if (errorProfile) {
+    return <Toast className="profile__orders-toast" message={errorProfile.message} />;
+  }
+
   return (
     <section className="profile__orders">
       <h3 className="profile__orders-title">Histórico de pedidos</h3>
 
-      {orders.length === 0 ? (
+      {userOrders?.length === 0 ? (
         <div className="profile__no-orders">
           <p className="profile__no-orders-text">
             Você ainda não comprou nenhuma sopa, creme ou patê...
@@ -22,7 +41,7 @@ function OrdersProfile() {
         </div>
       ) : (
         <ul className="profile__orders-list nav__list">
-          {orders.map((order) => {
+          {userOrders?.map((order) => {
             return (
               <li className="profile__orders-item" key={order._id}>
                 <dl className="profile__orders-details">

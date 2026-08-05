@@ -1,6 +1,11 @@
 /* Mobile first (padrão) */
 
+.profile__orders-toast {
+  margin: 2rem auto;
+}
+
 .profile__orders {
+  margin-bottom: 21.44px; /* margin-top do profile__title */
 }
 
 .profile__orders-title {
