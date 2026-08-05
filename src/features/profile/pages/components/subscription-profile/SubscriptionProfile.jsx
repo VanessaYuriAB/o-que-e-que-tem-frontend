@@ -98,6 +98,8 @@ function SubscriptionProfile() {
 
   return (
     <section className="profile__subscription">
+      <h3 className="profile__title">Opções da assinatura</h3>
+
       {/* Se usuário for assinante, renderiza página de perfil de assinatura; se não, renderiza link de redirecionamento para assinatura */}
 
       {user.subscription ? (
@@ -422,12 +424,12 @@ function SubscriptionProfile() {
           </div>
         </form>
       ) : (
-        <section className="profile__no-subscription">
-          <h3 className="profile__subscription-title">Ainda não é um assinante e quer ser?</h3>
+        <div className="profile__no-subscription">
+          <p className="profile__subscription-title">Ainda não é um assinante e quer ser?</p>
           <Link className="profile__subscription-link link-to-button" to="/subscription">
             Assine agora :)
           </Link>
-        </section>
+        </div>
       )}
     </section>
   );

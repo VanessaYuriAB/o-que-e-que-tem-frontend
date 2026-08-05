@@ -4,7 +4,7 @@ import orders from '../../../../../mocks/fakeOrdersDb.js';
 function OrdersProfile() {
   return (
     <section className="profile__orders">
-      <h3 className="profile__orders-title">Histórico de pedidos:</h3>
+      <h3 className="profile__orders-title">Histórico de pedidos</h3>
       <ul className="profile__orders-list nav__list">
         {orders.map((order) => {
           return (
