@@ -103,6 +103,13 @@ export const user4 = {
 
 /* users */
 
+/*
+user1 tem assinatura e não tem pedido,
+user2 tem pedido e assinatura,
+user3 tem pedido e não tem assinatura,
+user4 é admin
+*/
+
 export const users = [
   // user 1
   {
