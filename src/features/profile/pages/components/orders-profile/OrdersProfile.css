@@ -6,6 +6,10 @@
 .profile__orders-title {
 }
 
+.profile__no-orders-text:last-of-type {
+  margin-bottom: 2rem;
+}
+
 .profile__orders-list {
   list-style: decimal;
 }
