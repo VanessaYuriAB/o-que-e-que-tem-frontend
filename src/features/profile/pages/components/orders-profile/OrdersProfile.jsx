@@ -16,7 +16,9 @@ function OrdersProfile() {
           <p className="profile__no-orders-text">
             Quer escolher os ingredientes para fazer seu primeiro pedido? :)
           </p>
-          <Link className="profile__no-orders-link link-to-button">Ver cardápio</Link>
+          <Link className="profile__no-orders-link link-to-button" to="/menu">
+            Ver cardápio
+          </Link>
         </div>
       ) : (
         <ul className="profile__orders-list nav__list">
