@@ -1,9 +1,12 @@
+import { user2, user3 } from '../mocks/fakeAuthDb.js';
+import itemsMenu from './fakeMenuDb.js';
+
 const order1 = {
   _id: 'order-1',
-  owner: 'user-1',
+  owner: user2._id,
   createdAt: new Date().toISOString(),
 
-  orderNumber: '202608013417',
+  orderNumber: '202608052114',
 
   meal: 'pate',
   method: 'delivery',
@@ -11,20 +14,22 @@ const order1 = {
   amount: 45,
 
   customerSnapshot: {
-    userName: 'Mock Name',
-    email: 'mockname@email.com',
-    tel: '(11) 88888-8888',
+    userName: user2.userName,
+    email: user2.email,
+    tel: user2.tel,
   },
 
   addressSnapshot: {
-    address: 'Rua do mock order',
-    number: 456,
-    complement: '-',
-    district: 'Bairro do mock',
-    cep: '44444-444',
+    address: user2.address,
+    number: user2.number,
+    complement: user2.complement,
+    district: user2.district,
+    cep: user2.cep,
   },
 
-  itemsSnapshot: [
+  itemsSnapshot: [itemsMenu[0], itemsMenu[1], itemsMenu[6], itemsMenu[9], itemsMenu[16]],
+
+  /*itemsSnapshot: [
     {
       _id: 1,
       productName: 'Abóbora',
@@ -65,17 +70,17 @@ const order1 = {
       partnerName: 'Mercado 1',
       availableUntil: new Date().toISOString(),
     },
-  ],
+  ],*/
 
-  obs: 'Obs do mock',
+  obs: user2.infoText,
 };
 
 const order2 = {
   _id: 'order-2',
-  owner: 'user-3',
+  owner: user3._id,
   createdAt: new Date().toISOString(),
 
-  orderNumber: '202608014517',
+  orderNumber: '202608053314',
 
   meal: 'sopa',
   method: 'drive-thru',
@@ -83,14 +88,16 @@ const order2 = {
   amount: 35,
 
   customerSnapshot: {
-    userName: 'Mock Name 2',
-    email: 'mockname2@email.com',
-    tel: '(11) 77777-7777',
+    userName: user3.userName,
+    email: user3.email,
+    tel: user3.tel,
   },
 
   addressSnapshot: undefined,
 
-  itemsSnapshot: [
+  itemsSnapshot: [itemsMenu[2], itemsMenu[3], itemsMenu[7], itemsMenu[8]],
+
+  /*itemsSnapshot: [
     {
       _id: 3,
       productName: 'Cenoura',
@@ -123,11 +130,85 @@ const order2 = {
       partnerName: 'Mercado 3',
       availableUntil: new Date().toISOString(),
     },
-  ],
+  ],*/
 
-  obs: 'Obs do mock 2',
+  obs: user3.infoText,
 };
 
-const orders = [order1, order2];
+const order3 = {
+  _id: 'order-3',
+  owner: user3._id,
+  createdAt: new Date().toISOString(),
+
+  orderNumber: '202608053914',
+
+  meal: 'creme',
+  method: 'delivery',
+  payment: 'debito',
+  amount: 30,
+
+  customerSnapshot: {
+    userName: user3.userName,
+    email: user3.email,
+    tel: user3.tel,
+  },
+
+  addressSnapshot: {
+    address: user3.address,
+    number: user3.number,
+    complement: user3.complement,
+    district: user3.district,
+    cep: user3.cep,
+  },
+
+  itemsSnapshot: [itemsMenu[1], itemsMenu[5], itemsMenu[8], itemsMenu[9], itemsMenu[16]],
+
+  /*itemsSnapshot: [
+    {
+      _id: 2,
+      productName: 'Espinafre',
+      category: 'verduras-legumes',
+      qtyAvailable: 10,
+      partnerName: 'Mercado 2',
+      availableUntil: new Date().toISOString(),
+    },
+    {
+      _id: 6,
+      productName: 'Macarrão integral',
+      category: 'carboidratos',
+      qtyAvailable: 20,
+      partnerName: 'Mercado 3',
+      availableUntil: new Date().toISOString(),
+    },
+    {
+      _id: 9,
+      productName: 'Linhaça',
+      category: 'leguminosas-oleaginosas',
+      qtyAvailable: 30,
+      partnerName: 'Mercado 3',
+      availableUntil: new Date().toISOString(),
+    },
+    {
+      _id: 10,
+      productName: 'Leite de soja',
+      category: 'leites-derivados',
+      qtyAvailable: 15,
+      partnerName: 'Mercado 1',
+      availableUntil: new Date().toISOString(),
+    },
+    {
+      _id: 17,
+      productName: 'Óleo de gergelim',
+      category: 'oleos-gorduras',
+      qtyAvailable: 22,
+      partnerName: 'Mercado 2',
+      availableUntil: new Date().toISOString(),
+    },
+  ],*/
+
+  obs: user3.infoText,
+};
+
+const orders = [order1, order2, order3];
 
 export default orders;
