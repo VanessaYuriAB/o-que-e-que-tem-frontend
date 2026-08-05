@@ -1,4 +1,4 @@
-export const itemsMenu = [
+const itemsMenu = [
   // verduras e legumes
   {
     _id: 1,
@@ -183,3 +183,5 @@ export const itemsMenu = [
 ];
 
 /* carboidratos | verduras e legumes | leites e derivados | carnes, ovos e peixes | leguminosas e oleaginosas | óleos e gorduras | açucares e doces */
+
+export default itemsMenu;

@@ -1,6 +1,6 @@
 import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
-import { itemsMenu } from '../../../mocks/fakeMenuDb.js';
+import itemsMenu from '../../../mocks/fakeMenuDb.js';
 import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import apiFetch from '../../../services/api.js';
 
