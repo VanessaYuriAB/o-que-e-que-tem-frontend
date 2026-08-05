@@ -16,6 +16,7 @@ const FAKE_ERRORS = {
   sendOrderToServer: false,
 
   getOrderByNumber: false,
+  getOrderById: false,
 };
 
 export default FAKE_ERRORS;
