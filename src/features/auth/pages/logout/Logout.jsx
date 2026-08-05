@@ -27,6 +27,10 @@ function Logout() {
 
     if (result.success === true) {
       console.log('deslogado');
+
+      // Limpa persistência para pedido enviado
+      localStorage.removeItem('successOrder');
+      // Redireciona para página inicial
       navigate('/', { replace: true });
     } else if (result.success === false && result.error.scope === 'local') {
       setLocalError(result.error.message);
