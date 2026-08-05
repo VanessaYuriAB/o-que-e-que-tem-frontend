@@ -79,11 +79,11 @@ function MenuType({ category }) {
   /* EARLY RETURNS DEPOIS DE HOOKS */
 
   if (loadingMenu) {
-    return <Loader />;
+    return <Loader className="menu__section-loader" />;
   }
 
   if (errorMenu) {
-    return <Toast message={errorMenu.message} />;
+    return <Toast className="menu__section-toast" message={errorMenu.message} />;
   }
 
   /* RETURN: TODOS OU POR CATEGORIA */
