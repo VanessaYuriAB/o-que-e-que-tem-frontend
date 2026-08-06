@@ -4,8 +4,8 @@ import './Toast.css';
 function Toast({ message = '', children = '', className = '' }) {
   return (
     <div className={`toast ${className}`}>
-      <p className="toast__message">{message}</p>
-      <div className="toast__content">{children}</div>
+      {message && <p className="toast__message">{message}</p>}
+      {children && children}
     </div>
   );
 }
