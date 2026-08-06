@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './SuccessOrder.css';
 import useAuthStore from '../../store/useAuthStore.js';
+import Toast from '../../shared/components/ui/toast/Toast.jsx';
 
 function SuccessOrder() {
   const user = useAuthStore((state) => state.user);
@@ -17,9 +18,14 @@ function SuccessOrder() {
 
   return (
     <section className="order content__order" aria-live="polite">
+      <h1 className={hasOrder !== null ? 'order__title' : 'order__empty-title'}>
+        {hasOrder !== null
+          ? 'Pedido enviado com sucesso'
+          : 'Ops, você não tem um pedido finalizado e enviado salvo no seu navegador'}
+      </h1>
+
       {hasOrder !== null ? (
         <>
-          <h1 className="order__title">Pedido enviado com sucesso</h1>
           <div className="order__box">
             <p className="order__text">
               Logo você pode saborear uma super refeição nutritiva preparada com muito amor e
@@ -109,13 +115,9 @@ function SuccessOrder() {
           </article>
         </>
       ) : (
-        <>
-          <h1 className="order__empty-title">
-            Ops, você não tem um pedido finalizado e enviado salvo no seu navegador
-          </h1>
-
+        <Toast className="order__empty-toast">
           <p className="order__empty-prompt">
-            Você pode rastrear um pedido pelo nº do pedido + e-mail
+            Você pode rastrear um pedido pelo nº do pedido + e-mail:
           </p>
           <Link className="order__empty-link link-to-button" to="/order-tracker">
             Rastrear um pedido
@@ -144,7 +146,7 @@ function SuccessOrder() {
           <Link className="order__empty-link link-to-button" to="/checkout">
             Ir para checkout
           </Link>
-        </>
+        </Toast>
       )}
     </section>
   );

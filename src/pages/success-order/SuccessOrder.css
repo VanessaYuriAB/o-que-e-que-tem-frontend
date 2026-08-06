@@ -13,6 +13,12 @@
 .order__title {
 }
 
+.order__empty-title {
+  width: 95%;
+  margin-inline: auto;
+  margin-bottom: 2.5rem;
+}
+
 .order__box {
   width: 90%;
   margin-inline: auto;
@@ -52,18 +58,23 @@
   font-style: normal;
 }
 
-.order__empty-title {
-  width: 90%;
-  margin-inline: auto;
-  margin-bottom: 2.5rem;
+.order__empty-toast {
+  width: 100%;
+  padding: 2em 1em 2.5em;
+  margin: 0 auto;
 }
 
 .order__empty-prompt {
   margin-top: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .order__empty-prompt:first-of-type {
   margin-top: 0;
+}
+
+.order__empty-prompt > :last-of-type {
+  margin-bottom: 0;
 }
 
 .order__empty-link {
@@ -74,6 +85,10 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .order__empty-title {
+    width: 80%;
+  }
+
   .order__detail-box {
     margin-bottom: 1.5rem;
   }
@@ -83,7 +98,7 @@
     column-gap: 0.5rem;
   }
 
-  .order__empty-title {
-    width: 80%;
+  .order__empty-toast {
+    width: 90%;
   }
 }
