@@ -22,13 +22,16 @@ function MenuType({ category }) {
 
   const { menuItems, loadingMenu, errorMenu } = useOutletContext();
 
-  const { addItemToCartAction, loading, cartItems } = useCartStore(
-    useShallow((state) => ({
-      addItemToCartAction: state.addItemToCartAction,
-      loading: state.loading,
-      cartItems: state.cartItems,
-    }))
-  );
+  const { addItemToCartAction, loading, cartItems, removeItemToCartAction, removeLoading } =
+    useCartStore(
+      useShallow((state) => ({
+        addItemToCartAction: state.addItemToCartAction,
+        loading: state.loading,
+        cartItems: state.cartItems,
+        removeItemToCartAction: state.removeItemToCartAction,
+        removeLoading: state.removeLoading,
+      }))
+    );
 
   // Verifica disponibilidade
   const availableMenuItems = useMemo(
@@ -54,11 +57,15 @@ function MenuType({ category }) {
   );
 
   // Handle
-  const handleAddItem = async (item) => {
+  const handleToggleItem = async (item, isItemAdded) => {
     try {
       setActiveItemId(item._id);
 
-      await addItemToCartAction(item);
+      if (!isItemAdded) {
+        await addItemToCartAction(item);
+      } else {
+        await removeItemToCartAction(item);
+      }
 
       setLocalItemError({
         id: null,
@@ -104,16 +111,19 @@ function MenuType({ category }) {
                 <Loader className="menu__section-loader">Adicionando item...</Loader>
               )}
 
+              {removeLoading && activeItemId === item._id && (
+                <Loader className="menu__section-loader">Removendo item...</Loader>
+              )}
+
               {localItemError.id === item._id && (
                 <Toast className="menu__section-toast" message={localItemError.message}></Toast>
               )}
 
               <Button
                 className={`menu__section-button ${isItemAdded ? 'menu__section-button_added' : ''}`}
-                onClick={() => handleAddItem(item)}
-                disabled={isItemAdded}
+                onClick={() => handleToggleItem(item, isItemAdded)}
               >
-                {isItemAdded ? 'ADICIONADO' : 'ADICIONAR'}
+                {isItemAdded ? 'REMOVER' : 'ADICIONAR'}
               </Button>
             </li>
           );
