@@ -15,6 +15,13 @@
 .cart__null-box {
 }
 
+.cart__null-toast {
+  padding: 0.5em 1em 1.5em;
+  width: 100%;
+  margin: 3rem auto 0;
+  max-width: max-content;
+}
+
 .cart__null-title {
   font-size: 1.25rem;
 }
@@ -163,6 +170,10 @@
 
 @media (min-width: 768px) {
   .cart__null-box {
+  }
+
+  .cart__null-toast {
+    padding: 1em 2em 2.5em;
   }
 
   .cart__pack-title {

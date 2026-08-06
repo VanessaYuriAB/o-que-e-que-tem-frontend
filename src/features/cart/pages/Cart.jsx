@@ -113,11 +113,13 @@ function Cart() {
 
       {cartItems.length === 0 ? (
         <section className="cart__null-box">
-          <h2 className="cart__null-title">Está vazio, no momento!</h2>
-          <p className="cart__null-text">Veja o que está disponível em nosso cardápio :)</p>
-          <Link className="cart__null-link link-to-button" to="/menu">
-            Acesse o menu aqui
-          </Link>
+          <Toast className="cart__null-toast">
+            <h2 className="cart__null-title">Está vazio, no momento!</h2>
+            <p className="cart__null-text">Veja o que está disponível em nosso cardápio :)</p>
+            <Link className="cart__null-link link-to-button" to="/menu">
+              Acesse o menu aqui
+            </Link>
+          </Toast>
         </section>
       ) : (
         <section className="cart__pack">
