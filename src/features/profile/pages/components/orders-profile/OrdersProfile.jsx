@@ -28,7 +28,7 @@ function OrdersProfile() {
       <h3 className="profile__orders-title">Histórico de pedidos</h3>
 
       {userOrders?.length === 0 ? (
-        <div className="profile__no-orders">
+        <Toast className="profile__no-orders-toast">
           <p className="profile__no-orders-text">
             Você ainda não comprou nenhuma sopa, creme ou patê...
           </p>
@@ -38,7 +38,7 @@ function OrdersProfile() {
           <Link className="profile__no-orders-link link-to-button" to="/menu">
             Ver cardápio
           </Link>
-        </div>
+        </Toast>
       ) : (
         <ul className="profile__orders-list nav__list">
           {userOrders?.map((order) => {

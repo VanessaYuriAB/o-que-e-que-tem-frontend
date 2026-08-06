@@ -11,6 +11,13 @@
 .profile__orders-title {
 }
 
+.profile__no-orders-toast {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 1em 3em 2em;
+  max-width: max-content;
+}
+
 .profile__no-orders-text:last-of-type {
   margin-bottom: 2rem;
 }
