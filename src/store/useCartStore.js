@@ -97,10 +97,34 @@ const useCartStore = create(
           cartData: {},
         }));
       },
+
+      // syncCartStorage configura persistência dinâmica do carrinho, por usuário
+      syncCartStorageAction: async (userId) => {
+        if (userId) {
+          // Atualiza o nome da chave com base no ID do usuário
+          useCartStore.persist.setOptions({
+            name: `cartData-${userId}`,
+          });
+        } else {
+          // Reseta nome da chave para padrão
+          useCartStore.persist.setOptions({
+            name: 'cartData-user',
+          });
+
+          // Reseta estados persistidos
+          set({
+            cartItems: [],
+            cartData: {},
+          });
+        }
+
+        // E recarrega os dados salvos, no Zustand
+        await useCartStore.persist.rehydrate();
+      },
     }),
 
     {
-      name: 'cartData',
+      name: 'cartData-user', // nome inicial padrão antes do login
 
       partialize: (state) => ({
         cartItems: state.cartItems,
