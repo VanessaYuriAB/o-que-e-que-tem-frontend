@@ -2,6 +2,7 @@
 
 .checkout {
   width: 100%;
+  padding-bottom: 21.44px; /* margin-top do title */
 }
 
 .checkout__empty-box {
@@ -13,15 +14,16 @@
 }
 
 .checkout__empty-title {
-  margin-top: 0;
 }
 
 .checkout__empty-text {
   width: 85%;
 }
 
-.checkout__empty-links-box {
+.checkout__empty-links-toast {
   justify-items: center;
+  width: 100%;
+  margin: 3rem auto 0;
 }
 
 .checkout__empty-links {
@@ -204,6 +206,14 @@
 @media (min-width: 768px) {
   .checkout__empty-text {
     width: 45%;
+  }
+
+  .checkout__empty-text_toast {
+    width: 90%;
+  }
+
+  .checkout__empty-links-toast {
+    max-width: 50%;
   }
 
   .checkout__empty-links {

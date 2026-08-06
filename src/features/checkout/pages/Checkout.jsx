@@ -125,8 +125,8 @@ function Checkout() {
               informações de compra.
             </strong>
           </p>
-          <div className="checkout__empty-links-box">
-            <p className="checkout__empty-text">
+          <Toast className="checkout__empty-links-toast">
+            <p className="checkout__empty-text checkout__empty-text_toast">
               Selecione os ingredientes para montar a sua sopa, creme ou patê e/ou preencha os dados
               do carrinho para finalizar o pagamento.
             </p>
@@ -144,7 +144,7 @@ function Checkout() {
                 </li>
               </ul>
             </nav>
-          </div>
+          </Toast>
         </section>
       ) : (
         <section className="checkout__container">
