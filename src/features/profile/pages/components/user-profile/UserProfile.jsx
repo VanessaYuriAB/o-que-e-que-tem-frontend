@@ -64,7 +64,7 @@ function UserProfile() {
 
   return (
     <section className="profile__user">
-      <h3 className="profile__title">Seus dados cadastrais</h3>
+      <h3 className="profile__user-title">Seus dados cadastrais</h3>
 
       <form
         className="user-form profile__user-form profile-form"
