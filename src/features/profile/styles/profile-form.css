@@ -32,11 +32,12 @@
 }
 
 .profile-form__loader {
-  padding-bottom: 0;
+  padding-bottom: 1em;
+  padding-top: 4em;
 }
 
 .profile-form__toast {
-  margin-bottom: 0.75em;
+  margin-bottom: 0;
 }
 
 .profile-form__button {

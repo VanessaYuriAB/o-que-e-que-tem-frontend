@@ -347,12 +347,6 @@ function SubscriptionProfile() {
             pausá-la por um período máximo de 2 meses, uma vez ao ano.
           </p>
 
-          {loading && (
-            <Loader className="subscription-form__loader profile-form__loader ">
-              Atualizando configuração de assinatura...
-            </Loader>
-          )}
-
           {globalError && !isEditing && (
             <Toast
               className="subscription-form__toast profile-form__toast"
@@ -372,6 +366,12 @@ function SubscriptionProfile() {
               className="subscription-form__toast profile-form__toast"
               message={confirmAction}
             ></Toast>
+          )}
+
+          {loading && (
+            <Loader className="subscription-form__loader profile-form__loader">
+              Atualizando configuração de assinatura...
+            </Loader>
           )}
 
           <div className="subscription-form__button-box">
