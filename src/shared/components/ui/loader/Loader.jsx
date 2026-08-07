@@ -4,13 +4,19 @@ import './Loader.css';
 function Loader({ children = '', className = '' }) {
   return (
     <div className={`loader ${className}`} role="status" aria-live="polite">
-      <p className="loader__content">{children ? children : 'Carregando...'}</p>
+      {children && typeof children === 'string' && <p className="loader__text">{children}</p>}
+
+      {!children && <p className="loader__text">Carregando...</p>}
+
+      {children && typeof children !== 'string' && (
+        <div className="loader__content">{children}</div>
+      )}
     </div>
   );
 }
 
 Loader.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
   className: PropTypes.string,
 };
 
