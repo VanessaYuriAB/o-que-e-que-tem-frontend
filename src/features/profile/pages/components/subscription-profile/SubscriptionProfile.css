@@ -55,16 +55,19 @@
   margin-top: 1em;
 }
 
-.profile__no-subscription {
+.profile__no-subscription-toast {
   margin-bottom: 1.75em;
+  width: 100%;
+  padding-top: 1em;
+  max-width: max-content;
 }
 
-.profile__subscription-title {
+.profile__no-subscription-title {
   font-weight: 500;
   margin-bottom: 2em;
 }
 
-.profile__subscription-link {
+.profile__no-subscription-link {
 }
 
 /* Tablet e acima */
