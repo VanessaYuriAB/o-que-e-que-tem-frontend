@@ -7,7 +7,10 @@ import './Sidebar.css';
 function Sidebar() {
   const user = useAuthStore((state) => state.user);
 
-  const sidebarLinks = user ? sidebarLinksLoggedOn : sidebarLinksLoggedOff;
+  // Link de subscription só aparece se não estiver logado e não for assinante
+  const sidebarLinks = (user ? sidebarLinksLoggedOn : sidebarLinksLoggedOff).filter(
+    (link) => !(user?.subscription && link.to === '/subscription')
+  );
 
   const customClassName = ({ isActive }) =>
     `sidebar__link nav__link ${isActive ? 'sidebar__link_active' : ''}`;
