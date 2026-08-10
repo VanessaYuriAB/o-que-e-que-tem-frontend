@@ -48,19 +48,41 @@ function Subscription() {
 
     if (type === 'checkbox') {
       setFormData((prevData) => {
+        const daysOn = checked
+          ? [...prevData.daysOn, value]
+          : prevData.daysOn.filter((day) => day !== value);
+
+        const schedules = { ...prevData.schedules };
+
+        if (!checked) {
+          delete schedules[value];
+        }
+
         return {
           ...prevData,
-          daysOn:
-            checked === true
-              ? [...prevData.daysOn, value]
-              : prevData.daysOn.filter((day) => day !== value),
+          daysOn,
+          schedules,
         };
       });
-    } else {
-      setFormData((prevData) => {
-        return { ...prevData, [name]: value };
-      });
+
+      return;
     }
+
+    if (type === 'time') {
+      setFormData((prevData) => ({
+        ...prevData,
+        schedules: {
+          ...prevData.schedules,
+          [name]: value,
+        },
+      }));
+
+      return;
+    }
+
+    setFormData((prevData) => {
+      return { ...prevData, [name]: value };
+    });
   };
 
   const handleSubmit = (e) => {
@@ -297,7 +319,9 @@ function Subscription() {
           </div>
 
           <div className="subscription__checkboxes-box">
-            <p className="subscription__checkboxes-name">Em quais dias da semana?</p>
+            <p className="subscription__checkboxes-name">Em quais dias da semana e horários?</p>
+
+            <p className="subscription__checkboxes-name">Dias:</p>
 
             <div className="subscription__input-box subscription__input-box_inline">
               <label className="subscription__label" htmlFor="seg">
@@ -373,6 +397,46 @@ function Subscription() {
                 onChange={handleChange}
               />
             </div>
+          </div>
+
+          <div className="subscription__times-box">
+            <p className="subscription__times-name">Horários:</p>
+
+            {formData.daysOn.length > 0 ? (
+              <>
+                {formData.daysOn.map((day) => {
+                  return (
+                    <div key={day} className="subscription__input-box">
+                      <label className="subscription__label" htmlFor={`schedule-${day}`}>
+                        {day === 'seg' && 'Segunda'}
+                        {day === 'ter' && 'Terça'}
+                        {day === 'qua' && 'Quarta'}
+                        {day === 'qui' && 'Quinta'}
+                        {day === 'sex' && 'Sexta'}
+                      </label>
+
+                      <Input
+                        className="subscription__input subscription__input_time"
+                        type="time"
+                        id={`schedule-${day}`}
+                        name={day}
+                        min="10:45"
+                        max="19:45"
+                        value={formData.schedules[day] || ''}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  );
+                })}
+                <small className="subscription__times-small">
+                  *Horário de funcionamento: 10h45 às 19h45.*
+                </small>
+              </>
+            ) : (
+              <p className="subscription__times-text">
+                Selecione os dias para poder definir cada horário aqui.
+              </p>
+            )}
           </div>
 
           <div className="subscription__radios-box">

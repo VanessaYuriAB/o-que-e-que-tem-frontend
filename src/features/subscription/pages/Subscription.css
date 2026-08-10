@@ -65,6 +65,10 @@
 .subscription__input {
 }
 
+.subscription__input_time {
+  width: fit-content;
+}
+
 .subscription__radios-box {
   margin-bottom: 1.5rem;
 }
@@ -85,6 +89,24 @@
 .subscription__checkboxes-name {
   text-align: left;
   font-weight: 600;
+}
+
+.subscription__times-box {
+}
+
+.subscription__times-name {
+  text-align: left;
+  font-weight: 600;
+}
+
+.subscription__times-small {
+  display: block;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.subscription__times-text {
+  text-align: left;
 }
 
 .subscription__pix-details {
