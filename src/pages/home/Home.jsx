@@ -5,12 +5,11 @@ import './Home.css';
 function Home() {
   return (
     <section className="home content__home">
-      <h1 className="home__title">🍲 Cozinha Sustentável</h1>
+      <h1 className="home__title">🥣 Cozinha Sustentável</h1>
       <h2 className="home__subtitle">(Delivery & Drive-thru)</h2>
       <p className="home__description">
-        Você vê o que está disponível, escolhe os ingredientes, decide entre sopa/creme ou patê, se
-        quer congelado ou in-natura e se prefere entrega em domicílio ou retirada no nosso
-        drive-thru.
+        Você vê quais ingredientes estão disponíveis, escolhe o que prefere juntar, decide entre
+        sopa/creme ou patê e se prefere entrega em domicílio ou retirada no nosso drive-thru.
       </p>
 
       <div className="home__content">
@@ -19,7 +18,7 @@ function Home() {
           <p className="home__values-description">
             A proposta central é reduzir o desperdício através da utilização de produtos próximos ao
             prazo de validade (de mercados parceiros), produzindo sopas/cremes e patês
-            personalizados, acessíveis e sustentáveis sem comprometer a segurança alimentar.
+            personalizados, acessíveis e sustentáveis, sem comprometer a segurança alimentar.
           </p>
           <ul className="home__values-list">
             <li className="home__values-item">
