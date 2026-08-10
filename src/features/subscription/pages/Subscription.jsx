@@ -246,6 +246,7 @@ function Subscription() {
                 value="two"
                 checked={formData.howLong === 'two'}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -389,6 +390,7 @@ function Subscription() {
                 value="delivery"
                 checked={formData.method === 'delivery'}
                 onChange={handleChange}
+                required
               />
             </div>
 
@@ -427,6 +429,7 @@ function Subscription() {
                 title="O CEP do seu endereço para delivery: apenas números e traço."
                 value={formData.cep}
                 onChange={handleChange}
+                required={formData.method === 'delivery'}
               />
             </div>
 
@@ -443,6 +446,7 @@ function Subscription() {
                 title="Seu endereço para delivery: não são permitidos '<' e '>'."
                 value={formData.address}
                 onChange={handleChange}
+                required={formData.method === 'delivery'}
               />
             </div>
 
@@ -460,6 +464,7 @@ function Subscription() {
                 title="O número do seu endereço para delivery: apenas números e/ou letras."
                 value={formData.number}
                 onChange={handleChange}
+                required={formData.method === 'delivery'}
               />
             </div>
 
@@ -477,6 +482,7 @@ function Subscription() {
                 placeholder="Se não houver, digite traço (-)."
                 value={formData.complement}
                 onChange={handleChange}
+                required={formData.method === 'delivery'}
               />
             </div>
 
@@ -493,6 +499,7 @@ function Subscription() {
                 title="O bairro do seu endereço para delivery: apenas números e/ou letras."
                 value={formData.district}
                 onChange={handleChange}
+                required={formData.method === 'delivery'}
               />
             </div>
           </fieldset>
