@@ -6,6 +6,7 @@ import Loader from '../../shared/components/ui/loader/Loader.jsx';
 import NotFound from '../../pages/not-found/NotFound.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import PublicRoute from './PublicRoute.jsx';
+import SubscriptionRoute from './SubscriptionRoute.jsx';
 
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
 const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
@@ -109,13 +110,20 @@ function AppRoutes() {
           {/* Fale conosco */}
           <Route path="talk-to-us" element={<Contact />} />
 
-          {/* Assinatura */}
-          <Route path="subscription" element={<Subscription />} />
-
           {/* Logout */}
           <Route path="logout" element={<Logout />} />
 
           {/* PROTEGIDAS */}
+
+          {/* Assinatura */}
+          <Route
+            path="subscription"
+            element={
+              <SubscriptionRoute>
+                <Subscription />
+              </SubscriptionRoute>
+            }
+          />
 
           {/* Perfil */}
           <Route
