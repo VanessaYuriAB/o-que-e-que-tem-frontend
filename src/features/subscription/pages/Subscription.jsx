@@ -10,10 +10,10 @@ function Subscription() {
   const user = useAuthStore((state) => state.user);
 
   const [formData, setFormData] = useState({
-    userName: user.userName ?? '',
-    email: user.email ?? '',
+    userName: user?.userName ?? '',
+    email: user?.email ?? '',
     confirmEmail: '',
-    tel: user.tel ?? '',
+    tel: user?.tel ?? '',
     password: '',
     confirmPassword: '',
 
@@ -22,12 +22,12 @@ function Subscription() {
     schedules: {},
     method: '',
 
-    cep: user.cep ?? '',
-    address: user.address ?? '',
-    number: user.number ?? '',
-    complement: user.complement ?? '',
-    district: user.district ?? '',
-    infoText: user.infoText ?? '',
+    cep: user?.cep ?? '',
+    address: user?.address ?? '',
+    number: user?.number ?? '',
+    complement: user?.complement ?? '',
+    district: user?.district ?? '',
+    infoText: user?.infoText ?? '',
 
     pay: '',
   });
