@@ -11,7 +11,6 @@ const sidebarLinksFixed = [
   { to: '/order-tracker', class: 'sidebar__item nav__item', label: 'LOCALIZAR PEDIDO' },
   { to: '/', class: 'sidebar__item nav__item', label: 'HOME' },
   { to: '/menu', class: 'sidebar__item nav__item', label: 'CARDÁPIO' },
-  { to: '/how-it-works', class: 'sidebar__item nav__item', label: 'COMO FUNCIONA' },
   { to: '/subscription', class: 'sidebar__item nav__item', label: 'ASSINATURA' },
   {
     to: '/recipes',
