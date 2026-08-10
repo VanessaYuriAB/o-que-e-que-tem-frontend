@@ -136,7 +136,7 @@ function UserProfile() {
             disabled={!isEditing}
           />
           <label className="user-form__label profile-form__label" htmlFor="number">
-            nº:
+            Nº:
           </label>
           <Input
             className="user-form__input profile-form__input"
