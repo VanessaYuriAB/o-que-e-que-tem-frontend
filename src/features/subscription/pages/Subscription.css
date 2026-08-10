@@ -58,6 +58,10 @@
   text-align: left;
 }
 
+.subscription__label_bold {
+  font-weight: 600;
+}
+
 .subscription__input {
 }
 
@@ -71,6 +75,7 @@
 
 .subscription__radios-name {
   text-align: left;
+  font-weight: 600;
 }
 
 .subscription__checkboxes-box {
@@ -79,6 +84,7 @@
 
 .subscription__checkboxes-name {
   text-align: left;
+  font-weight: 600;
 }
 
 .subscription__pix-details {

@@ -103,7 +103,7 @@ function Subscription() {
           <legend className="subscription__legend">Dados cadastrais</legend>
 
           <div className="subscription__input-box">
-            <label className="subscription__label" htmlFor="userName">
+            <label className="subscription__label subscription__label_bold" htmlFor="userName">
               Seu nome completo:
             </label>
             <Input
@@ -122,7 +122,7 @@ function Subscription() {
           </div>
 
           <div className="subscription__input-box">
-            <label className="subscription__label" htmlFor="email">
+            <label className="subscription__label subscription__label_bold" htmlFor="email">
               E-mail:
             </label>
             <Input
@@ -141,7 +141,10 @@ function Subscription() {
 
           {!user && (
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="confirmEmail">
+              <label
+                className="subscription__label subscription__label_bold"
+                htmlFor="confirmEmail"
+              >
                 Confirmação de e-mail:
               </label>
               <Input
@@ -160,7 +163,7 @@ function Subscription() {
           )}
 
           <div className="subscription__input-box">
-            <label className="subscription__label" htmlFor="tel">
+            <label className="subscription__label subscription__label_bold" htmlFor="tel">
               Telefone:
             </label>
             <Input
@@ -182,8 +185,8 @@ function Subscription() {
 
           {!user && (
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="password">
-                Se não for cadastrado, senha:
+              <label className="subscription__label subscription__label_bold" htmlFor="password">
+                Senha:
               </label>
               <Input
                 className="subscription__input"
@@ -203,8 +206,11 @@ function Subscription() {
 
           {!user && (
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="confirmPassword">
-                Se não for cadastrado, confirmação se senha:
+              <label
+                className="subscription__label subscription__label_bold"
+                htmlFor="confirmPassword"
+              >
+                Confirmação se senha:
               </label>
               <Input
                 className="subscription__input"
@@ -408,7 +414,7 @@ function Subscription() {
             <legend className="subscription__legend">Endereço para entrega</legend>
 
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="cep">
+              <label className="subscription__label subscription__label_bold" htmlFor="cep">
                 CEP:
               </label>
               <Input
@@ -425,7 +431,7 @@ function Subscription() {
             </div>
 
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="address">
+              <label className="subscription__label subscription__label_bold" htmlFor="address">
                 Logradouro (rua, avenida, praça, etc):
               </label>
               <Input
@@ -441,7 +447,7 @@ function Subscription() {
             </div>
 
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="number">
+              <label className="subscription__label subscription__label_bold" htmlFor="number">
                 Nº:
               </label>
               <Input
@@ -458,7 +464,7 @@ function Subscription() {
             </div>
 
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="complement">
+              <label className="subscription__label subscription__label_bold" htmlFor="complement">
                 Complemento:
               </label>
               <Input
@@ -475,7 +481,7 @@ function Subscription() {
             </div>
 
             <div className="subscription__input-box">
-              <label className="subscription__label" htmlFor="district">
+              <label className="subscription__label subscription__label_bold" htmlFor="district">
                 Bairro:
               </label>
               <Input
@@ -495,7 +501,7 @@ function Subscription() {
         <fieldset className="subscription__field">
           <legend className="subscription__legend">Observação</legend>
           <div className="subscription__input-box">
-            <label className="subscription__label" htmlFor="infoText">
+            <label className="subscription__label subscription__label_bold" htmlFor="infoText">
               Informações adicionais:
             </label>
             <Textarea
