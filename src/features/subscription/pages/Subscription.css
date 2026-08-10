@@ -132,6 +132,12 @@
 .subscription__form-note {
 }
 
+.subscription__toast {
+  padding: 1em;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
 .subscription__button {
   margin-bottom: 21.44px; /* margin-top do title */
 }
@@ -153,5 +159,9 @@
 
   .subscription__pix-qr-label {
     text-align: center;
+  }
+
+  .subscription__toast {
+    max-width: fit-content;
   }
 }

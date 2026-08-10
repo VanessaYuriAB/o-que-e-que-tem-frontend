@@ -5,8 +5,11 @@ import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
 import qrCodeImg from '../../../assets/images/qrcode.jpg';
 import useAuthStore from '../../../store/useAuthStore.js';
 import { useState } from 'react';
+import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 
 function Subscription() {
+  const [toast, setToast] = useState(null);
+
   const user = useAuthStore((state) => state.user);
 
   const [formData, setFormData] = useState({
@@ -87,6 +90,30 @@ function Subscription() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setToast(null);
+
+    // Verificação de 'required' para checkboxes e times
+    if (formData.daysOn.length === 0) {
+      setToast({
+        message:
+          'Precisamos saber quais os dias para preparar suas refeições, selecione no campo "Configurações da assinatura".',
+      });
+      return;
+    }
+
+    const allSchedulesFilled = formData.daysOn.every((day) => formData.schedules[day]);
+
+    if (!allSchedulesFilled) {
+      setToast({
+        message:
+          'Você precisa definir o horário para cada dia selecionado, no campo "Configurações da assinatura".',
+      });
+      return;
+    }
+
+    console.log(formData);
+
     // handleSubscribe();
   };
 
@@ -714,6 +741,8 @@ function Subscription() {
         <p className="subscription__form-note">
           ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
         </p>
+
+        {toast && <Toast className="subscription__toast" message={toast.message} />}
 
         <Button className="subscription__button" type="submit">
           Assinar {formData.howLong && `por ${howLong}`} :)
