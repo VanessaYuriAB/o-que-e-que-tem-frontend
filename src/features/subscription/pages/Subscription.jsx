@@ -121,19 +121,20 @@ function Subscription() {
     <section className="subscription content__subscription">
       <h1 className="subscription__title">Seja um assinante</h1>
       <div className="subscription__content">
-        <p className="subscription__text">
-          Você escolhe com qual frequência quer receber ou retirar nossas refeições.
-        </p>
-        <p className="subscription__text">
-          Deixa definido os dias e horários, e escolhe uma forma padrão de entrega, que pode ser por
-          delivery ou drive-thru.
-        </p>
-        <p className="subscription__text">
-          O restante você vai escolhendo conforme consumo: você decide quais ingredientes quer
-          juntar para fazer sua sopa, creme ou patê. De acordo com o que estiver diponível no
-          momento, nosso cardápio não é fixo, mas a variedade de ingredientes é grande. Conseguimos
-          um bom estoque que evita bastante desperdícios.
-        </p>
+        <ul className="subscription__list">
+          <li className="subscription__item">
+            Você escolhe com qual frequência quer receber ou retirar nossas refeições.
+          </li>
+          <li className="subscription__item">
+            Deixa definido os dias e horários, e escolhe uma forma padrão de entrega, que pode ser
+            por delivery ou drive-thru.
+          </li>
+          <li className="subscription__item">
+            O restante você vai escolhendo conforme consumo: você decide quais ingredientes quer
+            juntar para fazer sua sopa, creme ou patê - de acordo com o que estiver diponível no
+            momento (nosso cardápio não é fixo, mas temos uma grande variedade de ingredientes).
+          </li>
+        </ul>
         <p className="subscription__text">
           Você pode assinar por 2 meses, por 4, por 6 e até por um ano todo. E pode pausar a sua
           assinatura por até 2 meses, num período de um ano.

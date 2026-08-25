@@ -4,12 +4,21 @@
 }
 
 .subscription__title {
+  margin-bottom: 3rem;
 }
 
 .subscription__content {
 }
 
+.subscription__item {
+  text-align: left;
+  margin: 1.5rem 0;
+}
+
+.subscription__item,
 .subscription__text {
+  max-width: 90%;
+  margin-inline: auto;
 }
 
 .subscription__form {
@@ -145,7 +154,10 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .subscription__text,
+  .subscription__item {
+    max-width: 80%;
+  }
+
   .subscription__form {
     max-width: 80%;
     margin-inline: auto;
