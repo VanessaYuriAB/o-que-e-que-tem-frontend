@@ -8,6 +8,15 @@
   flex-direction: column;
 }
 
+.subscription-form__input[type='text'],
+.subscription-form__input[type='date'] {
+  width: 145px;
+}
+
+.subscription-form__input[type='time'] {
+  width: 85px;
+}
+
 .subscription-form__on-off-box {
   display: flex;
   column-gap: 1em;

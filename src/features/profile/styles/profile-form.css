@@ -31,15 +31,6 @@
   margin-top: 0.5em;
 }
 
-.profile-form__input[type='text'],
-.profile-form__input[type='date'] {
-  width: 145px;
-}
-
-.profile-form__input[type='time'] {
-  width: 85px;
-}
-
 .profile-form__loader {
   padding-bottom: 1em;
   padding-top: 4em;
