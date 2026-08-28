@@ -27,8 +27,25 @@ function SubscriptionProfile() {
 
   const [formData, setFormData] = useState({
     daysOn: user?.subscriptionDetails?.daysOn ?? [],
+    schedules: user?.subscriptionDetails?.schedules ?? {},
     method: user?.subscriptionDetails?.method ?? '',
   });
+
+  const period =
+    user.subscriptionDetails.howLong === 'two'
+      ? 'Dois meses'
+      : user.subscriptionDetails.howLong === 'four'
+        ? 'Quatro meses'
+        : user.subscriptionDetails.howLong === 'six'
+          ? 'Seis meses'
+          : 'Um ano';
+
+  const pay =
+    user.subscriptionDetails.pay === 'pix'
+      ? 'PIX'
+      : user.subscriptionDetails.pay === 'debito'
+        ? 'Cartão de débito'
+        : 'Cartão de crédito';
 
   const getNextDate = (daysOn, fromDate = new Date()) => {
     const dayMap = {
@@ -55,27 +72,50 @@ function SubscriptionProfile() {
     return null;
   };
 
-  const nextMealAt = getNextDate(user.subscriptionDetails.daysOn);
+  const nextMealAt = getNextDate(user.subscriptionDetails.daysOn || []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
     // Se o input for do tipo checkbox, o campo daysOn, por aceitar múltiplos valores, é atualizado de forma diferente: adicionando o valor selecionado ao array com spread (...) ou removendo-o com filter(), devolvendo um novo array contendo apenas os dias diferentes do valor desmarcado - ambos de acordo com o estado de checked
+    // E 'schedules' ajustado conforme 'daysOn'
     if (type === 'checkbox') {
       setFormData((prevData) => {
+        const daysOn = checked
+          ? [...prevData.daysOn, value]
+          : prevData.daysOn.filter((day) => day !== value);
+
+        const schedules = { ...prevData.schedules };
+
+        if (!checked) {
+          delete schedules[value];
+        }
+
         return {
           ...prevData,
-          daysOn:
-            checked === true
-              ? [...prevData.daysOn, value]
-              : prevData.daysOn.filter((day) => day !== value),
+          daysOn,
+          schedules,
         };
       });
-    } else {
-      setFormData((prevData) => {
-        return { ...prevData, [name]: value };
-      });
+
+      return;
     }
+
+    if (type === 'time') {
+      setFormData((prevData) => ({
+        ...prevData,
+        schedules: {
+          ...prevData.schedules,
+          [name]: value,
+        },
+      }));
+
+      return;
+    }
+
+    setFormData((prevData) => {
+      return { ...prevData, [name]: value };
+    });
   };
 
   const handleUpdate = async (data, action) => {
@@ -179,6 +219,25 @@ function SubscriptionProfile() {
               </div>
             </div>
 
+            <div className="subscription-form__period-box">
+              <h3
+                className="subscription-form__title profile-form__title"
+                title="O período assinado."
+              >
+                Período:
+              </h3>
+              <label className="subscription-form__label profile-form__label" htmlFor="period">
+                <Input
+                  className="subscription-form__input profile-form__input"
+                  type="text"
+                  id="period"
+                  name="period"
+                  defaultValue={period}
+                  disabled
+                />
+              </label>
+            </div>
+
             <div className="subscription-form__begin-end-box">
               <div className="subscription-form__item-box">
                 <h3 className="subscription-form__title profile-form__title">Início:</h3>
@@ -209,6 +268,25 @@ function SubscriptionProfile() {
                   />
                 </label>
               </div>
+            </div>
+
+            <div className="subscription-form__payment-box">
+              <h3
+                className="subscription-form__title profile-form__title"
+                title="A forma de pagamento de sua assinatura."
+              >
+                Forma de pagamento:
+              </h3>
+              <label className="subscription-form__label profile-form__label" htmlFor="payment">
+                <Input
+                  className="subscription-form__input profile-form__input"
+                  type="text"
+                  id="payment"
+                  name="payment"
+                  defaultValue={pay}
+                  disabled
+                />
+              </label>
             </div>
           </fieldset>
 
@@ -298,6 +376,50 @@ function SubscriptionProfile() {
                 </div>
               </div>
             </div>
+
+            {formData.daysOn.length > 0 && (
+              <div className="subscription-form__schedules-box">
+                <h3
+                  className="subscription-form__title profile-form__title"
+                  title="O horário selecionada para cada data assinada."
+                >
+                  Horários:
+                </h3>
+                <div className="subscription-form__schedules-container">
+                  {formData.daysOn.map((day) => {
+                    return (
+                      <div key={day} className="subscription-form__times-box">
+                        <label
+                          className="subscription-form__label profile-form__label"
+                          htmlFor={`schedule-${day}`}
+                        >
+                          {day === 'seg' && 'Segunda:'}
+                          {day === 'ter' && 'Terça:'}
+                          {day === 'qua' && 'Quarta:'}
+                          {day === 'qui' && 'Quinta:'}
+                          {day === 'sex' && 'Sexta:'}
+                        </label>
+
+                        <Input
+                          className="subscription-form__input profile-form__input"
+                          type="time"
+                          id={`schedule-${day}`}
+                          name={day}
+                          min="10:45"
+                          max="19:45"
+                          value={formData.schedules[day] || ''}
+                          onChange={handleChange}
+                          disabled={!isEditing}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+                <small className="subscription-form__schedules-small">
+                  *Horário de funcionamento: 10h45 às 19h45.*
+                </small>
+              </div>
+            )}
 
             <div className="subscription-form__method-box">
               <h3
