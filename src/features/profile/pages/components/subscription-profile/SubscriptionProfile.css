@@ -3,6 +3,11 @@
 .subscription-form__status-box {
 }
 
+.subscription-form__period-box {
+  display: flex;
+  flex-direction: column;
+}
+
 .subscription-form__on-off-box {
   display: flex;
   column-gap: 1em;
@@ -21,10 +26,25 @@
 .subscription-form__begin-end-box {
 }
 
+.subscription-form__payment-box {
+  display: flex;
+  flex-direction: column;
+}
+
 .subscription-form__days-on-box {
 }
 
 .subscription-form__days-box {
+}
+
+.subscription-form__times-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.subscription-form__schedules-small {
+  display: block;
+  text-align: left;
 }
 
 .subscription-form__method-box {
@@ -85,6 +105,11 @@
 
   .subscription-form__item-box_days {
     align-items: center;
+  }
+
+  .subscription-form__schedules-container {
+    display: flex;
+    column-gap: 1.5em;
   }
 
   .subscription-form__next-box {
