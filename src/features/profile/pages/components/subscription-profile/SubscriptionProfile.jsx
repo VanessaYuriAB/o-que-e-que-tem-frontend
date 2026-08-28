@@ -32,18 +32,21 @@ function SubscriptionProfile() {
   });
 
   const period =
-    user.subscriptionDetails.howLong === 'two'
+    user?.subscriptionDetails?.howLong === 'two'
       ? 'Dois meses'
-      : user.subscriptionDetails.howLong === 'four'
+      : user?.subscriptionDetails?.howLong === 'four'
         ? 'Quatro meses'
-        : user.subscriptionDetails.howLong === 'six'
+        : user?.subscriptionDetails?.howLong === 'six'
           ? 'Seis meses'
           : 'Um ano';
 
+  const beginDate = new Date(user?.subscriptionDetails?.begin).toISOString().split('T')[0];
+  const endDate = new Date(user?.subscriptionDetails?.end).toISOString().split('T')[0];
+
   const pay =
-    user.subscriptionDetails.pay === 'pix'
+    user?.subscriptionDetails?.pay === 'pix'
       ? 'PIX'
-      : user.subscriptionDetails.pay === 'debito'
+      : user?.subscriptionDetails?.pay === 'debito'
         ? 'Cartão de débito'
         : 'Cartão de crédito';
 
@@ -72,7 +75,7 @@ function SubscriptionProfile() {
     return null;
   };
 
-  const nextMealAt = getNextDate(user.subscriptionDetails.daysOn || []);
+  const nextMealAt = getNextDate(user?.subscriptionDetails?.daysOn || []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -248,7 +251,7 @@ function SubscriptionProfile() {
                     id="begin"
                     name="begin"
                     title="A data de início da sua assinatura."
-                    defaultValue={user.subscriptionDetails.begin}
+                    defaultValue={beginDate}
                     disabled
                   />
                 </label>
@@ -263,7 +266,7 @@ function SubscriptionProfile() {
                     id="end"
                     name="end"
                     title="A data final de sua assinatura."
-                    value={user.subscriptionDetails.end}
+                    value={endDate}
                     disabled
                   />
                 </label>
