@@ -6,11 +6,15 @@ import qrCodeImg from '../../../assets/images/qrcode.jpg';
 import useAuthStore from '../../../store/useAuthStore.js';
 import { useState } from 'react';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
+import useSubscription from '../hooks/useSubscription.js';
+import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 
 function Subscription() {
   const [toast, setToast] = useState(null);
 
   const user = useAuthStore((state) => state.user);
+
+  const { sendSubscribe, loading, error } = useSubscription(user);
 
   const [formData, setFormData] = useState({
     userName: user?.userName ?? '',
@@ -88,6 +92,45 @@ function Subscription() {
     });
   };
 
+  const handleSubscribe = async (data) => {
+    try {
+      await sendSubscribe(data);
+      setFormData({
+        userName: '',
+        email: '',
+        confirmEmail: '',
+        tel: '',
+        password: '',
+        confirmPassword: '',
+
+        howLong: '',
+        daysOn: [],
+        schedules: {},
+        method: '',
+
+        cep: '',
+        address: '',
+        number: '',
+        complement: '',
+        district: '',
+        infoText: '',
+
+        pay: '',
+      });
+      setToast({ message: 'Assinatura realizada com sucesso!', type: 'success' });
+    } catch (error) {
+      if (error.status === 401) {
+        setToast({
+          message:
+            'Não autorizado. Usuário já cadastrado. Poderia confirmar seus dados e reenviar a assinatura para podermos prosseguir?',
+          type: 'error',
+        });
+      }
+
+      console.log('Subscription', error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -98,6 +141,7 @@ function Subscription() {
       setToast({
         message:
           'Precisamos saber quais os dias para preparar suas refeições, selecione no campo "Configurações da assinatura".',
+        type: 'error',
       });
       return;
     }
@@ -108,13 +152,12 @@ function Subscription() {
       setToast({
         message:
           'Você precisa definir o horário para cada dia selecionado, no campo "Configurações da assinatura".',
+        type: 'error',
       });
       return;
     }
 
-    console.log(formData);
-
-    // handleSubscribe();
+    handleSubscribe(formData);
   };
 
   return (
@@ -744,6 +787,14 @@ function Subscription() {
         </p>
 
         {toast && <Toast className="subscription__toast" message={toast.message} />}
+
+        {loading && (
+          <Loader className="subscription__loader">Enviando dados de assinatura...</Loader>
+        )}
+
+        {error && error.status !== 401 && (
+          <Toast className="subscription__error-toast" message={error.message} />
+        )}
 
         <Button className="subscription__button" type="submit">
           Assinar {formData.howLong && `por ${howLong}`} :)
