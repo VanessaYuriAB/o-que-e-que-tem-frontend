@@ -147,6 +147,14 @@
   margin-bottom: 1em;
 }
 
+.subscription__loader {
+  padding-bottom: 0.5em;
+}
+
+.subscription__error-toast {
+  margin-bottom: 1rem;
+}
+
 .subscription__button {
   margin-bottom: 21.44px; /* margin-top do title */
 }
