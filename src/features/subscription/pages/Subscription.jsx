@@ -8,8 +8,11 @@ import { useState } from 'react';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useSubscription from '../hooks/useSubscription.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Subscription() {
+  const navigate = useNavigate();
+
   const [toast, setToast] = useState(null);
 
   const user = useAuthStore((state) => state.user);
@@ -49,6 +52,8 @@ function Subscription() {
           : formData.howLong === 'twelve'
             ? '1 ano'
             : '';
+
+  const isSuccess = toast?.type === 'success';
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -796,9 +801,15 @@ function Subscription() {
           <Toast className="subscription__error-toast" message={error.message} />
         )}
 
-        <Button className="subscription__button" type="submit">
-          Assinar {formData.howLong && `por ${howLong}`} :)
-        </Button>
+        {isSuccess ? (
+          <Button className="subscription__button" onClick={() => navigate('/menu')}>
+            Montar minha primeira sopa, meu primeiro creme ou patê :)
+          </Button>
+        ) : (
+          <Button className="subscription__button" type="submit">
+            Assinar {formData.howLong && `por ${howLong}`} :)
+          </Button>
+        )}
       </form>
     </section>
   );
