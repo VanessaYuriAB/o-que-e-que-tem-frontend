@@ -34,6 +34,17 @@ export async function register(newUserData) {
         await fakeApiError('Falha no authService.register: Usuário já cadastrado', 409);
       }
 
+      users.push({
+        _id: 'user-mock',
+        userName: newUserData.userName,
+        email: newUserData.email,
+        tel: newUserData.tel,
+        password: newUserData.password,
+        role: 'user',
+        subscription: false,
+        subscriptionDetails: {},
+      });
+
       const { userName, email, tel } = newUserData; // sem senha
 
       return await fakeApi({ userName, email, tel }, 201);
