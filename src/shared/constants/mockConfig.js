@@ -17,6 +17,8 @@ const FAKE_ERRORS = {
 
   getOrderByNumber: false,
   getOrderById: false,
+
+  subscribe: false,
 };
 
 export default FAKE_ERRORS;
