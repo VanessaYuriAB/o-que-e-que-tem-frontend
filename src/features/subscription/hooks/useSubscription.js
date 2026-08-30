@@ -12,10 +12,20 @@ export default function useSubscription(isUser) {
     setLoading(true);
     setError(null);
 
+    const userProfileData = { ...data };
+
+    const addressFields = ['cep', 'address', 'number', 'complement', 'district'];
+
+    addressFields.forEach((field) => {
+      if (userProfileData[field] === '') {
+        delete userProfileData[field];
+      }
+    });
+
     try {
       if (isUser) {
         // Atualiza dados do usuário
-        await updateUserProfile(data);
+        await updateUserProfile(userProfileData);
         // Envia assinatura
         await subscribe(data);
         return;
@@ -28,7 +38,7 @@ export default function useSubscription(isUser) {
         // Loga
         await login(data);
         // Se ok, atualiza dados cadastrais
-        await updateUserProfile(data);
+        await updateUserProfile(userProfileData);
       } catch (error) {
         console.log('sendSubscribe', error.cause.status);
 
