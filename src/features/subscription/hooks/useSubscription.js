@@ -23,9 +23,12 @@ export default function useSubscription(isUser) {
 
       // Se não houver usuário logado
       // Verifica se já existe cadastro
-      // Loga
+
       try {
+        // Loga
         await login(data);
+        // Se ok, atualiza dados cadastrais
+        await updateUserProfile(data);
       } catch (error) {
         console.log('sendSubscribe', error.cause.status);
 
