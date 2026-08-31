@@ -1,7 +1,6 @@
 import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
-import { users } from '../../../mocks/fakeAuthDb.js';
 import apiFetch from '../../../services/api.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 
@@ -29,18 +28,21 @@ export default async function subscribe(newSubscriptionData) {
       const end = new Date(createdAt);
       end.setMonth(end.getMonth() + months);
 
+      // Define mock (mantendo dados de endereço, caso assinatura seja feita sem)
       const mockSubscribe = {
-        _id: user?._id ?? 'user-mock',
+        _id: user._id ?? 'user-mock',
 
         userName: newSubscriptionData.userName,
         email: newSubscriptionData.email,
         confirmEmail: newSubscriptionData.confirmEmail,
         tel: newSubscriptionData.tel,
-        cep: newSubscriptionData.cep,
-        address: newSubscriptionData.address,
-        number: newSubscriptionData.number,
-        complement: newSubscriptionData.complement,
-        district: newSubscriptionData.district,
+
+        cep: newSubscriptionData.cep ?? user.cep,
+        address: newSubscriptionData.address ?? user.address,
+        number: newSubscriptionData.number ?? user.number,
+        complement: newSubscriptionData.complement ?? user.complement,
+        district: newSubscriptionData.district ?? user.district,
+
         infoText: newSubscriptionData.infoText,
 
         subscription: true,
@@ -52,37 +54,17 @@ export default async function subscribe(newSubscriptionData) {
           method: newSubscriptionData.method,
           pay: newSubscriptionData.pay,
 
-          owner: user?._id ?? 'user-mock',
+          owner: user._id ?? 'user-mock',
           status: true,
           begin: createdAt,
           end: end.toISOString(),
         },
-      }; // sem senha
+      };
 
-      // Se não estiver logado
-      if (!user) {
-        // Verifica se usuário já existe
-        const userExists = users.find((u) => {
-          return u.email === newSubscriptionData.email;
-        });
-
-        // Se usuário já existir
-        if (userExists) {
-          // Verifica se senhas coincidem
-          const passwordMatches = userExists.password === newSubscriptionData.password;
-
-          // Se não coincidirem, retorna 401 para toast
-          if (!passwordMatches) {
-            await fakeApiError('Falha no subscriptionService.subscribe: Não autorizado', 401);
-          }
-        }
-      }
-
-      // Se coincidirem, seta persisitência do mockUser
-      // Se usuário ainda não existir, também
+      // Ajusta persistência
       localStorage.setItem('mockUser', JSON.stringify(mockSubscribe));
 
-      // Retorna dados em 201
+      // Retorna dados (201)
       return await fakeApi(mockSubscribe, 201);
     };
 
