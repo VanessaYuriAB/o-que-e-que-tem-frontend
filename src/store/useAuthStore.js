@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import * as authService from '../features/auth/services/authService.js';
 import errorHandler from '../shared/utils/errorHandler';
-import * as profileService from '../features/profile/services/profileService.js';
 
 /*
 
@@ -27,15 +26,24 @@ Se for erro local, de api, não seta, apenas retorna
 
 */
 
-const useAuthStore = create((set) => ({
+const useAuthStore = create((set, get) => ({
   user: null,
   loading: false,
   globalError: null,
   authChecked: false,
 
+  setUserAction: (userData) => {
+    set({ user: userData });
+  },
+
+  setGlobalErrorAction: (globalErrorData) => {
+    set({ globalError: globalErrorData });
+  },
+
   // register chama authService.register
   registerAction: async (userData) => {
-    set({ loading: true, globalError: null });
+    set({ loading: true });
+    get().setGlobalErrorAction(null);
     try {
       await authService.register(userData);
       return { success: true };
@@ -43,7 +51,7 @@ const useAuthStore = create((set) => ({
       const handledError = errorHandler(error);
 
       if (handledError.scope === 'global') {
-        set({ globalError: handledError });
+        get().setGlobalErrorAction(handledError);
       }
 
       return { success: false, error: handledError };
@@ -54,16 +62,17 @@ const useAuthStore = create((set) => ({
 
   // login chama authService.login e define user, ativando login
   loginAction: async (credentials) => {
-    set({ loading: true, globalError: null });
+    set({ loading: true });
+    get().setGlobalErrorAction(null);
     try {
       const data = await authService.login(credentials);
-      set({ user: data });
+      get().setUserAction(data);
       return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
       if (handledError.scope === 'global') {
-        set({ globalError: handledError });
+        get().setGlobalErrorAction(handledError);
       }
 
       return { success: false, error: handledError };
@@ -74,16 +83,17 @@ const useAuthStore = create((set) => ({
 
   // logout chama authService.logout e reseta user, desativando login
   logoutAction: async () => {
-    set({ loading: true, globalError: null });
+    set({ loading: true });
+    get().setGlobalErrorAction(null);
     try {
       await authService.logout();
-      set({ user: null });
+      get().setUserAction(null);
       return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
       if (handledError.scope === 'global') {
-        set({ globalError: handledError });
+        get().setGlobalErrorAction(handledError);
       }
 
       return { success: false, error: handledError };
@@ -94,75 +104,24 @@ const useAuthStore = create((set) => ({
 
   // refresh chama authService.refresh e seta user + authChecked, mantendo login caso credenciais ok ou limpando user caso ñ ok
   refreshAction: async () => {
-    set({ loading: true, globalError: null });
+    set({ loading: true });
+    get().setGlobalErrorAction(null);
     try {
       const data = await authService.refresh();
-      set({ user: data });
+      get().setUserAction(data);
       return { success: true };
     } catch (error) {
-      set({ user: null });
+      get().setUserAction(null);
 
       const handledError = errorHandler(error);
 
       if (handledError.scope === 'global') {
-        set({ globalError: handledError });
+        get().setGlobalErrorAction(handledError);
       }
 
       return { success: false, error: handledError };
     } finally {
       set({ loading: false, authChecked: true });
-    }
-  },
-
-  // setUserAction
-  setUserAction: (userData) => {
-    set({ user: userData });
-  },
-
-  // setGlobalErrorAction
-  setGlobalErrorAction: (globalErrorData) => {
-    set({ globalError: globalErrorData });
-  },
-
-  // updateUser chama profileService.updateUserProfile e seta user, atualizando dados
-  updateUserAction: async (profileFormData) => {
-    set({ loading: true, globalError: null });
-
-    try {
-      const data = await profileService.updateUserProfile(profileFormData);
-      set({ user: data });
-      return { success: true };
-    } catch (error) {
-      const handledError = errorHandler(error);
-
-      if (handledError.scope === 'global') {
-        set({ globalError: handledError });
-      }
-
-      return { success: false, error: handledError };
-    } finally {
-      set({ loading: false });
-    }
-  },
-
-  // updateSubscription chama profileService.updateSubscriptionProfile e seta user, atualizando dados
-  updateSubscriptionAction: async (profileFormData) => {
-    set({ loading: true, globalError: null });
-
-    try {
-      const data = await profileService.updateSubscriptionProfile(profileFormData);
-      set({ user: data });
-      return { success: true };
-    } catch (error) {
-      const handledError = errorHandler(error);
-
-      if (handledError.scope === 'global') {
-        set({ globalError: handledError });
-      }
-
-      return { success: false, error: handledError };
-    } finally {
-      set({ loading: false });
     }
   },
 }));
