@@ -40,8 +40,17 @@ function SubscriptionProfile() {
           ? 'Seis meses'
           : 'Um ano';
 
-  const beginDate = new Date(user?.subscriptionDetails?.begin).toISOString().split('T')[0];
-  const endDate = new Date(user?.subscriptionDetails?.end).toISOString().split('T')[0];
+  const formatDate = (dateValue) => {
+    const date = new Date(dateValue);
+    // Verifica se a data é válida conferindo se o seu valor numérico não é NaN, para prevenção de crash (RangeError)
+    return !isNaN(date.getTime()) ? date.toISOString().split('T')[0] : '';
+  };
+
+  const beginDate = formatDate(user?.subscriptionDetails?.begin);
+  const endDate = formatDate(user?.subscriptionDetails?.end);
+
+  /*const beginDate = new Date(user?.subscriptionDetails?.begin).toISOString().split('T')[0];
+  const endDate = new Date(user?.subscriptionDetails?.end).toISOString().split('T')[0];*/
 
   const pay =
     user?.subscriptionDetails?.pay === 'pix'
