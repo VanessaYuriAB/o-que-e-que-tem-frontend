@@ -13,6 +13,7 @@ export default function useProfile() {
   async function updateUser(profileFormData) {
     setLoading(true);
     setError(null);
+    setConfirmAction(null);
 
     try {
       const updatedUserData = await profileService.updateUserProfile(profileFormData);
@@ -36,6 +37,44 @@ export default function useProfile() {
     }
   }
 
+  async function updateSubscription(profileFormData, action) {
+    setLoading(true);
+    setError(null);
+    setConfirmAction(null);
+
+    try {
+      const updatedSubscriptionData =
+        await profileService.updateSubscriptionProfile(profileFormData);
+
+      // Setar 'user' (global)
+      setUserAction(updatedSubscriptionData);
+
+      // Se bem sucedido, define msg de sucesso conforme action
+      if (action === 'send') {
+        setConfirmAction('Assinatura atualizada');
+      }
+
+      if (action === 'pause') {
+        setConfirmAction('Assinatura pausada');
+      }
+
+      if (action === 'retake') {
+        setConfirmAction('Assinatura retomada');
+      }
+    } catch (error) {
+      const handledError = errorHandler(error);
+
+      if (handledError.scope === 'global') {
+        // Seta 'globalError' (global)
+        setGlobalErrorAction(handledError);
+      } else if (handledError.scope === 'local') {
+        setError(handledError.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return {
     loading,
     error,
@@ -43,5 +82,6 @@ export default function useProfile() {
     confirmAction,
     setConfirmAction,
     updateUser,
+    updateSubscription,
   };
 }
