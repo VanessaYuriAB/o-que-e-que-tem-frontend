@@ -8,17 +8,17 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import '../../../styles/profile-form.css';
 import './SubscriptionProfile.css';
+import useProfile from '../../../hooks/useProfile.js';
 
 function SubscriptionProfile() {
   const [isEditing, setIsEditing] = useState(false);
-  const [localError, setLocalError] = useState(null);
-  const [confirmAction, setConfirmAction] = useState(null);
 
-  const { user, updateSubscriptionAction, loading, globalError } = useAuthStore(
+  const { loading, error, setError, confirmAction, setConfirmAction, updateSubscription } =
+    useProfile();
+
+  const { user, globalError } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
-      updateSubscriptionAction: state.updateSubscriptionAction,
-      loading: state.loading,
       globalError: state.globalError,
     }))
   );
@@ -136,33 +136,11 @@ function SubscriptionProfile() {
       action === 'pause' ? { status: false } : action === 'retake' ? { status: true } : data;
 
     // Envia dados de atualização e seta perfil
-    const result = await updateSubscriptionAction(payload);
-
-    // Se o fetch não for bem sucedido e o erro for local, define msg de erro
-    if (result.success === false && result.error.scope === 'local') {
-      setLocalError(result.error.message);
-    }
+    await updateSubscription(payload, action);
 
     // Se o envio for de edição
     if (action === 'send') {
       setIsEditing(false);
-    }
-
-    // Se bem sucedido
-    if (result.success === true) {
-      setLocalError(null);
-
-      if (action === 'send') {
-        setConfirmAction('Assinatura atualizada');
-      }
-
-      if (action === 'pause') {
-        setConfirmAction('Assinatura pausada');
-      }
-
-      if (action === 'retake') {
-        setConfirmAction('Assinatura retomada');
-      }
     }
   };
 
@@ -515,11 +493,8 @@ function SubscriptionProfile() {
             />
           )}
 
-          {localError && (
-            <Toast
-              className="subscription-form__toast profile-form__toast"
-              message={localError}
-            ></Toast>
+          {error && (
+            <Toast className="subscription-form__toast profile-form__toast" message={error}></Toast>
           )}
 
           {confirmAction && (
@@ -542,7 +517,7 @@ function SubscriptionProfile() {
                   className="subscription-form__button profile-form__button"
                   type="button"
                   onClick={() => {
-                    setLocalError(null);
+                    setError(null);
                     setConfirmAction(null);
                     setIsEditing(true);
                   }}
