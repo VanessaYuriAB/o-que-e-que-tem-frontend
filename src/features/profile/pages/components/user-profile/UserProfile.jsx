@@ -7,17 +7,16 @@ import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../../../shared/components/ui/textarea/Textarea.jsx';
 import '../../../styles/profile-form.css';
+import useProfile from '../../../hooks/useProfile.js';
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
-  const [localError, setLocalError] = useState(null);
-  const [confirmAction, setConfirmAction] = useState(null);
 
-  const { user, updateUserAction, loading, globalError } = useAuthStore(
+  const { loading, error, setError, confirmAction, setConfirmAction, updateUser } = useProfile();
+
+  const { user, globalError } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
-      updateUserAction: state.updateUserAction,
-      loading: state.loading,
       globalError: state.globalError,
     }))
   );
@@ -43,15 +42,7 @@ function UserProfile() {
 
   const handleUpdate = async (data) => {
     // Envia dados de atualização e seta perfil
-    const result = await updateUserAction(data);
-
-    // Se o fetch não for bem sucedido e o erro for local, define msg de erro
-    if (result.success === false && result.error.scope === 'local') {
-      setLocalError(result.error.message);
-    } else if (result.success === true) {
-      // Se bem sucedido, define msg de sucesso
-      setConfirmAction('Perfil atualizado');
-    }
+    await updateUser(data);
 
     // Reativa 'disabled', desativando edição e voltando para botão 'Editar'
     setIsEditing(false);
@@ -223,9 +214,7 @@ function UserProfile() {
           <Toast className="user-form__toast profile-form__toast" message={globalError.message} />
         )}
 
-        {localError && (
-          <Toast className="user-form__toast profile-form__toast" message={localError} />
-        )}
+        {error && <Toast className="user-form__toast profile-form__toast" message={error} />}
 
         {confirmAction && (
           <Toast className="user-form__toast profile-form__toast" message={confirmAction}></Toast>
@@ -237,7 +226,7 @@ function UserProfile() {
               className="user-form__button profile-form__button"
               type="button"
               onClick={() => {
-                setLocalError(null);
+                setError(null);
                 setConfirmAction(null);
                 setIsEditing(true); // desativa atributo 'disabled', habilitando edição e alternando para botão 'Enviar'
               }}
