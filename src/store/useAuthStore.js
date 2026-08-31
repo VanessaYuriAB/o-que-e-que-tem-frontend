@@ -114,6 +114,16 @@ const useAuthStore = create((set) => ({
     }
   },
 
+  // setUserAction
+  setUserAction: (userData) => {
+    set({ user: userData });
+  },
+
+  // setGlobalErrorAction
+  setGlobalErrorAction: (globalErrorData) => {
+    set({ globalError: globalErrorData });
+  },
+
   // updateUser chama profileService.updateUserProfile e seta user, atualizando dados
   updateUserAction: async (profileFormData) => {
     set({ loading: true, globalError: null });
