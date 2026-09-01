@@ -68,6 +68,11 @@
 .contact__textarea {
 }
 
+.contact__error-toast {
+  margin-bottom: 1rem;
+  padding: 1em;
+}
+
 .contact__button {
 }
 
@@ -80,5 +85,9 @@
 
   .contact__fieldset {
     padding-inline: 1rem;
+  }
+
+  .contact__error-toast {
+    width: 70%;
   }
 }
