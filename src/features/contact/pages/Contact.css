@@ -1,0 +1,84 @@
+/* Mobile first (padrão) */
+
+.content__contact {
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.contact__title {
+}
+
+.contact__form {
+  width: 100%;
+}
+
+.contact__fieldset {
+  margin-bottom: 2rem;
+}
+
+.contact__fieldset:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.contact__fieldset_radio {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.contact__legend {
+}
+
+.contact__input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__input-box_radio {
+  flex-direction: row-reverse;
+  column-gap: 0.25rem;
+}
+
+.contact__label {
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
+
+.contact__label_radio {
+  margin-bottom: 0;
+}
+
+.contact__input {
+}
+
+.contact__input_space {
+  margin-bottom: 0.5rem;
+}
+
+.contact__textarea-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact__textarea {
+}
+
+.contact__button {
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .contact {
+    max-width: 50%;
+  }
+
+  .contact__fieldset {
+    padding-inline: 1rem;
+  }
+}

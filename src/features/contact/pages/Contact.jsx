@@ -38,7 +38,7 @@ function Contact() {
               Nome:
             </label>
             <Input
-              className="contact__input"
+              className="contact__input contact__input_space"
               type="text"
               id="userName"
               name="userName"
@@ -56,13 +56,13 @@ function Contact() {
               E-mail:
             </label>
             <Input
-              className="contact__input"
+              className="contact__input contact__input_space"
               type="email"
               id="email"
               name="email"
               pattern="^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
               title="E-mail válido: contento apenas letras, números, sublinhados, pontos ou hífens."
-              placeholder="Um e-mail para contato"
+              placeholder="exemplo@email.com"
               value={formData.email}
               onChange={handleChange}
               required
@@ -82,7 +82,7 @@ function Contact() {
               maxLength={15}
               pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
               title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
-              placeholder="Seu WhatsApp para contato, no formato: (XX) XXXXX-XXXX"
+              placeholder="(XX) XXXXX-XXXX"
               value={formData.tel}
               onChange={handleChange}
               required
@@ -108,10 +108,10 @@ function Contact() {
             />
           </div>
         </fieldset>
-        <fieldset className="contact__fieldset">
+        <fieldset className="contact__fieldset contact__fieldset_radio">
           <legend className="contact__legend">Como prefere que retornemos?</legend>
-          <div className="contact__input-box">
-            <label className="contact__label" htmlFor="email-radio">
+          <div className="contact__input-box contact__input-box_radio">
+            <label className="contact__label contact__label_radio" htmlFor="email-radio">
               E-mail
             </label>
             <Input
@@ -124,8 +124,8 @@ function Contact() {
               onChange={handleChange}
             />
           </div>
-          <div className="contact__input-box">
-            <label className="contact__label" htmlFor="tel-radio">
+          <div className="contact__input-box contact__input-box_radio">
+            <label className="contact__label contact__label_radio" htmlFor="tel-radio">
               WhatsApp
             </label>
             <Input
