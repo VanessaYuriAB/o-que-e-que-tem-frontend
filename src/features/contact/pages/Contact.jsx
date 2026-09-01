@@ -4,9 +4,19 @@ import Input from '../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
 import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
+import useContact from '../hooks/useContact.js';
+import { useShallow } from 'zustand/react/shallow';
+import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 
 function Contact() {
-  const user = useAuthStore((state) => state.user);
+  const { sendMsg, loading, error, success } = useContact();
+
+  const { user, globalError } = useAuthStore(
+    useShallow((state) => ({
+      user: state.user,
+      globalError: state.globalError,
+    }))
+  );
 
   const [formData, setFormData] = useState({
     userName: user?.userName ?? '',
@@ -21,10 +31,24 @@ function Contact() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleContact = async (data) => {
+    const result = await sendMsg(data);
+
+    if (result.success === true) {
+      setFormData({
+        userName: user?.userName ?? '',
+        email: user?.email ?? '',
+        tel: user?.tel ?? '',
+        message: '',
+        method: '',
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // handleContact();
+    handleContact(formData);
   };
 
   return (
@@ -139,8 +163,16 @@ function Contact() {
             />
           </div>
         </fieldset>
+
+        {(error || globalError || success) && (
+          <Toast
+            className="contact__error-toast"
+            message={error ? error.message : globalError ? globalError.message : success}
+          />
+        )}
+
         <Button className="contact__button" type="submit">
-          Enviar
+          {loading ? 'Enviando mensagem...' : 'Enviar'}
         </Button>
       </form>
     </section>
