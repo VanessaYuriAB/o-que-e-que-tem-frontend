@@ -2,15 +2,14 @@ import errorHandler from '../../../shared/utils/errorHandler.js';
 import subscribe from '../services/subscriptionService.js';
 import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
+import * as profileService from '../../profile/services/profileService.js';
 
 export default function useSubscription(isUser) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const loginAction = useAuthStore((state) => state.loginAction);
-  const registerAction = useAuthStore((state) => state.registerAction);
-  const updateUserAction = useAuthStore((state) => state.updateUserAction);
-  /*const updateSubscriptionAction = useAuthStore((state) => state.updateSubscriptionAction);*/
+  const { /*setUserAction,*/ setGlobalErrorAction, loginAction, registerAction } =
+    useAuthStore.getState();
 
   async function sendSubscribe(data) {
     setLoading(true);
@@ -32,17 +31,6 @@ export default function useSubscription(isUser) {
     delete dataWithoutPassword.confirmPassword;
 
     try {
-      // Se houver usuário logado
-      if (isUser) {
-        // Atualiza dados do usuário
-        const updateProfileResult = await updateUserAction(dataWithoutPassword);
-
-        if (!updateProfileResult.success) {
-          console.log(updateProfileResult.error);
-          throw updateProfileResult.error;
-        }
-      }
-
       // Se não houver usuário logado
       if (!isUser) {
         // Verifica se já existe cadastro
@@ -65,20 +53,25 @@ export default function useSubscription(isUser) {
             throw loginResult.error;
           }
         }
-
-        // Se ok, atualiza dados cadastrais
-        const updateProfileResult = await updateUserAction(dataWithoutPassword);
-
-        if (!updateProfileResult.success) {
-          throw updateProfileResult.error;
-        }
       }
 
-      // Então, inscreve assinatura (qdo chega aqui em subscribe(), o usuário já está, necessariamente, logado)
-      await subscribe(dataWithVerifiedAddress);
+      // Neste ponto, o usuário já está logado
+
+      // Atualiza dados do usuário
+      await profileService.updateUserProfile(dataWithoutPassword);
+
+      // Então, inscreve assinatura
+      await subscribe(dataWithoutPassword);
     } catch (error) {
       const handledError = errorHandler(error);
-      setError(handledError);
+
+      if (handledError.scope === 'global') {
+        // Seta 'globalError' (global)
+        setGlobalErrorAction(handledError);
+      } else if (handledError.scope === 'local') {
+        setError(handledError);
+      }
+
       throw handledError;
     } finally {
       setLoading(false);

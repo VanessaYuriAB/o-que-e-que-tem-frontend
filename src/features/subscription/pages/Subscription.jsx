@@ -9,13 +9,19 @@ import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useSubscription from '../hooks/useSubscription.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 
 function Subscription() {
   const navigate = useNavigate();
 
   const [toast, setToast] = useState(null);
 
-  const user = useAuthStore((state) => state.user);
+  const { user, globalError } = useAuthStore(
+    useShallow((state) => ({
+      user: state.user,
+      globalError: state.globalError,
+    }))
+  );
 
   const { sendSubscribe, loading, error } = useSubscription(user);
 
@@ -100,6 +106,7 @@ function Subscription() {
   const handleSubscribe = async (data) => {
     try {
       await sendSubscribe(data);
+
       setFormData({
         userName: '',
         email: '',
@@ -122,7 +129,8 @@ function Subscription() {
 
         pay: '',
       });
-      setToast({ message: 'Assinatura realizada com sucesso!', type: 'success' });
+
+      // Navega automaticamente para '/profile/subscription-profile', pelo SubscriptionRoute
     } catch (error) {
       if (error.status === 401) {
         setToast({
@@ -131,8 +139,6 @@ function Subscription() {
           type: 'error',
         });
       }
-
-      console.log('Subscription', error);
     }
   };
 
@@ -795,6 +801,10 @@ function Subscription() {
 
         {loading && (
           <Loader className="subscription__loader">Enviando dados de assinatura...</Loader>
+        )}
+
+        {globalError && (
+          <Toast className="subscription__error-toast" message={globalError.message} />
         )}
 
         {error && error.status !== 401 && (
