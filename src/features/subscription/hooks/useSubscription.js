@@ -8,7 +8,7 @@ export default function useSubscription(isUser) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { /*setUserAction,*/ setGlobalErrorAction, loginAction, registerAction } =
+  const { setUserAction, setGlobalErrorAction, loginAction, registerAction } =
     useAuthStore.getState();
 
   async function sendSubscribe(data) {
@@ -61,7 +61,10 @@ export default function useSubscription(isUser) {
       await profileService.updateUserProfile(dataWithoutPassword);
 
       // Então, inscreve assinatura
-      await subscribe(dataWithoutPassword);
+      const subscriptionData = await subscribe(dataWithoutPassword);
+
+      // E seta 'user' (global)
+      setUserAction(subscriptionData);
     } catch (error) {
       const handledError = errorHandler(error);
 
