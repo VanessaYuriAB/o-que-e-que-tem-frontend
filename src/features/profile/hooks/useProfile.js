@@ -15,6 +15,8 @@ export default function useProfile() {
     setError(null);
     setConfirmAction(null);
 
+    setGlobalErrorAction(null);
+
     try {
       const updatedUserData = await profileService.updateUserProfile(profileFormData);
 
@@ -41,6 +43,8 @@ export default function useProfile() {
     setLoading(true);
     setError(null);
     setConfirmAction(null);
+
+    setGlobalErrorAction(null);
 
     try {
       const updatedSubscriptionData =

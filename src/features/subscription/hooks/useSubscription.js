@@ -15,6 +15,8 @@ export default function useSubscription(isUser) {
     setLoading(true);
     setError(null);
 
+    setGlobalErrorAction(null);
+
     const dataWithVerifiedAddress = { ...data };
 
     const addressFields = ['cep', 'address', 'number', 'complement', 'district'];
