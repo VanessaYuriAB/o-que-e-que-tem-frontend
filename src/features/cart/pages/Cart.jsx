@@ -10,6 +10,7 @@ import { useShallow } from 'zustand/react/shallow';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import useAuthStore from '../../../store/useAuthStore.js';
+import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
 
 function Cart() {
   const navigate = useNavigate();
@@ -55,6 +56,12 @@ function Cart() {
   const total = formData.method === 'delivery' ? subtotal + 10 : subtotal;
 
   const typeOfMeal = formData.meal === 'pate' ? 'patê' : formData.meal;
+
+  const nextMealAt = getNextDate(user?.subscriptionDetails?.daysOn || []);
+
+  const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
+  const nextDayAt = nextMealAt ? weekDays[new Date(nextMealAt).getDay()] : '';
+  const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
 
   const handleRemoveItem = async (item) => {
     try {
@@ -330,7 +337,41 @@ function Cart() {
                 </fieldset>
               )}
 
-              <fieldset className="pack-form__field">
+              {user?.subscription === true && user?.subscriptionDetails?.status === true && (
+                <fieldset className="pack-form__field pack-form__field_next">
+                  <legend className="pack-form__legend">Data e hora:</legend>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="nextMeal">
+                      Próxima entrega em:
+                    </label>
+                    <Input
+                      className="pack-form__input pack-form__input_date"
+                      type="date"
+                      id="nextMeal"
+                      name="nextMeal"
+                      value={nextMealAt}
+                      disabled
+                    />
+                  </div>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="schedule">
+                      Horário:
+                    </label>
+                    <Input
+                      className="pack-form__input pack-form__input_schedule"
+                      type="time"
+                      id="schedule"
+                      name="schedule"
+                      min="10:45"
+                      max="19:45"
+                      value={nextTimeAt}
+                      disabled
+                    />
+                  </div>
+                </fieldset>
+              )}
+
+              <fieldset className="">
                 <legend className="pack-form__legend">Informações de contato:</legend>
                 <div className="pack-form__input-box">
                   <label className="pack-form__label" htmlFor="userName">
