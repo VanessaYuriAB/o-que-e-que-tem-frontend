@@ -63,6 +63,9 @@ function Cart() {
   const nextDayAt = nextMealAt ? weekDays[new Date(nextMealAt).getDay()] : '';
   const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
 
+  const isSubscribeActive =
+    user?.subscription === true && user?.subscriptionDetails?.status === true;
+
   const handleRemoveItem = async (item) => {
     try {
       await removeItemToCartAction(item);
@@ -260,7 +263,7 @@ function Cart() {
                 </div>
               </fieldset>
 
-              {user?.subscription === true && user?.subscriptionDetails?.status === true ? (
+              {isSubscribeActive ? (
                 <fieldset className="pack-form__field pack-form__field_radio">
                   <legend className="pack-form__legend">Forma de entrega:</legend>
                   <div className="pack-form__radio-box">
@@ -337,7 +340,7 @@ function Cart() {
                 </fieldset>
               )}
 
-              {user?.subscription === true && user?.subscriptionDetails?.status === true && (
+              {isSubscribeActive && (
                 <fieldset className="pack-form__field pack-form__field_next">
                   <legend className="pack-form__legend">Data e hora:</legend>
                   <div className="pack-form__input-box">
@@ -549,7 +552,7 @@ function Cart() {
                 <Toast className="pack-form__toast" message={localCartError}></Toast>
               )}
 
-              {user?.subscription && user?.subscriptionDetails?.status ? (
+              {isSubscribeActive ? (
                 <Button className="pack-form__button" type="submit">
                   {!setLoading && typeOfMeal !== ''
                     ? `Finalizar ${typeOfMeal}`
