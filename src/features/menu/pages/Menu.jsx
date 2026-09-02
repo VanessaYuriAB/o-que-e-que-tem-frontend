@@ -12,12 +12,15 @@ function Menu() {
 
   return (
     <section className="menu content__menu">
-      <h1 className="menu__title"> Será que tem?</h1>
+      <h1 className="menu__title"> Será que tem feijão?</h1>
       <section className="menu__content">
         <h2 className="menu__subtitle">Descubra nossa seleção de ingredientes de hoje. </h2>
         <p className="menu__description">
           Aqui estão os ingredientes disponíveis, separados por categoria. Você pode escolher o que
           prefere para juntar na sua sopa, creme ou patê.
+        </p>
+        <p className="menu__description">
+          Depois de selecionar, clique no botão para navegar ao Carrinho de sopas, cremes ou patês.
         </p>
         <nav className="menu__links" aria-label="Categorias dos ingredientes disponíveis.">
           <ul className="menu__list nav__list">
