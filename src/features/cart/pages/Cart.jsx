@@ -504,13 +504,23 @@ function Cart() {
                 <Toast className="pack-form__toast" message={localCartError}></Toast>
               )}
 
-              <Button className="pack-form__button" type="submit">
-                {!setLoading && typeOfMeal !== ''
-                  ? `Finalizar ${typeOfMeal}: R$ ${total},00`
-                  : setLoading && typeOfMeal !== ''
-                    ? 'Finalizando...'
-                    : 'Finalizar'}
-              </Button>
+              {user?.subscription && user?.subscriptionDetails?.status ? (
+                <Button className="pack-form__button" type="submit">
+                  {!setLoading && typeOfMeal !== ''
+                    ? `Finalizar ${typeOfMeal}`
+                    : setLoading && typeOfMeal !== ''
+                      ? 'Finalizando...'
+                      : 'Finalizar'}
+                </Button>
+              ) : (
+                <Button className="pack-form__button" type="submit">
+                  {!setLoading && typeOfMeal !== ''
+                    ? `Finalizar ${typeOfMeal}: R$ ${total},00`
+                    : setLoading && typeOfMeal !== ''
+                      ? 'Finalizando...'
+                      : 'Finalizar'}
+                </Button>
+              )}
             </form>
           </div>
         </section>
