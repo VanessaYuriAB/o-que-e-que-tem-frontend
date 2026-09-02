@@ -9,6 +9,7 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import '../../../styles/profile-form.css';
 import './SubscriptionProfile.css';
 import useProfile from '../../../hooks/useProfile.js';
+import getNextDate from '../../../../../shared/utils/nextSubscriptionDate.js';
 
 function SubscriptionProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -58,31 +59,6 @@ function SubscriptionProfile() {
       : user?.subscriptionDetails?.pay === 'debito'
         ? 'Cartão de débito'
         : 'Cartão de crédito';
-
-  const getNextDate = (daysOn, fromDate = new Date()) => {
-    const dayMap = {
-      seg: 1,
-      ter: 2,
-      qua: 3,
-      qui: 4,
-      sex: 5,
-    };
-
-    const validDays = daysOn.map((day) => dayMap[day]);
-
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(fromDate);
-      date.setDate(fromDate.getDate() + i);
-
-      const weekday = date.getDay();
-
-      if (validDays.includes(weekday)) {
-        return date.toISOString().split('T')[0];
-      }
-    }
-
-    return null;
-  };
 
   const nextMealAt = getNextDate(user?.subscriptionDetails?.daysOn || []);
 
