@@ -24,7 +24,7 @@ function Cart() {
     removeItemToCartAction,
     removeLoading,
     setCartDataAction,
-    setLoading,
+    setLoading, // loading da função de setar, não set de estado
     cartData,
   } = useCartStore(
     useShallow((state) => ({
@@ -39,7 +39,7 @@ function Cart() {
 
   const [formData, setFormData] = useState({
     meal: cartData.meal || '',
-    method: cartData.method || '',
+    method: cartData.method || user?.subscriptionDetails?.method || '',
     userName: cartData.userName || user?.userName || '',
     email: cartData.email || user?.email || '',
     tel: cartData.tel || user?.tel || '',
