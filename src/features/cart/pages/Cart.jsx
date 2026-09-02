@@ -246,44 +246,41 @@ function Cart() {
                 </div>
               </fieldset>
 
-              {user?.subscription !== false ? (
+              {user?.subscription === true && user?.subscriptionDetails?.status === true ? (
                 <fieldset className="pack-form__field pack-form__field_radio">
                   <legend className="pack-form__legend">Forma de entrega:</legend>
-                  {user?.subscriptionDetails?.method === 'delivery' ? (
-                    <div className="pack-form__radio-box">
-                      <div className="pack-form__input-box pack-form__input-box_radio">
-                        <label className="pack-form__label" htmlFor="delivery">
-                          Delivery
-                        </label>
-                        <Input
-                          className="pack-form__input pack-form__input_radio"
-                          type="radio"
-                          id="delivery"
-                          name="method"
-                          value="delivery"
-                          checked={true}
-                          disabled
-                        />
-                      </div>
+                  <div className="pack-form__radio-box">
+                    <div className="pack-form__input-box pack-form__input-box_radio">
+                      <label className="pack-form__label" htmlFor="delivery">
+                        Delivery
+                      </label>
+                      <Input
+                        className="pack-form__input pack-form__input_radio"
+                        type="radio"
+                        id="delivery"
+                        name="method"
+                        value="delivery"
+                        checked={user?.subscriptionDetails?.method === 'delivery'}
+                        disabled
+                      />
                     </div>
-                  ) : (
-                    <div className="pack-form__radio-box">
-                      <div className="pack-form__input-box pack-form__input-box_radio">
-                        <label className="pack-form__label" htmlFor="drive-thru">
-                          Drive-thru
-                        </label>
-                        <Input
-                          className="pack-form__input pack-form__input_radio"
-                          type="radio"
-                          id="drive-thru"
-                          name="method"
-                          value="drive-thru"
-                          checked={true}
-                          disabled
-                        />
-                      </div>
+                  </div>
+                  <div className="pack-form__radio-box">
+                    <div className="pack-form__input-box pack-form__input-box_radio">
+                      <label className="pack-form__label" htmlFor="drive-thru">
+                        Drive-thru
+                      </label>
+                      <Input
+                        className="pack-form__input pack-form__input_radio"
+                        type="radio"
+                        id="drive-thru"
+                        name="method"
+                        value="drive-thru"
+                        checked={user?.subscriptionDetails?.method === 'drive-thru'}
+                        disabled
+                      />
                     </div>
-                  )}
+                  </div>
                 </fieldset>
               ) : (
                 <fieldset className="pack-form__field pack-form__field_radio">
