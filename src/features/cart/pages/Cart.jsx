@@ -338,100 +338,102 @@ function Cart() {
                 </div>
               </fieldset>
 
-              <fieldset className="pack-form__field">
-                <legend className="pack-form__legend">Endereço para entrega:</legend>
-                <div className="pack-form__input-box">
-                  <label className="pack-form__label" htmlFor="address">
-                    Logradouro (rua, avenida, praça, etc):
-                  </label>
-                  <Input
-                    className="pack-form__input"
-                    type="text"
-                    id="address"
-                    name="address"
-                    pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
-                    title="Seu endereço para delivery: não são permitidos '<' e '>'."
-                    placeholder="Endereço para entrega"
-                    value={formData.address}
-                    onChange={handleChange}
-                    required={formData.method === 'delivery'}
-                  />
-                </div>
+              {formData.method === 'delivery' && (
+                <fieldset className="pack-form__field">
+                  <legend className="pack-form__legend">Endereço para entrega:</legend>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="address">
+                      Logradouro (rua, avenida, praça, etc):
+                    </label>
+                    <Input
+                      className="pack-form__input"
+                      type="text"
+                      id="address"
+                      name="address"
+                      pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+                      title="Seu endereço para delivery: não são permitidos '<' e '>'."
+                      placeholder="Endereço para entrega"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required={formData.method === 'delivery'}
+                    />
+                  </div>
 
-                <div className="pack-form__input-box">
-                  <label className="pack-form__label" htmlFor="number">
-                    Nº:
-                  </label>
-                  <Input
-                    className="pack-form__input"
-                    type="text"
-                    id="number"
-                    name="number"
-                    inputMode="numeric"
-                    pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
-                    title="O número do seu endereço para delivery: apenas números e/ou letras."
-                    placeholder="Nº do endereço"
-                    value={formData.number}
-                    onChange={handleChange}
-                    required={formData.method === 'delivery'}
-                  />
-                </div>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="number">
+                      Nº:
+                    </label>
+                    <Input
+                      className="pack-form__input"
+                      type="text"
+                      id="number"
+                      name="number"
+                      inputMode="numeric"
+                      pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
+                      title="O número do seu endereço para delivery: apenas números e/ou letras."
+                      placeholder="Nº do endereço"
+                      value={formData.number}
+                      onChange={handleChange}
+                      required={formData.method === 'delivery'}
+                    />
+                  </div>
 
-                <div className="pack-form__input-box">
-                  <label className="pack-form__label" htmlFor="complement">
-                    Complemento:
-                  </label>
-                  <Input
-                    className="pack-form__input"
-                    type="text"
-                    id="complement"
-                    name="complement"
-                    pattern="^[a-zA-Z0-9\s.\-]*$" /* apenas números, letras, espaços em branco, pontos e traços */
-                    title="O complemento do seu endereço para delivery: apenas números, letras, espaços em branco, pontos e/ou traços."
-                    placeholder="Se não houver, digite traço (-)."
-                    value={formData.complement}
-                    onChange={handleChange}
-                    required={formData.method === 'delivery'}
-                  />
-                </div>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="complement">
+                      Complemento:
+                    </label>
+                    <Input
+                      className="pack-form__input"
+                      type="text"
+                      id="complement"
+                      name="complement"
+                      pattern="^[a-zA-Z0-9\s.\-]*$" /* apenas números, letras, espaços em branco, pontos e traços */
+                      title="O complemento do seu endereço para delivery: apenas números, letras, espaços em branco, pontos e/ou traços."
+                      placeholder="Se não houver, digite traço (-)."
+                      value={formData.complement}
+                      onChange={handleChange}
+                      required={formData.method === 'delivery'}
+                    />
+                  </div>
 
-                <div className="pack-form__input-box">
-                  <label className="pack-form__label" htmlFor="district">
-                    Bairro:
-                  </label>
-                  <Input
-                    className="pack-form__input"
-                    type="text"
-                    id="district"
-                    name="district"
-                    pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
-                    title="O bairro do seu endereço para delivery: apenas números e/ou letras."
-                    placeholder="O bairro do local"
-                    value={formData.district}
-                    onChange={handleChange}
-                    required={formData.method === 'delivery'}
-                  />
-                </div>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="district">
+                      Bairro:
+                    </label>
+                    <Input
+                      className="pack-form__input"
+                      type="text"
+                      id="district"
+                      name="district"
+                      pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
+                      title="O bairro do seu endereço para delivery: apenas números e/ou letras."
+                      placeholder="O bairro do local"
+                      value={formData.district}
+                      onChange={handleChange}
+                      required={formData.method === 'delivery'}
+                    />
+                  </div>
 
-                <div className="pack-form__input-box">
-                  <label className="pack-form__label" htmlFor="cep">
-                    CEP:
-                  </label>
-                  <Input
-                    className="pack-form__input"
-                    type="text"
-                    id="cep"
-                    name="cep"
-                    inputMode="numeric"
-                    pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
-                    title="O CEP do seu endereço para delivery: apenas números e traço."
-                    placeholder="Formato: XXXXX-XXX"
-                    value={formData.cep}
-                    onChange={handleChange}
-                    required={formData.method === 'delivery'}
-                  />
-                </div>
-              </fieldset>
+                  <div className="pack-form__input-box">
+                    <label className="pack-form__label" htmlFor="cep">
+                      CEP:
+                    </label>
+                    <Input
+                      className="pack-form__input"
+                      type="text"
+                      id="cep"
+                      name="cep"
+                      inputMode="numeric"
+                      pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
+                      title="O CEP do seu endereço para delivery: apenas números e traço."
+                      placeholder="Formato: XXXXX-XXX"
+                      value={formData.cep}
+                      onChange={handleChange}
+                      required={formData.method === 'delivery'}
+                    />
+                  </div>
+                </fieldset>
+              )}
 
               <fieldset className="pack-form__field">
                 <legend className="pack-form__legend">Informações adicionais:</legend>
