@@ -3,7 +3,7 @@ import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Button from '../../../../shared/components/ui/button/Button.jsx';
 import { useMemo, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import useCartStore from '../../../../store/useCartStore.js';
 import errorHandler from '../../../../shared/utils/errorHandler.js';
 import { useShallow } from 'zustand/react/shallow';
@@ -12,6 +12,8 @@ import './MenuType.css';
 
 function MenuType({ category }) {
   /* HOOKS PRIMEIRO, ANTES DE QLQR RETURN */
+
+  const navigate = useNavigate();
 
   const [activeItemId, setActiveItemId] = useState(null);
 
@@ -129,6 +131,15 @@ function MenuType({ category }) {
           );
         })}
       </ul>
+      <Button
+        className="menu__section-button menu__section-button_pack"
+        type="button"
+        onClick={() => {
+          navigate('/cart');
+        }}
+      >
+        Navegar ao Carrinho de sopas, cremes ou patês... :)
+      </Button>
     </section>
   );
 }
