@@ -8,6 +8,8 @@ import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import qrCodeImg from '../../../assets/images/qrcode.jpg';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
+import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
+import useAuthStore from '../../../store/useAuthStore.js';
 
 function Checkout() {
   const navigate = useNavigate();
@@ -42,10 +44,22 @@ function Checkout() {
   console.log('Pedido:', cartData);
   console.log('Items:', cartItems);
 
+  const user = useAuthStore((state) => state.user);
+
   const hasCartItems = cartItems.length > 0;
   const hasCartData = cartData.meal !== '' && cartData.meal !== undefined;
 
   const isCartReady = hasCartItems && hasCartData;
+
+  const canBuy =
+    user?.subscription === false ||
+    (user?.subscription === true && user?.subscriptionDetails?.status === false);
+
+  const nextMealAt = getNextDate(user?.subscriptionDetails?.daysOn || []);
+
+  const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
+  const nextDayAt = nextMealAt ? weekDays[new Date(nextMealAt).getDay()] : '';
+  const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,7 +69,11 @@ function Checkout() {
     });
   };
 
-  const handleCheckout = async (orderData) => {
+  const handleSubscribeOrderCheckout = async () => {
+    // ...
+  };
+
+  const handleOrderCheckout = async (orderData) => {
     setLocalError(null);
 
     // Service (+ action/store)
@@ -111,7 +129,7 @@ function Checkout() {
       obs: cartData.infoText,
     };
 
-    handleCheckout(order);
+    handleOrderCheckout(order);
   };
 
   return (
@@ -148,10 +166,12 @@ function Checkout() {
         </section>
       ) : (
         <section className="checkout__container">
-          <h1 className="checkout__title">Finalize sua compra (:</h1>
+          <h1 className="checkout__title">
+            {canBuy ? 'Finalize sua compra' : 'Confirme seu próximo pedido'} (:
+          </h1>
           <div className="checkout__box">
             <aside className="checkout__aside">
-              <h2 className="checkout__subtitle">Detalhes do pedido:</h2>
+              <h2 className="checkout__subtitle">Detalhes{canBuy ? ' do pedido' : ''}:</h2>
               <dl className="checkout__details">
                 <div className="checkout__detail checkout__detail_list">
                   <dt className="checkout__item-term">Items:</dt>
@@ -196,173 +216,202 @@ function Checkout() {
                   </div>
                 )}
 
-                <div className="checkout__detail">
-                  <dt className="checkout__item-term">Total:</dt>
-                  <dd className="checkout__item-description"> R$ {cartData.amount},00</dd>
-                </div>
+                {canBuy && (
+                  <div className="checkout__detail">
+                    <dt className="checkout__item-term">Total:</dt>
+                    <dd className="checkout__item-description">R$ {cartData.amount},00</dd>
+                  </div>
+                )}
+
+                {!canBuy && (
+                  <>
+                    <div className="checkout__detail">
+                      <dt className="checkout__item-term">Data:</dt>
+                      <dd className="checkout__item-description">
+                        {nextMealAt} ({nextDayAt})
+                      </dd>
+                    </div>
+
+                    <div className="checkout__detail">
+                      <dt className="checkout__item-term">Às:</dt>
+                      <dd className="checkout__item-description">{nextTimeAt}</dd>
+                    </div>
+                  </>
+                )}
               </dl>
             </aside>
 
-            <form
-              className="order-form checkout__order-form"
-              name="order"
-              onSubmit={handleSubmit} /*noValidate*/
-            >
-              <fieldset className="order-form__field order-form__field_radio">
-                <legend className="order-form__legend ">Forma de pagamento:</legend>
-                <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label" htmlFor="pix">
-                    PIX
-                  </label>
-                  <Input
-                    className="order-form__input order-form__input_radio"
-                    type="radio"
-                    id="pix"
-                    name="pay"
-                    value="pix"
-                    checked={formData.pay === 'pix'}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label" htmlFor="debito">
-                    Cartão de débito
-                  </label>
-                  <Input
-                    className="order-form__input order-form__input_radio"
-                    type="radio"
-                    id="debito"
-                    name="pay"
-                    value="debito"
-                    checked={formData.pay === 'debito'}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="order-form__input-box order-form__input-box_radio">
-                  <label className="order-form__label" htmlFor="credito">
-                    Cartão de crédito
-                  </label>
-                  <Input
-                    className="order-form__input order-form__input_radio"
-                    type="radio"
-                    id="credito"
-                    name="pay"
-                    value="credito"
-                    checked={formData.pay === 'credito'}
-                    onChange={handleChange}
-                  />
-                </div>
-              </fieldset>
-
-              {formData.pay === 'pix' && (
-                <fieldset className="order-form__field">
-                  <legend className="order-form__legend">Dados para PIX:</legend>
-                  <dl className="order-form__pix-details">
-                    <dt className="order-form__pix-term">Chave PIX: </dt>
-                    <dd className="order-form__pix-description">portfolio@exemplo.com</dd>
-                  </dl>
-
-                  <p className="order-form__pix-label">QR Code:</p>
-                  <img
-                    className="order-form__pix-qr-img"
-                    src={qrCodeImg}
-                    alt="Imagem demonstrativa de um QR Code com desenho centralizado de coração."
-                  />
-                </fieldset>
-              )}
-
-              {formData.pay === 'debito' && (
-                <fieldset className="order-form__field">
-                  <legend className="order-form__legend">Dados do cartão de débito:</legend>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Nome: </label>
-                    <input className="order-form__input" disabled />
+            {canBuy && (
+              <form
+                className="order-form checkout__order-form"
+                name="order"
+                onSubmit={handleSubmit} /*noValidate*/
+              >
+                <fieldset className="order-form__field order-form__field_radio">
+                  <legend className="order-form__legend ">Forma de pagamento:</legend>
+                  <div className="order-form__input-box order-form__input-box_radio">
+                    <label className="order-form__label" htmlFor="pix">
+                      PIX
+                    </label>
+                    <Input
+                      className="order-form__input order-form__input_radio"
+                      type="radio"
+                      id="pix"
+                      name="pay"
+                      value="pix"
+                      checked={formData.pay === 'pix'}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Nº do cartão: </label>
-                    <input className="order-form__input" disabled />
+                  <div className="order-form__input-box order-form__input-box_radio">
+                    <label className="order-form__label" htmlFor="debito">
+                      Cartão de débito
+                    </label>
+                    <Input
+                      className="order-form__input order-form__input_radio"
+                      type="radio"
+                      id="debito"
+                      name="pay"
+                      value="debito"
+                      checked={formData.pay === 'debito'}
+                      onChange={handleChange}
+                    />
                   </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Bandeira: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Validade: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Código: </label>
-                    <input className="order-form__input" disabled />
+                  <div className="order-form__input-box order-form__input-box_radio">
+                    <label className="order-form__label" htmlFor="credito">
+                      Cartão de crédito
+                    </label>
+                    <Input
+                      className="order-form__input order-form__input_radio"
+                      type="radio"
+                      id="credito"
+                      name="pay"
+                      value="credito"
+                      checked={formData.pay === 'credito'}
+                      onChange={handleChange}
+                    />
                   </div>
                 </fieldset>
-              )}
 
-              {formData.pay === 'credito' && (
-                <fieldset className="order-form__field">
-                  <legend className="order-form__legend">Dados do cartão de crédito:</legend>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Nome: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Nº do cartão: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Bandeira: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Validade: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Código: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                  <div className="order-form__input-box">
-                    <label className="order-form__label">Parcelas: </label>
-                    <input className="order-form__input" disabled />
-                  </div>
-                </fieldset>
-              )}
+                {formData.pay === 'pix' && (
+                  <fieldset className="order-form__field">
+                    <legend className="order-form__legend">Dados para PIX:</legend>
+                    <dl className="order-form__pix-details">
+                      <dt className="order-form__pix-term">Chave PIX: </dt>
+                      <dd className="order-form__pix-description">portfolio@exemplo.com</dd>
+                    </dl>
 
-              <p className="order-form__notice">
-                ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
-              </p>
+                    <p className="order-form__pix-label">QR Code:</p>
+                    <img
+                      className="order-form__pix-qr-img"
+                      src={qrCodeImg}
+                      alt="Imagem demonstrativa de um QR Code com desenho centralizado de coração."
+                    />
+                  </fieldset>
+                )}
 
-              {loading && (
-                <Loader className="order-form__loader">
-                  Mais um pouco menos de desperdício... Enviando pedido...
-                </Loader>
-              )}
+                {formData.pay === 'debito' && (
+                  <fieldset className="order-form__field">
+                    <legend className="order-form__legend">Dados do cartão de débito:</legend>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Nome: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Nº do cartão: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Bandeira: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Validade: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Código: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                  </fieldset>
+                )}
 
-              {localError && <Toast className="order-form__toast" message={localError}></Toast>}
+                {formData.pay === 'credito' && (
+                  <fieldset className="order-form__field">
+                    <legend className="order-form__legend">Dados do cartão de crédito:</legend>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Nome: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Nº do cartão: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Bandeira: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Validade: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Código: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                    <div className="order-form__input-box">
+                      <label className="order-form__label">Parcelas: </label>
+                      <input className="order-form__input" disabled />
+                    </div>
+                  </fieldset>
+                )}
 
-              {globalError && (
-                <Toast className="order-form__toast" message={globalError.message}></Toast>
-              )}
+                <p className="order-form__notice">
+                  ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
+                </p>
 
-              <Button className="order-form__button" type="submit">
-                Comprar {formData.pay !== '' && `no ${typeOfPay}`}
+                {loading && (
+                  <Loader className="order-form__loader">
+                    Mais um pouco menos de desperdício... Enviando pedido...
+                  </Loader>
+                )}
+
+                {localError && <Toast className="order-form__toast" message={localError}></Toast>}
+
+                {globalError && (
+                  <Toast className="order-form__toast" message={globalError.message}></Toast>
+                )}
+
+                <Button className="order-form__button" type="submit">
+                  Comprar {formData.pay !== '' && `no ${typeOfPay}`}
+                </Button>
+              </form>
+            )}
+
+            {!canBuy && (
+              <Button
+                className="order-form__button"
+                type="submit"
+                onClick={handleSubscribeOrderCheckout}
+              >
+                Confirmar
               </Button>
-
-              <nav className="order-form__links" aria-label="Ações para editar a compra">
-                <ul className="order-form__list nav__list">
-                  <li className="order-form__item">
-                    <Link className="order-form__link link-to-button" to="/menu">
-                      Voltar ao cardápio
-                    </Link>
-                  </li>
-                  <li className="order-form__item">
-                    <Link className="order-form__link link-to-button" to="/cart">
-                      Voltar ao carrinho
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            </form>
+            )}
+            <nav className="order-form__links" aria-label="Ações para editar a compra">
+              <ul className="order-form__list nav__list">
+                <li className="order-form__item">
+                  <Link className="order-form__link link-to-button" to="/menu">
+                    Voltar ao cardápio
+                  </Link>
+                </li>
+                <li className="order-form__item">
+                  <Link className="order-form__link link-to-button" to="/cart">
+                    Voltar ao carrinho
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </section>
       )}
