@@ -109,7 +109,7 @@ function Cart() {
       <h1 className="cart__title">Carrinho de sopas...</h1>
       <strong className="cart__strong">...cremes ou patês</strong>
 
-      {/* se não houver items, renderiza mensagem; se houver, renderiza carrinho*/}
+      {/* se não houver items, renderiza mensagem; se houver, renderiza carrinho */}
 
       {cartItems.length === 0 ? (
         <section className="cart__null-box">
@@ -168,22 +168,27 @@ function Cart() {
                       {formData.meal === '' ? '-' : typeOfMeal}
                     </dd>
                   </div>
-                  <div className="cart__pack-card-line"></div>
-                  <div className="cart__pack-card-box">
-                    <dt className="cart__pack-card-term">Subtotal</dt>
-                    <dd className="cart__pack-card-description">R$ {subtotal},00</dd>
-                  </div>
-                  <div className="cart__pack-card-box">
-                    <dt className="cart__pack-card-term">Entrega</dt>
-                    <dd className="cart__pack-card-description">
-                      R$ {formData.method === 'delivery' ? 10 : 0},00
-                    </dd>
-                  </div>
-                  <div className="cart__pack-card-line"></div>
-                  <div className="cart__pack-card-box">
-                    <dt className="cart__pack-card-term">Total</dt>
-                    <dd className="cart__pack-card-description">R$ {total},00</dd>
-                  </div>
+
+                  {user?.subscription !== true && (
+                    <>
+                      <div className="cart__pack-card-line"></div>
+                      <div className="cart__pack-card-box">
+                        <dt className="cart__pack-card-term">Subtotal</dt>
+                        <dd className="cart__pack-card-description">R$ {subtotal},00</dd>
+                      </div>
+                      <div className="cart__pack-card-box">
+                        <dt className="cart__pack-card-term">Entrega</dt>
+                        <dd className="cart__pack-card-description">
+                          R$ {formData.method === 'delivery' ? 10 : 0},00
+                        </dd>
+                      </div>
+                      <div className="cart__pack-card-line"></div>
+                      <div className="cart__pack-card-box">
+                        <dt className="cart__pack-card-term">Total</dt>
+                        <dd className="cart__pack-card-description">R$ {total},00</dd>
+                      </div>
+                    </>
+                  )}
                 </dl>
                 <p className="cart__pack-card-msg">Mais um pouco menos de desperdício :)</p>
               </section>
@@ -241,44 +246,85 @@ function Cart() {
                 </div>
               </fieldset>
 
-              <fieldset className="pack-form__field pack-form__field_radio">
-                <legend className="pack-form__legend">Forma de entrega:</legend>
-                <div className="pack-form__radio-box">
-                  <div className="pack-form__input-box pack-form__input-box_radio">
-                    <label className="pack-form__label" htmlFor="delivery">
-                      Delivery
-                    </label>
-                    <Input
-                      className="pack-form__input pack-form__input_radio"
-                      type="radio"
-                      id="delivery"
-                      name="method"
-                      value="delivery"
-                      checked={formData.method === 'delivery'}
-                      onChange={handleChange}
-                      required
-                    />
+              {user?.subscription !== false ? (
+                <fieldset className="pack-form__field pack-form__field_radio">
+                  <legend className="pack-form__legend">Forma de entrega:</legend>
+                  {user?.subscriptionDetails?.method === 'delivery' ? (
+                    <div className="pack-form__radio-box">
+                      <div className="pack-form__input-box pack-form__input-box_radio">
+                        <label className="pack-form__label" htmlFor="delivery">
+                          Delivery
+                        </label>
+                        <Input
+                          className="pack-form__input pack-form__input_radio"
+                          type="radio"
+                          id="delivery"
+                          name="method"
+                          value="delivery"
+                          checked={true}
+                          disabled
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="pack-form__radio-box">
+                      <div className="pack-form__input-box pack-form__input-box_radio">
+                        <label className="pack-form__label" htmlFor="drive-thru">
+                          Drive-thru
+                        </label>
+                        <Input
+                          className="pack-form__input pack-form__input_radio"
+                          type="radio"
+                          id="drive-thru"
+                          name="method"
+                          value="drive-thru"
+                          checked={true}
+                          disabled
+                        />
+                      </div>
+                    </div>
+                  )}
+                </fieldset>
+              ) : (
+                <fieldset className="pack-form__field pack-form__field_radio">
+                  <legend className="pack-form__legend">Forma de entrega:</legend>
+                  <div className="pack-form__radio-box">
+                    <div className="pack-form__input-box pack-form__input-box_radio">
+                      <label className="pack-form__label" htmlFor="delivery">
+                        Delivery
+                      </label>
+                      <Input
+                        className="pack-form__input pack-form__input_radio"
+                        type="radio"
+                        id="delivery"
+                        name="method"
+                        value="delivery"
+                        checked={formData.method === 'delivery'}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <span className="pack-form__span">Entregue na sua porta (R$10,00)</span>
                   </div>
-                  <span className="pack-form__span">Entregue na sua porta (R$10,00)</span>
-                </div>
-                <div className="pack-form__radio-box">
-                  <div className="pack-form__input-box pack-form__input-box_radio">
-                    <label className="pack-form__label" htmlFor="drive-thru">
-                      Drive-thru
-                    </label>
-                    <Input
-                      className="pack-form__input pack-form__input_radio"
-                      type="radio"
-                      id="drive-thru"
-                      name="method"
-                      value="drive-thru"
-                      checked={formData.method === 'drive-thru'}
-                      onChange={handleChange}
-                    />
+                  <div className="pack-form__radio-box">
+                    <div className="pack-form__input-box pack-form__input-box_radio">
+                      <label className="pack-form__label" htmlFor="drive-thru">
+                        Drive-thru
+                      </label>
+                      <Input
+                        className="pack-form__input pack-form__input_radio"
+                        type="radio"
+                        id="drive-thru"
+                        name="method"
+                        value="drive-thru"
+                        checked={formData.method === 'drive-thru'}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <span className="pack-form__span">Retire no nosso endereço (grátis)</span>
                   </div>
-                  <span className="pack-form__span">Retire no nosso endereço (grátis)</span>
-                </div>
-              </fieldset>
+                </fieldset>
+              )}
 
               <fieldset className="pack-form__field">
                 <legend className="pack-form__legend">Informações de contato:</legend>
