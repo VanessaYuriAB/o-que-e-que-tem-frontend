@@ -76,8 +76,13 @@ function Cart() {
 
   const handleCart = async (data) => {
     try {
-      const orderData = { ...data, amount: total };
+      const orderData =
+        !user?.subscription || !user?.subscriptionDetails.status
+          ? { ...data, amount: total }
+          : { ...data };
+
       await setCartDataAction(orderData);
+
       setFormData({
         meal: '',
         method: '',
@@ -91,7 +96,9 @@ function Cart() {
         cep: '',
         infoText: '',
       });
+
       setLocalCartError(null);
+
       navigate('/checkout');
     } catch (error) {
       const handledError = errorHandler(error);
