@@ -158,6 +158,11 @@
   cursor: pointer;
 }
 
+.pack-form__input_date,
+.pack-form__input_schedule {
+  width: min-content;
+}
+
 .pack-form__toast {
   margin-bottom: 0.75rem;
 }
@@ -207,5 +212,9 @@
 
   .pack-form__radio-box:last-of-type {
     margin-left: 0.5rem;
+  }
+
+  .pack-form__field_next {
+    display: flex;
   }
 }
