@@ -16,7 +16,8 @@ const getNextDate = (daysOn, fromDate = new Date()) => {
     const weekday = date.getDay();
 
     if (validDays.includes(weekday)) {
-      return date.toISOString().split('T')[0];
+      console.log;
+      return date.toLocaleDateString('sv-SE');
     }
   }
 

@@ -6,7 +6,7 @@ const itemsMenu = [
     category: 'verduras-legumes',
     qtyAvailable: 10,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 2,
@@ -14,7 +14,7 @@ const itemsMenu = [
     category: 'verduras-legumes',
     qtyAvailable: 10,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 3,
@@ -22,7 +22,7 @@ const itemsMenu = [
     category: 'verduras-legumes',
     qtyAvailable: 10,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 
   // carboidratos
@@ -32,7 +32,7 @@ const itemsMenu = [
     category: 'carboidratos',
     qtyAvailable: 0,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 5,
@@ -40,7 +40,7 @@ const itemsMenu = [
     category: 'carboidratos',
     qtyAvailable: 20,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 6,
@@ -48,7 +48,7 @@ const itemsMenu = [
     category: 'carboidratos',
     qtyAvailable: 20,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 
   // leguminosas e oleaginosas
@@ -58,7 +58,7 @@ const itemsMenu = [
     category: 'leguminosas-oleaginosas',
     qtyAvailable: 25,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 8,
@@ -66,7 +66,7 @@ const itemsMenu = [
     category: 'leguminosas-oleaginosas',
     qtyAvailable: 30,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 9,
@@ -74,7 +74,7 @@ const itemsMenu = [
     category: 'leguminosas-oleaginosas',
     qtyAvailable: 30,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 
   // leites e derivados
@@ -84,7 +84,7 @@ const itemsMenu = [
     category: 'leites-derivados',
     qtyAvailable: 15,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 11,
@@ -92,7 +92,7 @@ const itemsMenu = [
     category: 'leites-derivados',
     qtyAvailable: 12,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 12,
@@ -100,7 +100,7 @@ const itemsMenu = [
     category: 'leites-derivados',
     qtyAvailable: 18,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 
   // carnes, ovos e peixes
@@ -110,7 +110,7 @@ const itemsMenu = [
     category: 'carnes-ovos-peixes',
     qtyAvailable: 18,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 14,
@@ -118,7 +118,7 @@ const itemsMenu = [
     category: 'carnes-ovos-peixes',
     qtyAvailable: 60,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 15,
@@ -126,7 +126,7 @@ const itemsMenu = [
     category: 'carnes-ovos-peixes',
     qtyAvailable: 60,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 
   // óleos e gorduras
@@ -136,7 +136,7 @@ const itemsMenu = [
     category: 'oleos-gorduras',
     qtyAvailable: 8,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 17,
@@ -144,7 +144,7 @@ const itemsMenu = [
     category: 'oleos-gorduras',
     qtyAvailable: 22,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 18,
@@ -152,7 +152,7 @@ const itemsMenu = [
     category: 'oleos-gorduras',
     qtyAvailable: 8,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 
   // açucares e doces
@@ -162,7 +162,7 @@ const itemsMenu = [
     category: 'acucares-doces',
     qtyAvailable: 40,
     partnerName: 'Mercado 1',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 20,
@@ -170,7 +170,7 @@ const itemsMenu = [
     category: 'acucares-doces',
     qtyAvailable: 14,
     partnerName: 'Mercado 2',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
   {
     _id: 21,
@@ -178,7 +178,7 @@ const itemsMenu = [
     category: 'acucares-doces',
     qtyAvailable: 14,
     partnerName: 'Mercado 3',
-    availableUntil: new Date().toISOString(),
+    availableUntil: new Date().toLocaleString('pt-BR'),
   },
 ];
 

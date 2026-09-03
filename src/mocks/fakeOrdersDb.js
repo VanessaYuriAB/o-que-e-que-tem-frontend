@@ -4,7 +4,7 @@ import itemsMenu from './fakeMenuDb.js';
 const order1 = {
   _id: 'order-1',
   owner: user2._id,
-  createdAt: new Date().toISOString(),
+  createdAt: new Date().toLocaleString('pt-BR'),
 
   orderNumber: '202608052114',
 
@@ -36,7 +36,7 @@ const order1 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 2,
@@ -44,7 +44,7 @@ const order1 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 7,
@@ -52,7 +52,7 @@ const order1 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 25,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 10,
@@ -60,7 +60,7 @@ const order1 = {
       category: 'leites-derivados',
       qtyAvailable: 15,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 16,
@@ -68,7 +68,7 @@ const order1 = {
       category: 'oleos-gorduras',
       qtyAvailable: 8,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
   ],*/
 
@@ -78,7 +78,7 @@ const order1 = {
 const order2 = {
   _id: 'order-2',
   owner: user3._id,
-  createdAt: new Date().toISOString(),
+  createdAt: new Date().toLocaleString('pt-BR'),
 
   orderNumber: '202608053314',
 
@@ -104,7 +104,7 @@ const order2 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 4,
@@ -112,7 +112,7 @@ const order2 = {
       category: 'carboidratos',
       qtyAvailable: 0,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 8,
@@ -120,7 +120,7 @@ const order2 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 9,
@@ -128,7 +128,7 @@ const order2 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
   ],*/
 
@@ -138,7 +138,7 @@ const order2 = {
 const order3 = {
   _id: 'order-3',
   owner: user3._id,
-  createdAt: new Date().toISOString(),
+  createdAt: new Date().toLocaleString('pt-BR'),
 
   orderNumber: '202608053914',
 
@@ -170,7 +170,7 @@ const order3 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 6,
@@ -178,7 +178,7 @@ const order3 = {
       category: 'carboidratos',
       qtyAvailable: 20,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 9,
@@ -186,7 +186,7 @@ const order3 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 10,
@@ -194,7 +194,7 @@ const order3 = {
       category: 'leites-derivados',
       qtyAvailable: 15,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
     {
       _id: 17,
@@ -202,7 +202,7 @@ const order3 = {
       category: 'oleos-gorduras',
       qtyAvailable: 22,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toISOString(),
+      availableUntil: new Date().toLocaleString('pt-BR'),
     },
   ],*/
 

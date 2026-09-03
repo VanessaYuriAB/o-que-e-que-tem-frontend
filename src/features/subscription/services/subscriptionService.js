@@ -14,7 +14,7 @@ export default async function subscribe(newSubscriptionData) {
       }
 
       // Ajusta dados
-      const createdAt = new Date().toISOString();
+      const createdAt = new Date().toLocaleString('pt-BR');
 
       const months =
         newSubscriptionData.howLong === 'two'
@@ -57,7 +57,7 @@ export default async function subscribe(newSubscriptionData) {
           owner: user._id ?? 'user-mock',
           status: true,
           begin: createdAt,
-          end: end.toISOString(),
+          end: end.toLocaleString('pt-BR'),
         },
       };
 

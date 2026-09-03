@@ -16,7 +16,7 @@ async function sendOrderToServer(order) {
       const mockOrder = {
         _id: 'order-mock',
         owner: user?._id ?? null,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toLocaleString('pt-BR'),
         orderNumber: '202608010001',
         ...order,
       };
