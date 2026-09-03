@@ -85,7 +85,13 @@ function SuccessOrder() {
 
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Forma de pagamento:</dt>
-                <dd className="order__description">{hasOrder.payment}</dd>
+                <dd className="order__description">
+                  {hasOrder.payment === 'pix'
+                    ? 'PIX'
+                    : hasOrder.payment === 'debito'
+                      ? 'cartão de débito'
+                      : 'cartão de crédito'}
+                </dd>
               </div>
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">R$:</dt>
@@ -93,7 +99,9 @@ function SuccessOrder() {
               </div>
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Tipo de refeição:</dt>
-                <dd className="order__description">{hasOrder.meal}</dd>
+                <dd className="order__description">
+                  {hasOrder.meal === 'pate' ? 'patê' : hasOrder.meal}
+                </dd>
               </div>
               <div className="order__detail-box">
                 <dt className="order__term">Ingredientes:</dt>

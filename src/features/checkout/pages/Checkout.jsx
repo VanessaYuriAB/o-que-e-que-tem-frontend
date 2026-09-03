@@ -196,7 +196,9 @@ function Checkout() {
 
                 <div className="checkout__detail">
                   <dt className="checkout__item-term">Tipo:</dt>
-                  <dd className="checkout__item-description">{cartData.meal}</dd>
+                  <dd className="checkout__item-description">
+                    {cartData.meal === 'pate' ? 'patê' : cartData.meal}
+                  </dd>
                 </div>
 
                 <div className="checkout__detail">
