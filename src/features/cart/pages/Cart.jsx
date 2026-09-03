@@ -57,7 +57,10 @@ function Cart() {
 
   const typeOfMeal = formData.meal === 'pate' ? 'patê' : formData.meal;
 
-  const nextMealAt = getNextDate(user?.subscriptionDetails?.daysOn || []);
+  const nextMealAt = getNextDate(
+    user?.subscriptionDetails?.daysOn || [],
+    user?.subscriptionDetails?.schedules || {}
+  );
 
   const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
   const nextDayAt = nextMealAt ? weekDays[new Date(nextMealAt).getDay()] : '';

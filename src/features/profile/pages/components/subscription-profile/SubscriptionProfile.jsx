@@ -57,7 +57,10 @@ function SubscriptionProfile() {
         ? 'Cartão de débito'
         : 'Cartão de crédito';
 
-  const nextMealAt = getNextDate(user?.subscriptionDetails?.daysOn || []);
+  const nextMealAt = getNextDate(
+    user?.subscriptionDetails?.daysOn || [],
+    user?.subscriptionDetails?.schedules || {}
+  );
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

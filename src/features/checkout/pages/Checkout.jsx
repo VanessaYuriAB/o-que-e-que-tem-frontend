@@ -55,12 +55,16 @@ function Checkout() {
     user?.subscription === false ||
     (user?.subscription === true && user?.subscriptionDetails?.status === false);
 
-  const nextMeal = getNextDate(user?.subscriptionDetails?.daysOn || []);
+  const nextMeal = getNextDate(
+    user?.subscriptionDetails?.daysOn || [],
+    user?.subscriptionDetails?.schedules || {}
+  );
 
   const nextMealAt = new Date(nextMeal).toLocaleString('pt-BR').split(',')[0];
 
   const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
   const nextDayAt = nextMeal ? weekDays[new Date(nextMeal).getDay()] : '';
+
   const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
 
   const handleChange = (e) => {
