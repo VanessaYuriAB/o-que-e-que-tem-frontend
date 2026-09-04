@@ -100,34 +100,15 @@ const useCartStore = create(
 
       // syncCartStorage configura persistência dinâmica do carrinho, por usuário
       syncCartStorageAction: async (userId) => {
-        if (userId) {
-          // Recupera dados salvos na chave atual (padrão)
-          const currentStorage = localStorage.getItem('cartData-user');
+        // Configura nome da chave (padrão ou id)
+        const storageUserCart = userId ? `cartData-${userId}` : 'cartData-user';
 
-          // Se houver itens no carrinho 'padrão'
-          if (currentStorage) {
-            // Mantém items, transferindo-os para a persistência do usuário
-            localStorage.setItem(`cartData-${userId}`, currentStorage);
-          }
+        // Atualiza o nome da chave, no Zustand
+        useCartStore.persist.setOptions({
+          name: storageUserCart,
+        });
 
-          // Atualiza o nome da chave com base no ID do usuário
-          useCartStore.persist.setOptions({
-            name: `cartData-${userId}`,
-          });
-        } else {
-          // Reseta nome da chave para padrão
-          useCartStore.persist.setOptions({
-            name: 'cartData-user',
-          });
-
-          // Reseta estados persistidos
-          set({
-            cartItems: [],
-            cartData: {},
-          });
-        }
-
-        // E recarrega os dados salvos, no Zustand
+        // E recarrega os dados salvos, no Zustand (atualiza a persistência)
         await useCartStore.persist.rehydrate();
       },
     }),
