@@ -322,23 +322,23 @@ function Checkout() {
                 {formData.pay === 'debito' && (
                   <fieldset className="order-form__field">
                     <legend className="order-form__legend">Dados do cartão de débito:</legend>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Nome: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Nº do cartão: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Bandeira: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Validade: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Código: </label>
                       <input className="order-form__input" disabled />
                     </div>
@@ -348,27 +348,27 @@ function Checkout() {
                 {formData.pay === 'credito' && (
                   <fieldset className="order-form__field">
                     <legend className="order-form__legend">Dados do cartão de crédito:</legend>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Nome: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Nº do cartão: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Bandeira: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Validade: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Código: </label>
                       <input className="order-form__input" disabled />
                     </div>
-                    <div className="order-form__input-box">
+                    <div className="order-form__input-box order-form__input-box_pay">
                       <label className="order-form__label">Parcelas: </label>
                       <input className="order-form__input" disabled />
                     </div>
@@ -399,22 +399,23 @@ function Checkout() {
 
             {!canBuy && (
               <Button
-                className="order-form__button"
+                className="checkout__button"
                 type="submit"
                 onClick={handleSubscribeOrderCheckout}
               >
                 Confirmar
               </Button>
             )}
-            <nav className="order-form__links" aria-label="Ações para editar a compra">
-              <ul className="order-form__list nav__list">
-                <li className="order-form__item">
-                  <Link className="order-form__link link-to-button" to="/menu">
+
+            <nav className="checkout__links" aria-label="Ações para editar a compra">
+              <ul className="checkout__list nav__list">
+                <li className="checkout__list-item">
+                  <Link className="checkout__link link-to-button" to="/menu">
                     Voltar ao cardápio
                   </Link>
                 </li>
-                <li className="order-form__item">
-                  <Link className="order-form__link link-to-button" to="/cart">
+                <li className="checkout__list-item">
+                  <Link className="checkout__link link-to-button" to="/cart">
                     Voltar ao carrinho
                   </Link>
                 </li>

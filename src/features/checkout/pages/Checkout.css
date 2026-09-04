@@ -1,8 +1,12 @@
 /* Mobile first (padrão) */
 
+.content__checkout {
+}
+
 .checkout {
-  width: 100%;
   padding-bottom: 21.44px; /* margin-top do title */
+  display: flex;
+  justify-content: center;
 }
 
 .checkout__empty-box {
@@ -43,10 +47,15 @@
   max-width: 75%;
 }
 
+.checkout__container {
+  display: flex;
+  flex-direction: column;
+}
+
 .checkout__box {
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .checkout__aside {
@@ -98,9 +107,6 @@
   text-align: left;
 }
 
-.checkout__order-form {
-}
-
 .order-form__field {
   margin-top: 1.5rem;
   width: fit-content;
@@ -119,7 +125,6 @@
 
 .order-form__input-box {
   margin-bottom: 0.5rem;
-  width: max-content;
   margin-inline: auto;
 }
 
@@ -131,7 +136,12 @@
   display: flex;
   flex-direction: row-reverse;
   column-gap: 0.5rem;
-  margin-inline: 0;
+  justify-content: left;
+}
+
+.order-form__input-box_pay {
+  display: flex;
+  flex-direction: column;
 }
 
 .order-form__label {
@@ -146,12 +156,6 @@
 
 .order-form__input_radio:hover {
   cursor: pointer;
-}
-
-.order-form__pix-details {
-  display: flex;
-  justify-content: center;
-  column-gap: 0.5rem;
 }
 
 .order-form__pix-term,
@@ -188,16 +192,18 @@
 
 .order-form__button {
   margin-bottom: 0;
-  margin-top: 4em;
+  margin-top: 2rem;
+  border: none;
+  width: 100%;
 }
 
-.order-form__link {
+.checkout__link {
   display: block;
   margin-top: 3rem;
   background-color: rgba(28, 56, 30, 0.247);
 }
 
-.order-form__link:last-of-type {
+.checkout__link:last-of-type {
   margin-top: 1.5rem;
 }
 
@@ -234,10 +240,6 @@
   }
 
   .checkout__box {
-    flex-direction: row;
-    justify-content: center;
-    column-gap: 3rem;
-    margin-top: 5rem;
   }
 
   .checkout__aside {
@@ -247,16 +249,18 @@
     margin-top: 0;
   }
 
-  .checkout__detail {
-    margin-bottom: 1.5rem;
-  }
-
   .checkout__order-form {
-    width: min-content;
+    margin-top: 2rem;
   }
 
   .order-form__field_radio {
     margin-top: 0;
+  }
+
+  .order-form__pix-details {
+    display: flex;
+    justify-content: center;
+    column-gap: 0.5rem;
   }
 
   .order-form__notice {
@@ -267,8 +271,8 @@
     width: 70%;
   }
 
-  .order-form__link {
-    width: 80%;
-    margin-inline: auto;
+  .order-form__button {
+    padding: 0.5em;
+    padding-top: 0.75em;
   }
 }
