@@ -6,10 +6,11 @@ import useCartStore from './store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
 
 function App() {
-  const { refreshAction, user } = useAuthStore(
+  const { refreshAction, user, authChecked } = useAuthStore(
     useShallow((state) => ({
       refreshAction: state.refreshAction,
       user: state.user,
+      authChecked: state.authChecked,
     }))
   );
 
@@ -26,12 +27,14 @@ function App() {
 
   // Seta persistência do carrinho
   useEffect(() => {
+    if (!authChecked) return;
+
     async function setCartPersistence() {
       await syncCartStorageAction(user?._id);
     }
 
     setCartPersistence();
-  }, [user?._id, syncCartStorageAction]);
+  }, [authChecked, user?._id, syncCartStorageAction]);
 
   return (
     <BrowserRouter>
