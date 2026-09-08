@@ -113,7 +113,7 @@ const useCartStore = create(
         }));
       },
 
-      // syncCartStorage configura persistência dinâmica do carrinho, por usuário
+      // syncCartStorage configura persistência dinâmica do carrinho, por usuário (caso esteja logado), para refresh
       syncCartStorageAction: async (userId) => {
         // Configura nome da chave (padrão ou id)
         const storageUserCart = userId ? `cartData-${userId}` : 'cartData-user';
@@ -127,22 +127,41 @@ const useCartStore = create(
         await useCartStore.persist.rehydrate();
       },
 
-      // migrateAnonymousCartAction configura persistência padrão do carrinho, para persistência do usuário que logou, caso tenha adicionado itens quando deslogado
+      // migrateAnonymousCartAction configura a troca de persistência padrão do carrinho, para persistência do usuário, ao logar
       migrateAnonymousCartAction: async (userId) => {
-        // Recupera dados salvos na chave padrão
-        const anonymousCart = localStorage.getItem('cartData-user');
+        // Verifica chave padrão
+        const anonymousCartRaw = localStorage.getItem('cartData-user');
+        const anonymousCart = anonymousCartRaw ? JSON.parse(anonymousCartRaw) : null;
+        const hasAnonymousItems = anonymousCart?.state?.cartItems?.length > 0;
 
-        // Se não houver itens adicionados, retorna
-        if (!anonymousCart) return;
+        // Verifica chave de usuário
+        const userCartRaw = localStorage.getItem(`cartData-${userId}`);
+        const userCart = userCartRaw ? JSON.parse(userCartRaw) : null;
+        const hasUserItems = userCart?.state?.cartItems?.length > 0;
 
-        // Se houver itens no carrinho padrão
         // Atualiza o nome da chave com base no ID do usuário
         useCartStore.persist.setOptions({
           name: `cartData-${userId}`,
         });
 
-        // Mantém items, transferindo-os para a persistência do usuário logado
-        localStorage.setItem(`cartData-${userId}`, anonymousCart);
+        if (!hasAnonymousItems && hasUserItems) {
+          // Se não houver itens no padrão e houver no do usuário
+          localStorage.setItem(`cartData-${userId}`, userCartRaw);
+        } else if (hasAnonymousItems && !hasUserItems) {
+          // Se houver itens no padrão e não houver no do usuário
+          localStorage.setItem(`cartData-${userId}`, anonymousCartRaw);
+        } else if (hasAnonymousItems && hasUserItems) {
+          // Se houver itens em ambos
+          const merged = [...userCart.state.cartItems, ...anonymousCart.state.cartItems];
+          const mergedMap = new Map(merged.map((item) => [item._id, item]));
+          const uniqueMergedCart = [...mergedMap.values()];
+
+          set(() => ({
+            cartItems: uniqueMergedCart,
+          }));
+        }
+
+        // Se não houver itens em ambos, apenas configura a chave do usuário, remove a padrão e reidrata Zustand
 
         // Remove persistência para carrinho padrão
         localStorage.removeItem('cartData-user');
