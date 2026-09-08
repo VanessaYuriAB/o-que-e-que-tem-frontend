@@ -10,6 +10,7 @@ import Input from '../../../shared/components/ui/input/Input.jsx';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
 import useAuthStore from '../../../store/useAuthStore.js';
+import useCheckout from '../hooks/useCheckout.js';
 
 function Checkout() {
   const navigate = useNavigate();
@@ -17,8 +18,6 @@ function Checkout() {
   const [formData, setFormData] = useState({
     pay: '',
   });
-
-  const [localError, setLocalError] = useState(null);
 
   const typeOfPay =
     formData.pay === 'debito'
@@ -29,17 +28,15 @@ function Checkout() {
           ? 'PIX'
           : '';
 
-  const { cartItems, cleanCartAction, cartData, sendOrderToServerAction, loading, globalError } =
-    useCartStore(
-      useShallow((state) => ({
-        cartItems: state.cartItems,
-        cleanCartAction: state.cleanCartAction,
-        cartData: state.cartData,
-        sendOrderToServerAction: state.sendOrderToServerAction,
-        loading: state.loading,
-        globalError: state.globalError,
-      }))
-    );
+  const { loading, error, sendOrder /*, sendSubscribeOrder*/ } = useCheckout();
+
+  const { cartItems, cleanCartAction, cartData } = useCartStore(
+    useShallow((state) => ({
+      cartItems: state.cartItems,
+      cleanCartAction: state.cleanCartAction,
+      cartData: state.cartData,
+    }))
+  );
 
   console.log('Pedido:', cartData);
   console.log('Items:', cartItems);
@@ -76,14 +73,52 @@ function Checkout() {
   };
 
   const handleSubscribeOrderCheckout = async () => {
-    // ...
+    /*const subscriptionOrder = {
+      meal: cartData.meal,
+      method: cartData.method,
+      day: `${nextMealAt} (${nextDayAt})`,
+      time: nextTimeAt,
+
+      customerSnapshot: {
+        userName: cartData.userName,
+        email: cartData.email,
+        tel: cartData.tel,
+      },
+
+      addressSnapshot:
+        cartData.method === 'delivery'
+          ? {
+              address: cartData.address,
+              number: cartData.number,
+              complement: cartData.complement,
+              district: cartData.district,
+              cep: cartData.cep,
+            }
+          : undefined,
+
+      itemsSnapshot: cartItems,
+
+      obs: cartData.infoText,
+    };
+
+    // Service (+ hook)
+    const result = await sendSubscribeOrder(subscriptionOrder);
+
+    if (result.success === true) {
+      // Se success
+      console.log('Pedido de assinatura enviado', result.data);
+
+      // Seta persistência para SucessOrder com dados retornados da API ou fake
+      localStorage.setItem('successOrder', JSON.stringify(result.data));
+
+      cleanCartAction(user?._id);
+      navigate('/success-order');
+    }*/
   };
 
   const handleOrderCheckout = async (orderData) => {
-    setLocalError(null);
-
-    // Service (+ action/store)
-    const result = await sendOrderToServerAction(orderData);
+    // Service (+ hook)
+    const result = await sendOrder(orderData);
 
     if (result.success === true) {
       // Se success
@@ -95,13 +130,7 @@ function Checkout() {
       setFormData({ pay: '' });
       cleanCartAction(user?._id);
       navigate('/success-order');
-    } else if (result.error.scope === 'local') {
-      // Se error
-      // Local
-      setLocalError(result.error.message);
     }
-
-    // Global definido por estado local da store
   };
 
   const handleSubmit = (e) => {
@@ -385,11 +414,7 @@ function Checkout() {
                   </Loader>
                 )}
 
-                {localError && <Toast className="order-form__toast" message={localError}></Toast>}
-
-                {globalError && (
-                  <Toast className="order-form__toast" message={globalError.message}></Toast>
-                )}
+                {error && <Toast className="order-form__toast" message={error.message}></Toast>}
 
                 <Button className="order-form__button" type="submit">
                   Comprar {formData.pay !== '' && `no ${typeOfPay}`}
@@ -398,13 +423,23 @@ function Checkout() {
             )}
 
             {!canBuy && (
-              <Button
-                className="checkout__button"
-                type="submit"
-                onClick={handleSubscribeOrderCheckout}
-              >
-                Confirmar
-              </Button>
+              <>
+                {/*{loading && (
+                  <Loader className="order-form__loader">
+                    Mais um pouco menos de desperdício... Enviando pedido...
+                  </Loader>
+                )}
+
+                {error && <Toast className="order-form__toast" message={error.message}></Toast>}*/}
+
+                <Button
+                  className="checkout__button"
+                  type="submit"
+                  onClick={handleSubscribeOrderCheckout}
+                >
+                  Confirmar
+                </Button>
+              </>
             )}
 
             <nav className="checkout__links" aria-label="Ações para editar a compra">
