@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import useAuthStore from './store/useAuthStore.js';
 import useCartStore from './store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
+import Loader from './shared/components/ui/loader/Loader.jsx';
 
 function App() {
   const { refreshAction, user, authChecked } = useAuthStore(
@@ -35,6 +36,10 @@ function App() {
 
     setCartPersistence();
   }, [authChecked, user?._id, syncCartStorageAction]);
+
+  if (!authChecked) {
+    return <Loader />;
+  }
 
   return (
     <BrowserRouter>
