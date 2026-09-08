@@ -101,7 +101,12 @@ const useCartStore = create(
       },
 
       // cleanCart limpa estado + persistência
-      cleanCartAction: () => {
+      cleanCartAction: (userId) => {
+        if (userId) {
+          // Remove persistência para carrinho do usuário
+          localStorage.removeItem(`cartData-${userId}`);
+        }
+
         set(() => ({
           cartItems: [],
           cartData: {},
