@@ -67,7 +67,7 @@ const useAuthStore = create((set, get) => ({
     try {
       const data = await authService.login(credentials);
       get().setUserAction(data);
-      return { success: true };
+      return { success: true, data };
     } catch (error) {
       const handledError = errorHandler(error);
 
