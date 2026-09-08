@@ -150,6 +150,20 @@ const useCartStore = create(
         // E recarrega os dados salvos, no Zustand
         await useCartStore.persist.rehydrate();
       },
+
+      // resetToAnonymousCartAction configura persisitência padrão vazia, sem apagar persistência de usuário logado, para logout
+      resetToAnonymousCartAction: async () => {
+        set({
+          cartItems: [],
+          cartData: {},
+        });
+
+        useCartStore.persist.setOptions({
+          name: 'cartData-user',
+        });
+
+        await useCartStore.persist.rehydrate();
+      },
     }),
 
     {
