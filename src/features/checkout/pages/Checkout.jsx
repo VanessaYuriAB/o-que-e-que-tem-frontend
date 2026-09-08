@@ -28,7 +28,7 @@ function Checkout() {
           ? 'PIX'
           : '';
 
-  const { loading, error, sendOrder /*, sendSubscribeOrder*/ } = useCheckout();
+  const { loading, error, sendOrder, sendSubscribeOrder } = useCheckout();
 
   const { cartItems, cleanCartAction, cartData } = useCartStore(
     useShallow((state) => ({
@@ -73,7 +73,7 @@ function Checkout() {
   };
 
   const handleSubscribeOrderCheckout = async () => {
-    /*const subscriptionOrder = {
+    const subscriptionOrder = {
       meal: cartData.meal,
       method: cartData.method,
       day: `${nextMealAt} (${nextDayAt})`,
@@ -113,7 +113,7 @@ function Checkout() {
 
       cleanCartAction(user?._id);
       navigate('/success-order');
-    }*/
+    }
   };
 
   const handleOrderCheckout = async (orderData) => {
@@ -424,13 +424,13 @@ function Checkout() {
 
             {!canBuy && (
               <>
-                {/*{loading && (
+                {loading && (
                   <Loader className="order-form__loader">
                     Mais um pouco menos de desperdício... Enviando pedido...
                   </Loader>
                 )}
 
-                {error && <Toast className="order-form__toast" message={error.message}></Toast>}*/}
+                {error && <Toast className="order-form__toast" message={error.message}></Toast>}
 
                 <Button
                   className="checkout__button"
