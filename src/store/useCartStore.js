@@ -126,6 +126,30 @@ const useCartStore = create(
         // E recarrega os dados salvos, no Zustand (atualiza a persistência)
         await useCartStore.persist.rehydrate();
       },
+
+      // migrateAnonymousCartAction configura persistência padrão do carrinho, para persistência do usuário que logou, caso tenha adicionado itens quando deslogado
+      migrateAnonymousCartAction: async (userId) => {
+        // Recupera dados salvos na chave padrão
+        const anonymousCart = localStorage.getItem('cartData-user');
+
+        // Se não houver itens adicionados, retorna
+        if (!anonymousCart) return;
+
+        // Se houver itens no carrinho padrão
+        // Atualiza o nome da chave com base no ID do usuário
+        useCartStore.persist.setOptions({
+          name: `cartData-${userId}`,
+        });
+
+        // Mantém items, transferindo-os para a persistência do usuário logado
+        localStorage.setItem(`cartData-${userId}`, anonymousCart);
+
+        // Remove persistência para carrinho padrão
+        localStorage.removeItem('cartData-user');
+
+        // E recarrega os dados salvos, no Zustand
+        await useCartStore.persist.rehydrate();
+      },
     }),
 
     {
