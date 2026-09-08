@@ -7,6 +7,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import useCartStore from '../../../../store/useCartStore.js';
 import errorHandler from '../../../../shared/utils/errorHandler.js';
 import { useShallow } from 'zustand/react/shallow';
+import useAuthStore from '../../../../store/useAuthStore.js';
 
 import './MenuType.css';
 
@@ -34,6 +35,8 @@ function MenuType({ category }) {
         removeLoading: state.removeLoading,
       }))
     );
+
+  const user = useAuthStore((state) => state.user);
 
   // Verifica disponibilidade
   const availableMenuItems = useMemo(
@@ -64,7 +67,7 @@ function MenuType({ category }) {
       setActiveItemId(item._id);
 
       if (!isItemAdded) {
-        await addItemToCartAction(item);
+        await addItemToCartAction(item, user?._id);
       } else {
         await removeItemToCartAction(item);
       }
