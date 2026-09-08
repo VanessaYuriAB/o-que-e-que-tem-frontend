@@ -5,8 +5,6 @@ import {
   setCartData,
 } from '../features/cart/services/cartService.js';
 import { persist } from 'zustand/middleware';
-import errorHandler from '../shared/utils/errorHandler.js';
-import sendOrderToServer from '../features/checkout/services/checkoutService.js';
 
 const useCartStore = create(
   persist(
@@ -14,11 +12,10 @@ const useCartStore = create(
       cartItems: [],
       cartData: {},
 
-      loading: false, // add e send (componentes diferentes)
-      globalError: null,
+      loading: false, // add (MenuTypes)
 
-      removeLoading: false, // Cart
-      setLoading: false, // Cart
+      removeLoading: false, // remove (MenuTypes e Cart)
+      setLoading: false, // setCart (Cart)
 
       // addItem chama cartService.addItemToCard
       addItemToCartAction: async (item, userId) => {
@@ -77,26 +74,6 @@ const useCartStore = create(
           }));
         } finally {
           set({ setLoading: false });
-        }
-      },
-
-      // sendOrder chama checkoutService.sendOrderToServer
-      sendOrderToServerAction: async (order) => {
-        set({ loading: true, globalError: null });
-
-        try {
-          const dataToStorage = await sendOrderToServer(order);
-          return { success: true, data: dataToStorage };
-        } catch (error) {
-          const handledError = errorHandler(error);
-
-          if (handledError.scope === 'global') {
-            set({ globalError: handledError });
-          }
-
-          return { success: false, error: handledError };
-        } finally {
-          set({ loading: false });
         }
       },
 
