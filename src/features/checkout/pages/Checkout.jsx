@@ -93,7 +93,7 @@ function Checkout() {
       localStorage.setItem('successOrder', JSON.stringify(result.data));
 
       setFormData({ pay: '' });
-      cleanCartAction();
+      cleanCartAction(user?._id);
       navigate('/success-order');
     } else if (result.error.scope === 'local') {
       // Se error
