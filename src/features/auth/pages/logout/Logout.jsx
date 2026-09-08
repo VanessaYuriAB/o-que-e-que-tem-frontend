@@ -5,6 +5,7 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useState } from 'react';
+import useCartStore from '../../../../store/useCartStore.js';
 
 import './Logout.css';
 
@@ -22,6 +23,8 @@ function Logout() {
     }))
   );
 
+  const resetToAnonymousCartAction = useCartStore((state) => state.resetToAnonymousCartAction);
+
   const handleLogout = async () => {
     const result = await logoutAction();
 
@@ -30,6 +33,10 @@ function Logout() {
 
       // Limpa persistência para pedido enviado
       localStorage.removeItem('successOrder');
+
+      // Define persistência padrão para carrinho
+      await resetToAnonymousCartAction();
+
       // Redireciona para página inicial
       navigate('/', { replace: true });
     } else if (result.success === false && result.error.scope === 'local') {
