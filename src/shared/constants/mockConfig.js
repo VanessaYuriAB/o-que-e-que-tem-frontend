@@ -21,6 +21,8 @@ const FAKE_ERRORS = {
   subscribe: false,
 
   sendUserMessage: false,
+
+  sendSubscribeOrderToServer: false,
 };
 
 export default FAKE_ERRORS;
