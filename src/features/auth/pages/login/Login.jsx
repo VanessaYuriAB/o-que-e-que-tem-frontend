@@ -3,16 +3,17 @@ import Button from '../../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../../shared/components/ui/input/Input.jsx';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { user3 } from '../../../../mocks/fakeAuthDb.js';
+import { user1 } from '../../../../mocks/fakeAuthDb.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
+import useCartStore from '../../../../store/useCartStore.js';
 
 import '../../styles/auth-form.css';
 
 function Login() {
-  const [data, setData] = useState(user3);
+  const [data, setData] = useState(user1);
   // { email: '', tel: '', password: '' }
 
   const [localError, setLocalError] = useState(null);
@@ -28,6 +29,8 @@ function Login() {
       globalError: state.globalError,
     }))
   );
+
+  const migrateAnonymousCartAction = useCartStore((state) => state.migrateAnonymousCartAction);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,6 +49,8 @@ function Login() {
 
     if (result.success === true) {
       console.log('logado');
+
+      await migrateAnonymousCartAction(result.data._id);
 
       const from = location.state?.from;
       const redirectPath = from ? `${from.pathname}${from.search}${from.hash}` : '/profile'; // preserva a rota completa originalmente acessada, incluindo query params (?page=2) e âncoras (#section) e o usuário volta exatamente para onde estava
