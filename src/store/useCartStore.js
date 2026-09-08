@@ -21,10 +21,20 @@ const useCartStore = create(
       setLoading: false, // Cart
 
       // addItem chama cartService.addItemToCard
-      addItemToCartAction: async (item) => {
+      addItemToCartAction: async (item, userId) => {
         set({ loading: true });
 
         try {
+          if (userId) {
+            // Atualiza o nome da chave, no Zustand
+            useCartStore.persist.setOptions({
+              name: `cartData-${userId}`,
+            });
+
+            // E recarrega (atualiza a persistência pelo Zustand)
+            await useCartStore.persist.rehydrate();
+          }
+
           const alreadyExists = get().cartItems.some(
             (cartItem) => cartItem.productName === item.productName
           );
