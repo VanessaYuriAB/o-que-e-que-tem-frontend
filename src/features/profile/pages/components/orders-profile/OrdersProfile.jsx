@@ -9,11 +9,11 @@ import { useEffect } from 'react';
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
 
-  const { userOrders, loadingProfile, errorProfile, getUserOrders } = useOrders();
+  const { userOrders, loadingProfile, errorProfile, getUserAllOrders } = useOrders();
 
   useEffect(() => {
-    getUserOrders(user._id);
-  }, [user._id, getUserOrders]);
+    getUserAllOrders(user._id);
+  }, [user._id, getUserAllOrders]);
 
   if (loadingProfile) {
     return <Loader className="profile__orders-loader" />;

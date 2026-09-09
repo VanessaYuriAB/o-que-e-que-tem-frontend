@@ -1,6 +1,10 @@
 import { useState, useCallback } from 'react';
 import errorHandler from '../../../shared/utils/errorHandler.js';
-import { getOrderByNumber, getOrderById } from '../services/ordersService.js';
+import {
+  getOrderByNumber,
+  getOrderById,
+  getSubscriptionOrderById,
+} from '../services/ordersService.js';
 
 export default function useOrders() {
   const [orderTracked, setOrderTracked] = useState(null);
@@ -30,13 +34,17 @@ export default function useOrders() {
   };
 
   // OrdersProfile (consumido em efeito)
-  const getUserOrders = useCallback(async (userId) => {
+  const getUserAllOrders = useCallback(async (userId) => {
     setLoadingProfile(true);
     setErrorProfile(null);
 
     try {
       const orders = await getOrderById(userId);
-      setUserOrders(orders);
+      const subscriptionOrders = await getSubscriptionOrderById(userId);
+
+      const allOrders = [...orders, ...subscriptionOrders];
+
+      setUserOrders(allOrders);
     } catch (error) {
       const handledError = errorHandler(error);
 
@@ -55,6 +63,6 @@ export default function useOrders() {
     userOrders,
     loadingProfile,
     errorProfile,
-    getUserOrders,
+    getUserAllOrders,
   };
 }
