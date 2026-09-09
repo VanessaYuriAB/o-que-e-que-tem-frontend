@@ -44,6 +44,18 @@ function OrdersProfile() {
           {userOrders?.map((order) => {
             const formattedDate = order ? order.createdAt : '';
 
+            const pay =
+              order?.payment === 'pix'
+                ? 'PIX'
+                : order?.payment === 'debito'
+                  ? 'cartão de débito'
+                  : 'cartão de crédito';
+            const typeOfPayment = order ? pay : '';
+
+            const meal =
+              order?.meal === 'pate' ? 'patê' : order?.meal === 'sopa' ? 'sopa' : 'creme';
+            const typeOfMeal = order ? meal : '';
+
             return (
               <li className="profile__orders-item" key={order._id}>
                 <dl className="profile__orders-details">
@@ -87,7 +99,7 @@ function OrdersProfile() {
                   </div>
                   <div className="profile__orders-item-box">
                     <dt className="profile__orders-term">Forma de pagamento:</dt>
-                    <dd className="profile__orders-description">{order.payment}</dd>
+                    <dd className="profile__orders-description">{typeOfPayment}</dd>
                   </div>
                   <div className="profile__orders-item-box profile__orders-item-box_inline">
                     <dt className="profile__orders-term">R$:</dt>
@@ -95,7 +107,7 @@ function OrdersProfile() {
                   </div>
                   <div className="profile__orders-item-box profile__orders-item-box_inline">
                     <dt className="profile__orders-term">Tipo:</dt>
-                    <dd className="profile__orders-description">{order.meal}</dd>
+                    <dd className="profile__orders-description">{typeOfMeal}</dd>
                   </div>
                   <div className="profile__orders-item-box">
                     <dt className="profile__orders-term">Itens:</dt>
