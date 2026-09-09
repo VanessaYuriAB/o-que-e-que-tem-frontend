@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
 
-  const { userOrders, loadingProfile, errorProfile, getUserAllOrders } = useOrders();
+  const { userAllOrders, loadingProfile, errorProfile, getUserAllOrders } = useOrders();
 
   useEffect(() => {
     getUserAllOrders(user._id);
@@ -27,7 +27,7 @@ function OrdersProfile() {
     <section className="profile__orders">
       <h3 className="profile__orders-title">Histórico de pedidos</h3>
 
-      {userOrders?.length === 0 ? (
+      {userAllOrders?.length === 0 ? (
         <Toast className="profile__no-orders-toast">
           <p className="profile__no-orders-text">
             Você ainda não comprou nenhuma sopa, creme ou patê...
@@ -41,7 +41,7 @@ function OrdersProfile() {
         </Toast>
       ) : (
         <ul className="profile__orders-list nav__list">
-          {userOrders?.map((order) => {
+          {userAllOrders?.map((order) => {
             const formattedDate = order ? order.createdAt : '';
 
             const pay =

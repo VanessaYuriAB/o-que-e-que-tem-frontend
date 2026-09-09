@@ -11,7 +11,7 @@ export default function useOrders() {
   const [loadingTracker, setLoadingTracker] = useState(false);
   const [errorTracker, setErrorTracker] = useState(null);
 
-  const [userOrders, setUserOrders] = useState(null);
+  const [userAllOrders, setUserAllOrders] = useState(null);
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [errorProfile, setErrorProfile] = useState(null);
 
@@ -44,11 +44,11 @@ export default function useOrders() {
 
       const allOrders = [...orders, ...subscriptionOrders];
 
-      setUserOrders(allOrders);
+      setUserAllOrders(allOrders);
     } catch (error) {
       const handledError = errorHandler(error);
 
-      setUserOrders(null);
+      setUserAllOrders(null);
       setErrorProfile(handledError);
     } finally {
       setLoadingProfile(false);
@@ -60,7 +60,7 @@ export default function useOrders() {
     loadingTracker,
     errorTracker,
     trackOrder,
-    userOrders,
+    userAllOrders,
     loadingProfile,
     errorProfile,
     getUserAllOrders,
