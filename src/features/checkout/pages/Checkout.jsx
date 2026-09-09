@@ -49,6 +49,7 @@ function Checkout() {
   const isCartReady = hasCartItems && hasCartData;
 
   const canBuy =
+    !user ||
     user?.subscription === false ||
     (user?.subscription === true && user?.subscriptionDetails?.status === false);
 
@@ -57,7 +58,7 @@ function Checkout() {
     user?.subscriptionDetails?.schedules || {}
   );
 
-  const [year, month, day] = nextMeal.split('-');
+  const [year, month, day] = nextMeal ? nextMeal.split('-') : '';
   const nextMealAt = `${day}/${month}/${year}`;
 
   const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
