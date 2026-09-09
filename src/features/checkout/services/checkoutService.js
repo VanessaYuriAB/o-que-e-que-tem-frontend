@@ -3,6 +3,7 @@ import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import useAuthStore from '../../../store/useAuthStore.js';
+import generateMockOrderNumber from '../utils/generateMockOrderNumber.js';
 
 export async function sendOrderToServer(order) {
   try {
@@ -17,7 +18,7 @@ export async function sendOrderToServer(order) {
         _id: 'order-mock',
         owner: user?._id ?? null,
         createdAt: new Date().toLocaleString('pt-BR'),
-        orderNumber: '202608010001',
+        orderNumber: generateMockOrderNumber('orderType'),
         ...order,
       };
 
@@ -56,7 +57,7 @@ export async function sendSubscribeOrderToServer(subscriptionOrder) {
         _id: 'subscription-order-mock',
         owner: user?._id ?? null,
         createdAt: new Date().toLocaleString('pt-BR'),
-        subscribeOrderNumber: 'S202609080001',
+        subscribeOrderNumber: generateMockOrderNumber('subscriptionOrderType'),
         ...subscriptionOrder,
       };
 
