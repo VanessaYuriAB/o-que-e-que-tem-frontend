@@ -5,6 +5,7 @@ import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 import generateMockOrderNumber from '../utils/generateMockOrderNumber.js';
 import orders from '../../../mocks/fakeOrdersDb.js';
+import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
 
 export async function sendOrderToServer(order) {
   try {
@@ -64,6 +65,9 @@ export async function sendSubscribeOrderToServer(subscriptionOrder) {
         subscribeOrderNumber: generateMockOrderNumber('subscriptionOrderType'),
         ...subscriptionOrder,
       };
+
+      // Adiciona pedido no mock de 'subscriptionOrders'
+      subscriptionOrders.push(mockSubscriptionOrder);
 
       return await fakeApi(mockSubscriptionOrder, 201);
     };
