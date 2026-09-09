@@ -42,7 +42,7 @@ function OrdersProfile() {
       ) : (
         <ul className="profile__orders-list nav__list">
           {userOrders?.map((order) => {
-            const formattedDate = order ? order.createdAt.split(',')[0] : '';
+            const formattedDate = order ? order.createdAt : '';
 
             return (
               <li className="profile__orders-item" key={order._id}>

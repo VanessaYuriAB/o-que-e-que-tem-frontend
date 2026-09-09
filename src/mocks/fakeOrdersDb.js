@@ -4,7 +4,7 @@ import itemsMenu from './fakeMenuDb.js';
 const order1 = {
   _id: 'order-1',
   owner: user2._id,
-  createdAt: new Date().toLocaleString('pt-BR'),
+  createdAt: '04/08/2026, 11:09:46',
 
   orderNumber: '202608052114',
 
@@ -78,7 +78,7 @@ const order1 = {
 const order2 = {
   _id: 'order-2',
   owner: user3._id,
-  createdAt: new Date().toLocaleString('pt-BR'),
+  createdAt: '23/07/2026, 17:40:03',
 
   orderNumber: '202608053314',
 
@@ -138,7 +138,7 @@ const order2 = {
 const order3 = {
   _id: 'order-3',
   owner: user3._id,
-  createdAt: new Date().toLocaleString('pt-BR'),
+  createdAt: '20/08/2026, 18:26:32',
 
   orderNumber: '202608053914',
 
