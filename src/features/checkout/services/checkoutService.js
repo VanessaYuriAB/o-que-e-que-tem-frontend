@@ -4,6 +4,7 @@ import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 import generateMockOrderNumber from '../utils/generateMockOrderNumber.js';
+import orders from '../../../mocks/fakeOrdersDb.js';
 
 export async function sendOrderToServer(order) {
   try {
@@ -21,6 +22,9 @@ export async function sendOrderToServer(order) {
         orderNumber: generateMockOrderNumber('orderType'),
         ...order,
       };
+
+      // Adiciona pedido no mock de 'orders'
+      orders.push(mockOrder);
 
       return await fakeApi(mockOrder, 201);
     };
