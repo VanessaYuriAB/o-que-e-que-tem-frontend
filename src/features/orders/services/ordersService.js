@@ -3,6 +3,7 @@ import apiFetch from '../../../services/api.js';
 import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import { fakeApiError, fakeApi } from '../../../shared/utils/fakeApi.js';
 import orders from '../../../mocks/fakeOrdersDb.js';
+import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
 
 // Rastrear pedidos (nº do pedido + email)
 export async function getOrderByNumber(orderData) {
@@ -39,7 +40,7 @@ export async function getOrderByNumber(orderData) {
   }
 }
 
-// Pedidos do usuário logado
+// Pedidos avulsos do usuário logado
 export async function getOrderById(userId) {
   try {
     const mockFn = async () => {
@@ -65,5 +66,36 @@ export async function getOrderById(userId) {
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no ordersService.getOrderById', { cause });
+  }
+}
+
+// Pedidos de assinatura do usuário logado
+export async function getSubscriptionOrderById(userId) {
+  try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.getSubscriptionOrderById) {
+        await fakeApiError('mockFn com err = true no getSubscriptionOrderById do ordersService');
+      }
+
+      // Simulação do backend
+      const userSubscriptionOrders = subscriptionOrders.filter(
+        (subscriptionOrder) => subscriptionOrder.owner === userId
+      );
+
+      // Caso não existam pedidos de assinatura o retorno é []; não é um erro, e é direcionado no próprio componente
+
+      return await fakeApi(userSubscriptionOrders);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch(`/subscribe-orders/:${userId}`);
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    console.log('getSubscriptionOrderById', data);
+    return Array.isArray(data) ? data : [];
+  } catch (cause) {
+    throw new Error('Falha no ordersService.getSubscriptionOrderById', { cause });
   }
 }
