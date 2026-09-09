@@ -45,7 +45,9 @@ function SuccessOrder() {
             <dl className="order__details">
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Nº do pedido:</dt>
-                <dd className="order__description">{hasOrder.orderNumber}</dd>
+                <dd className="order__description">
+                  {hasOrder.orderNumber ?? hasOrder.subscribeOrderNumber}
+                </dd>
               </div>
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Data: </dt>
@@ -83,20 +85,41 @@ function SuccessOrder() {
                 </dd>
               </div>
 
-              <div className="order__detail-box order__detail-box_inline">
-                <dt className="order__term">Forma de pagamento:</dt>
-                <dd className="order__description">
-                  {hasOrder.payment === 'pix'
-                    ? 'PIX'
-                    : hasOrder.payment === 'debito'
-                      ? 'cartão de débito'
-                      : 'cartão de crédito'}
-                </dd>
-              </div>
-              <div className="order__detail-box order__detail-box_inline">
-                <dt className="order__term">R$:</dt>
-                <dd className="order__description">{hasOrder.amount},00</dd>
-              </div>
+              {hasOrder.orderNumber && (
+                <>
+                  <div className="order__detail-box order__detail-box_inline">
+                    <dt className="order__term">Forma de pagamento:</dt>
+                    <dd className="order__description">
+                      {hasOrder.payment === 'pix'
+                        ? 'PIX'
+                        : hasOrder.payment === 'debito'
+                          ? 'cartão de débito'
+                          : 'cartão de crédito'}
+                    </dd>
+                  </div>
+                  <div className="order__detail-box order__detail-box_inline">
+                    <dt className="order__term">R$:</dt>
+                    <dd className="order__description">{hasOrder.amount},00</dd>
+                  </div>
+                </>
+              )}
+
+              {hasOrder.subscribeOrderNumber && (
+                <>
+                  <div className="order__detail-box order__detail-box_inline">
+                    <dt className="order__term">
+                      Data de {hasOrder.method === 'delivery' ? 'entrega' : 'retirada'}:
+                    </dt>
+                    <dd className="order__description">{hasOrder.day}</dd>
+                  </div>
+
+                  <div className="order__detail-box order__detail-box_inline">
+                    <dt className="order__term">Às:</dt>
+                    <dd className="order__description">{hasOrder.time}</dd>
+                  </div>
+                </>
+              )}
+
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Tipo de refeição:</dt>
                 <dd className="order__description">
