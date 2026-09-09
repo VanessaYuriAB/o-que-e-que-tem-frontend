@@ -57,7 +57,8 @@ function Checkout() {
     user?.subscriptionDetails?.schedules || {}
   );
 
-  const nextMealAt = new Date(nextMeal).toLocaleString('pt-BR').split(',')[0];
+  const [year, month, day] = nextMeal.split('-');
+  const nextMealAt = `${day}/${month}/${year}`;
 
   const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
   const nextDayAt = nextMeal ? weekDays[new Date(nextMeal).getDay()] : '';

@@ -42,6 +42,8 @@ function OrdersProfile() {
       ) : (
         <ul className="profile__orders-list nav__list">
           {userOrders?.map((order) => {
+            const formattedDate = order ? order.createdAt.split(',')[0] : '';
+
             return (
               <li className="profile__orders-item" key={order._id}>
                 <dl className="profile__orders-details">
@@ -51,9 +53,7 @@ function OrdersProfile() {
                   </div>
                   <div className="profile__orders-item-box">
                     <dt className="profile__orders-term">Data:</dt>
-                    <dd className="profile__orders-description">
-                      {new Date(order.createdAt).toLocaleString('pt-BR')}
-                    </dd>
+                    <dd className="profile__orders-description">{formattedDate}</dd>
                   </div>
                   <div className="profile__orders-item-box">
                     <dt className="profile__orders-term">Forma de entrega:</dt>

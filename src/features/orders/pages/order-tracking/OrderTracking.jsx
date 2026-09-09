@@ -13,6 +13,8 @@ function OrderTracking() {
 
   const { orderTracked, loadingTracker, errorTracker, trackOrder } = useOrders();
 
+  const formattedDate = orderTracked ? orderTracked.createdAt.split(',')[0] : '';
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -92,9 +94,7 @@ function OrderTracking() {
           <dl className="tracker__details">
             <div className="tracker__detail-box tracker__detail-box_inline">
               <dt className="tracker__detail">Data:</dt>
-              <dd className="tracker__description">
-                {new Date(orderTracked.createdAt).toLocaleString('pt-BR')}
-              </dd>
+              <dd className="tracker__description">{formattedDate}</dd>
             </div>
             <div className="tracker__detail-box tracker__detail-box_inline">
               <dt className="tracker__detail">Tipo:</dt>
