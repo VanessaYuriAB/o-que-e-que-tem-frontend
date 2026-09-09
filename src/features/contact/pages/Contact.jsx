@@ -21,7 +21,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     userName: user?.userName ?? '',
     email: user?.email ?? '',
-    tel: user?.tel ?? '',
+    whatsapp: user?.tel ?? '',
     message: '',
     method: '',
   });
@@ -38,7 +38,7 @@ function Contact() {
       setFormData({
         userName: user?.userName ?? '',
         email: user?.email ?? '',
-        tel: user?.tel ?? '',
+        whatsapp: user?.tel ?? '',
         message: '',
         method: '',
       });
@@ -93,21 +93,21 @@ function Contact() {
             />
           </div>
           <div className="contact__input-box">
-            <label className="contact__label" htmlFor="tel">
+            <label className="contact__label" htmlFor="whatsapp">
               WhatsApp:
             </label>
             <Input
               className="contact__input"
               type="tel"
-              id="tel"
-              name="tel"
+              id="whatsapp"
+              name="whatsapp"
               inputMode="numeric"
               minLength={14}
               maxLength={15}
               pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
               title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
               placeholder="(XX) XXXXX-XXXX"
-              value={formData.tel}
+              value={formData.whatsapp}
               onChange={handleChange}
               required
             />
@@ -149,16 +149,16 @@ function Contact() {
             />
           </div>
           <div className="contact__input-box contact__input-box_radio">
-            <label className="contact__label contact__label_radio" htmlFor="tel-radio">
+            <label className="contact__label contact__label_radio" htmlFor="whatsapp-radio">
               WhatsApp
             </label>
             <Input
               className="contact__input"
               type="radio"
-              id="tel-radio"
+              id="whatsapp-radio"
               name="method"
-              value="tel-radio"
-              checked={formData.method === 'tel-radio'}
+              value="whatsapp-radio"
+              checked={formData.method === 'whatsapp-radio'}
               onChange={handleChange}
             />
           </div>
