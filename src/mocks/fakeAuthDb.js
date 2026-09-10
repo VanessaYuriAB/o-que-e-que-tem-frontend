@@ -120,10 +120,10 @@ export const user4 = {
 /* users */
 
 /*
-user1 tem assinatura e não tem pedido,
-user2 tem pedido e assinatura,
-user3 tem pedido e não tem assinatura,
-user4 é admin
+user1 tem assinatura, não tem pedido avulso e tem pedido de assinatura,
+user2 tem pedido avulso e de assinatura + assinatura,
+user3 tem pedido avulso e não tem assinatura,
+user4 é admin, não tem assinatura nem pedidos
 */
 
 export const users = [
