@@ -1,0 +1,17 @@
+/* Mobile first (padrão) */
+
+.profile__no-msgs-toast {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 1em 3em 2em;
+  max-width: max-content;
+}
+
+.profile__no-msgs-text:last-of-type {
+  margin-bottom: 2rem;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+}
