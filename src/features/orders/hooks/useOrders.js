@@ -4,6 +4,7 @@ import {
   getOrderByNumber,
   getOrderById,
   getSubscriptionOrderById,
+  getSubscriptionOrderByNumber,
 } from '../services/ordersService.js';
 
 export default function useOrders() {
@@ -21,8 +22,15 @@ export default function useOrders() {
     setErrorTracker(null);
 
     try {
-      const order = await getOrderByNumber(orderData);
-      setOrderTracked(order);
+      let result;
+
+      if (orderData.orderNumber.startsWith('2')) {
+        result = await getOrderByNumber(orderData);
+      } else if (orderData.orderNumber.startsWith('S')) {
+        result = await getSubscriptionOrderByNumber(orderData);
+      }
+
+      setOrderTracked(result);
     } catch (error) {
       const handledError = errorHandler(error);
 
