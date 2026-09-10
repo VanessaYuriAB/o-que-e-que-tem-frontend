@@ -7,7 +7,6 @@ import { useState } from 'react';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useCartStore from '../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
-import errorHandler from '../../../shared/utils/errorHandler.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import useAuthStore from '../../../store/useAuthStore.js';
 import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
@@ -74,8 +73,7 @@ function Cart() {
       await removeItemToCartAction(item);
       setLocalRemovedError(null);
     } catch (error) {
-      const handledError = errorHandler(error);
-      setLocalRemovedError(handledError.message);
+      setLocalRemovedError(error.message);
     }
   };
 
@@ -114,8 +112,7 @@ function Cart() {
 
       navigate('/checkout');
     } catch (error) {
-      const handledError = errorHandler(error);
-      setLocalCartError(handledError.message);
+      setLocalCartError(error.message);
     }
   };
 

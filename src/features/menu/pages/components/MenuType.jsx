@@ -5,7 +5,6 @@ import Button from '../../../../shared/components/ui/button/Button.jsx';
 import { useMemo, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import useCartStore from '../../../../store/useCartStore.js';
-import errorHandler from '../../../../shared/utils/errorHandler.js';
 import { useShallow } from 'zustand/react/shallow';
 import useAuthStore from '../../../../store/useAuthStore.js';
 
@@ -77,11 +76,9 @@ function MenuType({ category }) {
         message: null,
       });
     } catch (error) {
-      const handledError = errorHandler(error);
-
       setLocalItemError({
         id: item._id,
-        message: handledError.message,
+        message: error.message,
       });
     } finally {
       setActiveItemId(null);

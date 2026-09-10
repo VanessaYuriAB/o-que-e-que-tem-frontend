@@ -5,6 +5,7 @@ import {
   setCartData,
 } from '../features/cart/services/cartService.js';
 import { persist } from 'zustand/middleware';
+import errorHandler from '../shared/utils/errorHandler.js';
 
 const useCartStore = create(
   persist(
@@ -42,6 +43,8 @@ const useCartStore = create(
           set((state) => ({
             cartItems: [...state.cartItems, item],
           }));
+        } catch (error) {
+          throw errorHandler(error);
         } finally {
           set({ loading: false });
         }
@@ -58,6 +61,8 @@ const useCartStore = create(
               (cardItem) => item.productName !== cardItem.productName
             ),
           }));
+        } catch (error) {
+          throw errorHandler(error);
         } finally {
           set({ removeLoading: false });
         }
@@ -72,6 +77,8 @@ const useCartStore = create(
           set(() => ({
             cartData: data,
           }));
+        } catch (error) {
+          throw errorHandler(error);
         } finally {
           set({ setLoading: false });
         }
