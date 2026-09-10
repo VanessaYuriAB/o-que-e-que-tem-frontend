@@ -25,6 +25,8 @@ const FAKE_ERRORS = {
   sendSubscribeOrderToServer: false,
 
   getSubscriptionOrderById: false,
+
+  getSubscriptionOrderByNumber: false,
 };
 
 export default FAKE_ERRORS;
