@@ -45,6 +45,11 @@ function Profile() {
               Seus pedidos
             </NavLink>
           </li>
+          <li className="profile__item">
+            <NavLink className={customClassName} to="msgs-profile">
+              Suas mensagens
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <Outlet />
