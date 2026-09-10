@@ -43,6 +43,10 @@ const OrderTracking = lazy(
   () => import('../../features/orders/pages/order-tracking/OrderTracking.jsx')
 );
 
+const MsgsProfile = lazy(
+  () => import('../../features/profile/pages/components/msgs-profile/MsgsProfile.jsx')
+);
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -165,6 +169,14 @@ function AppRoutes() {
               element={
                 <ProtectedRoute>
                   <OrdersProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="msgs-profile"
+              element={
+                <ProtectedRoute>
+                  <MsgsProfile />
                 </ProtectedRoute>
               }
             />
