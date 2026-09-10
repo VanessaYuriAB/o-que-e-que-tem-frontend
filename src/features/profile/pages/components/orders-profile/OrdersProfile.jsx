@@ -5,11 +5,16 @@ import useOrders from '../../../../orders/hooks/useOrders.js';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useEffect } from 'react';
+import parsePtBrDate from '../../../utils/parsePtBrDate.js';
 
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
 
   const { userAllOrders, loadingProfile, errorProfile, getUserAllOrders } = useOrders();
+
+  const orderedUserAllOrders = userAllOrders
+    ? [...userAllOrders].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
+    : [];
 
   useEffect(() => {
     getUserAllOrders(user._id);
@@ -41,7 +46,7 @@ function OrdersProfile() {
         </Toast>
       ) : (
         <ul className="profile__orders-list nav__list">
-          {userAllOrders?.map((order) => {
+          {orderedUserAllOrders?.map((order) => {
             const formattedDate = order ? order.createdAt : '';
 
             const pay =
