@@ -50,11 +50,10 @@ function OrderTracking() {
               type="text"
               id="order"
               name="orderNumber"
-              inputMode="numeric"
               minLength={12}
-              maxLength={12}
-              pattern="^[0-9]{12}$"
-              title="O número do pedido que você deseja reastrear: ele contém apenas números, tem o total de 12 dígitos."
+              maxLength={13}
+              pattern="^S?[0-9]{12}$"
+              title="O número do pedido que você deseja reastrear: pedido avulso contém apenas números e tem o total de 12 dígitos, pedido de assinatura começa com a letra 'S' e tem o total de 13 dígitos."
               placeholder="Qual o número do pedido?"
               value={formData.orderNumber}
               onChange={handleChange}
