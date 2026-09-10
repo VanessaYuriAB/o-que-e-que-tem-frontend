@@ -5,7 +5,7 @@ import { fakeApiError, fakeApi } from '../../../shared/utils/fakeApi.js';
 import orders from '../../../mocks/fakeOrdersDb.js';
 import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
 
-// Rastrear pedidos (nº do pedido + email)
+// Rastrear pedidos avulsos (nº do pedido + email)
 export async function getOrderByNumber(orderData) {
   try {
     const mockFn = async () => {
@@ -37,6 +37,45 @@ export async function getOrderByNumber(orderData) {
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no ordersService.getOrderByNumber', { cause });
+  }
+}
+
+// Rastrear pedidos de assinatura (nº do pedido + email)
+export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
+  try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.getSubscriptionOrderByNumber) {
+        await fakeApiError(
+          'mockFn com err = true no getSubscriptionOrderByNumber do ordersService'
+        );
+      }
+
+      // Simula a verificação do servidor
+      const subscriptionOrderFinded = subscriptionOrders.find(
+        (subscriptionOrder) =>
+          subscriptionOrder.orderNumber === subscriptionOrderData.orderNumber &&
+          subscriptionOrder.customerSnapshot.email === subscriptionOrderData.email
+      );
+
+      if (subscriptionOrderFinded === undefined) {
+        await fakeApiError(`O pedido ${subscriptionOrderData.orderNumber} não foi localizado`, 404);
+      }
+
+      return await fakeApi(subscriptionOrderFinded);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch(
+        `/subscribe-orders/:${subscriptionOrderData.orderNumber}?email=${subscriptionOrderData.email}`
+      );
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    console.log('getSubscriptionOrderByNumber', data);
+    return typeof data === 'object' ? data : {};
+  } catch (cause) {
+    throw new Error('Falha no ordersService.getSubscriptionOrderByNumber', { cause });
   }
 }
 
