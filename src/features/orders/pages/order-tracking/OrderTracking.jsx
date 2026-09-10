@@ -90,60 +90,117 @@ function OrderTracking() {
       {orderTracked && (
         <section className="tracker__infos">
           <h2 className="tracker__subtitle">Pedido nº {orderTracked.orderNumber}:</h2>
-          <dl className="tracker__details">
-            <div className="tracker__detail-box tracker__detail-box_inline">
-              <dt className="tracker__detail">Data:</dt>
-              <dd className="tracker__description">{formattedDate}</dd>
-            </div>
-            <div className="tracker__detail-box tracker__detail-box_inline">
-              <dt className="tracker__detail">Tipo:</dt>
-              <dd className="tracker__description">{orderTracked.meal}</dd>
-            </div>
-            <div className="tracker__detail-box tracker__detail-box_inline">
-              <dt className="tracker__detail">Entrega:</dt>
-              <dd className="tracker__description">{orderTracked.method}</dd>
-            </div>
-            <div className="tracker__detail-box tracker__detail-box_inline">
-              <dt className="tracker__detail">Pagamento:</dt>
-              <dd className="tracker__description">{orderTracked.payment}</dd>
-            </div>
-            <div className="tracker__detail-box tracker__detail-box_inline">
-              <dt className="tracker__detail">R$:</dt>
-              <dd className="tracker__description">{orderTracked.amount}</dd>
-            </div>
-            {orderTracked.method === 'delivery' && (
+          {orderTracked.orderNumber.startsWith('2') ? (
+            <dl className="tracker__details">
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Data:</dt>
+                <dd className="tracker__description">{formattedDate}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Tipo:</dt>
+                <dd className="tracker__description">{orderTracked.meal}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Entrega:</dt>
+                <dd className="tracker__description">{orderTracked.method}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Pagamento:</dt>
+                <dd className="tracker__description">{orderTracked.payment}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">R$:</dt>
+                <dd className="tracker__description">{orderTracked.amount}</dd>
+              </div>
+              {orderTracked.method === 'delivery' && (
+                <div className="tracker__detail-box">
+                  <dt className="tracker__detail">Endereço:</dt>
+                  <dd className="tracker__description">
+                    {orderTracked.addressSnapshot.address}, {orderTracked.addressSnapshot.number}
+                    {orderTracked.addressSnapshot.complement !== '-'
+                      ? `, ${orderTracked.addressSnapshot.complement}`
+                      : ''}
+                    , {orderTracked.addressSnapshot.district}, {orderTracked.addressSnapshot.cep}
+                  </dd>
+                </div>
+              )}
+              {orderTracked.obs && (
+                <div className="tracker__detail-box">
+                  <dt className="tracker__detail">Informações adicionais:</dt>
+                  <dd className="tracker__description">{orderTracked.obs}</dd>
+                </div>
+              )}
               <div className="tracker__detail-box">
-                <dt className="tracker__detail">Endereço:</dt>
+                <dt className="tracker__detail">Ingredientes:</dt>
                 <dd className="tracker__description">
-                  {orderTracked.addressSnapshot.address}, {orderTracked.addressSnapshot.number}
-                  {orderTracked.addressSnapshot.complement !== '-'
-                    ? `, ${orderTracked.addressSnapshot.complement}`
-                    : ''}
-                  , {orderTracked.addressSnapshot.district}, {orderTracked.addressSnapshot.cep}
+                  <ul className="tracker__items-list nav__list">
+                    {orderTracked.itemsSnapshot.map((item) => {
+                      return (
+                        <li className="tracker__item-list" key={item._id}>
+                          {item.productName}
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </dd>
               </div>
-            )}
-            {orderTracked.obs && (
-              <div className="tracker__detail-box">
-                <dt className="tracker__detail">Informações adicionais:</dt>
-                <dd className="tracker__description">{orderTracked.obs}</dd>
+            </dl>
+          ) : (
+            <dl className="tracker__details">
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Data:</dt>
+                <dd className="tracker__description">{formattedDate}</dd>
               </div>
-            )}
-            <div className="tracker__detail-box">
-              <dt className="tracker__detail">Ingredientes:</dt>
-              <dd className="tracker__description">
-                <ul className="tracker__items-list nav__list">
-                  {orderTracked.itemsSnapshot.map((item) => {
-                    return (
-                      <li className="tracker__item-list" key={item._id}>
-                        {item.productName}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </dd>
-            </div>
-          </dl>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Tipo:</dt>
+                <dd className="tracker__description">{orderTracked.meal}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Entrega:</dt>
+                <dd className="tracker__description">{orderTracked.method}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Em:</dt>
+                <dd className="tracker__description">{orderTracked.day}</dd>
+              </div>
+              <div className="tracker__detail-box tracker__detail-box_inline">
+                <dt className="tracker__detail">Às:</dt>
+                <dd className="tracker__description">{orderTracked.time}</dd>
+              </div>
+              {orderTracked.method === 'delivery' && (
+                <div className="tracker__detail-box">
+                  <dt className="tracker__detail">Endereço:</dt>
+                  <dd className="tracker__description">
+                    {orderTracked.addressSnapshot.address}, {orderTracked.addressSnapshot.number}
+                    {orderTracked.addressSnapshot.complement !== '-'
+                      ? `, ${orderTracked.addressSnapshot.complement}`
+                      : ''}
+                    , {orderTracked.addressSnapshot.district}, {orderTracked.addressSnapshot.cep}
+                  </dd>
+                </div>
+              )}
+              {orderTracked.obs && (
+                <div className="tracker__detail-box">
+                  <dt className="tracker__detail">Informações adicionais:</dt>
+                  <dd className="tracker__description">{orderTracked.obs}</dd>
+                </div>
+              )}
+              <div className="tracker__detail-box">
+                <dt className="tracker__detail">Ingredientes:</dt>
+                <dd className="tracker__description">
+                  <ul className="tracker__items-list nav__list">
+                    {orderTracked.itemsSnapshot.map((item) => {
+                      return (
+                        <li className="tracker__item-list" key={item._id}>
+                          {item.productName}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+          )}
         </section>
       )}
     </section>
