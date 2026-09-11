@@ -1,24 +1,29 @@
 import { Link } from 'react-router-dom';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import './MsgsProfile.css';
+import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
+import { useEffect } from 'react';
+import useContact from '../../../../contact/hooks/useContact.js';
+import useAuthStore from '../../../../../store/useAuthStore.js';
 
 function MsgsProfile() {
-  const userMsgs = [
-    {
-      _id: '',
-      createdAt: '',
-      userName: '',
-      email: '',
-      whatsapp: '',
-      message: '',
-      method: '',
-      status: true,
-      timeAt: '',
-      response: '',
-    },
-    {},
-  ];
+  const { loading, error, getUserMsgs, userMsgs } = useContact();
+
+  const user = useAuthStore((state) => state.user);
+
+  useEffect(() => {
+    getUserMsgs(user._id);
+  }, [user._id, getUserMsgs]);
+
   const hasMsgs = userMsgs.length > 0;
+
+  if (loading) {
+    return <Loader className="profile__msgs-loader" />;
+  }
+
+  if (error) {
+    return <Toast className="profile__msgs-toast" message={error.message} />;
+  }
 
   return (
     <section className="profile__msgs">
@@ -53,7 +58,7 @@ function MsgsProfile() {
                   <>
                     <div className="profile__msgs-item-box">
                       <dt className="profile__msgs-term">Em:</dt>
-                      <dd className="profile__msgs-description">{msg.timeAt}</dd>
+                      <dd className="profile__msgs-description">{msg.responseAt}</dd>
                     </div>
                     <div className="profile__msgs-item-box">
                       <dt className="profile__msgs-term">Resposta:</dt>
