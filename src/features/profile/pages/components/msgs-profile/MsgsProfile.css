@@ -1,5 +1,9 @@
 /* Mobile first (padrão) */
 
+.profile__msgs-toast {
+  margin: 2rem auto;
+}
+
 .profile__msgs {
   margin-bottom: 21.44px; /* margin-top do profile__msgs-title */
 }
