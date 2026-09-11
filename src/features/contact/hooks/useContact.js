@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
-import sendUserMessage from '../services/contactService.js';
+import { sendUserMessage, getMessagesByUserId } from '../services/contactService.js';
 
 export default function useContact() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [userMsgs, setUserMsgs] = useState([]);
 
   const { setGlobalErrorAction } = useAuthStore.getState();
 
@@ -38,5 +39,36 @@ export default function useContact() {
     }
   }
 
-  return { sendMsg, loading, error, success };
+  const getUserMsgs = useCallback(
+    async (userId) => {
+      setLoading(true);
+      setError(null);
+      setUserMsgs([]);
+
+      setGlobalErrorAction(null);
+
+      try {
+        const msgs = await getMessagesByUserId(userId);
+        setUserMsgs(msgs);
+
+        return { success: true };
+      } catch (error) {
+        const handledError = errorHandler(error);
+
+        if (handledError.scope === 'global') {
+          // Seta 'globalError' (global)
+          setGlobalErrorAction(handledError);
+        } else if (handledError.scope === 'local') {
+          setError(handledError);
+        }
+
+        return { success: false };
+      } finally {
+        setLoading(false);
+      }
+    },
+    [setGlobalErrorAction]
+  );
+
+  return { sendMsg, loading, error, success, getUserMsgs, userMsgs };
 }
