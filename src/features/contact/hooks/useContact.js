@@ -11,14 +11,14 @@ export default function useContact() {
 
   const { setGlobalErrorAction } = useAuthStore.getState();
 
-  async function sendMsg(msgData) {
+  async function sendMsg(msgData, userId) {
     setLoading(true);
     setError(null);
 
     setGlobalErrorAction(null);
 
     try {
-      await sendUserMessage(msgData);
+      await sendUserMessage(msgData, userId);
       setSuccess(
         `Mensagem enviada :) Retornaremos em breve, pelo seu ${msgData.method === 'email' ? 'e-mail' : 'WhatsApp'}.`
       );

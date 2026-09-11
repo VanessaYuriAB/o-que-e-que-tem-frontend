@@ -4,16 +4,30 @@ import { fakeApiError, fakeApi } from '../../../shared/utils/fakeApi.js';
 import apiFetch from '../../../services/api.js';
 import messages from '../../../mocks/fakeMessagesDb.js';
 
-async function sendUserMessage(messageData) {
+async function sendUserMessage(messageData, userId = null) {
   try {
     const mockFn = async () => {
       if (FAKE_ERRORS.sendUserMessage) {
         await fakeApiError('mockFn com err = true no sendUserMessage do contactService');
       }
 
-      localStorage.setItem('userMsg', JSON.stringify(messageData));
+      const newMessage = {
+        _id: 'msg-mock',
+        createdAt: new Date().toISOString(),
+        owner: userId ?? null,
+        userName: messageData.userName,
+        email: messageData.email,
+        whatsapp: messageData.whatsapp,
+        message: messageData.message,
+        method: messageData.method,
+        status: false,
+        responseAt: null,
+        response: null,
+      };
 
-      return await fakeApi(messageData, 201);
+      messages.push(newMessage);
+
+      return await fakeApi(newMessage, 201);
     };
 
     const apiFn = async () => {

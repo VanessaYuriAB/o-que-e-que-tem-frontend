@@ -32,7 +32,7 @@ function Contact() {
   };
 
   const handleContact = async (data) => {
-    const result = await sendMsg(data);
+    const result = await sendMsg(data, user?._id);
 
     if (result.success === true) {
       setFormData({
