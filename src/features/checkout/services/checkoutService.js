@@ -19,7 +19,7 @@ export async function sendOrderToServer(order) {
       const mockOrder = {
         _id: 'order-mock',
         owner: user?._id ?? null,
-        createdAt: new Date().toLocaleString('pt-BR'),
+        createdAt: new Date().toISOString(),
         orderNumber: generateMockOrderNumber('orderType'),
         ...order,
       };
@@ -61,7 +61,7 @@ export async function sendSubscribeOrderToServer(subscriptionOrder) {
       const mockSubscriptionOrder = {
         _id: 'subscription-order-mock',
         owner: user?._id ?? null,
-        createdAt: new Date().toLocaleString('pt-BR'),
+        createdAt: new Date().toISOString(),
         orderNumber: generateMockOrderNumber('subscriptionOrderType'),
         ...subscriptionOrder,
       };

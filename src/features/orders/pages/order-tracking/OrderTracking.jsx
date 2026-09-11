@@ -13,7 +13,9 @@ function OrderTracking() {
 
   const { orderTracked, loadingTracker, errorTracker, trackOrder } = useOrders();
 
-  const formattedDate = orderTracked ? orderTracked.createdAt.split(',')[0] : '';
+  const formattedDate = orderTracked
+    ? new Date(orderTracked.createdAt).toLocaleString('pt-BR')
+    : '';
 
   const handleChange = (e) => {
     const { name, value } = e.target;

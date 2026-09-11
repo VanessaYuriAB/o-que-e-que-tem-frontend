@@ -36,7 +36,7 @@ const subscriptionOrder1 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 2,
@@ -44,7 +44,7 @@ const subscriptionOrder1 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 7,
@@ -52,7 +52,7 @@ const subscriptionOrder1 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 25,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 10,
@@ -60,7 +60,7 @@ const subscriptionOrder1 = {
       category: 'leites-derivados',
       qtyAvailable: 15,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 16,
@@ -68,7 +68,7 @@ const subscriptionOrder1 = {
       category: 'oleos-gorduras',
       qtyAvailable: 8,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
   ],*/
 
@@ -104,7 +104,7 @@ const subscriptionOrder2 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 4,
@@ -112,7 +112,7 @@ const subscriptionOrder2 = {
       category: 'carboidratos',
       qtyAvailable: 0,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 8,
@@ -120,7 +120,7 @@ const subscriptionOrder2 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 9,
@@ -128,7 +128,7 @@ const subscriptionOrder2 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
   ],*/
 
@@ -170,7 +170,7 @@ const subscriptionOrder3 = {
       category: 'verduras-legumes',
       qtyAvailable: 10,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 6,
@@ -178,7 +178,7 @@ const subscriptionOrder3 = {
       category: 'carboidratos',
       qtyAvailable: 20,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 9,
@@ -186,7 +186,7 @@ const subscriptionOrder3 = {
       category: 'leguminosas-oleaginosas',
       qtyAvailable: 30,
       partnerName: 'Mercado 3',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 10,
@@ -194,7 +194,7 @@ const subscriptionOrder3 = {
       category: 'leites-derivados',
       qtyAvailable: 15,
       partnerName: 'Mercado 1',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
     {
       _id: 17,
@@ -202,7 +202,7 @@ const subscriptionOrder3 = {
       category: 'oleos-gorduras',
       qtyAvailable: 22,
       partnerName: 'Mercado 2',
-      availableUntil: new Date().toLocaleString('pt-BR'),
+      availableUntil: new Date().toISOString(),
     },
   ],*/
 

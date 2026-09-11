@@ -56,8 +56,8 @@ export default async function subscribe(newSubscriptionData) {
 
           owner: user._id ?? 'user-mock',
           status: true,
-          begin: createdAt.toLocaleString('pt-BR'),
-          end: end.toLocaleString('pt-BR'),
+          begin: createdAt.toISOString(),
+          end: end.toISOString(),
         },
       };
 

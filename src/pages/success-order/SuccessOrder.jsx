@@ -49,7 +49,9 @@ function SuccessOrder() {
               </div>
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Data: </dt>
-                <dd className="order__description">{hasOrder.createdAt}</dd>
+                <dd className="order__description">
+                  {new Date(hasOrder.createdAt).toLocaleString('pt-BR')}
+                </dd>
               </div>
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Forma de entrega:</dt>

@@ -47,7 +47,16 @@ function OrdersProfile() {
       ) : (
         <ul className="profile__orders-list nav__list">
           {orderedUserAllOrders?.map((order) => {
-            const formattedDate = order ? order.createdAt : '';
+            const isSubscriptionOrder = order?.orderNumber?.startsWith('S');
+
+            const formattedCreatedAt = new Date(order.createdAt).toLocaleString('pt-BR');
+            const orderCreatedAt = order.createdAt.includes('T')
+              ? formattedCreatedAt
+              : order.createdAt;
+
+            const meal =
+              order?.meal === 'pate' ? 'patê' : order?.meal === 'sopa' ? 'sopa' : 'creme';
+            const typeOfMeal = order ? meal : '';
 
             const pay =
               order?.payment === 'pix'
@@ -56,12 +65,6 @@ function OrdersProfile() {
                   ? 'cartão de débito'
                   : 'cartão de crédito';
             const typeOfPayment = order ? pay : '';
-
-            const meal =
-              order?.meal === 'pate' ? 'patê' : order?.meal === 'sopa' ? 'sopa' : 'creme';
-            const typeOfMeal = order ? meal : '';
-
-            const isSubscriptionOrder = order?.orderNumber.startsWith('S');
 
             return (
               <li className="profile__orders-item" key={order._id}>
@@ -77,7 +80,7 @@ function OrdersProfile() {
                     </div>
                     <div className="profile__orders-item-box">
                       <dt className="profile__orders-term">Data:</dt>
-                      <dd className="profile__orders-description">{formattedDate}</dd>
+                      <dd className="profile__orders-description">{orderCreatedAt}</dd>
                     </div>
                     <div className="profile__orders-item-box">
                       <dt className="profile__orders-term">Forma de entrega:</dt>
@@ -153,7 +156,7 @@ function OrdersProfile() {
                     </div>
                     <div className="profile__orders-item-box">
                       <dt className="profile__orders-term">Data:</dt>
-                      <dd className="profile__orders-description">{formattedDate}</dd>
+                      <dd className="profile__orders-description">{orderCreatedAt}</dd>
                     </div>
                     <div className="profile__orders-item-box">
                       <dt className="profile__orders-term">Forma de entrega:</dt>
