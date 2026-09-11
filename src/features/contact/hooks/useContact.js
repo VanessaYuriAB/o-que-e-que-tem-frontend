@@ -20,7 +20,7 @@ export default function useContact() {
     try {
       await sendUserMessage(msgData);
       setSuccess(
-        `Mensagem enviada :) Retornaremos em breve, pelo seu ${msgData.method === 'email-radio' ? 'e-mail' : 'WhatsApp'}.`
+        `Mensagem enviada :) Retornaremos em breve, pelo seu ${msgData.method === 'email' ? 'e-mail' : 'WhatsApp'}.`
       );
       return { success: true };
     } catch (error) {

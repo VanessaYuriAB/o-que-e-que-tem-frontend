@@ -143,8 +143,8 @@ function Contact() {
               type="radio"
               id="email-radio"
               name="method"
-              value="email-radio"
-              checked={formData.method === 'email-radio'}
+              value="email"
+              checked={formData.method === 'email'}
               onChange={handleChange}
             />
           </div>
@@ -157,8 +157,8 @@ function Contact() {
               type="radio"
               id="whatsapp-radio"
               name="method"
-              value="whatsapp-radio"
-              checked={formData.method === 'whatsapp-radio'}
+              value="whatsapp"
+              checked={formData.method === 'whatsapp'}
               onChange={handleChange}
             />
           </div>
