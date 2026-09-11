@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sendOrderToServer, sendSubscribeOrderToServer } from '../services/checkoutService.js';
+import { sendOrderToServer, sendSubscriptionOrderToServer } from '../services/checkoutService.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 
 export default function useCheckout() {
@@ -27,7 +27,7 @@ export default function useCheckout() {
     setError(null);
 
     try {
-      const data = await sendSubscribeOrderToServer(subscriptionOrder);
+      const data = await sendSubscriptionOrderToServer(subscriptionOrder);
       return { success: true, data };
     } catch (error) {
       const handledError = errorHandler(error);

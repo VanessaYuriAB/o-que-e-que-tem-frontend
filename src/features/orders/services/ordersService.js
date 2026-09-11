@@ -80,11 +80,11 @@ export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
 }
 
 // Pedidos avulsos do usuário logado
-export async function getOrderById(userId) {
+export async function getOrdersByUserId(userId) {
   try {
     const mockFn = async () => {
-      if (FAKE_ERRORS.getOrderById) {
-        await fakeApiError('mockFn com err = true no getOrderById do ordersService');
+      if (FAKE_ERRORS.getOrdersByUserId) {
+        await fakeApiError('mockFn com err = true no getOrdersByUserId do ordersService');
       }
 
       // Simulação do backend
@@ -101,19 +101,21 @@ export async function getOrderById(userId) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getOrderById', data);
+    console.log('getOrdersByUserId', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
-    throw new Error('Falha no ordersService.getOrderById', { cause });
+    throw new Error('Falha no ordersService.getOrdersByUserId', { cause });
   }
 }
 
 // Pedidos de assinatura do usuário logado
-export async function getSubscriptionOrderById(userId) {
+export async function getSubscriptionOrdersByUserId(userId) {
   try {
     const mockFn = async () => {
-      if (FAKE_ERRORS.getSubscriptionOrderById) {
-        await fakeApiError('mockFn com err = true no getSubscriptionOrderById do ordersService');
+      if (FAKE_ERRORS.getSubscriptionOrdersByUserId) {
+        await fakeApiError(
+          'mockFn com err = true no getSubscriptionOrdersByUserId do ordersService'
+        );
       }
 
       // Simulação do backend
@@ -132,9 +134,9 @@ export async function getSubscriptionOrderById(userId) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getSubscriptionOrderById', data);
+    console.log('getSubscriptionOrdersByUserId', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
-    throw new Error('Falha no ordersService.getSubscriptionOrderById', { cause });
+    throw new Error('Falha no ordersService.getSubscriptionOrdersByUserId', { cause });
   }
 }

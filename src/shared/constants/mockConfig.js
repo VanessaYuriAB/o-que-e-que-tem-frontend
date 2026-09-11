@@ -16,15 +16,15 @@ const FAKE_ERRORS = {
   sendOrderToServer: false,
 
   getOrderByNumber: false,
-  getOrderById: false,
+  getOrdersByUserId: false,
 
   subscribe: false,
 
   sendUserMessage: false,
 
-  sendSubscribeOrderToServer: false,
+  sendSubscriptionOrderToServer: false,
 
-  getSubscriptionOrderById: false,
+  getSubscriptionOrdersByUserId: false,
 
   getSubscriptionOrderByNumber: false,
 

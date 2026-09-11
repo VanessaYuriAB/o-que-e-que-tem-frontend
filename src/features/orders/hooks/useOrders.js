@@ -2,8 +2,8 @@ import { useState, useCallback } from 'react';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 import {
   getOrderByNumber,
-  getOrderById,
-  getSubscriptionOrderById,
+  getOrdersByUserId,
+  getSubscriptionOrdersByUserId,
   getSubscriptionOrderByNumber,
 } from '../services/ordersService.js';
 
@@ -47,8 +47,8 @@ export default function useOrders() {
     setErrorProfile(null);
 
     try {
-      const orders = await getOrderById(userId);
-      const subscriptionOrders = await getSubscriptionOrderById(userId);
+      const orders = await getOrdersByUserId(userId);
+      const subscriptionOrders = await getSubscriptionOrdersByUserId(userId);
 
       const allOrders = [...orders, ...subscriptionOrders];
 

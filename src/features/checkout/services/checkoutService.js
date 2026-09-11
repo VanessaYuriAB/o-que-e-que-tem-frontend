@@ -47,14 +47,14 @@ export async function sendOrderToServer(order) {
   }
 }
 
-export async function sendSubscribeOrderToServer(subscriptionOrder) {
+export async function sendSubscriptionOrderToServer(subscriptionOrder) {
   try {
     const mockFn = async () => {
       const user = useAuthStore.getState().user;
 
-      if (FAKE_ERRORS.sendSubscribeOrderToServer) {
+      if (FAKE_ERRORS.sendSubscriptionOrderToServer) {
         await fakeApiError(
-          'mockFn com err = true no sendSubscribeOrderToServer do checkoutService'
+          'mockFn com err = true no sendSubscriptionOrderToServer do checkoutService'
         );
       }
 
@@ -81,10 +81,10 @@ export async function sendSubscribeOrderToServer(subscriptionOrder) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('checkoutService/sendSubscribeOrderToServer:', data);
+    console.log('checkoutService/sendSubscriptionOrderToServer:', data);
 
     return typeof data === 'object' ? data : {};
   } catch (cause) {
-    throw new Error('Falha no checkoutService.sendSubscribeOrderToServer', { cause });
+    throw new Error('Falha no checkoutService.sendSubscriptionOrderToServer', { cause });
   }
 }
