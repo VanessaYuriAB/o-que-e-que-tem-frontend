@@ -45,9 +45,7 @@ function SuccessOrder() {
             <dl className="order__details">
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Nº do pedido:</dt>
-                <dd className="order__description">
-                  {hasOrder.orderNumber ?? hasOrder.subscribeOrderNumber}
-                </dd>
+                <dd className="order__description">{hasOrder.orderNumber}</dd>
               </div>
               <div className="order__detail-box order__detail-box_inline">
                 <dt className="order__term">Data: </dt>
@@ -85,7 +83,7 @@ function SuccessOrder() {
                 </dd>
               </div>
 
-              {hasOrder.orderNumber && (
+              {hasOrder.orderNumber.startsWith('2') && (
                 <>
                   <div className="order__detail-box order__detail-box_inline">
                     <dt className="order__term">Forma de pagamento:</dt>
@@ -104,7 +102,7 @@ function SuccessOrder() {
                 </>
               )}
 
-              {hasOrder.subscribeOrderNumber && (
+              {hasOrder.orderNumber.startsWith('S') && (
                 <>
                   <div className="order__detail-box order__detail-box_inline">
                     <dt className="order__term">

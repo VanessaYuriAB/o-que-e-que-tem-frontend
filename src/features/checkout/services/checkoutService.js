@@ -62,7 +62,7 @@ export async function sendSubscribeOrderToServer(subscriptionOrder) {
         _id: 'subscription-order-mock',
         owner: user?._id ?? null,
         createdAt: new Date().toLocaleString('pt-BR'),
-        subscribeOrderNumber: generateMockOrderNumber('subscriptionOrderType'),
+        orderNumber: generateMockOrderNumber('subscriptionOrderType'),
         ...subscriptionOrder,
       };
 
