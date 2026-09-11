@@ -63,7 +63,7 @@ async function getMessagesByUserId(userId) {
     };
 
     const apiFn = async () => {
-      return await apiFetch(`/messages/:${userId}`);
+      return await apiFetch(`/messages/${userId}`);
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);

@@ -28,7 +28,7 @@ export async function getOrderByNumber(orderData) {
     };
 
     const apiFn = async () => {
-      return await apiFetch(`/orders/:${orderData.orderNumber}?email=${orderData.email}`);
+      return await apiFetch(`/orders/${orderData.orderNumber}?email=${orderData.email}`);
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
@@ -66,7 +66,7 @@ export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
 
     const apiFn = async () => {
       return await apiFetch(
-        `/subscribe-orders/:${subscriptionOrderData.orderNumber}?email=${subscriptionOrderData.email}`
+        `/subscribe-orders/${subscriptionOrderData.orderNumber}?email=${subscriptionOrderData.email}`
       );
     };
 
@@ -96,7 +96,7 @@ export async function getOrdersByUserId(userId) {
     };
 
     const apiFn = async () => {
-      return await apiFetch(`/orders/:${userId}`);
+      return await apiFetch(`/orders/${userId}`);
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
@@ -129,7 +129,7 @@ export async function getSubscriptionOrdersByUserId(userId) {
     };
 
     const apiFn = async () => {
-      return await apiFetch(`/subscribe-orders/:${userId}`);
+      return await apiFetch(`/subscribe-orders/${userId}`);
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
