@@ -6,6 +6,7 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useEffect } from 'react';
 import parsePtBrDate from '../../../utils/parsePtBrDate.js';
+import '../../../styles/profile-history.css';
 
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
@@ -25,19 +26,24 @@ function OrdersProfile() {
   }
 
   if (errorProfile) {
-    return <Toast className="profile__orders-toast" message={errorProfile.message} />;
+    return (
+      <Toast
+        className="profile__orders-toast profile-history__toast"
+        message={errorProfile.message}
+      />
+    );
   }
 
   return (
-    <section className="profile__orders">
+    <section className="profile__orders profile-history__section">
       <h3 className="profile__orders-title">Histórico de pedidos</h3>
 
       {userAllOrders?.length === 0 ? (
-        <Toast className="profile__no-orders-toast">
-          <p className="profile__no-orders-text">
+        <Toast className="profile__no-orders-toast profile-history__no-content-toast">
+          <p className="profile__no-orders-text profile-history__no-content-text">
             Você ainda não comprou nenhuma sopa, creme ou patê...
           </p>
-          <p className="profile__no-orders-text">
+          <p className="profile__no-orders-text profile-history__no-content-text">
             Quer escolher os ingredientes para fazer seu primeiro pedido? :)
           </p>
           <Link className="profile__no-orders-link link-to-button" to="/menu">
@@ -45,7 +51,7 @@ function OrdersProfile() {
           </Link>
         </Toast>
       ) : (
-        <ul className="profile__orders-list nav__list">
+        <ul className="profile__orders-list profile-history__list nav__list">
           {orderedUserAllOrders?.map((order) => {
             const isSubscriptionOrder = order?.orderNumber?.startsWith('S');
 
@@ -69,27 +75,37 @@ function OrdersProfile() {
             return (
               <li className="profile__orders-item" key={order._id}>
                 {isSubscriptionOrder ? (
-                  <dl className="profile__orders-details">
-                    <div className="profile__orders-item-box profile__orders-item-box_center">
-                      <dt className="profile__orders-term">Nº do pedido:</dt>
-                      <dd className="profile__orders-description">{order.orderNumber}</dd>
+                  <dl className="profile__orders-details profile-history__details">
+                    <div className="profile__orders-item-box profile__orders-item-box_center profile-history__item-box profile-history__item-box_center">
+                      <dt className="profile__orders-term profile-history__term">Nº do pedido:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.orderNumber}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Tipo:</dt>
-                      <dd className="profile__orders-description">assinatura</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Tipo:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        assinatura
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Data:</dt>
-                      <dd className="profile__orders-description">{orderCreatedAt}</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Data:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {orderCreatedAt}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Forma de entrega:</dt>
-                      <dd className="profile__orders-description">{order.method}</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">
+                        Forma de entrega:
+                      </dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.method}
+                      </dd>
                     </div>
                     {order.method === 'delivery' && (
-                      <div className="profile__orders-item-box">
-                        <dt className="profile__orders-term">Endereço:</dt>
-                        <dd className="profile__orders-description">
+                      <div className="profile__orders-item-box profile-history__item-box">
+                        <dt className="profile__orders-term profile-history__term">Endereço:</dt>
+                        <dd className="profile__orders-description profile-history__description">
                           {order.addressSnapshot.address}, {order.addressSnapshot.number}
                           {order.addressSnapshot.complement !== '-' &&
                             `, ${order.addressSnapshot.complement}`}
@@ -98,37 +114,49 @@ function OrdersProfile() {
                       </div>
                     )}
                     {order.obs && (
-                      <div className="profile__orders-item-box">
-                        <dt className="profile__orders-term">Informações adicionais:</dt>
-                        <dd className="profile__orders-description">{order.obs}</dd>
+                      <div className="profile__orders-item-box profile-history__item-box">
+                        <dt className="profile__orders-term profile-history__term">
+                          Informações adicionais:
+                        </dt>
+                        <dd className="profile__orders-description profile-history__description">
+                          {order.obs}
+                        </dd>
                       </div>
                     )}
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Contato:</dt>
-                      <dd className="profile__orders-description">
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Contato:</dt>
+                      <dd className="profile__orders-description profile-history__description">
                         <address className="profile__orders-contact-info">
                           {order.customerSnapshot.userName} | {order.customerSnapshot.email} |{' '}
                           {order.customerSnapshot.tel}
                         </address>
                       </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">
                         Data de {order.method === 'delivery' ? 'entrega' : 'retirada'}:
                       </dt>
-                      <dd className="profile__orders-description">{order.day}</dd>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.day}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box profile__orders-item-box_inline">
-                      <dt className="profile__orders-term">Horário:</dt>
-                      <dd className="profile__orders-description">{order.time}</dd>
+                    <div className="profile__orders-item-box profile__orders-item-box_inline profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Horário:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.time}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box profile__orders-item-box_inline">
-                      <dt className="profile__orders-term">Tipo de refeição:</dt>
-                      <dd className="profile__orders-description">{typeOfMeal}</dd>
+                    <div className="profile__orders-item-box profile__orders-item-box_inline profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">
+                        Tipo de refeição:
+                      </dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {typeOfMeal}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Itens:</dt>
-                      <dd className="profile__orders-description">
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Itens:</dt>
+                      <dd className="profile__orders-description profile-history__description">
                         <ul className="profile__orders-description-list nav__list">
                           {order.itemsSnapshot.map((item) => {
                             return (
@@ -145,27 +173,37 @@ function OrdersProfile() {
                     </div>
                   </dl>
                 ) : (
-                  <dl className="profile__orders-details">
-                    <div className="profile__orders-item-box profile__orders-item-box_center">
-                      <dt className="profile__orders-term">Nº do pedido:</dt>
-                      <dd className="profile__orders-description">{order.orderNumber}</dd>
+                  <dl className="profile__orders-details profile-history__details">
+                    <div className="profile__orders-item-box profile__orders-item-box_center profile-history__item-box profile-history__item-box_center">
+                      <dt className="profile__orders-term profile-history__term">Nº do pedido:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.orderNumber}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Tipo:</dt>
-                      <dd className="profile__orders-description">avulso</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Tipo:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        avulso
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Data:</dt>
-                      <dd className="profile__orders-description">{orderCreatedAt}</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Data:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {orderCreatedAt}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Forma de entrega:</dt>
-                      <dd className="profile__orders-description">{order.method}</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">
+                        Forma de entrega:
+                      </dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.method}
+                      </dd>
                     </div>
                     {order.method === 'delivery' && (
-                      <div className="profile__orders-item-box">
-                        <dt className="profile__orders-term">Endereço:</dt>
-                        <dd className="profile__orders-description">
+                      <div className="profile__orders-item-box profile-history__item-box">
+                        <dt className="profile__orders-term profile-history__term">Endereço:</dt>
+                        <dd className="profile__orders-description profile-history__description">
                           {order.addressSnapshot.address}, {order.addressSnapshot.number}
                           {order.addressSnapshot.complement !== '-' &&
                             `, ${order.addressSnapshot.complement}`}
@@ -174,35 +212,49 @@ function OrdersProfile() {
                       </div>
                     )}
                     {order.obs && (
-                      <div className="profile__orders-item-box">
-                        <dt className="profile__orders-term">Informações adicionais:</dt>
-                        <dd className="profile__orders-description">{order.obs}</dd>
+                      <div className="profile__orders-item-box profile-history__item-box">
+                        <dt className="profile__orders-term profile-history__term">
+                          Informações adicionais:
+                        </dt>
+                        <dd className="profile__orders-description profile-history__description">
+                          {order.obs}
+                        </dd>
                       </div>
                     )}
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Contato:</dt>
-                      <dd className="profile__orders-description">
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Contato:</dt>
+                      <dd className="profile__orders-description profile-history__description">
                         <address className="profile__orders-contact-info">
                           {order.customerSnapshot.userName} | {order.customerSnapshot.email} |{' '}
                           {order.customerSnapshot.tel}
                         </address>
                       </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Forma de pagamento:</dt>
-                      <dd className="profile__orders-description">{typeOfPayment}</dd>
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">
+                        Forma de pagamento:
+                      </dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {typeOfPayment}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box profile__orders-item-box_inline">
-                      <dt className="profile__orders-term">R$:</dt>
-                      <dd className="profile__orders-description">{order.amount},00</dd>
+                    <div className="profile__orders-item-box profile__orders-item-box_inline profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">R$:</dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {order.amount},00
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box profile__orders-item-box_inline">
-                      <dt className="profile__orders-term">Tipo de refeição:</dt>
-                      <dd className="profile__orders-description">{typeOfMeal}</dd>
+                    <div className="profile__orders-item-box profile__orders-item-box_inline profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">
+                        Tipo de refeição:
+                      </dt>
+                      <dd className="profile__orders-description profile-history__description">
+                        {typeOfMeal}
+                      </dd>
                     </div>
-                    <div className="profile__orders-item-box">
-                      <dt className="profile__orders-term">Itens:</dt>
-                      <dd className="profile__orders-description">
+                    <div className="profile__orders-item-box profile-history__item-box">
+                      <dt className="profile__orders-term profile-history__term">Itens:</dt>
+                      <dd className="profile__orders-description profile-history__description">
                         <ul className="profile__orders-description-list nav__list">
                           {order.itemsSnapshot.map((item) => {
                             return (

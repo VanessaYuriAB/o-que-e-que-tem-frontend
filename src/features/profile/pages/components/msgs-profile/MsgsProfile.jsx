@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
-import './MsgsProfile.css';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import { useEffect } from 'react';
 import useContact from '../../../../contact/hooks/useContact.js';
 import useAuthStore from '../../../../../store/useAuthStore.js';
+import '../../../styles/profile-history.css';
 
 function MsgsProfile() {
   const { loading, error, getUserMsgs, userMsgs } = useContact();
@@ -22,51 +22,59 @@ function MsgsProfile() {
   }
 
   if (error) {
-    return <Toast className="profile__msgs-toast" message={error.message} />;
+    return <Toast className="profile__msgs-toast profile-history__toast" message={error.message} />;
   }
 
   return (
-    <section className="profile__msgs">
+    <section className="profile__msgs profile-history__section">
       <h3 className="profile__msgs-title">Histórico de mensagens</h3>
 
       {hasMsgs ? (
-        <ul className="profile__msgs-list nav__list">
+        <ul className="profile__msgs-list profile-history__list nav__list">
           {userMsgs.map((msg) => {
             const formattedCreatedAt = new Date(msg.createdAt).toLocaleString('pt-BR');
             const msgCreatedAt = msg.createdAt.includes('T') ? formattedCreatedAt : msg.createdAt;
 
             return (
               <li className="profile__msgs-item" key={msg._id}>
-                <dl className="profile__msgs-details">
-                  <div className="profile__msgs-item-box profile__msgs-item-box_center">
-                    <dt className="profile__msgs-term">Data:</dt>
-                    <dd className="profile__msgs-description">{msgCreatedAt}</dd>
+                <dl className="profile__msgs-details profile-history__details">
+                  <div className="profile__msgs-item-box profile__msgs-item-box_center profile-history__item-box profile-history__item-box_center">
+                    <dt className="profile__msgs-term profile-history__term">Data:</dt>
+                    <dd className="profile__msgs-description profile-history__description">
+                      {msgCreatedAt}
+                    </dd>
                   </div>
-                  <div className="profile__msgs-item-box">
-                    <dt className="profile__msgs-term">Mensagem:</dt>
-                    <dd className="profile__msgs-description">{msg.message}</dd>
+                  <div className="profile__msgs-item-box profile-history__item-box">
+                    <dt className="profile__msgs-term profile-history__term">Mensagem:</dt>
+                    <dd className="profile__msgs-description profile-history__description">
+                      {msg.message}
+                    </dd>
                   </div>
-                  <div className="profile__msgs-item-box">
-                    <dt className="profile__msgs-term">Forma de contato:</dt>
-                    <dd className="profile__msgs-description">
+                  <div className="profile__msgs-item-box profile-history__item-box">
+                    <dt className="profile__msgs-term profile-history__term">Forma de contato:</dt>
+                    <dd className="profile__msgs-description profile-history__description">
                       {msg.method === 'email' ? msg.email : msg.whatsapp}
                     </dd>
                   </div>
-                  <div className="profile__msgs-item-box">
-                    <dt className="profile__msgs-term">Status:</dt>
-                    <dd className="profile__msgs-description">
+                  <div className="profile__msgs-item-box profile-history__item-box">
+                    <dt className="profile__msgs-term profile-history__term">Status:</dt>
+                    <dd className="profile__msgs-description profile-history__description">
                       {msg?.status ? 'respondida' : 'pendente'}
                     </dd>
                   </div>
                   {msg?.status && (
                     <>
-                      <div className="profile__msgs-item-box">
-                        <dt className="profile__msgs-term">Em:</dt>
-                        <dd className="profile__msgs-description">{msg.responseAt}</dd>
+                      <div className="profile__msgs-item-box profile-history__item-box">
+                        <dt className="profile__msgs-term profile-history__term">Em:</dt>
+                        <dd className="profile__msgs-description profile-history__description">
+                          {msg.responseAt}
+                        </dd>
                       </div>
-                      <div className="profile__msgs-item-box">
-                        <dt className="profile__msgs-term">Resposta:</dt>
-                        <dd className="profile__msgs-description">{msg.response}</dd>
+                      <div className="profile__msgs-item-box profile-history__item-box">
+                        <dt className="profile__msgs-term profile-history__term">Resposta:</dt>
+                        <dd className="profile__msgs-description profile-history__description">
+                          {msg.response}
+                        </dd>
                       </div>
                     </>
                   )}
@@ -76,9 +84,11 @@ function MsgsProfile() {
           })}
         </ul>
       ) : (
-        <Toast className="profile__no-msgs-toast">
-          <p className="profile__no-msgs-text">Você ainda não nos enviou nenhuma mensagem.</p>
-          <p className="profile__no-msgs-text">
+        <Toast className="profile__no-msgs-toast profile-history__no-content-toast">
+          <p className="profile__no-msgs-text profile-history__no-content-text">
+            Você ainda não nos enviou nenhuma mensagem.
+          </p>
+          <p className="profile__no-msgs-text profile-history__no-content-text">
             Pode nos enviar pelo link abaixo, se quiser. Costumamos responder rápido :)
           </p>
           <Link className="profile__no-msgs-link link-to-button" to="/talk-to-us">

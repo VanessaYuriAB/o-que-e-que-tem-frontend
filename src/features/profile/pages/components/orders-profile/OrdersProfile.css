@@ -1,59 +1,9 @@
 /* Mobile first (padrão) */
 
-.profile__orders-toast {
-  margin: 2rem auto;
-}
-
-.profile__orders {
-  margin-bottom: 21.44px; /* margin-top do profile__orders-title */
-}
-
-.profile__orders-title {
-}
-
-.profile__no-orders-toast {
-  width: 100%;
-  margin-bottom: 0;
-  padding: 1em 3em 2em;
-  max-width: max-content;
-}
-
-.profile__no-orders-text:last-of-type {
-  margin-bottom: 2rem;
-}
-
-.profile__orders-list {
-  list-style: decimal;
-}
-
-.profile__orders-details {
-  border: 1px solid lightgrey;
-  width: 90%;
-  margin-inline: auto;
-  padding: 1rem;
-  margin-top: 2.5rem;
-}
-
-.profile__orders-item-box {
-  margin-bottom: 1rem;
-}
-
-.profile__orders-item-box:last-of-type {
-  margin-bottom: 0;
-}
-
 .profile__orders-item-box_inline {
   display: flex;
   column-gap: 0.5rem;
   justify-content: center;
-}
-
-.profile__orders-term {
-  font-weight: 700;
-}
-
-.profile__orders-description {
-  margin-left: 0;
 }
 
 .profile__orders-contact-info {
@@ -74,25 +24,8 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .profile__orders-details {
-    width: 80%;
-  }
-
-  .profile__orders-item-box {
-    display: flex;
-    column-gap: 0.5rem;
-  }
-
   .profile__orders-item-box_inline {
     justify-content: left;
-  }
-
-  .profile__orders-item-box_center {
-    justify-content: center;
-  }
-
-  .profile__orders-description {
-    text-align: left;
   }
 
   .profile__orders-description-list {
