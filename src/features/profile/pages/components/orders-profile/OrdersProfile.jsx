@@ -160,10 +160,7 @@ function OrdersProfile() {
                         <ul className="profile__orders-description-list nav__list">
                           {order.itemsSnapshot.map((item) => {
                             return (
-                              <li
-                                className="profile__orders-description profile__orders-description_list"
-                                key={item._id}
-                              >
+                              <li className="profile__orders-description-item" key={item._id}>
                                 {item.productName}
                               </li>
                             );
@@ -258,10 +255,7 @@ function OrdersProfile() {
                         <ul className="profile__orders-description-list nav__list">
                           {order.itemsSnapshot.map((item) => {
                             return (
-                              <li
-                                className="profile__orders-description profile__orders-description_list"
-                                key={item._id}
-                              >
+                              <li className="profile__orders-description-item" key={item._id}>
                                 {item.productName}
                               </li>
                             );
