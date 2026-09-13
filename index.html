@@ -7,10 +7,11 @@
       http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
-        connect-src 'self' http://localhost:3001 ;
+        connect-src 'self' http://localhost:3001;
         img-src 'self' data: https:;
         script-src 'self' 'unsafe-eval';
         style-src 'self' 'unsafe-inline';
+        frame-src https://www.youtube.com https://www.youtube-nocookie.com;
       "
     />
     <!-- -->
