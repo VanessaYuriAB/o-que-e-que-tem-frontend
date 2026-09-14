@@ -114,13 +114,14 @@ function Partner() {
         </fieldset>
 
         <fieldset className="partner__field">
-          <legend className="partner__legend">Forma de contato:</legend>
-          <div className="partner__input-box">
+          <legend className="partner__legend">Forma de contato</legend>
+
+          <div className="partner__input-box partner__input-box_radio">
             <label className="partner__label" htmlFor="emailMethod">
-              Prefiro contato por e-mail
+              Prefiro e-mail
             </label>
             <Input
-              className="partner__input"
+              className="partner__input partner__input_radio"
               id="emailMethod"
               type="radio"
               name="contactMethod"
@@ -130,12 +131,13 @@ function Partner() {
               onChange={handleChange}
             />
           </div>
-          <div className="partner__input-box">
+
+          <div className="partner__input-box partner__input-box_radio">
             <label className="partner__label" htmlFor="telMethod">
-              Prefiro contato por telefone
+              Prefiro telefone
             </label>
             <Input
-              className="partner__input"
+              className="partner__input partner__input_radio"
               id="telMethod"
               type="radio"
               name="contactMethod"
@@ -284,7 +286,7 @@ function Partner() {
         {globalError && <Toast className="partner__toast" message={globalError.message} />}
 
         <Button className="partner__button" type="submit">
-          Enviar
+          ENVIAR
         </Button>
       </form>
     </section>
