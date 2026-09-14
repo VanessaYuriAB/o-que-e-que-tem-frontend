@@ -51,6 +51,8 @@ const AboutUs = lazy(() => import('../../pages/about-us/AboutUs.jsx'));
 
 const OurImpact = lazy(() => import('../../pages/our-impact/OurImpact.jsx'));
 
+const Partner = lazy(() => import('../../features/partner/pages/Partner.jsx'));
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -120,6 +122,9 @@ function AppRoutes() {
 
           {/* OurImpact */}
           <Route path="our-impact" element={<OurImpact />} />
+
+          {/* Partner */}
+          <Route path="to-be-a-partner-market" element={<Partner />} />
 
           {/* Fale conosco */}
           <Route path="talk-to-us" element={<Contact />} />
