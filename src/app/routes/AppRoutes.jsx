@@ -49,6 +49,8 @@ const MsgsProfile = lazy(
 
 const AboutUs = lazy(() => import('../../pages/about-us/AboutUs.jsx'));
 
+const OurImpact = lazy(() => import('../../pages/our-impact/OurImpact.jsx'));
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -115,6 +117,9 @@ function AppRoutes() {
 
           {/* AboutUs */}
           <Route path="about-us" element={<AboutUs />} />
+
+          {/* OurImpact */}
+          <Route path="our-impact" element={<OurImpact />} />
 
           {/* Fale conosco */}
           <Route path="talk-to-us" element={<Contact />} />
