@@ -29,6 +29,8 @@ const FAKE_ERRORS = {
   getSubscriptionOrderByNumber: false,
 
   getMessagesByUserId: false,
+
+  sendPartnerEntry: false,
 };
 
 export default FAKE_ERRORS;
