@@ -5,6 +5,7 @@ import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
+import usePartner from '../hooks/usePartner.js';
 
 function Partner() {
   const { user, globalError } = useAuthStore(
@@ -30,14 +31,38 @@ function Partner() {
     district: '',
   });
 
+  const { loading, localError, success, enrollPartner } = usePartner();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handlePartner = async (data) => {
+    await enrollPartner(data);
+
+    if (success) {
+      setFormData({
+        userName: user?.userName || '',
+        email: user?.email || '',
+        tel: user?.tel || '',
+
+        contactMethod: '',
+
+        companyName: '',
+        cnpj: '',
+        cep: '',
+        address: '',
+        numberAddress: '',
+        complementAddress: '',
+        district: '',
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // handlePartner(formData);
+    handlePartner(formData);
   };
 
   return (
@@ -93,7 +118,7 @@ function Partner() {
 
           <div className="partner__input-box">
             <label className="partner__label" htmlFor="tel">
-              Telefone:
+              Telefone (WhatsApp):
             </label>
             <Input
               className="partner__input"
@@ -134,7 +159,7 @@ function Partner() {
 
           <div className="partner__input-box partner__input-box_radio">
             <label className="partner__label" htmlFor="telMethod">
-              Prefiro telefone
+              Prefiro telefone (WhatsApp)
             </label>
             <Input
               className="partner__input partner__input_radio"
@@ -283,10 +308,21 @@ function Partner() {
           </div>
         </fieldset>
 
-        {globalError && <Toast className="partner__toast" message={globalError.message} />}
+        {(success || localError || globalError) && (
+          <Toast
+            className="partner__toast"
+            message={
+              success
+                ? 'Cadastro enviado com sucesso :) Em breve, entraremos em contato.'
+                : localError
+                  ? localError.message
+                  : globalError.message
+            }
+          />
+        )}
 
         <Button className="partner__button" type="submit">
-          ENVIAR
+          {loading ? 'ENVIANDO...' : 'ENVIAR'}
         </Button>
       </form>
     </section>
