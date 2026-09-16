@@ -3,15 +3,14 @@ import Input from '../../../shared/components/ui/input/Input.jsx';
 import RecipeCard from '../components/RecipeCard.jsx';
 import { useState } from 'react';
 import './Recipes.css';
+import useTodayRecipes from '../hooks/useTodayRecipes.js';
+import Loader from '../../../shared/components/ui/loader/Loader.jsx';
+import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 
 function Recipes() {
-  const recipesList = [
-    { id: 1, name: 'Sopa', ingredients: [], preparation: '' },
-    { id: 2, name: 'Creme', ingredients: [], preparation: '' },
-    { id: 3, name: 'Patê', ingredients: [], preparation: '' },
-  ];
-
   const [recipeToSearch, setRecipeToSearch] = useState('');
+
+  const { todayRecipes, loading, error } = useTodayRecipes();
 
   const handleChange = (e) => {
     setRecipeToSearch(e.target.value);
@@ -28,11 +27,26 @@ function Recipes() {
     handleSearch(recipeToSearch);
   };
 
+  if (loading) {
+    return (
+      <Loader className="recipes-loader content__recipes-loader">Carregando receitas...</Loader>
+    );
+  }
+
+  if (error) {
+    return (
+      <Toast
+        className="recipes-toast content__recipes-toast"
+        message={`Erro ao carregar receitas. ${error.message}`}
+      />
+    );
+  }
+
   return (
     <section className="recipes content__recipes">
       <h1 className="recipes__title">Sugestões de hoje</h1>
       <ul className="recipes__list">
-        {recipesList.map((recipe) => {
+        {todayRecipes.map((recipe) => {
           return (
             <li className="recipes__item" key={recipe.id}>
               <RecipeCard
