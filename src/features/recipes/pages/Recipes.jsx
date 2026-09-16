@@ -6,20 +6,27 @@ import './Recipes.css';
 import useTodayRecipes from '../hooks/useTodayRecipes.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
+import useSearchRecipes from '../hooks/useSearchRecipes.js';
 
 function Recipes() {
   const [recipeToSearch, setRecipeToSearch] = useState('');
+  const [searchedRecipes, setSearchedRecipes] = useState([]);
 
   const { todayRecipes, loading, error } = useTodayRecipes();
+
+  const { loadSearchRecipes, loading: searchLoading, error: searchError } = useSearchRecipes();
 
   const handleChange = (e) => {
     setRecipeToSearch(e.target.value);
   };
 
   const handleSearch = async (data) => {
-    console.log(data);
+    const result = await loadSearchRecipes(data);
 
-    // ...
+    if (result.success) {
+      setSearchedRecipes(result.data);
+      setRecipeToSearch('');
+    }
   };
 
   const handleSubmit = (e) => {
@@ -75,10 +82,29 @@ function Recipes() {
           onChange={handleChange}
           required
         />
+
+        {searchError && <Toast className="recipes__toast" message={searchError.message} />}
+
         <Button className="recipes__button" type="submit">
-          Pesquisar
+          {searchLoading ? 'Pesquisando...' : 'Pesquisar'}
         </Button>
       </form>
+
+      {/*{searchedRecipes && (
+        <ul className="recipes__list">
+          {searchedRecipes.map((recipe) => {
+            return (
+              <li className="recipes__item" key={recipe.id}>
+                <RecipeCard
+                  name={recipe.name}
+                  ingredients={recipe.ingredients}
+                  preparation={recipe.preparation}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      )}*/}
     </section>
   );
 }
