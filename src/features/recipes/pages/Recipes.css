@@ -1,6 +1,62 @@
 /* Mobile first (padrão) */
 
+.recipes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipes__title {
+}
+
+.recipes__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding-left: 0;
+}
+
+.recipes__item {
+  background-color: olivedrab;
+  padding: 1em;
+}
+
+.recipes__subtitle {
+  margin-top: 2rem;
+}
+
+.recipes__text {
+}
+
+.recipes__form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.recipes__label {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.recipes__input {
+}
+
+.recipes__button {
+}
+
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .recipes__list {
+    flex-direction: row;
+    column-gap: 2rem;
+  }
+
+  .recipes__button {
+    display: flex;
+    align-self: center;
+    text-align: center;
+  }
 }

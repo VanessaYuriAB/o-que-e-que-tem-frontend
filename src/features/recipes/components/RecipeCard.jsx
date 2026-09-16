@@ -10,8 +10,8 @@ function RecipeCard({ name, ingredients, preparation }) {
         <ul className="recipe-card__list">
           {ingredients.map((ingredient) => {
             return (
-              <li key={ingredient.id}>
-                <p>{ingredient.name}</p>
+              <li className="recipe-card__item" key={ingredient.id}>
+                <p className="recipe-card__text">{ingredient.name}</p>
               </li>
             );
           })}
