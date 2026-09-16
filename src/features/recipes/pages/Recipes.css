@@ -52,7 +52,17 @@
 .recipes__input {
 }
 
+.recipes__toast {
+  margin-bottom: 1rem;
+
+  padding: 1em;
+  width: 80%;
+}
+
 .recipes__button {
+  display: flex;
+  align-self: center;
+  text-align: center;
 }
 
 /* Tablet e acima */
@@ -70,9 +80,8 @@
     column-gap: 2rem;
   }
 
-  .recipes__button {
+  .recipes__toast {
     display: flex;
-    align-self: center;
-    text-align: center;
+    align-items: center;
   }
 }
