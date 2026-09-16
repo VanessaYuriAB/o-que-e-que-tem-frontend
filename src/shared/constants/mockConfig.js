@@ -31,6 +31,8 @@ const FAKE_ERRORS = {
   getMessagesByUserId: false,
 
   sendPartnerEntry: false,
+
+  getTodayRecipes: false,
 };
 
 export default FAKE_ERRORS;
