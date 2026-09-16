@@ -53,6 +53,8 @@ const OurImpact = lazy(() => import('../../pages/our-impact/OurImpact.jsx'));
 
 const Partner = lazy(() => import('../../features/partner/pages/Partner.jsx'));
 
+const Recipes = lazy(() => import('../../features/recipes/pages/Recipes.jsx'));
+
 function AppRoutes() {
   return (
     <Suspense fallback={<Loader />}>
@@ -116,6 +118,9 @@ function AppRoutes() {
 
           {/* OrderTracking */}
           <Route path="order-tracker" element={<OrderTracking />} />
+
+          {/* Recipes */}
+          <Route path="recipes" element={<Recipes />} />
 
           {/* AboutUs */}
           <Route path="about-us" element={<AboutUs />} />
