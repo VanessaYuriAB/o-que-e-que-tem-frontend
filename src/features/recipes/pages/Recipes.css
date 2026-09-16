@@ -1,5 +1,13 @@
 /* Mobile first (padrão) */
 
+.recipes-loader {
+}
+
+.recipes-toast {
+  padding: 1em;
+  width: 80%;
+}
+
 .recipes {
   display: flex;
   flex-direction: column;
@@ -50,6 +58,13 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .recipes-toast {
+    padding: 4em;
+    width: 50%;
+    display: flex;
+    align-items: center;
+  }
+
   .recipes__list {
     flex-direction: row;
     column-gap: 2rem;
