@@ -27,11 +27,30 @@ async function getTodayRecipes() {
   }
 }
 
-/*async function getSearchRecipes(search) {
+async function getSearchRecipes(searchData) {
   try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.getSearchRecipes) {
+        return await fakeApiError('mockFn com err = true no getSearchRecipes do recipesService');
+      }
+
+      return await fakeApi([
+        { id: 1, name: searchData, ingredients: [], preparation: '' },
+        { id: 2, name: 'Receita mock pesquisada', ingredients: [], preparation: '' },
+      ]);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch('/search-recipes');
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    console.log('recipesService/getSearchRecipes:', data);
+    return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no recipesService.getSearchRecipes', { cause });
   }
-}*/
+}
 
-export { getTodayRecipes /*, getSearchRecipes*/ };
+export { getTodayRecipes, getSearchRecipes };
