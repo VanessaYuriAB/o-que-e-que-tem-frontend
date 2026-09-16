@@ -20,6 +20,7 @@
 .recipes__item {
   background-color: olivedrab;
   padding: 1em;
+  border: 1px solid white;
 }
 
 .recipes__subtitle {
