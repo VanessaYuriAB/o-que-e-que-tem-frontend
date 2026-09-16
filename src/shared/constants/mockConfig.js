@@ -33,6 +33,7 @@ const FAKE_ERRORS = {
   sendPartnerEntry: false,
 
   getTodayRecipes: false,
+  getSearchRecipes: false,
 };
 
 export default FAKE_ERRORS;
