@@ -36,7 +36,9 @@ async function getSearchRecipes(searchData) {
 
       return await fakeApi([
         { id: 1, name: searchData, ingredients: [], preparation: '' },
-        { id: 2, name: 'Receita mock pesquisada', ingredients: [], preparation: '' },
+        { id: 2, name: 'Receita mock pesquisada sopa', ingredients: [], preparation: '' },
+        { id: 3, name: 'Receita mock pesquisada creme', ingredients: [], preparation: '' },
+        { id: 4, name: 'Receita mock pesquisada patê', ingredients: [], preparation: '' },
       ]);
     };
 
