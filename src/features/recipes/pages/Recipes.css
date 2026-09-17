@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
 .recipes__title {
@@ -23,12 +24,23 @@
   flex-direction: column;
   row-gap: 1rem;
   padding-left: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipes__list_searched {
 }
 
 .recipes__item {
   background-color: olivedrab;
   padding: 1em;
   border: 1px solid white;
+  width: 100%;
+  height: 250px;
+}
+
+.recipes__item_searched {
+  margin-top: 2rem;
 }
 
 .recipes__subtitle {
@@ -63,6 +75,7 @@
   display: flex;
   align-self: center;
   text-align: center;
+  margin-bottom: 0;
 }
 
 /* Tablet e acima */
@@ -78,6 +91,23 @@
   .recipes__list {
     flex-direction: row;
     column-gap: 2rem;
+  }
+
+  .recipes__list_searched {
+    flex-wrap: wrap; /* fallback */
+    flex-wrap: balance; /* navegadores compatíveis */
+  }
+
+  .recipes__item {
+    flex: 1 1 310px;
+  }
+
+  .recipes__item_searched {
+  }
+
+  .recipes__form {
+    width: 80%;
+    margin-inline: auto;
   }
 
   .recipes__toast {
