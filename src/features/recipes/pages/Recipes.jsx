@@ -90,11 +90,11 @@ function Recipes() {
         </Button>
       </form>
 
-      {/*{searchedRecipes && (
-        <ul className="recipes__list">
+      {searchedRecipes.length > 0 && (
+        <ul className="recipes__list recipes__list_searched">
           {searchedRecipes.map((recipe) => {
             return (
-              <li className="recipes__item" key={recipe.id}>
+              <li className="recipes__item recipes__item_searched" key={recipe.id}>
                 <RecipeCard
                   name={recipe.name}
                   ingredients={recipe.ingredients}
@@ -104,7 +104,7 @@ function Recipes() {
             );
           })}
         </ul>
-      )}*/}
+      )}
     </section>
   );
 }
