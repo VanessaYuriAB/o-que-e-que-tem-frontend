@@ -11,11 +11,14 @@ export async function getMenu() {
         await fakeApiError('mockFn com err = true no getMenu do menuService'); // Promise.reject envia para o bloco catch
       }
 
-      // Teste de polling: simula mudança no estoque depois que a aplicação já carregou
+      // DEMO: Polling: simula atualização de estoque depois que a aplicação já carregou
       setTimeout(() => {
         itemsMenu[3].qtyAvailable = 5;
 
-        console.log('Mandioca atualizada para 5');
+        // Executa apenas em ambiente de desenvolvimento
+        if (import.meta.env.DEV) {
+          console.info('[DEMO] Estoque de mandioca atualizado para 5 unidades');
+        }
       }, 10000);
 
       return await fakeApi({ itemsMenu });
