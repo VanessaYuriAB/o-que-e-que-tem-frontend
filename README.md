@@ -5,6 +5,8 @@
 > MVP de uma plataforma digital sustentável para redução do desperdício alimentar através da
 > transformação de produtos próximos ao vencimento em sopas, cremes e patês personalizados.
 
+🌐 **Aplicação:** https://o-que-e-que-tem-frontend.vercel.app
+
 ## Índice
 
 1. [Sobre o projeto 📖](#-1-sobre-o-projeto)
