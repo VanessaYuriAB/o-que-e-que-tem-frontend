@@ -15,9 +15,7 @@ export default function errorHandler(error) {
         };
       case 401:
         return {
-          message:
-            error.cause.message ??
-            'Não foi possível autenticar sua solicitação. E-mail ou senha inválidos.',
+          message: 'Não foi possível autenticar sua solicitação. E-mail ou senha inválidos.',
           scope: 'local',
           status: error.cause.status,
           action: 'OPEN_LOGIN',
@@ -30,14 +28,13 @@ export default function errorHandler(error) {
         };
       case 404:
         return {
-          message: error.cause.message ?? 'Nenhum resultado foi encontrado.',
+          message: 'Nenhum resultado foi encontrado.',
           scope: 'local',
           status: error.cause.status,
         };
       case 409:
         return {
           message:
-            error.cause.message ??
             'Não foi possível concluir a operação devido a um conflito de dados. O dado enviado já consta cadastrado.',
           scope: 'local',
           status: error.cause.status,
