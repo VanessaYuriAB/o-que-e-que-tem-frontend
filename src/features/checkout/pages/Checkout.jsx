@@ -38,9 +38,6 @@ function Checkout() {
     }))
   );
 
-  console.log('Pedido:', cartData);
-  console.log('Items:', cartItems);
-
   const user = useAuthStore((state) => state.user);
 
   const hasCartItems = cartItems.length > 0;
@@ -106,10 +103,8 @@ function Checkout() {
     // Service (+ hook)
     const result = await sendSubscribeOrder(subscriptionOrder);
 
+    // Se success
     if (result.success === true) {
-      // Se success
-      console.log('Pedido de assinatura enviado', result.data);
-
       // Seta persistência para SucessOrder com dados retornados da API ou fake
       localStorage.setItem('successOrder', JSON.stringify(result.data));
 
@@ -122,10 +117,8 @@ function Checkout() {
     // Service (+ hook)
     const result = await sendOrder(orderData);
 
+    // Se success
     if (result.success === true) {
-      // Se success
-      console.log('Pedido enviado', result.data);
-
       // Seta persistência para SucessOrder com dados retornados da API ou fake
       localStorage.setItem('successOrder', JSON.stringify(result.data));
 

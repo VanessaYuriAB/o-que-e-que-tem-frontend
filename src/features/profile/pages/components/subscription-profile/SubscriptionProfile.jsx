@@ -24,8 +24,6 @@ function SubscriptionProfile() {
     }))
   );
 
-  console.log('Usuário em SubscriptionProfile:', user);
-
   const [formData, setFormData] = useState({
     daysOn: user?.subscriptionDetails?.daysOn ?? [],
     schedules: user?.subscriptionDetails?.schedules ?? {},

@@ -21,8 +21,6 @@ function UserProfile() {
     }))
   );
 
-  console.log('Usuário em UserProfile:', user);
-
   const [formData, setFormData] = useState({
     userName: user.userName ?? '',
     email: user.email ?? '',

@@ -14,8 +14,6 @@ function SuccessOrder() {
     hasOrder = null;
   }
 
-  console.log('hasOrder', hasOrder);
-
   return (
     <section className="order content__order" aria-live="polite">
       <h1 className={hasOrder !== null ? 'order__title' : 'order__empty-title'}>

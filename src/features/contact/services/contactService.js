@@ -40,7 +40,6 @@ async function sendUserMessage(messageData, userId = null) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('sendUserMessage', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no contactService.sendUserMessage', { cause });
@@ -68,7 +67,6 @@ async function getMessagesByUserId(userId) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getMessagesByUserId', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no contactService.getMessagesByUserId', { cause });

@@ -29,8 +29,6 @@ function Logout() {
     const result = await logoutAction();
 
     if (result.success === true) {
-      console.log('deslogado');
-
       // Limpa persistência para pedido enviado
       localStorage.removeItem('successOrder');
 

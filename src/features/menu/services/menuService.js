@@ -27,7 +27,6 @@ export async function getMenu() {
 
     const { data } = await decideMockOrApi(mockFn, apiFn); // pq a resposta é configurada como { data: ..., status: ... }, tanto em fakeApi quando em api
 
-    console.log('getMenu:', data);
     return Array.isArray(data?.itemsMenu) ? data.itemsMenu : [];
   } catch (cause) {
     // Erro HTTP ou de rede

@@ -58,7 +58,6 @@ function Register() {
       const result = await registerAction(data);
 
       if (result.success === true) {
-        console.log('cadastrado');
         navigate('/login', { replace: true, state: { from: location.state?.from } });
       } else if (result.success === false && result.error.scope === 'local') {
         setLocalError(result.error.message);

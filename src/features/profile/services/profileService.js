@@ -33,7 +33,6 @@ export async function updateUserProfile(userProfileData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('profileService/updateUserProfile:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no updateUserProfile', { cause });
@@ -77,7 +76,6 @@ export async function updateSubscriptionProfile(subscriptionProfileData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('profileService/updateSubscriptionProfile:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no updateSubscriptionProfile', { cause });

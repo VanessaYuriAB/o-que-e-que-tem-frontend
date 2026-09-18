@@ -8,8 +8,6 @@ export async function addItemToCart(item) {
     );
   }
 
-  console.log('cartService/addItemToCart:', item);
-
   const { data } = fakeApi(item);
 
   return data;
@@ -22,8 +20,6 @@ export async function removeItemToCart(item) {
     );
   }
 
-  console.log('cartService/removeItemToCart:', item);
-
   const { data } = fakeApi(item);
 
   return data;
@@ -35,8 +31,6 @@ export async function setCartData(cartData) {
       'setCartData com err = true no cartService, desconsiderar status e type, pois a persistência do carrinho está configurada apenas no armazenamento local, sem api (por enquanto)'
     );
   }
-
-  console.log('cartService/setCartData:', cartData);
 
   const { data } = fakeApi(cartData);
 

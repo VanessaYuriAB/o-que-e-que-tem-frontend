@@ -23,7 +23,6 @@ async function sendPartnerEntry(partnerData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('sendPartnerEntry', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no partnerService.sendPartnerEntry', { cause });

@@ -20,7 +20,6 @@ async function getTodayRecipes() {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('recipesService/getTodayRecipes:', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no recipesService.getTodayRecipes', { cause });
@@ -48,7 +47,6 @@ async function getSearchRecipes(searchData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('recipesService/getSearchRecipes:', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no recipesService.getSearchRecipes', { cause });

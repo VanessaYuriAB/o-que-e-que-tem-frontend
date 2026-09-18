@@ -60,7 +60,6 @@ export async function register(newUserData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('authService/register:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no authService.register', { cause });
@@ -128,7 +127,6 @@ export async function login(credentials) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('authService/login:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no authService.login', { cause });
@@ -158,7 +156,6 @@ export async function logout() {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('authService/logout:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no authService.logout', { cause });
@@ -189,7 +186,6 @@ export async function refresh() {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('authService/refresh:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no authService.refresh', { cause });

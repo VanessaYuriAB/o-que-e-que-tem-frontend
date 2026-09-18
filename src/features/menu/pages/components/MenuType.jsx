@@ -43,8 +43,6 @@ function MenuType({ category }) {
     [menuItems]
   );
 
-  console.log('Disponíveis:', availableMenuItems.length);
-
   // Ordem alfabética
   const orderedMenuItems = useMemo(
     () => [...availableMenuItems].sort((a, b) => a.productName.localeCompare(b.productName)),

@@ -46,8 +46,6 @@ function Login() {
     // Front não vê o token, só o sucesso
 
     if (result.success === true) {
-      console.log('logado');
-
       await migrateAnonymousCartAction(result.data._id);
 
       const from = location.state?.from;

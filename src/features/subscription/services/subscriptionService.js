@@ -78,7 +78,6 @@ export default async function subscribe(newSubscriptionData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('subscriptionService/subscribe:', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no subscriptionService.subscribe', { cause });

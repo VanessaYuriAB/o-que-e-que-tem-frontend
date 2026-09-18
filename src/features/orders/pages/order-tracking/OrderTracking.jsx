@@ -30,8 +30,6 @@ function OrderTracking() {
     await trackOrder(formData);
   };
 
-  console.log('orderTracked', orderTracked);
-
   return (
     <section className="tracker tracker__content">
       <h1 className="tracker__title">Quer saber sobre um pedido feito?</h1>

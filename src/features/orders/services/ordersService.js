@@ -33,7 +33,6 @@ export async function getOrderByNumber(orderData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getOrderByNumber', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no ordersService.getOrderByNumber', { cause });
@@ -72,7 +71,6 @@ export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getSubscriptionOrderByNumber', data);
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no ordersService.getSubscriptionOrderByNumber', { cause });
@@ -101,7 +99,6 @@ export async function getOrdersByUserId(userId) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getOrdersByUserId', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no ordersService.getOrdersByUserId', { cause });
@@ -134,7 +131,6 @@ export async function getSubscriptionOrdersByUserId(userId) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('getSubscriptionOrdersByUserId', data);
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no ordersService.getSubscriptionOrdersByUserId', { cause });

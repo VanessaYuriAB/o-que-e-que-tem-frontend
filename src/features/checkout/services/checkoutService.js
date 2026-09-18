@@ -39,8 +39,6 @@ export async function sendOrderToServer(order) {
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
 
-    console.log('checkoutService/sendOrderToServer:', data);
-
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no checkoutService.sendOrderToServer', { cause });
@@ -80,8 +78,6 @@ export async function sendSubscriptionOrderToServer(subscriptionOrder) {
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
-
-    console.log('checkoutService/sendSubscriptionOrderToServer:', data);
 
     return typeof data === 'object' ? data : {};
   } catch (cause) {
