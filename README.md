@@ -3,7 +3,32 @@
 > MVP de uma plataforma digital sustentável para redução do desperdício alimentar através da
 > transformação de produtos próximos ao vencimento em sopas, cremes e patês personalizados.
 
-## 📖 Sobre o projeto
+## Índice
+
+1. Sobre o projeto
+2. Problema
+3. Solução
+4. Principais funcionalidades
+5. Boas práticas adotadas
+6. Setup profissional
+7. Arquitetura do projeto
+8. Estrutura de diretórios
+9. Decisões de arquitetura
+10. Gerenciamento de estado global
+11. Autenticação
+12. Performance
+13. Acessibilidade
+14. Responsividade
+15. Stack atual
+16. Como executar
+17. Status atual
+18. Principais desafios
+19. Principais aprendizados
+20. Roadmap
+21. Próximos passos
+22. Autora
+
+## 📖 1. Sobre o projeto
 
 **O que é que tem? Na sopa, creme ou patê** é um projeto autoral desenvolvido após a conclusão do
 Bootcamp de Desenvolvimento Web da TripleTen Brasil.
@@ -21,7 +46,7 @@ O projeto propõe uma solução baseada em tecnologia, sustentabilidade e econom
 - aproveitamento inteligente da disponibilidade real de estoque;
 - redução do desperdício alimentar.
 
-## 🎯 Problema
+## 🎯 2. Problema
 
 O desperdício de alimentos gera impactos ambientais, sociais e econômicos significativos.
 
@@ -36,7 +61,7 @@ Os principais desafios identificados foram:
 - dificuldade de conectar oferta e demanda em tempo hábil;
 - descarte de recursos como água, energia e logística incorporados aos alimentos.
 
-## 💡 Solução
+## 💡 3. Solução
 
 A plataforma funciona como uma cozinha sustentável de operação digital.
 
@@ -93,23 +118,37 @@ A equipe de triagem atua em duas frentes:
 > “A triagem deixa de ser apenas um processo interno e passa a atuar diretamente na gestão de
 > estoque dos parceiros, atacando a raiz do desperdício.”
 
-## ✨ Principais funcionalidades
+## ✨ 4. Principais funcionalidades
 
 ### Atualmente implementadas
 
 - Cardápio dinâmico baseado na disponibilidade de ingredientes
 - Atualização periódica da disponibilidade através de polling
 - Filtragem de ingredientes por categoria alimentar
-- Cadastro e autenticação de usuários
-- Rotas públicas e protegidas
+- Cadastro, login e autenticação de usuários
+- Persistência de sessão (refresh mock)
+- Rotas públicas, protegidas e condicionais
 - Perfil de usuário editável
-- Configuração de assinatura flexível
+- Gerenciamento de assinatura flexível
+- Carrinho de compras persistente
+- Migração automática de carrinho anônimo para usuário autenticado
+- Checkout completo para pedidos avulsos e assinaturas
+- Geração automática de número de pedido
+- Página de confirmação de pedidos
+- Rastreamento de pedidos por número
+- Histórico de pedidos do usuário
+- Formulário de contato (envio de mensagens)
+- Histórico de mensagens no perfil
+- Página de receitas com campo para busca
+- Página institucional Sobre Nós
+- Página institucional Nosso Impacto
+- Formulário de solicitação de parceria
 - Persistência simulada através de Mock API
 - Gerenciamento de estado com Zustand
 - Tratamento padronizado de erros
 - Layout responsivo mobile-first
 
-## ✅ Boas práticas adotadas
+## ✅ 5. Boas práticas adotadas
 
 - Feature-Based Architecture
 - Component-Based Design
@@ -127,7 +166,7 @@ A equipe de triagem atua em duas frentes:
 - Separação de responsabilidades
 - Acessibilidade desde o início do desenvolvimento
 
-## 🧰 Setup profissional
+## 🧰 6. Setup profissional
 
 O projeto foi configurado com um pipeline completo de qualidade de código:
 
@@ -142,7 +181,7 @@ O projeto foi configurado com um pipeline completo de qualidade de código:
 
 Garantindo consistência, padronização e qualidade desde o início do desenvolvimento.
 
-## 🏗️ Arquitetura do projeto
+## 🏗️ 7. Arquitetura do projeto
 
 O frontend foi estruturado utilizando uma combinação entre:
 
@@ -187,7 +226,7 @@ Essa separação facilita:
 - testes;
 - substituição de mocks por APIs reais.
 
-## 📂 Estrutura de diretórios
+## 📂 8. Estrutura de diretórios
 
 ```
 src
@@ -195,62 +234,67 @@ src
 ├── app
 │ └── routes
 │
-├── pages
+├── assets
+│
+├── config
 │
 ├── features
+│ ├── admin
 │ ├── auth
-│ ├── menu
-│ ├── profile
-│ ├── subscription
+│ ├── cart
 │ ├── checkout
+│ ├── contact
+│ ├── menu
 │ ├── orders
+│ ├── partner
+│ ├── profile
+│ ├── recipe-widget
 │ ├── recipes
-│ └── admin
+│ ├── subscription
+│ └── weather-widget
+│
+├── mocks
+│
+├── pages
+│
+├── services
 │
 ├── shared
 │ ├── components
 │ ├── constants
 │ └── utils
 │
-├── services
-│
 ├── store
 │
-├── mocks
-│
-├── config
-│
-├── styles
-│
-└── assets
+└── styles
 ```
 
 ### 🏛️ Organização da arquitetura
 
 app/ → composição da aplicação e configuração de rotas
 
-pages/ → páginas institucionais e públicas
+assets/ → fonts, imagens, ícones e demais recursos estáticos
+
+config/ → centralização das configurações globais da aplicação e variáveis de ambiente
 
 features/ → módulos organizados por domínio de negócio, contendo regras, hooks, serviços e fluxos
 específicos
 
-shared/ → recursos reutilizáveis por toda a aplicação
+mocks/ → backend fake com dados simulados, persistência durante o desenvolvimento do frontend
+
+pages/ → páginas institucionais e públicas
 
 services/ → camada de infraestrutura responsável pela comunicação com APIs e serviços externos de
 acesso a dados
 
+shared/ → recursos reutilizáveis por toda a aplicação
+
 store/ → gerenciamento de estado global da aplicação utilizando Zustand; responsável pela
 autenticação, controle de loading, erros globais, atualização de perfil, sincronização de sessão
 
-mocks/ → backend fake com dados simulados, persistência durante o desenvolvimento do frontend
-
-config/ → centralização das configurações globais da aplicação e variáveis de ambiente
-
 styles/ → estilos globais da aplicação
 
-assets/ → fonts, imagens, ícones e demais recursos estáticos
-
-## 🧠 Decisões de arquitetura
+## 🧠 9. Decisões de arquitetura
 
 ### Feature-Based Architecture
 
@@ -466,7 +510,7 @@ Gerencia estado global.
 
 Decide como apresentar o erro ao usuário.
 
-## ⚡ Gerenciamento de estado global
+## ⚡ 10. Gerenciamento de estado global
 
 O projeto utiliza:
 
@@ -484,7 +528,7 @@ Principais características:
 - tratamento de erros globais;
 - controle de autenticação via `authChecked`.
 
-## 🔒 Autenticação
+## 🔒 11. Autenticação
 
 Arquitetura preparada para:
 
@@ -513,9 +557,10 @@ Rotas implementadas:
 ```
 ProtectedRoute
 PublicRoute
+SubscriptionRoute
 ```
 
-## 🚀 Performance
+## 🚀 12. Performance
 
 Implementações adotadas:
 
@@ -537,7 +582,7 @@ Benefícios:
 - menor bundle inicial;
 - carregamento sob demanda.
 
-## ♿ Acessibilidade
+## ♿ 13. Acessibilidade
 
 Práticas implementadas:
 
@@ -551,7 +596,7 @@ Práticas implementadas:
 - navegação por teclado;
 - texto alternativo para imagens.
 
-## 📱 Responsividade
+## 📱 14. Responsividade
 
 Estratégia adotada:
 
@@ -564,15 +609,15 @@ Utilizando:
 - Flexbox;
 - CSS Grid;
 - Media Queries;
-- CSS moderno (`margin-inline`, `dvh`, etc.).
+- CSS moderno (`margin-inline`, `dvh`, `flex-wrap: balance` etc.).
 
-## 🛠️ Stack atual
+## 🛠️ 15. Stack atual
 
 ### Frontend
 
 - Vite
 - React 19
-- React Router
+- React Router DOM
 - Zustand
 - PropTypes
 
@@ -591,7 +636,7 @@ Utilizando:
 - PostCSS
 - Autoprefixer
 
-## ▶️ Como executar
+## ▶️ 16. Como executar
 
 ### Pré-requisitos
 
@@ -635,15 +680,25 @@ npm run lint
 npm run format
 ```
 
-## 🔄 Status atual
+## 🔄 17. Status atual
 
 ### Implementado
 
-- Layout base
-- Navegação
-- Autenticação mockada
-- Perfil
+- Autenticação mockada com persistência de sessão
 - Cardápio dinâmico
+- Carrinho de compras
+- Checkout
+- Sistema de pedidos
+- Rastreamento de pedidos
+- Histórico de pedidos
+- Perfil de usuário
+- Sistema de assinatura
+- Formulário de contato
+- Histórico de mensagens
+- Página de receitas
+- Página Sobre Nós
+- Página Nosso Impacto
+- Cadastro de parceiros
 - Mock API
 - Zustand
 - Proteção de rotas
@@ -654,16 +709,118 @@ npm run format
 
 ### Em desenvolvimento
 
-- Assinatura
-- Checkout
-- Pedidos
-- Histórico de entregas
-- Receitas
+- Integração com APIs externas reais (Widgets de clima e receitas)
 - Painel administrativo
-- Página de impacto socioambiental
-- Integração com APIs externas
+- Backend Node.js + Express
+- MongoDB Atlas
+- JWT com Cookies HttpOnly
 
-## 🗺️ Roadmap
+## 🧠 18. Principais desafios técnicos
+
+Durante o desenvolvimento do projeto alguns desafios exigiram modelagem, refatorações e ajustes
+arquiteturais relevantes.
+
+### Persistência e migração de carrinho
+
+Foi implementado um mecanismo que permite:
+
+- utilização do carrinho por visitantes não autenticados;
+- migração automática dos itens após login;
+- prevenção de duplicidade de produtos;
+- carrinhos independentes por usuário;
+- restauração correta dos dados após login, logout e atualização da página.
+
+Esse fluxo exigiu cuidados especiais com persistência local, sincronização de estado e reidratação
+do Zustand.
+
+### Datas e fusos horários
+
+Outro desafio importante foi a padronização das datas da aplicação.
+
+Durante o desenvolvimento foram exploradas diferentes estratégias envolvendo:
+
+- `toISOString()`;
+- `toLocaleString('pt-BR')`;
+- renderização de datas em inputs;
+- renderização de datas em componentes visuais;
+- compatibilidade entre serviços, mocks e interface.
+
+A solução adotada passou a utilizar datas padronizadas na camada de serviços, delegando à interface
+a responsabilidade pela formatação exibida ao usuário.
+
+Essa separação aproximou o frontend de uma integração real com APIs REST e reduziu inconsistências
+relacionadas a timezone.
+
+### Separação de responsabilidades
+
+A evolução do projeto também exigiu sucessivas refatorações para:
+
+- retirar regras de negócio dos componentes;
+- mover responsabilidades para hooks e services;
+- centralizar tratamento de erros;
+- desacoplar atualizações de perfil, pedidos, assinatura e autenticação.
+
+Esse processo resultou em uma arquitetura mais próxima de aplicações Full Stack reais.
+
+### Modelagem do domínio de negócio
+
+Antes mesmo da implementação técnica, foi necessário transformar uma ideia de economia circular em
+fluxos digitais consistentes.
+
+Algumas decisões exigiram validação conceitual:
+
+- diferenciação entre compra avulsa e assinatura;
+- definição do fluxo de checkout para ambos os modelos;
+- modelagem do ciclo de vida dos pedidos;
+- disponibilidade dinâmica de produtos baseada em estoque variável;
+- representação da relação entre parceiros, ingredientes e cardápio.
+
+Esse processo exigiu a tradução de regras de negócio para entidades, estados e fluxos de navegação
+da aplicação.
+
+## 🎓 19. Principais aprendizados
+
+Este projeto foi o primeiro projeto autoral desenvolvido após a conclusão do Bootcamp de
+Desenvolvimento Web da TripleTen Brasil.
+
+Durante o desenvolvimento foram estudados e aplicados conceitos como:
+
+- arquitetura escalável;
+- `feature-based architecture`;
+- `component-driven design`;
+- semântica HTML avançada (fieldset, legend, dl, dt, dd, address);
+- acessibilidade desde a modelagem dos componentes;
+- recursos modernos de CSS, como: `margin-inline`, `dvh`, `decimal-leading-zero` e
+  `flex-wrap: balance`;
+- persistência de sessão e refresh de autenticação;
+- migração de estado entre usuários anônimos e autenticados;
+- gerenciamento de carrinhos independentes por usuário;
+- rastreamento e histórico de pedidos;
+- modelagem de fluxos de assinatura;
+- fluxo completo de checkout;
+- padronização de datas utilizando ISO 8601;
+- tratamento de timezone e formatação localizada;
+- gerenciamento de estado com Zustand;
+- persistência avançada com Zustand;
+- reidratação de estado após autenticação;
+- separação clara de responsabilidades (camada de serviço e camada de apresentação);
+- arquitetura baseada em hooks, services e stores;
+- contratos de API;
+- mock backend;
+- Outlet Context do React Router;
+- polling com setInterval;
+- tooling profissional;
+- organização de projetos para crescimento futuro.
+
+Mais do que desenvolver uma interface React, o objetivo deste projeto é a construção de uma base
+sólida para um produto digital, combinando sustentabilidade, experiência do usuário e boas práticas
+de engenharia de software.
+
+Este projeto também marcou minha transição de uma abordagem focada apenas em componentes e
+interfaces para uma visão mais ampla de arquitetura, organização de código, escalabilidade e
+modelagem de produto.
+
+## 🗺️ 20. Roadmap
 
 ### Frontend
 
@@ -671,7 +828,6 @@ npm run format
 - OAuth
 - Receitas salvas
 - Compartilhamento de receitas
-- Página de impacto
 - Melhorias de acessibilidade
 - TypeScript
 - Preferências alimentares avançadas
@@ -689,51 +845,22 @@ npm run format
 ### Evolução do Produto
 
 - Painel do lojista
-- KPI de impacto
 - Algoritmo de recomendação
 - Gestão de estoque
 - Delivery com agendamento
 
-## 🎓 Principais aprendizados
-
-Este projeto foi o primeiro projeto autoral desenvolvido após a conclusão do Bootcamp de
-Desenvolvimento Web da TripleTen Brasil.
-
-Durante o desenvolvimento foram explorados pela primeira vez conceitos como:
-
-- arquitetura escalável;
-- `feature-based architecture`;
-- `component-driven design`;
-- semântica HTML avançada (fieldset, legend, dl, dt, dd, address);
-- acessibilidade desde a modelagem dos componentes;
-- recursos modernos de CSS, como: `margin-inline`, `dvh` e `decimal-leading-zero`;
-- gerenciamento de estado com Zustand;
-- separação clara de responsabilidades;
-- contratos de API;
-- mock backend;
-- Outlet Context do React Router;
-- polling com setInterval;
-- autenticação baseada em JWT `httpOnly`;
-- tooling profissional;
-- organização de projetos para crescimento futuro.
-
-Mais do que desenvolver uma interface React, o objetivo deste projeto é a construção de uma base
-sólida para um produto digital, combinando sustentabilidade, experiência do usuário e boas práticas
-de engenharia de software.
-
-Este projeto também marcou minha transição de uma abordagem focada apenas em componentes e
-interfaces para uma visão mais ampla de arquitetura, organização de código, escalabilidade e
-modelagem de produto.
-
-## 🚀 Próximos passos
+## 🚀 21. Próximos passos
 
   A versão atual representa a construção da base arquitetural do frontend e da experiência do
 usuário, preparada para futuras integrações com APIs RESTful, autenticação via JWT com cookies
 HttpOnly e persistência em MongoDB.
 
-## 🌱 Autora
+## 🌱 22. Autora
 
 ##### Desenvolvido por Vanessa Yuri A. Brito
 
-Projeto autoral desenvolvido para portfólio e evolução para uma solução Full Stack MERN com foco em
-sustentabilidade, economia circular e redução do desperdício alimentar.
+Projeto autoral desenvolvido para portfólio, experimentação arquitetural e evolução para uma solução
+Full Stack baseada no ecossistema MERN.
+
+O objetivo foi transformar uma ideia de impacto socioambiental em um produto digital escalável,
+conectando sustentabilidade, tecnologia, economia circular e redução de desperdício alimentar.
