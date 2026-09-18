@@ -9,7 +9,7 @@
 }
 
 .about__history-box {
-  margin-top: 1em;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,7 +38,7 @@
 
 .about__value-item {
   background-color: white;
-  padding: 1rem;
+  padding: 1em;
 }
 
 .about__value-item:nth-of-type(1) {

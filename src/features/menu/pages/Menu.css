@@ -103,7 +103,7 @@
       'soup img img'
       'cream img img'
       'pate img img';
-    column-gap: 1em;
+    column-gap: 1rem;
     align-items: center;
     justify-items: center;
     justify-self: center;

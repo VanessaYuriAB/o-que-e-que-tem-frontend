@@ -16,7 +16,7 @@
 
 .subscription-form__on-off-box {
   display: flex;
-  column-gap: 1em;
+  column-gap: 1rem;
 }
 
 .subscription-form__item-box {
@@ -46,7 +46,7 @@
 
 .subscription-form__delivery-drive-box {
   display: flex;
-  column-gap: 1em;
+  column-gap: 1rem;
 }
 
 .subscription-form__next-box {
@@ -57,7 +57,7 @@
 .subscription-form__note {
   width: 80%;
   margin: 0 auto;
-  margin-top: 1.5em;
+  margin-top: 1.5rem;
 }
 
 .subscription-form__button-box {
@@ -66,11 +66,11 @@
 }
 
 .subscription-form__button:last-of-type {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 
 .profile__no-subscription-toast {
-  margin-bottom: 1.75em;
+  margin-bottom: 1.75rem;
   width: 100%;
   padding-top: 1em;
   max-width: max-content;
@@ -78,7 +78,7 @@
 
 .profile__no-subscription-title {
   font-weight: 500;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 
 /* Tablet e acima */
@@ -86,12 +86,12 @@
 @media (min-width: 768px) {
   .subscription-form__begin-end-box {
     display: flex;
-    column-gap: 3em;
+    column-gap: 3rem;
   }
 
   .subscription-form__days-box {
     display: flex;
-    column-gap: 1.5em;
+    column-gap: 1.5rem;
   }
 
   .subscription-form__item-box_days {
@@ -100,22 +100,22 @@
 
   .subscription-form__schedules-container {
     display: flex;
-    column-gap: 1.5em;
+    column-gap: 1.5rem;
   }
 
   .subscription-form__next-box {
     flex-direction: row;
-    column-gap: 1em;
+    column-gap: 1rem;
   }
 
   .subscription-form__button-box {
     flex-direction: row;
-    column-gap: 1em;
+    column-gap: 1rem;
     justify-content: center;
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
   }
 
   .subscription-form__button:last-of-type {
-    margin-top: 3em;
+    margin-top: 3rem;
   }
 }

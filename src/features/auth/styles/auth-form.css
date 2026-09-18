@@ -14,8 +14,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 1em;
-  padding: 1em;
+  row-gap: 1rem;
+  padding: 1rem;
   border: none;
   width: 100%;
 }
@@ -30,8 +30,8 @@
   height: 1px;
   background-color: gray;
   width: 50%;
-  margin-top: 1.25em;
-  margin-bottom: 0.5em;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .auth-form__loader {
@@ -41,8 +41,8 @@
 
 .auth-form__toast {
   background-color: rgba(28, 56, 30, 0.074);
-  margin-top: 2em;
-  margin-bottom: 1em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 /* Tablet e acima */
