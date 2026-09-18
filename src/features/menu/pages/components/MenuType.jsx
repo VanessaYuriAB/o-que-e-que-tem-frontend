@@ -118,7 +118,10 @@ function MenuType({ category }) {
               )}
 
               {localItemError.id === item._id && (
-                <Toast className="menu__section-toast" message={localItemError.message}></Toast>
+                <Toast
+                  className="menu__section-toast menu__section-toast_item"
+                  message={localItemError.message}
+                ></Toast>
               )}
 
               <Button
