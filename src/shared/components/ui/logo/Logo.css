@@ -1,8 +1,5 @@
 /* Mobile first (padrão) */
 
-.logo {
-}
-
 .logo__link {
   display: flex;
   justify-content: flex-end;
@@ -32,9 +29,6 @@
 .logo__name {
   font-size: 1.5rem;
   font-weight: 400;
-}
-
-.logo__span {
 }
 
 .logo__img {

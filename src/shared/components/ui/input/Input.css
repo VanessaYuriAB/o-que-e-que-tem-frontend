@@ -10,9 +10,6 @@
   border: 4px solid darkgreen;
 }
 
-.input:valid {
-}
-
 .input:invalid {
   border: 2px solid rgb(153, 255, 0);
 }

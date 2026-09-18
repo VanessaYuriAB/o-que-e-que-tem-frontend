@@ -32,37 +32,13 @@
   row-gap: 1rem;
 }
 
-.footer__links {
-}
-
-.footer__list {
-}
-
-.footer__item {
-}
-
-.footer__link {
-}
-
 .footer__link_active {
   font-weight: 700;
-}
-
-.footer__social {
 }
 
 .footer__social-list {
   display: flex;
   column-gap: 0.25rem;
-}
-
-.footer__social-item {
-}
-
-.footer__social-link {
-}
-
-.footer__social-icon {
 }
 
 .footer__infos-box {
@@ -74,9 +50,6 @@
 .footer__address,
 .footer__operation {
   margin: 0;
-}
-
-.footer__logo-link {
 }
 
 .footer__logo {

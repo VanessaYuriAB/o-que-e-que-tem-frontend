@@ -1,8 +1,5 @@
 /* Mobile first (padrão) */
 
-.content__logout {
-}
-
 .logout {
   display: flex;
   flex-direction: column;
@@ -14,9 +11,6 @@
   font-size: 1.25rem;
   margin: 0;
   margin-bottom: 2.5rem;
-}
-
-.logout__toast {
 }
 
 .logout__button {

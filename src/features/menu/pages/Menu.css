@@ -1,25 +1,7 @@
 /* Mobile first (padrão) */
 
-.content__menu {
-}
-
-.menu {
-}
-
 .menu__title {
   margin-top: 0;
-}
-
-.menu__content {
-}
-
-.menu__subtitle {
-}
-
-.menu__description {
-}
-
-.menu__links {
 }
 
 .menu__list {
@@ -37,9 +19,6 @@
   padding: 0.5em;
   width: max-content;
   color: rgb(28, 56, 30);
-}
-
-.menu__link {
 }
 
 .menu__link_active {
@@ -74,30 +53,12 @@
   grid-area: soup;
 }
 
-.menu__soup-title {
-}
-
-.menu__soup-description {
-}
-
 .menu__cream {
   grid-area: cream;
 }
 
-.menu__cream-title {
-}
-
-.menu__cream-description {
-}
-
 .menu__pate {
   grid-area: pate;
-}
-
-.menu__pate-title {
-}
-
-.menu__pate-description {
 }
 
 .menu__figure {
@@ -135,9 +96,6 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .menu__aside {
-  }
-
   .menu__aside-content {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, auto);

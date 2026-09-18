@@ -1,14 +1,5 @@
 /* Mobile first (padrão) */
 
-.header__sidebar {
-}
-
-.sidebar {
-}
-
-.sidebar__details {
-}
-
 .sidebar__summary {
   cursor: pointer;
   font-weight: bold;
@@ -48,9 +39,6 @@
   clip: rect(0 0 0 0);
 }
 
-.sidebar__links {
-}
-
 .sidebar__list {
   display: flex;
   column-gap: 1rem;
@@ -58,17 +46,8 @@
   width: 110%;
 }
 
-.sidebar__item {
-}
-
 .sidebar__link {
   font-size: 0.75rem;
-}
-
-.sidebar__link:hover {
-}
-
-.sidebar__link:active {
 }
 
 .sidebar__link_active {

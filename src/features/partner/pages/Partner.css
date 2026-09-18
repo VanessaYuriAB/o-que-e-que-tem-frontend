@@ -6,12 +6,6 @@
   justify-content: center;
 }
 
-.partner__title {
-}
-
-.partner__text {
-}
-
 .partner__form {
   text-align: left;
 }
@@ -43,9 +37,6 @@
   justify-content: left;
 }
 
-.partner__label {
-}
-
 .partner__input {
   width: 100%;
 }
@@ -59,9 +50,6 @@
   flex-direction: column;
   width: 100%;
   gap: 1rem;
-}
-
-.partner__toast {
 }
 
 .partner__button {

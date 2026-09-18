@@ -1,8 +1,5 @@
 /* Mobile first (padrão) */
 
-.content__profile {
-}
-
 .profile {
   display: flex;
   flex-direction: column;
@@ -14,15 +11,9 @@
   margin: 0 auto;
 }
 
-.profile__title {
-}
-
 .profile__subtitle {
   font-size: 1.25rem;
   margin-bottom: 2em;
-}
-
-.profile__text {
 }
 
 .profile__nav {

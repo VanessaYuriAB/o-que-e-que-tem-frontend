@@ -1,16 +1,10 @@
 /* Mobile first (padrão) */
 
-.content__order {
-}
-
 .order {
   display: flex;
   flex-direction: column;
   align-self: center;
   padding-bottom: 21.44px; /* margin-top do title */
-}
-
-.order__title {
 }
 
 .order__empty-title {
@@ -22,9 +16,6 @@
 .order__box {
   width: 90%;
   margin-inline: auto;
-}
-
-.order__text {
 }
 
 .order__subtitle {

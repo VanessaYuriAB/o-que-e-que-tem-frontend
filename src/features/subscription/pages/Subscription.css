@@ -1,13 +1,7 @@
 /* Mobile first (padrão) */
 
-.subscription {
-}
-
 .subscription__title {
   margin-bottom: 3rem;
-}
-
-.subscription__content {
 }
 
 .subscription__item {
@@ -23,9 +17,6 @@
 
 .subscription__form {
   margin-top: 3rem;
-}
-
-.subscription__form-title {
 }
 
 .subscription__field {
@@ -71,9 +62,6 @@
   font-weight: 600;
 }
 
-.subscription__input {
-}
-
 .subscription__input_time {
   width: fit-content;
 }
@@ -100,9 +88,6 @@
   font-weight: 600;
 }
 
-.subscription__times-box {
-}
-
 .subscription__times-name {
   text-align: left;
   font-weight: 600;
@@ -122,9 +107,6 @@
   text-align: left;
 }
 
-.subscription__pix-term {
-}
-
 .subscription__pix-description {
   margin-left: 0;
 }
@@ -136,9 +118,6 @@
 .subscription__pix-qr-img {
   width: 150px;
   height: 150px;
-}
-
-.subscription__form-note {
 }
 
 .subscription__toast {

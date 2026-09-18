@@ -1,8 +1,5 @@
 /* Mobile first (padrão) */
 
-.recipes-loader {
-}
-
 .recipes-toast {
   padding: 1em;
   width: 80%;
@@ -15,9 +12,6 @@
   width: 100%;
 }
 
-.recipes__title {
-}
-
 .recipes__list {
   list-style: none;
   display: flex;
@@ -26,9 +20,6 @@
   padding-left: 0;
   align-items: center;
   justify-content: center;
-}
-
-.recipes__list_searched {
 }
 
 .recipes__item {
@@ -47,9 +38,6 @@
   margin-top: 2rem;
 }
 
-.recipes__text {
-}
-
 .recipes__form {
   display: flex;
   flex-direction: column;
@@ -59,9 +47,6 @@
 .recipes__label {
   text-align: left;
   margin-bottom: 1rem;
-}
-
-.recipes__input {
 }
 
 .recipes__toast {
@@ -100,9 +85,6 @@
 
   .recipes__item {
     flex: 1 1 310px;
-  }
-
-  .recipes__item_searched {
   }
 
   .recipes__form {

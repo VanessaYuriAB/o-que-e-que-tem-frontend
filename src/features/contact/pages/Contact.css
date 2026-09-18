@@ -1,17 +1,11 @@
 /* Mobile first (padrão) */
 
-.content__contact {
-}
-
 .contact {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-.contact__title {
 }
 
 .contact__form {
@@ -29,9 +23,6 @@
 .contact__fieldset_radio {
   display: flex;
   column-gap: 1rem;
-}
-
-.contact__legend {
 }
 
 .contact__input-box {
@@ -53,9 +44,6 @@
   margin-bottom: 0;
 }
 
-.contact__input {
-}
-
 .contact__input_space {
   margin-bottom: 0.5rem;
 }
@@ -65,15 +53,9 @@
   flex-direction: column;
 }
 
-.contact__textarea {
-}
-
 .contact__error-toast {
   margin-bottom: 1rem;
   padding: 1em;
-}
-
-.contact__button {
 }
 
 /* Tablet e acima */

@@ -1,18 +1,9 @@
 /* Mobile first (padrão) */
 
-.tracker__content {
-}
-
 .tracker {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.tracker__title {
-}
-
-.tracker__form {
 }
 
 .tracker__field {
@@ -28,9 +19,6 @@
 .tracker__input-box {
   display: flex;
   flex-direction: column;
-}
-
-.tracker__label {
 }
 
 .tracker__input {
@@ -51,9 +39,6 @@
 
 .tracker__infos {
   margin-top: 1rem;
-}
-
-.tracker__subtitle {
 }
 
 .tracker__details {
@@ -86,9 +71,6 @@
 .tracker__items-list {
   list-style: decimal-leading-zero;
   padding-left: 1.75rem;
-}
-
-.tracker__item-list {
 }
 
 /* Tablet e acima */

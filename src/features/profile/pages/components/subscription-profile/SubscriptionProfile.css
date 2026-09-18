@@ -1,8 +1,5 @@
 /* Mobile first (padrão) */
 
-.subscription-form__status-box {
-}
-
 .subscription-form__period-box {
   display: flex;
   flex-direction: column;
@@ -32,18 +29,9 @@
   align-items: flex-start;
 }
 
-.subscription-form__begin-end-box {
-}
-
 .subscription-form__payment-box {
   display: flex;
   flex-direction: column;
-}
-
-.subscription-form__days-on-box {
-}
-
-.subscription-form__days-box {
 }
 
 .subscription-form__times-box {
@@ -54,9 +42,6 @@
 .subscription-form__schedules-small {
   display: block;
   text-align: left;
-}
-
-.subscription-form__method-box {
 }
 
 .subscription-form__delivery-drive-box {
@@ -94,9 +79,6 @@
 .profile__no-subscription-title {
   font-weight: 500;
   margin-bottom: 2em;
-}
-
-.profile__no-subscription-link {
 }
 
 /* Tablet e acima */

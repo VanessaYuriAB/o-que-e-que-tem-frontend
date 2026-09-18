@@ -1,11 +1,5 @@
 /* Mobile first (padrão) */
 
-.content__home {
-}
-
-.home {
-}
-
 .home__content {
   display: flex;
   flex-direction: column;
@@ -21,12 +15,6 @@
   text-align: left;
 }
 
-.home__values {
-}
-
-.home__values-title {
-}
-
 .home__values-description {
   text-align: left;
 }
@@ -39,15 +27,9 @@
   text-align: left;
 }
 
-.home__values-item {
-}
-
 .home__values-item-title {
   margin-top: 0;
   font-size: 1rem;
-}
-
-.home__values-item-description {
 }
 
 .home__values-item-description_last {
@@ -58,9 +40,6 @@
   margin-bottom: 1rem;
 }
 
-.home__subscription-title {
-}
-
 .home__subscription-description {
   text-align: left;
   margin-bottom: 1.75rem;
@@ -68,12 +47,6 @@
 
 .home__subscription-link {
   margin-top: 0;
-}
-
-.home__order {
-}
-
-.home__order-title {
 }
 
 .home__order-description {
@@ -91,9 +64,6 @@
   margin-top: 3rem;
 }
 
-.home__weather {
-}
-
 .home__weather-title {
   margin: 0;
 }
@@ -104,27 +74,6 @@
 
 .home__recipes {
   display: none;
-}
-
-.home__recipes-title {
-}
-
-.home__recipe-soup {
-}
-
-.home__recipe-soup-title {
-}
-
-.home__recipe-soup-subtitle {
-}
-
-.home__recipe-pate {
-}
-
-.home__recipe-pate-title {
-}
-
-.home__recipe-pate-subtitle {
 }
 
 /* Tablet e acima */
