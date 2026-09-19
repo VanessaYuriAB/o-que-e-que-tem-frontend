@@ -484,7 +484,7 @@ function SubscriptionProfile() {
             </Loader>
           )}
 
-          <div className="subscription-form__button-box">
+          <div className="subscription-form__buttons-box">
             {!isEditing && (
               <>
                 <Button
