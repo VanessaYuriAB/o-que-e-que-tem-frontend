@@ -12,7 +12,7 @@ function AuthFormModal({ children }) {
     <div className="auth-form-modal">
       <div className="auth-form-modal__background">
         <div className="auth-form-modal__box">
-          <Button className="auth-form-modal__btn" onClick={() => navigate(-1)}>
+          <Button className="auth-form-modal__button" onClick={() => navigate(-1)}>
             X
           </Button>
           <div className="auth-form-modal__form-box">{children}</div>
