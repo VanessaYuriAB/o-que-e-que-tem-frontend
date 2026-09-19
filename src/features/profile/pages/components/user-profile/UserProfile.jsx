@@ -210,7 +210,7 @@ function UserProfile() {
         </fieldset>
 
         {loading && (
-          <Loader className="user-form__loader profile-form__loader ">
+          <Loader className="user-form__loader profile-form__loader">
             Atualizando dados de perfil...
           </Loader>
         )}

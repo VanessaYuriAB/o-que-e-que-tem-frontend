@@ -36,14 +36,14 @@ function Recipes() {
 
   if (loading) {
     return (
-      <Loader className="recipes-loader content__recipes-loader">Carregando receitas...</Loader>
+      <Loader className="recipes__loader content__recipes-loader">Carregando receitas...</Loader>
     );
   }
 
   if (error) {
     return (
       <Toast
-        className="recipes-toast content__recipes-toast"
+        className="recipes__toast content__recipes-toast"
         message={`Erro ao carregar receitas. ${error.message}`}
       />
     );
