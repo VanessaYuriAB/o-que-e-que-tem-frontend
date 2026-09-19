@@ -420,12 +420,12 @@ function Checkout() {
             {!canBuy && (
               <>
                 {loading && (
-                  <Loader className="order-form__loader">
+                  <Loader className="checkout__loader">
                     Mais um pouco menos de desperdício... Enviando pedido...
                   </Loader>
                 )}
 
-                {error && <Toast className="order-form__toast" message={error.message}></Toast>}
+                {error && <Toast className="checkout__toast" message={error.message}></Toast>}
 
                 <Button
                   className="checkout__button"
