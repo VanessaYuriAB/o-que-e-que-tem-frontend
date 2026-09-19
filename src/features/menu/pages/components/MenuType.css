@@ -20,14 +20,14 @@
 }
 
 .menu__section-item {
-  background-color: rgb(155, 193, 90);
+  background-color: #9bc15a;
   padding: 0.5rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
-  border: 1px solid rgb(240, 240, 240);
+  border: 1px solid #f0f0f0;
 }
 
 .menu__section-title {
@@ -49,23 +49,23 @@
 .menu__section-button {
   margin: 1rem;
   font-size: 0.625rem;
-  border: 1px solid rgb(28, 56, 30);
-  color: rgb(28, 56, 30);
+  border: 1px solid #1c381e;
+  color: #1c381e;
   background-color: rgba(28, 56, 30, 0.095);
 }
 
 .menu__section-button_added {
-  background-color: #503202b8;
-  color: antiquewhite;
-  border-color: antiquewhite;
+  background-color: rgba(80, 50, 2, 0.722);
+  color: #faebd7;
+  border-color: #faebd7;
 }
 
 .menu__section-button_pack {
   width: 80%;
   margin-top: 4rem;
-  background-color: #503202b8;
-  color: rgb(240, 240, 240);
-  border-color: rgb(240, 240, 240);
+  background-color: rgba(80, 50, 2, 0.722);
+  color: #f0f0f0;
+  border-color: #f0f0f0;
   font-size: 1rem;
 }
 

@@ -1,7 +1,7 @@
 /* Mobile first (padrão) */
 
 .content__not-found {
-  background-color: rgb(159, 190, 104);
+  background-color: #9fbe68;
   flex: 1; /* para ajuste do 'background-color', preenchimento total */
 }
 

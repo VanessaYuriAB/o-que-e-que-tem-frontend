@@ -17,7 +17,7 @@
 }
 
 .impact__item_kpi {
-  background-color: white;
+  background-color: #ffffff;
   padding: 0.75em;
   text-align: center;
   font-size: 0.875rem;
@@ -27,26 +27,26 @@
 }
 
 .impact__item_kpi:nth-of-type(1) {
-  background-color: cornflowerblue;
+  background-color: #6495ed;
 }
 
 .impact__item_kpi:nth-of-type(2) {
-  background-color: indianred;
+  background-color: #cd5c5c;
 }
 .impact__item_kpi:nth-of-type(3) {
-  background-color: palevioletred;
+  background-color: #d87093;
 }
 
 .impact__item_kpi:nth-of-type(4) {
-  background-color: steelblue;
+  background-color: #4682b4;
 }
 
 .impact__item_kpi:nth-of-type(5) {
-  background-color: teal;
+  background-color: #008080;
 }
 
 .impact__item_kpi:nth-of-type(6) {
-  background-color: tomato;
+  background-color: #ff6347;
 }
 
 .impact__subtitle_kpi {

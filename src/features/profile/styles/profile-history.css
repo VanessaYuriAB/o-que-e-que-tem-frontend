@@ -24,7 +24,7 @@
 }
 
 .profile-history__details {
-  border: 1px solid lightgrey;
+  border: 1px solid #d3d3d3;
   width: 90%;
   margin-inline: auto;
   padding: 1rem;

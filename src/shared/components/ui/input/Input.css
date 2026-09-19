@@ -3,15 +3,15 @@
 .input {
   padding: 0.25em;
   line-height: 1.5;
-  color: darkgreen;
+  color: #006400;
 }
 
 .input:focus {
-  border: 4px solid darkgreen;
+  border: 4px solid #006400;
 }
 
 .input:invalid {
-  border: 2px solid rgb(153, 255, 0);
+  border: 2px solid #99ff00;
 }
 
 .input::placeholder {

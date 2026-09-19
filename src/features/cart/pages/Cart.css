@@ -71,7 +71,7 @@
 }
 
 .cart__pack-card-link {
-  background-color: rgb(240, 240, 240);
+  background-color: #f0f0f0;
   padding-top: 0.75em;
   border: none;
   color: #503202;
@@ -79,7 +79,7 @@
 
 .cart__pack-card-line {
   width: 90%;
-  border: 0.5px solid rgb(214, 210, 210);
+  border: 0.5px solid #d6d2d2;
   margin: 0 auto;
 }
 
@@ -106,7 +106,7 @@
 .cart__pack-card-msg {
   background-color: #503202;
   padding: 0.25em;
-  color: antiquewhite;
+  color: #faebd7;
   width: fit-content;
   max-width: 90%;
   margin: 0.5rem auto 0;
@@ -188,7 +188,7 @@
   }
 
   .cart__pack-card {
-    border: 1px solid rgb(240, 240, 240);
+    border: 1px solid #f0f0f0;
   }
 
   .cart__pack-form {

@@ -3,14 +3,14 @@
 .auth-form-modal {
   display: flex;
   justify-content: center;
-  background-color: #b8f0a8dc;
+  background-color: rgba(184, 240, 168, 0.863);
   padding: 1em;
 }
 
 .auth-form-modal__background {
   width: 95%;
   min-height: 100dvh;
-  background-color: #2a2b2a1a;
+  background-color: rgba(42, 43, 42, 0.102);
   display: flex;
   justify-content: center;
   align-items: center;

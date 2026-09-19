@@ -3,9 +3,9 @@
 .link-to-button {
   text-decoration: none;
   padding: 0.5em;
-  border: 1px solid rgb(28, 56, 30);
-  color: rgb(28, 56, 30);
-  background-color: rgb(240, 240, 240);
+  border: 1px solid #1c381e;
+  color: #1c381e;
+  background-color: #f0f0f0;
   margin-top: 1rem;
 }
 

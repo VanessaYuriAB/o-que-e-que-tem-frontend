@@ -15,7 +15,7 @@ html {
 body {
   margin: 0;
   font-family: 'Josefin Variable', 'Gill Sans', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #b8f0a8dc;
+  background-color: rgba(184, 240, 168, 0.863);
   color: #503202;
 
   -ms-text-size-adjust: 100%;
