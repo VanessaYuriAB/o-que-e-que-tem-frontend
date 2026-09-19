@@ -72,6 +72,7 @@ function UserProfile() {
             name="userName"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
             title="Seu nome: não são permitidos '<' e '>'."
+            placeholder="Digite seu nome completo"
             value={formData.userName}
             onChange={handleChange}
             disabled={!isEditing}
@@ -86,6 +87,7 @@ function UserProfile() {
             name="email"
             pattern="^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
             title="E-mail válido: contento apenas letras, números, sublinhados, pontos ou hífens."
+            placeholder="O seu e-mail, válido"
             value={formData.email}
             onChange={handleChange}
             disabled={!isEditing}
@@ -103,6 +105,7 @@ function UserProfile() {
             maxLength={15}
             pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
             title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
+            placeholder="Seu telefone, fixo ou celular"
             value={formData.tel}
             onChange={handleChange}
             disabled={!isEditing}
@@ -120,6 +123,7 @@ function UserProfile() {
             name="address"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
             title="Seu endereço para delivery: não são permitidos '<' e '>'."
+            placeholder="O seu endereço padrão, caso a entrega seja por delivery"
             value={formData.address}
             onChange={handleChange}
             disabled={!isEditing}
@@ -135,6 +139,7 @@ function UserProfile() {
             inputMode="numeric"
             pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
             title="O número do seu endereço para delivery: apenas números e/ou letras."
+            placeholder="O nº do endereço"
             value={formData.number}
             onChange={handleChange}
             disabled={!isEditing}
@@ -164,6 +169,7 @@ function UserProfile() {
             name="district"
             pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
             title="O bairro do seu endereço para delivery: apenas números e/ou letras."
+            placeholder="O bairro"
             value={formData.district}
             onChange={handleChange}
             disabled={!isEditing}
@@ -179,6 +185,7 @@ function UserProfile() {
             inputMode="numeric"
             pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
             title="O CEP do seu endereço para delivery: apenas números e traço."
+            placeholder="E o CEP"
             value={formData.cep}
             onChange={handleChange}
             disabled={!isEditing}

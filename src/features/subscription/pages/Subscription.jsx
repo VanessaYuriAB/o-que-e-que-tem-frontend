@@ -573,6 +573,7 @@ function Subscription() {
                 inputMode="numeric"
                 pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
                 title="O CEP do seu endereço para delivery: apenas números e traço."
+                placeholder="O CEP do endereço, caso a entrega seja por delivery"
                 value={formData.cep}
                 onChange={handleChange}
                 required={formData.method === 'delivery'}
@@ -590,6 +591,7 @@ function Subscription() {
                 name="address"
                 pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
                 title="Seu endereço para delivery: não são permitidos '<' e '>'."
+                placeholder="O endereço"
                 value={formData.address}
                 onChange={handleChange}
                 required={formData.method === 'delivery'}
@@ -608,6 +610,7 @@ function Subscription() {
                 inputMode="numeric"
                 pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
                 title="O número do seu endereço para delivery: apenas números e/ou letras."
+                placeholder="O nº do endereço"
                 value={formData.number}
                 onChange={handleChange}
                 required={formData.method === 'delivery'}
@@ -643,6 +646,7 @@ function Subscription() {
                 name="district"
                 pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
                 title="O bairro do seu endereço para delivery: apenas números e/ou letras."
+                placeholder="O bairro"
                 value={formData.district}
                 onChange={handleChange}
                 required={formData.method === 'delivery'}
