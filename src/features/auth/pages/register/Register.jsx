@@ -193,11 +193,9 @@ function Register() {
           <Toast className="form-register__toast auth-form__toast" message={globalError.message} />
         )}
 
-        <div className="form-register__button-box">
-          <Button className="form-register__button" type="submit">
-            ENVIAR
-          </Button>
-        </div>
+        <Button className="form-register__button" type="submit">
+          ENVIAR
+        </Button>
       </form>
     </AuthFormModal>
   );

@@ -134,11 +134,9 @@ function Login() {
           <Toast className="form-login__toast auth-form__toast" message={globalError.message} />
         )}
 
-        <div className="form-login__button-box">
-          <Button className="form-login__button" type="submit">
-            ENVIAR
-          </Button>
-        </div>
+        <Button className="form-login__button" type="submit">
+          ENVIAR
+        </Button>
       </form>
     </AuthFormModal>
   );
