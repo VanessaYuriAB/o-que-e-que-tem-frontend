@@ -166,7 +166,7 @@ function Contact() {
 
         {(error || globalError || success) && (
           <Toast
-            className="contact__error-toast"
+            className="contact__toast"
             message={error ? error.message : globalError ? globalError.message : success}
           />
         )}

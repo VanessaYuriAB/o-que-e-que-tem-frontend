@@ -53,7 +53,7 @@
   flex-direction: column;
 }
 
-.contact__error-toast {
+.contact__toast {
   margin-bottom: 1rem;
   padding: 1em;
 }
@@ -69,7 +69,7 @@
     padding-inline: 1rem;
   }
 
-  .contact__error-toast {
+  .contact__toast {
     width: 70%;
   }
 }
