@@ -3,7 +3,7 @@ import './Toast.css';
 
 function Toast({ message = '', children = '', className = '' }) {
   return (
-    <div className={`toast ${className}`}>
+    <div className={`toast ${className}`} role="alert" aria-live="assertive">
       {message && <p className="toast__message">{message}</p>}
       {children && children}
     </div>

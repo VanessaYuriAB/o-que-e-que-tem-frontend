@@ -15,7 +15,7 @@ function SuccessOrder() {
   }
 
   return (
-    <section className="order content__order" aria-live="polite">
+    <section className="order content__order">
       <h1 className={hasOrder !== null ? 'order__title' : 'order__empty-title'}>
         {hasOrder !== null
           ? 'Pedido enviado com sucesso'
