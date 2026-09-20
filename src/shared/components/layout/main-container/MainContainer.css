@@ -13,6 +13,14 @@
   display: flex; /* para o 'flex: 1', no .content__not-found */
   justify-content: center;
   padding: 2rem;
+  flex-direction: column;
+}
+
+.content__toast {
+  padding: 0.5em;
+  padding-inline: 0.75em;
+  width: 100%;
+  margin: 0 auto 2rem;
 }
 
 /* Tablet e acima */
