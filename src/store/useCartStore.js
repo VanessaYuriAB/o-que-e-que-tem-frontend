@@ -18,6 +18,8 @@ const useCartStore = create(
       removeLoading: false, // remove (MenuTypes e Cart)
       setLoading: false, // setCart (Cart)
 
+      syncCartError: false,
+
       // addItem chama cartService.addItemToCard
       addItemToCartAction: async (item, userId) => {
         set({ loading: true });
@@ -99,16 +101,24 @@ const useCartStore = create(
 
       // syncCartStorage configura persistência dinâmica do carrinho, por usuário (caso esteja logado), para refresh
       syncCartStorageAction: async (userId) => {
-        // Configura nome da chave (padrão ou id)
-        const storageUserCart = userId ? `cartData-${userId}` : 'cartData-user';
+        set({ syncCartError: false });
 
-        // Atualiza o nome da chave, no Zustand
-        useCartStore.persist.setOptions({
-          name: storageUserCart,
-        });
+        try {
+          // Configura nome da chave (padrão ou id)
+          const storageUserCart = userId ? `cartData-${userId}` : 'cartData-user';
 
-        // E recarrega os dados salvos, no Zustand (atualiza a persistência)
-        await useCartStore.persist.rehydrate();
+          // Atualiza o nome da chave, no Zustand
+          useCartStore.persist.setOptions({
+            name: storageUserCart,
+          });
+
+          // E recarrega os dados salvos, no Zustand (atualiza a persistência)
+          await useCartStore.persist.rehydrate();
+        } catch (error) {
+          console.error('Falha na syncCartStorageAction:', error);
+
+          set({ syncCartError: true });
+        }
       },
 
       // migrateAnonymousCartAction configura a troca de persistência padrão do carrinho, para persistência do usuário, ao logar
