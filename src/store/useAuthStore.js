@@ -31,6 +31,7 @@ const useAuthStore = create((set, get) => ({
   loading: false,
   globalError: null,
   authChecked: false,
+  refreshError: null,
 
   setUserAction: (userData) => {
     set({ user: userData });
@@ -105,21 +106,19 @@ const useAuthStore = create((set, get) => ({
   // refresh chama authService.refresh e seta user + authChecked, mantendo login caso credenciais ok ou limpando user caso ñ ok
   refreshAction: async () => {
     set({ loading: true });
-    get().setGlobalErrorAction(null);
+    set({ refreshError: null });
+
     try {
       const data = await authService.refresh();
       get().setUserAction(data);
-      return { success: true };
     } catch (error) {
       get().setUserAction(null);
 
       const handledError = errorHandler(error);
 
-      if (handledError.scope === 'global') {
-        get().setGlobalErrorAction(handledError);
+      if (handledError.scope === 'global' || handledError.status === 429) {
+        set({ refreshError: handledError });
       }
-
-      return { success: false, error: handledError };
     } finally {
       set({ loading: false, authChecked: true });
     }
