@@ -15,7 +15,7 @@ async function getTodayRecipes() {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/today-recipes');
+      return await apiFetch('/recipes/today');
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
@@ -42,7 +42,7 @@ async function getSearchRecipes(searchData) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/search-recipes');
+      return await apiFetch('/recipes/search');
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);

@@ -51,7 +51,7 @@ export async function register(newUserData) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/register', {
+      return await apiFetch('/auth/register', {
         method: 'POST',
         // header já definido em apiFetch
         reqBody: newUserData, // captura dados do escopo externo via closure
@@ -118,7 +118,7 @@ export async function login(credentials) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/login', {
+      return await apiFetch('/auth/login', {
         method: 'POST',
         // header já definido em apiFetch
         reqBody: credentials, // captura dados do escopo externo via closure
@@ -148,7 +148,7 @@ export async function logout() {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/logout', {
+      return await apiFetch('/auth/logout', {
         method: 'POST',
         // sem reqBody > sem header > definido em apiFetch
       });
@@ -181,7 +181,7 @@ export async function refresh() {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/me'); // sem parâmetros de 'options' pq é um GET
+      return await apiFetch('/auth/me'); // sem parâmetros de 'options' pq é um GET
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);

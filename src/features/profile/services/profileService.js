@@ -28,7 +28,7 @@ export async function updateUserProfile(userProfileData) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/me', { method: 'PATCH', reqBody: userProfileData });
+      return await apiFetch('/users/me', { method: 'PATCH', reqBody: userProfileData });
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);
@@ -71,7 +71,10 @@ export async function updateSubscriptionProfile(subscriptionProfileData) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/me', { method: 'PATCH', reqBody: subscriptionProfileData });
+      return await apiFetch('/users/subscriptions/me', {
+        method: 'PATCH',
+        reqBody: subscriptionProfileData,
+      });
     };
 
     const { data } = await decideMockOrApi(mockFn, apiFn);

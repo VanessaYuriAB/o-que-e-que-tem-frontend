@@ -71,7 +71,7 @@ export async function sendSubscriptionOrderToServer(subscriptionOrder) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/subscribe-orders', {
+      return await apiFetch('/subscriptions/orders', {
         method: 'POST',
         reqBody: subscriptionOrder,
       });

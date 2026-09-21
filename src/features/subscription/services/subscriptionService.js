@@ -69,7 +69,7 @@ export default async function subscribe(newSubscriptionData) {
     };
 
     const apiFn = async () => {
-      return await apiFetch('/subscribe', {
+      return await apiFetch('/subscriptions', {
         method: 'POST',
         // header definido em apiFetch
         reqBody: newSubscriptionData,
