@@ -26,11 +26,15 @@ export default function useOrders() {
       }
 
       setOrderTracked(result);
+
+      return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
       setOrderTracked(null);
       setErrorTracker(handledError);
+
+      return { success: false };
     } finally {
       setLoadingTracker(false);
     }

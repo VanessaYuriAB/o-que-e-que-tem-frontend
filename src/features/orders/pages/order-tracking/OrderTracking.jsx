@@ -25,9 +25,20 @@ function OrderTracking() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleTracker = async (data) => {
+    const result = await trackOrder(data);
+
+    if (result.success === true) {
+      setFormData({
+        orderNumber: '',
+        email: '',
+      });
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await trackOrder(formData);
+    handleTracker(formData);
   };
 
   return (
