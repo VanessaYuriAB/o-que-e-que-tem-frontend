@@ -91,6 +91,7 @@ export default function useProfile() {
   const getUserAllOrders = useCallback(async (userId) => {
     setLoadingAllOrders(true);
     setErrorAllOrders(null);
+    setUserAllOrders(null);
 
     try {
       const orders = await profileService.getOrdersByUserId(userId);
@@ -110,36 +111,23 @@ export default function useProfile() {
   }, []);
 
   // MsgsProfile (consumido em efeito)
-  const getUserMsgs = useCallback(
-    async (userId) => {
-      setLoadingMsgs(true);
-      setErrorMsgs(null);
+  const getUserMsgs = useCallback(async (userId) => {
+    setLoadingMsgs(true);
+    setErrorMsgs(null);
+    setUserMsgs([]);
+
+    try {
+      const msgs = await profileService.getMessagesByUserId(userId);
+      setUserMsgs(msgs);
+    } catch (error) {
+      const handledError = errorHandler(error);
+
       setUserMsgs([]);
-
-      setGlobalErrorAction(null);
-
-      try {
-        const msgs = await profileService.getMessagesByUserId(userId);
-        setUserMsgs(msgs);
-
-        return { success: true };
-      } catch (error) {
-        const handledError = errorHandler(error);
-
-        if (handledError.scope === 'global') {
-          // Seta 'globalError' (global)
-          setGlobalErrorAction(handledError);
-        } else if (handledError.scope === 'local') {
-          setErrorMsgs(handledError);
-        }
-
-        return { success: false };
-      } finally {
-        setLoadingMsgs(false);
-      }
-    },
-    [setGlobalErrorAction]
-  );
+      setErrorMsgs(handledError);
+    } finally {
+      setLoadingMsgs(false);
+    }
+  }, []);
 
   return {
     loading,
