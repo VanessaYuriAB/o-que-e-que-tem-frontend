@@ -1,6 +1,4 @@
 const FAKE_ERRORS = {
-  getMenu: false,
-
   register: false,
   login: false,
   logout: false,
@@ -8,27 +6,25 @@ const FAKE_ERRORS = {
 
   updateUserProfile: false,
   updateSubscriptionProfile: false,
+  getOrdersByUserId: false,
+  getSubscriptionOrdersByUserId: false,
+  getMessagesByUserId: false,
 
+  getMenu: false,
   addItemToCart: false,
   removeItemToCart: false,
+
   setCartData: false,
 
   sendOrderToServer: false,
+  sendSubscriptionOrderToServer: false,
 
   getOrderByNumber: false,
-  getOrdersByUserId: false,
+  getSubscriptionOrderByNumber: false,
 
   subscribe: false,
 
   sendUserMessage: false,
-
-  sendSubscriptionOrderToServer: false,
-
-  getSubscriptionOrdersByUserId: false,
-
-  getSubscriptionOrderByNumber: false,
-
-  getMessagesByUserId: false,
 
   sendPartnerEntry: false,
 
