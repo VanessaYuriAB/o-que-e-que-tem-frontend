@@ -4,12 +4,17 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import { useEffect } from 'react';
 import useProfile from '../../../hooks/useProfile.js';
 import useAuthStore from '../../../../../store/useAuthStore.js';
+import parsePtBrDate from '../../../utils/parsePtBrDate.js';
 import '../../../styles/profile-history.css';
 
 function MsgsProfile() {
   const { getUserMsgs, loadingMsgs, errorMsgs, userMsgs } = useProfile();
 
   const user = useAuthStore((state) => state.user);
+
+  const orderedUserMsgs = userMsgs
+    ? [...userMsgs].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
+    : [];
 
   useEffect(() => {
     getUserMsgs(user._id);
@@ -33,7 +38,7 @@ function MsgsProfile() {
 
       {hasMsgs ? (
         <ul className="profile__msgs-list profile-history__list nav__list">
-          {userMsgs.map((msg) => {
+          {orderedUserMsgs.map((msg) => {
             const formattedCreatedAt = new Date(msg.createdAt).toLocaleString('pt-BR');
             const msgCreatedAt = msg.createdAt.includes('T') ? formattedCreatedAt : msg.createdAt;
 
