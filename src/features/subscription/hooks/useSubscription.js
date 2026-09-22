@@ -1,5 +1,5 @@
 import errorHandler from '../../../shared/utils/errorHandler.js';
-import subscribe from '../services/subscriptionService.js';
+import { subscribe } from '../services/subscriptionService.js';
 import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
 import * as profileService from '../../profile/services/profileService.js';

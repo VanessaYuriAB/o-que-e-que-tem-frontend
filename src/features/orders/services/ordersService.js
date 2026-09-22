@@ -39,44 +39,6 @@ export async function getOrderByNumber(orderData) {
   }
 }
 
-// Rastrear pedidos de assinatura (nº do pedido + email)
-export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
-  try {
-    const mockFn = async () => {
-      if (FAKE_ERRORS.getSubscriptionOrderByNumber) {
-        await fakeApiError(
-          'mockFn com err = true no getSubscriptionOrderByNumber do ordersService'
-        );
-      }
-
-      // Simula a verificação do servidor
-      const subscriptionOrderFinded = subscriptionOrders.find(
-        (subscriptionOrder) =>
-          subscriptionOrder.orderNumber === subscriptionOrderData.orderNumber &&
-          subscriptionOrder.customerSnapshot.email === subscriptionOrderData.email
-      );
-
-      if (subscriptionOrderFinded === undefined) {
-        await fakeApiError(`O pedido ${subscriptionOrderData.orderNumber} não foi localizado`, 404);
-      }
-
-      return await fakeApi(subscriptionOrderFinded);
-    };
-
-    const apiFn = async () => {
-      return await apiFetch(
-        `/subscriptions/orders/${subscriptionOrderData.orderNumber}?email=${subscriptionOrderData.email}`
-      );
-    };
-
-    const { data } = await decideMockOrApi(mockFn, apiFn);
-
-    return typeof data === 'object' ? data : {};
-  } catch (cause) {
-    throw new Error('Falha no ordersService.getSubscriptionOrderByNumber', { cause });
-  }
-}
-
 // Pedidos avulsos do usuário logado
 export async function getOrdersByUserId(userId) {
   try {

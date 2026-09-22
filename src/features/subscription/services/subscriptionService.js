@@ -3,14 +3,15 @@ import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import apiFetch from '../../../services/api.js';
 import useAuthStore from '../../../store/useAuthStore.js';
+import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
 
-export default async function subscribe(newSubscriptionData) {
+export async function subscribe(newSubscriptionData) {
   try {
     const mockFn = async () => {
       const user = useAuthStore.getState().user;
 
       if (FAKE_ERRORS.subscribe) {
-        await fakeApiError('mockFn com err = true no subscribe do subscribeService');
+        await fakeApiError('mockFn com err = true no subscribe do subscriptionService');
       }
 
       // Ajusta dados
@@ -81,5 +82,43 @@ export default async function subscribe(newSubscriptionData) {
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no subscriptionService.subscribe', { cause });
+  }
+}
+
+// Rastrear pedidos de assinatura (nº do pedido + email)
+export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
+  try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.getSubscriptionOrderByNumber) {
+        await fakeApiError(
+          'mockFn com err = true no getSubscriptionOrderByNumber do subscriptionService'
+        );
+      }
+
+      // Simula a verificação do servidor
+      const subscriptionOrderFinded = subscriptionOrders.find(
+        (subscriptionOrder) =>
+          subscriptionOrder.orderNumber === subscriptionOrderData.orderNumber &&
+          subscriptionOrder.customerSnapshot.email === subscriptionOrderData.email
+      );
+
+      if (subscriptionOrderFinded === undefined) {
+        await fakeApiError(`O pedido ${subscriptionOrderData.orderNumber} não foi localizado`, 404);
+      }
+
+      return await fakeApi(subscriptionOrderFinded);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch(
+        `/subscriptions/orders/${subscriptionOrderData.orderNumber}?email=${subscriptionOrderData.email}`
+      );
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    return typeof data === 'object' ? data : {};
+  } catch (cause) {
+    throw new Error('Falha no subscriptionService.getSubscriptionOrderByNumber', { cause });
   }
 }

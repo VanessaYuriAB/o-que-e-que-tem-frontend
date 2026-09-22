@@ -4,8 +4,8 @@ import {
   getOrderByNumber,
   getOrdersByUserId,
   getSubscriptionOrdersByUserId,
-  getSubscriptionOrderByNumber,
 } from '../services/ordersService.js';
+import { getSubscriptionOrderByNumber } from '../../subscription/services/subscriptionService.js';
 
 export default function useOrders() {
   const [orderTracked, setOrderTracked] = useState(null);
