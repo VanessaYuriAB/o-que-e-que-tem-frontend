@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import errorHandler from '../../../shared/utils/errorHandler.js';
-import { getOrderByNumber } from '../services/ordersService.js';
+import { getOrderByNumber, sendOrderToServer } from '../services/ordersService.js';
 import { getSubscriptionOrderByNumber } from '../../subscription/services/subscriptionService.js';
 
 export default function useOrders() {
   const [orderTracked, setOrderTracked] = useState(null);
   const [loadingTracker, setLoadingTracker] = useState(false);
   const [errorTracker, setErrorTracker] = useState(null);
+
+  const [loadingSendOrder, setLoadingSendOrder] = useState(false);
+  const [errorSendOrder, setErrorSendOrder] = useState(null);
 
   // OrderTracking
   const trackOrder = async (orderData) => {
@@ -33,10 +36,30 @@ export default function useOrders() {
     }
   };
 
+  // Checkout
+  async function sendOrder(order) {
+    setLoadingSendOrder(true);
+    setErrorSendOrder(null);
+
+    try {
+      const data = await sendOrderToServer(order);
+      return { success: true, data };
+    } catch (error) {
+      const handledError = errorHandler(error);
+      setErrorSendOrder(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+      return { success: false };
+    } finally {
+      setLoadingSendOrder(false);
+    }
+  }
+
   return {
     orderTracked,
     loadingTracker,
     errorTracker,
     trackOrder,
+    loadingSendOrder,
+    errorSendOrder,
+    sendOrder,
   };
 }

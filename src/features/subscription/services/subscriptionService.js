@@ -4,6 +4,7 @@ import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import apiFetch from '../../../services/api.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
+import generateMockOrderNumber from '../../checkout/utils/generateMockOrderNumber.js';
 
 export async function subscribe(newSubscriptionData) {
   try {
@@ -120,5 +121,46 @@ export async function getSubscriptionOrderByNumber(subscriptionOrderData) {
     return typeof data === 'object' ? data : {};
   } catch (cause) {
     throw new Error('Falha no subscriptionService.getSubscriptionOrderByNumber', { cause });
+  }
+}
+
+// Enviar pedido de assinatura (Checkout)
+export async function sendSubscriptionOrderToServer(subscriptionOrder) {
+  try {
+    const mockFn = async () => {
+      const user = useAuthStore.getState().user;
+
+      if (FAKE_ERRORS.sendSubscriptionOrderToServer) {
+        await fakeApiError(
+          'mockFn com err = true no sendSubscriptionOrderToServer do subscriptionService'
+        );
+      }
+
+      const mockSubscriptionOrder = {
+        _id: 'subscription-order-mock',
+        owner: user?._id ?? null,
+        createdAt: new Date().toISOString(),
+        orderNumber: generateMockOrderNumber('subscriptionOrderType'),
+        ...subscriptionOrder,
+      };
+
+      // Adiciona pedido no mock de 'subscriptionOrders'
+      subscriptionOrders.push(mockSubscriptionOrder);
+
+      return await fakeApi(mockSubscriptionOrder, 201);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch('/subscriptions/orders', {
+        method: 'POST',
+        reqBody: subscriptionOrder,
+      });
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    return typeof data === 'object' ? data : {};
+  } catch (cause) {
+    throw new Error('Falha no subscriptionService.sendSubscriptionOrderToServer', { cause });
   }
 }

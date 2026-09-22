@@ -1,12 +1,15 @@
 import errorHandler from '../../../shared/utils/errorHandler.js';
-import { subscribe } from '../services/subscriptionService.js';
+import { subscribe, sendSubscriptionOrderToServer } from '../services/subscriptionService.js';
 import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
-import * as profileService from '../../profile/services/profileService.js';
+import { updateUserProfile } from '../../profile/services/profileService.js';
 
 export default function useSubscription(isUser) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [loadingSendSubscribeOrder, setLoadingSendSubscribeOrder] = useState(false);
+  const [errorSendSubscribeOrder, setErrorSendSubscribeOrder] = useState(null);
 
   const { setUserAction, setGlobalErrorAction, loginAction, registerAction } =
     useAuthStore.getState();
@@ -60,7 +63,7 @@ export default function useSubscription(isUser) {
       // Neste ponto, o usuário já está logado
 
       // Atualiza dados do usuário
-      await profileService.updateUserProfile(dataWithoutPassword);
+      await updateUserProfile(dataWithoutPassword);
 
       // Então, inscreve assinatura
       const subscriptionData = await subscribe(dataWithoutPassword);
@@ -83,5 +86,28 @@ export default function useSubscription(isUser) {
     }
   }
 
-  return { sendSubscribe, loading, error };
+  async function sendSubscribeOrder(subscriptionOrder) {
+    setLoadingSendSubscribeOrder(true);
+    setErrorSendSubscribeOrder(null);
+
+    try {
+      const data = await sendSubscriptionOrderToServer(subscriptionOrder);
+      return { success: true, data };
+    } catch (error) {
+      const handledError = errorHandler(error);
+      setErrorSendSubscribeOrder(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+      return { success: false };
+    } finally {
+      setLoadingSendSubscribeOrder(false);
+    }
+  }
+
+  return {
+    sendSubscribe,
+    loading,
+    error,
+    sendSubscribeOrder,
+    loadingSendSubscribeOrder,
+    errorSendSubscribeOrder,
+  };
 }

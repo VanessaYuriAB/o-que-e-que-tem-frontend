@@ -1,4 +1,3 @@
-import './Checkout.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Button from '../../../shared/components/ui/button/Button.jsx';
@@ -10,7 +9,9 @@ import Input from '../../../shared/components/ui/input/Input.jsx';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
 import useAuthStore from '../../../store/useAuthStore.js';
-import useCheckout from '../hooks/useCheckout.js';
+import useOrders from '../../orders/hooks/useOrders.js';
+import useSubscription from '../../subscription/hooks/useSubscription.js';
+import './Checkout.css';
 
 function Checkout() {
   const navigate = useNavigate();
@@ -28,7 +29,10 @@ function Checkout() {
           ? 'PIX'
           : '';
 
-  const { loading, error, sendOrder, sendSubscribeOrder } = useCheckout();
+  const { loadingSendOrder, errorSendOrder, sendOrder } = useOrders();
+
+  const { loadingSendSubscribeOrder, errorSendSubscribeOrder, sendSubscribeOrder } =
+    useSubscription();
 
   const { cartItems, cleanCartAction, cartData } = useCartStore(
     useShallow((state) => ({
@@ -403,13 +407,20 @@ function Checkout() {
                   ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
                 </p>
 
-                {loading && (
+                {(loadingSendOrder || loadingSendSubscribeOrder) && (
                   <Loader className="order-form__loader">
                     Mais um pouco menos de desperdício... Enviando pedido...
                   </Loader>
                 )}
 
-                {error && <Toast className="order-form__toast" message={error.message}></Toast>}
+                {(errorSendOrder || errorSendSubscribeOrder) && (
+                  <Toast
+                    className="order-form__toast"
+                    message={
+                      errorSendOrder ? errorSendOrder.message : errorSendSubscribeOrder.message
+                    }
+                  ></Toast>
+                )}
 
                 <Button className="order-form__button" type="submit">
                   Comprar {formData.pay !== '' && `no ${typeOfPay}`}
@@ -419,13 +430,20 @@ function Checkout() {
 
             {!canBuy && (
               <>
-                {loading && (
+                {(loadingSendOrder || loadingSendSubscribeOrder) && (
                   <Loader className="checkout__loader">
                     Mais um pouco menos de desperdício... Enviando pedido...
                   </Loader>
                 )}
 
-                {error && <Toast className="checkout__toast" message={error.message}></Toast>}
+                {(errorSendOrder || errorSendSubscribeOrder) && (
+                  <Toast
+                    className="checkout__toast"
+                    message={
+                      errorSendOrder ? errorSendOrder.message : errorSendSubscribeOrder.message
+                    }
+                  ></Toast>
+                )}
 
                 <Button
                   className="checkout__button"
