@@ -1,5 +1,8 @@
 export default function errorHandler(error) {
-  console.error('Falha no errorHandler:', error, error.cause ? error.cause : '');
+  // Executa apenas em ambiente de desenvolvimento
+  if (import.meta.env.DEV) {
+    console.error('Falha no errorHandler:', error, error.cause ? error.cause : '');
+  }
 
   if (error.cause?.type === 'network') {
     return { message: 'Erro de conexão. Verifique a internet.', scope: 'global' };

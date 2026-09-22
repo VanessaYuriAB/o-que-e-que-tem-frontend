@@ -115,7 +115,10 @@ const useCartStore = create(
           // E recarrega os dados salvos, no Zustand (atualiza a persistência)
           await useCartStore.persist.rehydrate();
         } catch (error) {
-          console.error('Falha na syncCartStorageAction:', error);
+          // Executa apenas em ambiente de desenvolvimento
+          if (import.meta.env.DEV) {
+            console.error('Falha na syncCartStorageAction:', error);
+          }
 
           set({ syncCartError: true });
         }
