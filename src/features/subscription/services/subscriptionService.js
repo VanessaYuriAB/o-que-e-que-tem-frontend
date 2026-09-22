@@ -4,7 +4,7 @@ import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import apiFetch from '../../../services/api.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
-import generateMockOrderNumber from '../../checkout/utils/generateMockOrderNumber.js';
+import generateMockOrderNumber from '../../../shared/utils/generateMockOrderNumber.js';
 
 export async function subscribe(newSubscriptionData) {
   try {

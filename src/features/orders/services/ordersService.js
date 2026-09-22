@@ -4,7 +4,7 @@ import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import { fakeApiError, fakeApi } from '../../../shared/utils/fakeApi.js';
 import orders from '../../../mocks/fakeOrdersDb.js';
 import useAuthStore from '../../../store/useAuthStore.js';
-import generateMockOrderNumber from '../../checkout/utils/generateMockOrderNumber.js';
+import generateMockOrderNumber from '../../../shared/utils/generateMockOrderNumber.js';
 
 // Rastrear pedidos avulsos (nº do pedido + email)
 export async function getOrderByNumber(orderData) {
