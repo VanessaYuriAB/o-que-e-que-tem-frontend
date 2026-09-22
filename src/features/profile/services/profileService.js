@@ -5,6 +5,7 @@ import decideMockOrApi from '../../../shared/utils/helperMockOrApi.js';
 import { updateWithoutUserMsg } from '../../../mocks/fakeAuthDb.js';
 import orders from '../../../mocks/fakeOrdersDb.js';
 import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
+import messages from '../../../mocks/fakeMessagesDb.js';
 
 export async function updateUserProfile(userProfileData) {
   try {
@@ -144,5 +145,33 @@ export async function getSubscriptionOrdersByUserId(userId) {
     return Array.isArray(data) ? data : [];
   } catch (cause) {
     throw new Error('Falha no profileService.getSubscriptionOrdersByUserId', { cause });
+  }
+}
+
+// Mensagens do usuário logado
+export async function getMessagesByUserId(userId) {
+  try {
+    const mockFn = async () => {
+      if (FAKE_ERRORS.getMessagesByUserId) {
+        await fakeApiError('mockFn com err = true no getMessagesByUserId do profileService');
+      }
+
+      // Simulação do backend
+      const userMessages = messages.filter((message) => message.owner === userId);
+
+      // Caso não existam mensagens o retorno é []; não é um erro, e é direcionado no próprio componente
+
+      return await fakeApi(userMessages);
+    };
+
+    const apiFn = async () => {
+      return await apiFetch(`/users/${userId}/messages`);
+    };
+
+    const { data } = await decideMockOrApi(mockFn, apiFn);
+
+    return Array.isArray(data) ? data : [];
+  } catch (cause) {
+    throw new Error('Falha no profileService.getMessagesByUserId', { cause });
   }
 }

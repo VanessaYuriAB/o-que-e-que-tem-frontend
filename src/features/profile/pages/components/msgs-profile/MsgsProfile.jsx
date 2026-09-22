@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import { useEffect } from 'react';
-import useContact from '../../../../contact/hooks/useContact.js';
+import useProfile from '../../../hooks/useProfile.js';
 import useAuthStore from '../../../../../store/useAuthStore.js';
 import '../../../styles/profile-history.css';
 
 function MsgsProfile() {
-  const { loading, error, getUserMsgs, userMsgs } = useContact();
+  const { getUserMsgs, loadingMsgs, errorMsgs, userMsgs } = useProfile();
 
   const user = useAuthStore((state) => state.user);
 
@@ -17,12 +17,14 @@ function MsgsProfile() {
 
   const hasMsgs = userMsgs.length > 0;
 
-  if (loading) {
+  if (loadingMsgs) {
     return <Loader className="profile__msgs-loader" />;
   }
 
-  if (error) {
-    return <Toast className="profile__msgs-toast profile-history__toast" message={error.message} />;
+  if (errorMsgs) {
+    return (
+      <Toast className="profile__msgs-toast profile-history__toast" message={errorMsgs.message} />
+    );
   }
 
   return (

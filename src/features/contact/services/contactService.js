@@ -46,31 +46,4 @@ async function sendUserMessage(messageData, userId = null) {
   }
 }
 
-async function getMessagesByUserId(userId) {
-  try {
-    const mockFn = async () => {
-      if (FAKE_ERRORS.getMessagesByUserId) {
-        await fakeApiError('mockFn com err = true no getMessagesByUserId do contactService');
-      }
-
-      // Simulação do backend
-      const userMessages = messages.filter((message) => message.owner === userId);
-
-      // Caso não existam mensagens o retorno é []; não é um erro, e é direcionado no próprio componente
-
-      return await fakeApi(userMessages);
-    };
-
-    const apiFn = async () => {
-      return await apiFetch(`/users/${userId}/messages`);
-    };
-
-    const { data } = await decideMockOrApi(mockFn, apiFn);
-
-    return Array.isArray(data) ? data : [];
-  } catch (cause) {
-    throw new Error('Falha no contactService.getMessagesByUserId', { cause });
-  }
-}
-
-export { sendUserMessage, getMessagesByUserId };
+export default sendUserMessage;

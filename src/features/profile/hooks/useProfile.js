@@ -12,6 +12,10 @@ export default function useProfile() {
   const [loadingAllOrders, setLoadingAllOrders] = useState(false);
   const [errorAllOrders, setErrorAllOrders] = useState(null);
 
+  const [userMsgs, setUserMsgs] = useState([]);
+  const [loadingMsgs, setLoadingMsgs] = useState(false);
+  const [errorMsgs, setErrorMsgs] = useState(null);
+
   const { setUserAction, setGlobalErrorAction } = useAuthStore.getState();
 
   async function updateUser(profileFormData) {
@@ -105,6 +109,38 @@ export default function useProfile() {
     }
   }, []);
 
+  // MsgsProfile (consumido em efeito)
+  const getUserMsgs = useCallback(
+    async (userId) => {
+      setLoadingMsgs(true);
+      setErrorMsgs(null);
+      setUserMsgs([]);
+
+      setGlobalErrorAction(null);
+
+      try {
+        const msgs = await profileService.getMessagesByUserId(userId);
+        setUserMsgs(msgs);
+
+        return { success: true };
+      } catch (error) {
+        const handledError = errorHandler(error);
+
+        if (handledError.scope === 'global') {
+          // Seta 'globalError' (global)
+          setGlobalErrorAction(handledError);
+        } else if (handledError.scope === 'local') {
+          setErrorMsgs(handledError);
+        }
+
+        return { success: false };
+      } finally {
+        setLoadingMsgs(false);
+      }
+    },
+    [setGlobalErrorAction]
+  );
+
   return {
     loading,
     error,
@@ -117,5 +153,9 @@ export default function useProfile() {
     loadingAllOrders,
     errorAllOrders,
     getUserAllOrders,
+    userMsgs,
+    loadingMsgs,
+    errorMsgs,
+    getUserMsgs,
   };
 }
