@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import './SuccessOrder.css';
 import useAuthStore from '../../store/useAuthStore.js';
 import Toast from '../../shared/components/ui/toast/Toast.jsx';
+import './SuccessOrder.css';
 
 function SuccessOrder() {
   const user = useAuthStore((state) => state.user);

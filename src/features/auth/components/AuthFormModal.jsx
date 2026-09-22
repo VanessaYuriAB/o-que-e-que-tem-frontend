@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import Button from '../../../shared/components/ui/button/Button.jsx';
-
 import './AuthFormModal.css';
 
 function AuthFormModal({ children }) {

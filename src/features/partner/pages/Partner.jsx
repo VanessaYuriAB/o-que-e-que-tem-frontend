@@ -1,4 +1,3 @@
-import './Partner.css';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import { useState } from 'react';
@@ -6,6 +5,7 @@ import useAuthStore from '../../../store/useAuthStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import usePartner from '../hooks/usePartner.js';
+import './Partner.css';
 
 function Partner() {
   const { user, globalError } = useAuthStore(

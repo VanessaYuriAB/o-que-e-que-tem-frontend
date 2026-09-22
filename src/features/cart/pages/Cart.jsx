@@ -1,4 +1,3 @@
-import './Cart.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
@@ -10,6 +9,7 @@ import { useShallow } from 'zustand/react/shallow';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import useAuthStore from '../../../store/useAuthStore.js';
 import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
+import './Cart.css';
 
 function Cart() {
   const navigate = useNavigate();

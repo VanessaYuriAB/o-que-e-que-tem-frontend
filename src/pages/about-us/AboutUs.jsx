@@ -1,6 +1,6 @@
-import './AboutUs.css';
 import { Link } from 'react-router-dom';
 import photo from '../../assets/images/photo.jpg';
+import './AboutUs.css';
 
 function AboutUs() {
   return (

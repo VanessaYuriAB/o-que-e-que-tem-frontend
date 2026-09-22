@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { sidebarLinksLoggedOn, sidebarLinksLoggedOff } from '../../../constants/navigation.js';
-
 import './Sidebar.css';
 
 function Sidebar() {

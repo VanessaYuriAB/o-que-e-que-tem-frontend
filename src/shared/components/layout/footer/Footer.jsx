@@ -1,11 +1,8 @@
 import { NavLink } from 'react-router-dom';
-
 import imgInstagram from '../../../../assets/icons/instagram.svg';
 import imgFacebook from '../../../../assets/icons/facebook.svg';
 import { footerLinks } from '../../../constants/navigation.js';
-
 import Logo from '../../ui/logo/Logo.jsx';
-
 import './Footer.css';
 
 function Footer() {

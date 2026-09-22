@@ -1,4 +1,3 @@
-import './Subscription.css';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
@@ -10,6 +9,7 @@ import useSubscription from '../hooks/useSubscription.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
+import './Subscription.css';
 
 function Subscription() {
   const navigate = useNavigate();

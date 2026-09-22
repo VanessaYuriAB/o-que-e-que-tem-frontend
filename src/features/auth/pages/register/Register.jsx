@@ -7,7 +7,6 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-
 import '../../styles/auth-form.css';
 
 function Register() {

@@ -1,7 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { navbarLinksLoggedOff, navbarLinksLoggedOn } from '../../../constants/navigation.js';
-
 import './Navbar.css';
 
 function Navbar() {

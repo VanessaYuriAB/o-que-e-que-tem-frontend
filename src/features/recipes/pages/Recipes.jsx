@@ -2,11 +2,11 @@ import Button from '../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import RecipeCard from '../components/RecipeCard.jsx';
 import { useState } from 'react';
-import './Recipes.css';
 import useTodayRecipes from '../hooks/useTodayRecipes.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useSearchRecipes from '../hooks/useSearchRecipes.js';
+import './Recipes.css';
 
 function Recipes() {
   const [recipeToSearch, setRecipeToSearch] = useState('');

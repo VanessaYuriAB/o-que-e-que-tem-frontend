@@ -6,7 +6,6 @@ import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useState } from 'react';
 import useCartStore from '../../../../store/useCartStore.js';
-
 import './Logout.css';
 
 function Logout() {

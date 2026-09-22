@@ -4,8 +4,8 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useEffect } from 'react';
 import parsePtBrDate from '../../../utils/parsePtBrDate.js';
-import '../../../styles/profile-history.css';
 import useProfile from '../../../hooks/useProfile.js';
+import '../../../styles/profile-history.css';
 import './OrdersProfile.css';
 
 function OrdersProfile() {

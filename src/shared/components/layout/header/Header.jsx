@@ -1,7 +1,6 @@
 import Logo from '../../ui/logo/Logo.jsx';
 import Navbar from '../navbar/Navbar.jsx';
 import Sidebar from '../sidebar/Sidebar.jsx';
-
 import './Header.css';
 
 function Header() {

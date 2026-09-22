@@ -1,4 +1,3 @@
-import './Contact.css';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
@@ -7,6 +6,7 @@ import useAuthStore from '../../../store/useAuthStore.js';
 import useContact from '../hooks/useContact.js';
 import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
+import './Contact.css';
 
 function Contact() {
   const { sendMsg, loading, error, success } = useContact();

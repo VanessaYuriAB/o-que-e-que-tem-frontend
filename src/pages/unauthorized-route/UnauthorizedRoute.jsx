@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Toast from '../../shared/components/ui/toast/Toast.jsx';
 import Button from '../../shared/components/ui/button/Button.jsx';
 import PropTypes from 'prop-types';
-
 import './UnauthorizedRoute.css';
 
 function UnauthorizedRoute({ from }) {

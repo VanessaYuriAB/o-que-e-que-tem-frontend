@@ -6,10 +6,10 @@ import useAuthStore from '../../../../../store/useAuthStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import { Link } from 'react-router-dom';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
-import '../../../styles/profile-form.css';
-import './SubscriptionProfile.css';
 import useProfile from '../../../hooks/useProfile.js';
 import getNextDate from '../../../../../shared/utils/nextSubscriptionDate.js';
+import '../../../styles/profile-form.css';
+import './SubscriptionProfile.css';
 
 function SubscriptionProfile() {
   const [isEditing, setIsEditing] = useState(false);

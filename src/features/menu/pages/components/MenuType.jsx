@@ -7,7 +7,6 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import useCartStore from '../../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import useAuthStore from '../../../../store/useAuthStore.js';
-
 import './MenuType.css';
 
 function MenuType({ category }) {

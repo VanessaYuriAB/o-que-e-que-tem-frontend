@@ -8,7 +8,6 @@ import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import useCartStore from '../../../../store/useCartStore.js';
-
 import '../../styles/auth-form.css';
 
 function Login() {
