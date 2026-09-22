@@ -1,17 +1,17 @@
-import './OrdersProfile.css';
 import { Link } from 'react-router-dom';
 import useAuthStore from '../../../../../store/useAuthStore.js';
-import useOrders from '../../../../orders/hooks/useOrders.js';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useEffect } from 'react';
 import parsePtBrDate from '../../../utils/parsePtBrDate.js';
 import '../../../styles/profile-history.css';
+import useProfile from '../../../hooks/useProfile.js';
+import './OrdersProfile.css';
 
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
 
-  const { userAllOrders, loadingProfile, errorProfile, getUserAllOrders } = useOrders();
+  const { userAllOrders, loadingAllOrders, errorAllOrders, getUserAllOrders } = useProfile();
 
   const orderedUserAllOrders = userAllOrders
     ? [...userAllOrders].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
@@ -21,15 +21,15 @@ function OrdersProfile() {
     getUserAllOrders(user._id);
   }, [user._id, getUserAllOrders]);
 
-  if (loadingProfile) {
+  if (loadingAllOrders) {
     return <Loader className="profile__orders-loader" />;
   }
 
-  if (errorProfile) {
+  if (errorAllOrders) {
     return (
       <Toast
         className="profile__orders-toast profile-history__toast"
-        message={errorProfile.message}
+        message={errorAllOrders.message}
       />
     );
   }

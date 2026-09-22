@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 import * as profileService from '../services/profileService.js';
 import useAuthStore from '../../../store/useAuthStore.js';
@@ -7,6 +7,10 @@ export default function useProfile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [confirmAction, setConfirmAction] = useState(null);
+
+  const [userAllOrders, setUserAllOrders] = useState(null);
+  const [loadingAllOrders, setLoadingAllOrders] = useState(false);
+  const [errorAllOrders, setErrorAllOrders] = useState(null);
 
   const { setUserAction, setGlobalErrorAction } = useAuthStore.getState();
 
@@ -79,6 +83,28 @@ export default function useProfile() {
     }
   }
 
+  // OrdersProfile (consumido em efeito)
+  const getUserAllOrders = useCallback(async (userId) => {
+    setLoadingAllOrders(true);
+    setErrorAllOrders(null);
+
+    try {
+      const orders = await profileService.getOrdersByUserId(userId);
+      const subscriptionOrders = await profileService.getSubscriptionOrdersByUserId(userId);
+
+      const allOrders = [...orders, ...subscriptionOrders];
+
+      setUserAllOrders(allOrders);
+    } catch (error) {
+      const handledError = errorHandler(error);
+
+      setUserAllOrders(null);
+      setErrorAllOrders(handledError);
+    } finally {
+      setLoadingAllOrders(false);
+    }
+  }, []);
+
   return {
     loading,
     error,
@@ -87,5 +113,9 @@ export default function useProfile() {
     setConfirmAction,
     updateUser,
     updateSubscription,
+    userAllOrders,
+    loadingAllOrders,
+    errorAllOrders,
+    getUserAllOrders,
   };
 }
