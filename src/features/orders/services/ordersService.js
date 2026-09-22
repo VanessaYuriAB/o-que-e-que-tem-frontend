@@ -59,7 +59,7 @@ export async function sendOrderToServer(order) {
       };
 
       // Adiciona pedido no mock de 'orders'
-      orders.push(mockOrder);
+      orders.unshift(mockOrder);
 
       return await fakeApi(mockOrder, 201);
     };

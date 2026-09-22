@@ -145,7 +145,7 @@ export async function sendSubscriptionOrderToServer(subscriptionOrder) {
       };
 
       // Adiciona pedido no mock de 'subscriptionOrders'
-      subscriptionOrders.push(mockSubscriptionOrder);
+      subscriptionOrders.unshift(mockSubscriptionOrder);
 
       return await fakeApi(mockSubscriptionOrder, 201);
     };

@@ -25,7 +25,7 @@ async function sendUserMessage(messageData, userId = null) {
         response: null,
       };
 
-      messages.push(newMessage);
+      messages.unshift(newMessage);
 
       return await fakeApi(newMessage, 201);
     };
