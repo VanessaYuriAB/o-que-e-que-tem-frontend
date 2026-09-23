@@ -13,9 +13,10 @@ function OrdersProfile() {
 
   const { userAllOrders, loadingAllOrders, errorAllOrders, getUserAllOrders } = useProfile();
 
-  const orderedUserAllOrders = userAllOrders
-    ? [...userAllOrders].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
-    : [];
+  const orderedUserAllOrders =
+    userAllOrders.length > 0
+      ? [...userAllOrders].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
+      : [];
 
   useEffect(() => {
     getUserAllOrders(user._id);
@@ -38,7 +39,7 @@ function OrdersProfile() {
     <section className="profile__orders profile-history__section">
       <h3 className="profile__orders-title">Histórico de pedidos</h3>
 
-      {userAllOrders?.length === 0 ? (
+      {userAllOrders.length === 0 ? (
         <Toast className="profile__no-orders-toast profile-history__no-content-toast">
           <p className="profile__no-orders-text profile-history__no-content-text">
             Você ainda não comprou nenhuma sopa, creme ou patê...
@@ -52,22 +53,21 @@ function OrdersProfile() {
         </Toast>
       ) : (
         <ul className="profile__orders-list profile-history__list nav__list">
-          {orderedUserAllOrders?.map((order) => {
-            const isSubscriptionOrder = order?.orderNumber?.startsWith('S');
+          {orderedUserAllOrders.map((order) => {
+            const isSubscriptionOrder = order.orderNumber.startsWith('S');
 
             const formattedCreatedAt = new Date(order.createdAt).toLocaleString('pt-BR');
             const orderCreatedAt = order.createdAt.includes('T')
               ? formattedCreatedAt
               : order.createdAt;
 
-            const meal =
-              order?.meal === 'pate' ? 'patê' : order?.meal === 'sopa' ? 'sopa' : 'creme';
+            const meal = order.meal === 'pate' ? 'patê' : order.meal === 'sopa' ? 'sopa' : 'creme';
             const typeOfMeal = order ? meal : '';
 
             const pay =
-              order?.payment === 'pix'
+              order.payment === 'pix'
                 ? 'PIX'
-                : order?.payment === 'debito'
+                : order.payment === 'debito'
                   ? 'cartão de débito'
                   : 'cartão de crédito';
             const typeOfPayment = order ? pay : '';

@@ -8,7 +8,7 @@ export default function useProfile() {
   const [error, setError] = useState(null);
   const [confirmAction, setConfirmAction] = useState(null);
 
-  const [userAllOrders, setUserAllOrders] = useState(null);
+  const [userAllOrders, setUserAllOrders] = useState([]);
   const [loadingAllOrders, setLoadingAllOrders] = useState(false);
   const [errorAllOrders, setErrorAllOrders] = useState(null);
 
@@ -91,7 +91,7 @@ export default function useProfile() {
   const getUserAllOrders = useCallback(async (userId) => {
     setLoadingAllOrders(true);
     setErrorAllOrders(null);
-    setUserAllOrders(null);
+    setUserAllOrders([]);
 
     try {
       const orders = await profileService.getOrdersByUserId(userId);
@@ -103,7 +103,7 @@ export default function useProfile() {
     } catch (error) {
       const handledError = errorHandler(error);
 
-      setUserAllOrders(null);
+      setUserAllOrders([]);
       setErrorAllOrders(handledError);
     } finally {
       setLoadingAllOrders(false);
