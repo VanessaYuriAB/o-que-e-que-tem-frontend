@@ -10,11 +10,15 @@ import './Recipes.css';
 
 function Recipes() {
   const [recipeToSearch, setRecipeToSearch] = useState('');
-  const [searchedRecipes, setSearchedRecipes] = useState([]);
 
   const { todayRecipes, loading, error } = useTodayRecipes();
 
-  const { loadSearchRecipes, loading: searchLoading, error: searchError } = useSearchRecipes();
+  const {
+    loadSearchRecipes,
+    loading: searchLoading,
+    error: searchError,
+    searchedRecipes,
+  } = useSearchRecipes();
 
   const handleChange = (e) => {
     setRecipeToSearch(e.target.value);
@@ -24,7 +28,6 @@ function Recipes() {
     const result = await loadSearchRecipes(data);
 
     if (result.success) {
-      setSearchedRecipes(result.data);
       setRecipeToSearch('');
     }
   };
