@@ -3,7 +3,7 @@ import useAuthStore from '../../../store/useAuthStore.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 import sendUserMessage from '../services/contactService.js';
 
-export default function useContact() {
+function useContact() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -37,3 +37,5 @@ export default function useContact() {
 
   return { sendMsg, loading, error };
 }
+
+export default useContact;

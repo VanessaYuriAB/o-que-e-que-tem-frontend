@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
 import { updateUserProfile } from '../../profile/services/profileService.js';
 
-export default function useSubscription(isUser) {
+function useSubscription(isUser) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -111,3 +111,5 @@ export default function useSubscription(isUser) {
     errorSendSubscribeOrder,
   };
 }
+
+export default useSubscription;

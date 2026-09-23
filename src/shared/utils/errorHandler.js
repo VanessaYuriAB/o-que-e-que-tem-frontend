@@ -1,4 +1,4 @@
-export default function errorHandler(error) {
+function errorHandler(error) {
   // Executa apenas em ambiente de desenvolvimento
   if (import.meta.env.DEV) {
     console.error('Falha no errorHandler:', error, error.cause ? error.cause : '');
@@ -77,3 +77,5 @@ export default function errorHandler(error) {
     scope: 'global',
   };
 }
+
+export default errorHandler;

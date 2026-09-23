@@ -4,7 +4,7 @@ import itemsMenu from '../../../mocks/fakeMenuDb.js';
 import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import apiFetch from '../../../services/api.js';
 
-export async function getMenu() {
+async function getMenu() {
   try {
     const mockFn = async () => {
       if (FAKE_ERRORS.getMenu) {
@@ -37,3 +37,5 @@ export async function getMenu() {
     throw new Error('Falha no getMenu', { cause });
   }
 }
+
+export default getMenu;

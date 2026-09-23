@@ -4,7 +4,7 @@ import FAKE_ERRORS from '../../../shared/constants/mockConfig.js';
 import { fakeApi, fakeApiError } from '../../../shared/utils/fakeApi.js';
 import todayRecipesDb from '../../../mocks/fakeTodayRecipesDb.js';
 
-async function getTodayRecipes() {
+export async function getTodayRecipes() {
   try {
     const mockFn = async () => {
       if (FAKE_ERRORS.getTodayRecipes) {
@@ -26,7 +26,7 @@ async function getTodayRecipes() {
   }
 }
 
-async function getSearchRecipes(searchData) {
+export async function getSearchRecipes(searchData) {
   try {
     const mockFn = async () => {
       if (FAKE_ERRORS.getSearchRecipes) {
@@ -52,5 +52,3 @@ async function getSearchRecipes(searchData) {
     throw new Error('Falha no recipesService.getSearchRecipes', { cause });
   }
 }
-
-export { getTodayRecipes, getSearchRecipes };

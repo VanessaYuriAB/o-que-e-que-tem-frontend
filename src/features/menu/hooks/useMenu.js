@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getMenu } from '../services/menuService.js';
+import getMenu from '../services/menuService.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 
-export default function useMenu() {
+function useMenu() {
   const [menuItems, setMenuItems] = useState([]);
   const [loadingMenu, setLoadingMenu] = useState(false);
   const [errorMenu, setErrorMenu] = useState(null);
@@ -38,3 +38,5 @@ export default function useMenu() {
 
   return { menuItems, loadingMenu, errorMenu };
 }
+
+export default useMenu;

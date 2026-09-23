@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getTodayRecipes } from '../services/recipesService.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 
-export default function useTodayRecipes() {
+function useTodayRecipes() {
   const [todayRecipes, setTodayRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -52,3 +52,5 @@ export default function useTodayRecipes() {
 
   return { todayRecipes, loading, error };
 }
+
+export default useTodayRecipes;

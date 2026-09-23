@@ -3,7 +3,7 @@ import errorHandler from '../../../shared/utils/errorHandler.js';
 import { getOrderByNumber, sendOrderToServer } from '../services/ordersService.js';
 import { getSubscriptionOrderByNumber } from '../../subscription/services/subscriptionService.js';
 
-export default function useOrders() {
+function useOrders() {
   const [orderTracked, setOrderTracked] = useState(null);
   const [loadingTracker, setLoadingTracker] = useState(false);
   const [errorTracker, setErrorTracker] = useState(null);
@@ -67,3 +67,5 @@ export default function useOrders() {
     sendOrder,
   };
 }
+
+export default useOrders;

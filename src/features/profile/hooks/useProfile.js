@@ -3,7 +3,7 @@ import errorHandler from '../../../shared/utils/errorHandler.js';
 import * as profileService from '../services/profileService.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 
-export default function useProfile() {
+function useProfile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -138,3 +138,5 @@ export default function useProfile() {
     getUserMsgs,
   };
 }
+
+export default useProfile;
