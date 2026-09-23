@@ -6,13 +6,14 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../../../shared/components/ui/textarea/Textarea.jsx';
-import '../../../styles/profile-form.css';
 import useProfile from '../../../hooks/useProfile.js';
+import '../../../styles/profile-form.css';
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
+  const [confirmActionMsg, setConfirmActionMsg] = useState(null);
 
-  const { loading, error, setError, confirmAction, setConfirmAction, updateUser } = useProfile();
+  const { loading, error, setError, updateUser } = useProfile();
 
   const { user, globalError } = useAuthStore(
     useShallow((state) => ({
@@ -40,7 +41,11 @@ function UserProfile() {
 
   const handleUpdate = async (data) => {
     // Envia dados de atualização e seta perfil
-    await updateUser(data);
+    const result = await updateUser(data);
+
+    if (result.success === true) {
+      setConfirmActionMsg('Perfil atualizado');
+    }
 
     // Reativa 'disabled', desativando edição e voltando para botão 'Editar'
     setIsEditing(false);
@@ -221,8 +226,11 @@ function UserProfile() {
 
         {error && <Toast className="user-form__toast profile-form__toast" message={error} />}
 
-        {confirmAction && (
-          <Toast className="user-form__toast profile-form__toast" message={confirmAction}></Toast>
+        {confirmActionMsg && (
+          <Toast
+            className="user-form__toast profile-form__toast"
+            message={confirmActionMsg}
+          ></Toast>
         )}
 
         <div className="user-form__button-box">
@@ -232,7 +240,7 @@ function UserProfile() {
               type="button"
               onClick={() => {
                 setError(null);
-                setConfirmAction(null);
+                setConfirmActionMsg(null);
                 setIsEditing(true); // desativa atributo 'disabled', habilitando edição e alternando para botão 'Enviar'
               }}
             >

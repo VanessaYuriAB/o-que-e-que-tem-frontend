@@ -13,9 +13,9 @@ import './SubscriptionProfile.css';
 
 function SubscriptionProfile() {
   const [isEditing, setIsEditing] = useState(false);
+  const [confirmActionMsg, setConfirmActionMsg] = useState(null);
 
-  const { loading, error, setError, confirmAction, setConfirmAction, updateSubscription } =
-    useProfile();
+  const { loading, error, setError, updateSubscription } = useProfile();
 
   const { user, globalError } = useAuthStore(
     useShallow((state) => ({
@@ -110,7 +110,22 @@ function SubscriptionProfile() {
       action === 'pause' ? { status: false } : action === 'retake' ? { status: true } : data;
 
     // Envia dados de atualização e seta perfil
-    await updateSubscription(payload, action);
+    const result = await updateSubscription(payload);
+
+    if (result.success === true) {
+      // Se bem sucedido, define msg de sucesso conforme action
+      if (action === 'send') {
+        setConfirmActionMsg('Assinatura atualizada');
+      }
+
+      if (action === 'pause') {
+        setConfirmActionMsg('Assinatura pausada');
+      }
+
+      if (action === 'retake') {
+        setConfirmActionMsg('Assinatura retomada');
+      }
+    }
 
     // Se o envio for de edição
     if (action === 'send') {
@@ -122,7 +137,7 @@ function SubscriptionProfile() {
     e.preventDefault();
 
     // Diferenciação dos envios de dados (enviar, pausar ou retomar)
-    const action = event.nativeEvent.submitter.value;
+    const action = e.nativeEvent.submitter.value;
 
     handleUpdate(formData, action);
   };
@@ -471,10 +486,10 @@ function SubscriptionProfile() {
             <Toast className="subscription-form__toast profile-form__toast" message={error}></Toast>
           )}
 
-          {confirmAction && (
+          {confirmActionMsg && (
             <Toast
               className="subscription-form__toast profile-form__toast"
-              message={confirmAction}
+              message={confirmActionMsg}
             ></Toast>
           )}
 
@@ -492,7 +507,7 @@ function SubscriptionProfile() {
                   type="button"
                   onClick={() => {
                     setError(null);
-                    setConfirmAction(null);
+                    setConfirmActionMsg(null);
                     setIsEditing(true);
                   }}
                 >

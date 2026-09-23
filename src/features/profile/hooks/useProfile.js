@@ -6,7 +6,6 @@ import useAuthStore from '../../../store/useAuthStore.js';
 export default function useProfile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [confirmAction, setConfirmAction] = useState(null);
 
   const [userAllOrders, setUserAllOrders] = useState([]);
   const [loadingAllOrders, setLoadingAllOrders] = useState(false);
@@ -21,7 +20,6 @@ export default function useProfile() {
   async function updateUser(profileFormData) {
     setLoading(true);
     setError(null);
-    setConfirmAction(null);
 
     setGlobalErrorAction(null);
 
@@ -31,8 +29,8 @@ export default function useProfile() {
       // Seta 'user' (global)
       setUserAction(updatedUserData);
 
-      // Se bem sucedido, define msg de sucesso
-      setConfirmAction('Perfil atualizado');
+      // Se bem sucedido, retorna status de sucesso
+      return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
@@ -42,15 +40,17 @@ export default function useProfile() {
       } else if (handledError.scope === 'local') {
         setError(handledError.message);
       }
+
+      // Se não sucedido, retorna status de insucesso
+      return { success: false };
     } finally {
       setLoading(false);
     }
   }
 
-  async function updateSubscription(profileFormData, action) {
+  async function updateSubscription(profileFormData) {
     setLoading(true);
     setError(null);
-    setConfirmAction(null);
 
     setGlobalErrorAction(null);
 
@@ -61,18 +61,8 @@ export default function useProfile() {
       // Setar 'user' (global)
       setUserAction(updatedSubscriptionData);
 
-      // Se bem sucedido, define msg de sucesso conforme action
-      if (action === 'send') {
-        setConfirmAction('Assinatura atualizada');
-      }
-
-      if (action === 'pause') {
-        setConfirmAction('Assinatura pausada');
-      }
-
-      if (action === 'retake') {
-        setConfirmAction('Assinatura retomada');
-      }
+      // Retorna status de sucesso
+      return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
@@ -82,6 +72,9 @@ export default function useProfile() {
       } else if (handledError.scope === 'local') {
         setError(handledError.message);
       }
+
+      // Retorna status de insucesso
+      return { success: false };
     } finally {
       setLoading(false);
     }
@@ -133,8 +126,6 @@ export default function useProfile() {
     loading,
     error,
     setError,
-    confirmAction,
-    setConfirmAction,
     updateUser,
     updateSubscription,
     userAllOrders,
