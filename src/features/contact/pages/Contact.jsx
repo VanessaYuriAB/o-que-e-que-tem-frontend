@@ -9,8 +9,6 @@ import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import './Contact.css';
 
 function Contact() {
-  const { sendMsg, loading, error, success } = useContact();
-
   const { user, globalError } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
@@ -25,6 +23,8 @@ function Contact() {
     message: '',
     method: '',
   });
+
+  const { sendMsg, loading, error, success } = useContact();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
