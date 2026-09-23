@@ -17,7 +17,7 @@ Acessa error.cause.status internamente
 Converte erro, passando objeto puro para o estado, contendo: msg, scope, status e action
 
 - if (handledError.scope === 'global')
-Só seta erros globais (status >= 500 || status === 0)
+Só seta erros globais (status >= 500 || status = 429 || type = network)
 
 - return { success: false, error: handledError };
 Se for erro local, de api, não seta, apenas retorna
@@ -116,7 +116,7 @@ const useAuthStore = create((set, get) => ({
 
       const handledError = errorHandler(error);
 
-      if (handledError.scope === 'global' || handledError.status === 429) {
+      if (handledError.scope === 'global') {
         set({ refreshError: handledError });
       }
     } finally {

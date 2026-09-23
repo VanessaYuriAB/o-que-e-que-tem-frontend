@@ -1,6 +1,10 @@
 function errorHandler(error) {
-  // Executa apenas em ambiente de desenvolvimento
+  // 'cause' é repassado pelos services dos componentes com operações de api
+  // 'cause.type: network' é repassado por api.js (fetch genérico)
+  // 'type: cart' não possui 'cause', todos os procedimentos utilizam apenas armazenamento local; e possuem 'code' para condicionamento de mensagem (não possuem status)
+
   if (import.meta.env.DEV) {
+    // Executa apenas em ambiente de desenvolvimento
     console.error('Falha no errorHandler:', error, error.cause ? error.cause : '');
   }
 
@@ -46,7 +50,7 @@ function errorHandler(error) {
         return {
           message:
             'Foram feitas muitas requisições em um curto período, aguarde um instante para poder prosseguir.',
-          scope: 'local',
+          scope: 'global',
           status: error.cause.status,
         };
       case 500:
