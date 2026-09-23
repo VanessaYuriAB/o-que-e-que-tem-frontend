@@ -6,20 +6,19 @@ import sendPartnerEntry from '../services/partnerService.js';
 function usePartner() {
   const [loading, setLoading] = useState(false);
   const [localError, setLocalError] = useState(null);
-  const [success, setSuccess] = useState(false);
 
   const { setGlobalErrorAction } = useAuthStore.getState();
 
   async function enrollPartner(partnerData) {
     setLoading(true);
     setLocalError(null);
-    setSuccess(false);
 
     setGlobalErrorAction(null);
 
     try {
       await sendPartnerEntry(partnerData);
-      setSuccess(true);
+
+      return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
@@ -29,13 +28,13 @@ function usePartner() {
         setLocalError(handledError);
       }
 
-      setSuccess(false);
+      return { success: false };
     } finally {
       setLoading(false);
     }
   }
 
-  return { loading, localError, success, enrollPartner };
+  return { loading, localError, enrollPartner };
 }
 
 export default usePartner;

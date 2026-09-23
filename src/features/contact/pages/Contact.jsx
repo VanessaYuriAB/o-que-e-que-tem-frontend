@@ -9,6 +9,8 @@ import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import './Contact.css';
 
 function Contact() {
+  const [confirmActionMsg, setConfirmActionMsg] = useState(null);
+
   const { user, globalError } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
@@ -24,7 +26,7 @@ function Contact() {
     method: '',
   });
 
-  const { sendMsg, loading, error, success } = useContact();
+  const { sendMsg, loading, error } = useContact();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,6 +37,10 @@ function Contact() {
     const result = await sendMsg(data, user?._id);
 
     if (result.success === true) {
+      setConfirmActionMsg(
+        `Mensagem enviada :) Retornaremos em breve, pelo seu ${data.method === 'email' ? 'e-mail' : 'WhatsApp'}.`
+      );
+
       setFormData({
         userName: user?.userName ?? '',
         email: user?.email ?? '',
@@ -164,10 +170,12 @@ function Contact() {
           </div>
         </fieldset>
 
-        {(error || globalError || success) && (
+        {(confirmActionMsg || error || globalError) && (
           <Toast
             className="contact__toast"
-            message={error ? error.message : globalError ? globalError.message : success}
+            message={
+              confirmActionMsg ? confirmActionMsg : error ? error.message : globalError.message
+            }
           />
         )}
 

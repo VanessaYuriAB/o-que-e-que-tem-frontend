@@ -6,7 +6,6 @@ import sendUserMessage from '../services/contactService.js';
 export default function useContact() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
   const { setGlobalErrorAction } = useAuthStore.getState();
 
@@ -18,9 +17,7 @@ export default function useContact() {
 
     try {
       await sendUserMessage(msgData, userId);
-      setSuccess(
-        `Mensagem enviada :) Retornaremos em breve, pelo seu ${msgData.method === 'email' ? 'e-mail' : 'WhatsApp'}.`
-      );
+
       return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
@@ -38,5 +35,5 @@ export default function useContact() {
     }
   }
 
-  return { sendMsg, loading, error, success };
+  return { sendMsg, loading, error };
 }

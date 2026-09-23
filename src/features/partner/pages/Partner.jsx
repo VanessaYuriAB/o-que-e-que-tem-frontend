@@ -8,6 +8,8 @@ import usePartner from '../hooks/usePartner.js';
 import './Partner.css';
 
 function Partner() {
+  const [confirmActionMsg, setConfirmActionMsg] = useState(null);
+
   const { user, globalError } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
@@ -31,7 +33,7 @@ function Partner() {
     district: '',
   });
 
-  const { loading, localError, success, enrollPartner } = usePartner();
+  const { loading, localError, enrollPartner } = usePartner();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,9 +41,11 @@ function Partner() {
   };
 
   const handlePartner = async (data) => {
-    await enrollPartner(data);
+    const result = await enrollPartner(data);
 
-    if (success) {
+    if (result.success === true) {
+      setConfirmActionMsg('Cadastro enviado com sucesso :) Em breve, entraremos em contato.');
+
       setFormData({
         userName: user?.userName || '',
         email: user?.email || '',
@@ -308,12 +312,12 @@ function Partner() {
           </div>
         </fieldset>
 
-        {(success || localError || globalError) && (
+        {(confirmActionMsg || localError || globalError) && (
           <Toast
             className="partner__toast"
             message={
-              success
-                ? 'Cadastro enviado com sucesso :) Em breve, entraremos em contato.'
+              confirmActionMsg
+                ? confirmActionMsg
                 : localError
                   ? localError.message
                   : globalError.message
