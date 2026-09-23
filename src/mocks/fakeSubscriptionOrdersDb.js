@@ -4,7 +4,7 @@ import itemsMenu from './fakeMenuDb.js';
 const subscriptionOrder1 = {
   _id: 'subscriptionOrder-1',
   owner: user1._id,
-  createdAt: '31/08/2026, 10:00:56',
+  createdAt: new Date('2026-08-31T10:00:56').toISOString(),
 
   orderNumber: 'S202609094814',
 
@@ -78,7 +78,7 @@ const subscriptionOrder1 = {
 const subscriptionOrder2 = {
   _id: 'subscriptionOrder-2',
   owner: user1._id,
-  createdAt: '02/09/2026, 10:40:27',
+  createdAt: new Date('2026-09-02T10:40:27').toISOString(),
 
   orderNumber: 'S202609091521',
 
@@ -138,7 +138,7 @@ const subscriptionOrder2 = {
 const subscriptionOrder3 = {
   _id: 'subscriptionOrder-3',
   owner: user2._id,
-  createdAt: '03/09/2026, 19:02:18',
+  createdAt: new Date('2026-09-03T19:02:18').toISOString(),
 
   orderNumber: 'S202609091522',
 
