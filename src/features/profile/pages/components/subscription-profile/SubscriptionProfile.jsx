@@ -118,8 +118,8 @@ function SubscriptionProfile() {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     // Diferenciação dos envios de dados (enviar, pausar ou retomar)
     const action = event.nativeEvent.submitter.value;

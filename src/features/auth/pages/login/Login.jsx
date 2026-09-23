@@ -56,8 +56,8 @@ function Login() {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     handleLogin(data);
   };
 
