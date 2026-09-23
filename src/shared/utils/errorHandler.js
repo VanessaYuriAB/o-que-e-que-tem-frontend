@@ -66,15 +66,39 @@ function errorHandler(error) {
     }
   }
 
+  if (error.type === 'cart') {
+    switch (error.code) {
+      case 'ITEM_ADD_FAILED':
+        return {
+          message: 'Erro ao adicionar item, tente novamente.',
+          scope: 'local',
+          code: 'ITEM_ADD_FAILED',
+        };
+      case 'ITEM_REMOVE_FAILED':
+        return {
+          message: 'Erro ao remover item, tente novamente.',
+          scope: 'local',
+          code: 'ITEM_REMOVE_FAILED',
+        };
+      case 'CART_SAVE_FAILED':
+        return {
+          message: 'Erro ao salvar pedido, tente novamente.',
+          scope: 'local',
+          code: 'CART_SAVE_FAILED',
+        };
+
+      default:
+        return {
+          message: 'Erro nos operações do carrinho. Tente novamente.',
+          scope: 'local',
+          code: null,
+        };
+    }
+  }
+
   return {
-    message: error.message.includes('removeItemToCart')
-      ? 'Erro ao remover item, tente novamente.'
-      : error.message.includes('addItemToCart')
-        ? 'Erro ao adicionar item, tente novamente.'
-        : error.message.includes('setCartData')
-          ? 'Erro ao salvar pedido, tente novamente.'
-          : 'Erro inesperado (desconhecido).',
-    scope: 'global',
+    message: 'Erro inesperado (desconhecido).',
+    scope: 'local',
   };
 }
 
