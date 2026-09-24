@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { getSearchRecipes } from '../services/recipesService.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
+import useAuthStore from '../../../store/useAuthStore.js';
 
 function useSearchRecipes() {
   const [searchedRecipes, setSearchedRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [localError, setLocalError] = useState(null);
+
+  const { setGlobalErrorAction } = useAuthStore.getState();
 
   async function loadSearchRecipes(searchData) {
     setLoading(true);
-    setError(null);
+    setLocalError(null);
     setSearchedRecipes([]);
+
+    setGlobalErrorAction(null);
 
     try {
       const data = await getSearchRecipes(searchData);
@@ -19,7 +24,13 @@ function useSearchRecipes() {
       return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
-      setError(handledError);
+
+      if (handledError.scope === 'global') {
+        // Seta 'globalError' (global)
+        setGlobalErrorAction(handledError);
+      } else if (handledError.scope === 'local') {
+        setLocalError(handledError);
+      }
 
       return { success: false };
     } finally {
@@ -27,7 +38,7 @@ function useSearchRecipes() {
     }
   }
 
-  return { loadSearchRecipes, loading, error, searchedRecipes };
+  return { loadSearchRecipes, loading, localError, searchedRecipes };
 }
 
 export default useSearchRecipes;

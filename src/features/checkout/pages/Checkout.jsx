@@ -29,9 +29,9 @@ function Checkout() {
           ? 'PIX'
           : '';
 
-  const { loadingSendOrder, errorSendOrder, sendOrder } = useOrders();
+  const { loadingSendOrder, localErrorSendOrder, sendOrder } = useOrders();
 
-  const { loadingSendSubscribeOrder, errorSendSubscribeOrder, sendSubscribeOrder } =
+  const { loadingSendSubscribeOrder, localErrorSendSubscribeOrder, sendSubscribeOrder } =
     useSubscription();
 
   const { cartItems, cleanCartAction, cartData } = useCartStore(
@@ -413,11 +413,13 @@ function Checkout() {
                   </Loader>
                 )}
 
-                {(errorSendOrder || errorSendSubscribeOrder) && (
+                {(localErrorSendOrder || localErrorSendSubscribeOrder) && (
                   <Toast
                     className="order-form__toast"
                     message={
-                      errorSendOrder ? errorSendOrder.message : errorSendSubscribeOrder.message
+                      localErrorSendOrder
+                        ? localErrorSendOrder.message
+                        : localErrorSendSubscribeOrder.message
                     }
                   ></Toast>
                 )}
@@ -436,11 +438,13 @@ function Checkout() {
                   </Loader>
                 )}
 
-                {(errorSendOrder || errorSendSubscribeOrder) && (
+                {(localErrorSendOrder || localErrorSendSubscribeOrder) && (
                   <Toast
                     className="checkout__toast"
                     message={
-                      errorSendOrder ? errorSendOrder.message : errorSendSubscribeOrder.message
+                      localErrorSendOrder
+                        ? localErrorSendOrder.message
+                        : localErrorSendSubscribeOrder.message
                     }
                   ></Toast>
                 )}

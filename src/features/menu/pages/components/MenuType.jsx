@@ -21,7 +21,7 @@ function MenuType({ category }) {
     message: null,
   });
 
-  const { menuItems, loadingMenu, errorMenu } = useOutletContext();
+  const { menuItems, loadingMenu, localErrorMenu } = useOutletContext();
 
   const { addItemToCartAction, loading, cartItems, removeItemToCartAction, removeLoading } =
     useCartStore(
@@ -88,8 +88,8 @@ function MenuType({ category }) {
     return <Loader className="menu__section-loader" />;
   }
 
-  if (errorMenu) {
-    return <Toast className="menu__section-toast" message={errorMenu.message} />;
+  if (localErrorMenu) {
+    return <Toast className="menu__section-toast" message={localErrorMenu.message} />;
   }
 
   /* RETURN: TODOS OU POR CATEGORIA */

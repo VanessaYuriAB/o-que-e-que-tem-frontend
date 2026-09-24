@@ -17,7 +17,7 @@ function Subscription() {
 
   const user = useAuthStore((state) => state.user);
 
-  const { sendSubscribe, loading, error } = useSubscription(user);
+  const { sendSubscribe, loading, localError } = useSubscription(user);
 
   const [formData, setFormData] = useState({
     userName: user?.userName ?? '',
@@ -801,8 +801,8 @@ function Subscription() {
           <Loader className="subscription__loader">Enviando dados de assinatura...</Loader>
         )}
 
-        {error && error.status !== 401 && (
-          <Toast className="subscription__error-toast" message={error.message} />
+        {localError && localError.status !== 401 && (
+          <Toast className="subscription__error-toast" message={localError.message} />
         )}
 
         {isSuccess ? (

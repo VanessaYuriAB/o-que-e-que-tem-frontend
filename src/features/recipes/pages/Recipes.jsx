@@ -11,12 +11,12 @@ import './Recipes.css';
 function Recipes() {
   const [recipeToSearch, setRecipeToSearch] = useState('');
 
-  const { todayRecipes, loading, error } = useTodayRecipes();
+  const { todayRecipes, loading: todayLoading, localError: todayError } = useTodayRecipes();
 
   const {
     loadSearchRecipes,
     loading: searchLoading,
-    error: searchError,
+    localError: searchError,
     searchedRecipes,
   } = useSearchRecipes();
 
@@ -37,17 +37,17 @@ function Recipes() {
     handleSearch(recipeToSearch);
   };
 
-  if (loading) {
+  if (todayLoading) {
     return (
       <Loader className="recipes__loader content__recipes-loader">Carregando receitas...</Loader>
     );
   }
 
-  if (error) {
+  if (todayError) {
     return (
       <Toast
         className="recipes__toast content__recipes-toast"
-        message={`Erro ao carregar receitas. ${error.message}`}
+        message={`Erro ao carregar receitas. ${todayError.message}`}
       />
     );
   }

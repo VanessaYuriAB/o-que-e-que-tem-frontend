@@ -5,13 +5,13 @@ import sendUserMessage from '../services/contactService.js';
 
 function useContact() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [localError, setLocalError] = useState(null);
 
   const { setGlobalErrorAction } = useAuthStore.getState();
 
   async function sendMsg(msgData, userId) {
     setLoading(true);
-    setError(null);
+    setLocalError(null);
 
     setGlobalErrorAction(null);
 
@@ -26,7 +26,7 @@ function useContact() {
         // Seta 'globalError' (global)
         setGlobalErrorAction(handledError);
       } else if (handledError.scope === 'local') {
-        setError(handledError);
+        setLocalError(handledError);
       }
 
       return { success: false };
@@ -35,7 +35,7 @@ function useContact() {
     }
   }
 
-  return { sendMsg, loading, error };
+  return { sendMsg, loading, localError };
 }
 
 export default useContact;

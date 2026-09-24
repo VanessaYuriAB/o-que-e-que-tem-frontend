@@ -8,7 +8,7 @@ import parsePtBrDate from '../../../utils/parsePtBrDate.js';
 import '../../../styles/profile-history.css';
 
 function MsgsProfile() {
-  const { getUserMsgs, loadingMsgs, errorMsgs, userMsgs } = useProfile();
+  const { getUserMsgs, loadingMsgs, localErrorMsgs, userMsgs } = useProfile();
 
   const user = useAuthStore((state) => state.user);
 
@@ -26,9 +26,12 @@ function MsgsProfile() {
     return <Loader className="profile__msgs-loader" />;
   }
 
-  if (errorMsgs) {
+  if (localErrorMsgs) {
     return (
-      <Toast className="profile__msgs-toast profile-history__toast" message={errorMsgs.message} />
+      <Toast
+        className="profile__msgs-toast profile-history__toast"
+        message={localErrorMsgs.message}
+      />
     );
   }
 

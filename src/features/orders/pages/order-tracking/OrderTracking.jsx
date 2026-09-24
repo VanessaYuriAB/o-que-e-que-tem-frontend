@@ -11,7 +11,7 @@ function OrderTracking() {
     email: '',
   });
 
-  const { orderTracked, loadingTracker, errorTracker, trackOrder } = useOrders();
+  const { orderTracked, loadingTracker, localErrorTracker, trackOrder } = useOrders();
 
   const formattedDate = orderTracked
     ? new Date(orderTracked.createdAt).toLocaleString('pt-BR')
@@ -90,7 +90,9 @@ function OrderTracking() {
             />
           </div>
 
-          {errorTracker && <Toast className="tracker__toast" message={errorTracker.message} />}
+          {localErrorTracker && (
+            <Toast className="tracker__toast" message={localErrorTracker.message} />
+          )}
 
           <Button className="tracker__button" type="submit">
             {loadingTracker ? 'Rastreando...' : 'Rastrear'}

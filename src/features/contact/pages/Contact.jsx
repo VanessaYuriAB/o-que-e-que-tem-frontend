@@ -20,7 +20,7 @@ function Contact() {
     method: '',
   });
 
-  const { sendMsg, loading, error } = useContact();
+  const { sendMsg, loading, localError } = useContact();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -164,10 +164,10 @@ function Contact() {
           </div>
         </fieldset>
 
-        {(confirmActionMsg || error) && (
+        {(confirmActionMsg || localError) && (
           <Toast
             className="contact__toast"
-            message={confirmActionMsg ? confirmActionMsg : error.message}
+            message={confirmActionMsg ? confirmActionMsg : localError.message}
           />
         )}
 

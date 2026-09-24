@@ -14,7 +14,7 @@ function SubscriptionProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [confirmActionMsg, setConfirmActionMsg] = useState(null);
 
-  const { loading, error, setError, updateSubscription } = useProfile();
+  const { loading, localError, setLocalError, updateSubscription } = useProfile();
 
   const user = useAuthStore((state) => state.user);
 
@@ -469,8 +469,11 @@ function SubscriptionProfile() {
             pausá-la por um período máximo de 2 meses, uma vez ao ano.
           </p>
 
-          {error && (
-            <Toast className="subscription-form__toast profile-form__toast" message={error}></Toast>
+          {localError && (
+            <Toast
+              className="subscription-form__toast profile-form__toast"
+              message={localError.message}
+            ></Toast>
           )}
 
           {confirmActionMsg && (
@@ -493,7 +496,7 @@ function SubscriptionProfile() {
                   className="subscription-form__button profile-form__button"
                   type="button"
                   onClick={() => {
-                    setError(null);
+                    setLocalError(null);
                     setConfirmActionMsg(null);
                     setIsEditing(true);
                   }}

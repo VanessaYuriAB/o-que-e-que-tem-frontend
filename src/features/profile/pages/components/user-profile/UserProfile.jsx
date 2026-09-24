@@ -12,7 +12,7 @@ function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [confirmActionMsg, setConfirmActionMsg] = useState(null);
 
-  const { loading, error, setError, updateUser } = useProfile();
+  const { loading, localError, setLocalError, updateUser } = useProfile();
 
   const user = useAuthStore((state) => state.user);
 
@@ -214,7 +214,9 @@ function UserProfile() {
           </Loader>
         )}
 
-        {error && <Toast className="user-form__toast profile-form__toast" message={error} />}
+        {localError && (
+          <Toast className="user-form__toast profile-form__toast" message={localError.message} />
+        )}
 
         {confirmActionMsg && (
           <Toast
@@ -229,7 +231,7 @@ function UserProfile() {
               className="user-form__button profile-form__button"
               type="button"
               onClick={() => {
-                setError(null);
+                setLocalError(null);
                 setConfirmActionMsg(null);
                 setIsEditing(true); // desativa atributo 'disabled', habilitando edição e alternando para botão 'Enviar'
               }}

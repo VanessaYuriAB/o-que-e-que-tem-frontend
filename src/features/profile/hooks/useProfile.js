@@ -5,21 +5,21 @@ import useAuthStore from '../../../store/useAuthStore.js';
 
 function useProfile() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [localError, setLocalError] = useState(null);
 
   const [userAllOrders, setUserAllOrders] = useState([]);
   const [loadingAllOrders, setLoadingAllOrders] = useState(false);
-  const [errorAllOrders, setErrorAllOrders] = useState(null);
+  const [localErrorAllOrders, setLocalErrorAllOrders] = useState(null);
 
   const [userMsgs, setUserMsgs] = useState([]);
   const [loadingMsgs, setLoadingMsgs] = useState(false);
-  const [errorMsgs, setErrorMsgs] = useState(null);
+  const [localErrorMsgs, setLocalErrorMsgs] = useState(null);
 
   const { setUserAction, setGlobalErrorAction } = useAuthStore.getState();
 
   async function updateUser(profileFormData) {
     setLoading(true);
-    setError(null);
+    setLocalError(null);
 
     setGlobalErrorAction(null);
 
@@ -38,7 +38,7 @@ function useProfile() {
         // Seta 'globalError' (global)
         setGlobalErrorAction(handledError);
       } else if (handledError.scope === 'local') {
-        setError(handledError.message);
+        setLocalError(handledError);
       }
 
       // Se não sucedido, retorna status de insucesso
@@ -50,7 +50,7 @@ function useProfile() {
 
   async function updateSubscription(profileFormData) {
     setLoading(true);
-    setError(null);
+    setLocalError(null);
 
     setGlobalErrorAction(null);
 
@@ -70,7 +70,7 @@ function useProfile() {
         // Seta 'globalError' (global)
         setGlobalErrorAction(handledError);
       } else if (handledError.scope === 'local') {
-        setError(handledError.message);
+        setLocalError(handledError);
       }
 
       // Retorna status de insucesso
@@ -81,60 +81,82 @@ function useProfile() {
   }
 
   // OrdersProfile (consumido em efeito)
-  const getUserAllOrders = useCallback(async (userId) => {
-    setLoadingAllOrders(true);
-    setErrorAllOrders(null);
-    setUserAllOrders([]);
-
-    try {
-      const orders = await profileService.getOrdersByUserId(userId);
-      const subscriptionOrders = await profileService.getSubscriptionOrdersByUserId(userId);
-
-      const allOrders = [...orders, ...subscriptionOrders];
-
-      setUserAllOrders(allOrders);
-    } catch (error) {
-      const handledError = errorHandler(error);
-
+  const getUserAllOrders = useCallback(
+    async (userId) => {
+      setLoadingAllOrders(true);
+      setLocalErrorAllOrders(null);
       setUserAllOrders([]);
-      setErrorAllOrders(handledError);
-    } finally {
-      setLoadingAllOrders(false);
-    }
-  }, []);
+
+      setGlobalErrorAction(null);
+
+      try {
+        const orders = await profileService.getOrdersByUserId(userId);
+        const subscriptionOrders = await profileService.getSubscriptionOrdersByUserId(userId);
+
+        const allOrders = [...orders, ...subscriptionOrders];
+
+        setUserAllOrders(allOrders);
+      } catch (error) {
+        const handledError = errorHandler(error);
+
+        setUserAllOrders([]);
+
+        if (handledError.scope === 'global') {
+          // Seta 'globalError' (global)
+          setGlobalErrorAction(handledError);
+        } else if (handledError.scope === 'local') {
+          setLocalErrorAllOrders(handledError);
+        }
+      } finally {
+        setLoadingAllOrders(false);
+      }
+    },
+    [setGlobalErrorAction]
+  );
 
   // MsgsProfile (consumido em efeito)
-  const getUserMsgs = useCallback(async (userId) => {
-    setLoadingMsgs(true);
-    setErrorMsgs(null);
-    setUserMsgs([]);
-
-    try {
-      const msgs = await profileService.getMessagesByUserId(userId);
-      setUserMsgs(msgs);
-    } catch (error) {
-      const handledError = errorHandler(error);
-
+  const getUserMsgs = useCallback(
+    async (userId) => {
+      setLoadingMsgs(true);
+      setLocalErrorMsgs(null);
       setUserMsgs([]);
-      setErrorMsgs(handledError);
-    } finally {
-      setLoadingMsgs(false);
-    }
-  }, []);
+
+      setGlobalErrorAction(null);
+
+      try {
+        const msgs = await profileService.getMessagesByUserId(userId);
+        setUserMsgs(msgs);
+      } catch (error) {
+        const handledError = errorHandler(error);
+
+        setUserMsgs([]);
+
+        if (handledError.scope === 'global') {
+          // Seta 'globalError' (global)
+          setGlobalErrorAction(handledError);
+        } else if (handledError.scope === 'local') {
+          setLocalErrorMsgs(handledError);
+        }
+      } finally {
+        setLoadingMsgs(false);
+      }
+    },
+    [setGlobalErrorAction]
+  );
 
   return {
     loading,
-    error,
-    setError,
+    localError,
+    setLocalError,
     updateUser,
     updateSubscription,
     userAllOrders,
     loadingAllOrders,
-    errorAllOrders,
+    localErrorAllOrders,
     getUserAllOrders,
     userMsgs,
     loadingMsgs,
-    errorMsgs,
+    localErrorMsgs,
     getUserMsgs,
   };
 }

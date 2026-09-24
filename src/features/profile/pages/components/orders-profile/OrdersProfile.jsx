@@ -11,7 +11,7 @@ import './OrdersProfile.css';
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
 
-  const { userAllOrders, loadingAllOrders, errorAllOrders, getUserAllOrders } = useProfile();
+  const { userAllOrders, loadingAllOrders, localErrorAllOrders, getUserAllOrders } = useProfile();
 
   const orderedUserAllOrders =
     userAllOrders.length > 0
@@ -26,11 +26,11 @@ function OrdersProfile() {
     return <Loader className="profile__orders-loader" />;
   }
 
-  if (errorAllOrders) {
+  if (localErrorAllOrders) {
     return (
       <Toast
         className="profile__orders-toast profile-history__toast"
-        message={errorAllOrders.message}
+        message={localErrorAllOrders.message}
       />
     );
   }

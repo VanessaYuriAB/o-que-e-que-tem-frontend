@@ -6,17 +6,17 @@ import { updateUserProfile } from '../../profile/services/profileService.js';
 
 function useSubscription(isUser) {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [localError, setLocalError] = useState(null);
 
   const [loadingSendSubscribeOrder, setLoadingSendSubscribeOrder] = useState(false);
-  const [errorSendSubscribeOrder, setErrorSendSubscribeOrder] = useState(null);
+  const [localErrorSendSubscribeOrder, setLocalErrorSendSubscribeOrder] = useState(null);
 
   const { setUserAction, setGlobalErrorAction, loginAction, registerAction } =
     useAuthStore.getState();
 
   async function sendSubscribe(data) {
     setLoading(true);
-    setError(null);
+    setLocalError(null);
 
     setGlobalErrorAction(null);
 
@@ -77,7 +77,7 @@ function useSubscription(isUser) {
         // Seta 'globalError' (global)
         setGlobalErrorAction(handledError);
       } else if (handledError.scope === 'local') {
-        setError(handledError);
+        setLocalError(handledError);
       }
 
       throw handledError;
@@ -88,14 +88,23 @@ function useSubscription(isUser) {
 
   async function sendSubscribeOrder(subscriptionOrder) {
     setLoadingSendSubscribeOrder(true);
-    setErrorSendSubscribeOrder(null);
+    setLocalErrorSendSubscribeOrder(null);
+
+    setGlobalErrorAction(null);
 
     try {
       const data = await sendSubscriptionOrderToServer(subscriptionOrder);
       return { success: true, data };
     } catch (error) {
       const handledError = errorHandler(error);
-      setErrorSendSubscribeOrder(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+
+      if (handledError.scope === 'global') {
+        // Seta 'globalError' (global)
+        setGlobalErrorAction(handledError);
+      } else if (handledError.scope === 'local') {
+        setLocalErrorSendSubscribeOrder(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+      }
+
       return { success: false };
     } finally {
       setLoadingSendSubscribeOrder(false);
@@ -105,10 +114,10 @@ function useSubscription(isUser) {
   return {
     sendSubscribe,
     loading,
-    error,
+    localError,
     sendSubscribeOrder,
     loadingSendSubscribeOrder,
-    errorSendSubscribeOrder,
+    localErrorSendSubscribeOrder,
   };
 }
 

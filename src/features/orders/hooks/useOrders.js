@@ -2,19 +2,24 @@ import { useState } from 'react';
 import errorHandler from '../../../shared/utils/errorHandler.js';
 import { getOrderByNumber, sendOrderToServer } from '../services/ordersService.js';
 import { getSubscriptionOrderByNumber } from '../../subscription/services/subscriptionService.js';
+import useAuthStore from '../../../store/useAuthStore.js';
 
 function useOrders() {
   const [orderTracked, setOrderTracked] = useState(null);
   const [loadingTracker, setLoadingTracker] = useState(false);
-  const [errorTracker, setErrorTracker] = useState(null);
+  const [localErrorTracker, setLocalErrorTracker] = useState(null);
 
   const [loadingSendOrder, setLoadingSendOrder] = useState(false);
-  const [errorSendOrder, setErrorSendOrder] = useState(null);
+  const [localErrorSendOrder, setLocalErrorSendOrder] = useState(null);
+
+  const { setGlobalErrorAction } = useAuthStore.getState();
 
   // OrderTracking
   const trackOrder = async (orderData) => {
     setLoadingTracker(true);
-    setErrorTracker(null);
+    setLocalErrorTracker(null);
+
+    setGlobalErrorAction(null);
 
     try {
       let result;
@@ -32,7 +37,13 @@ function useOrders() {
       const handledError = errorHandler(error);
 
       setOrderTracked(null);
-      setErrorTracker(handledError);
+
+      if (handledError.scope === 'global') {
+        // Seta 'globalError' (global)
+        setGlobalErrorAction(handledError);
+      } else if (handledError.scope === 'local') {
+        setLocalErrorTracker(handledError);
+      }
 
       return { success: false };
     } finally {
@@ -43,14 +54,24 @@ function useOrders() {
   // Checkout
   async function sendOrder(order) {
     setLoadingSendOrder(true);
-    setErrorSendOrder(null);
+    setLocalErrorSendOrder(null);
+
+    setGlobalErrorAction(null);
 
     try {
       const data = await sendOrderToServer(order);
+
       return { success: true, data };
     } catch (error) {
       const handledError = errorHandler(error);
-      setErrorSendOrder(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+
+      if (handledError.scope === 'global') {
+        // Seta 'globalError' (global)
+        setGlobalErrorAction(handledError);
+      } else if (handledError.scope === 'local') {
+        setLocalErrorSendOrder(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+      }
+
       return { success: false };
     } finally {
       setLoadingSendOrder(false);
@@ -60,10 +81,10 @@ function useOrders() {
   return {
     orderTracked,
     loadingTracker,
-    errorTracker,
+    localErrorTracker,
     trackOrder,
     loadingSendOrder,
-    errorSendOrder,
+    localErrorSendOrder,
     sendOrder,
   };
 }

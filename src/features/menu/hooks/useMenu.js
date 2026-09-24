@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
 import getMenu from '../services/menuService.js';
 import errorHandler from '../../../shared/utils/errorHandler.js';
+import useAuthStore from '../../../store/useAuthStore.js';
 
 function useMenu() {
   const [menuItems, setMenuItems] = useState([]);
   const [loadingMenu, setLoadingMenu] = useState(false);
-  const [errorMenu, setErrorMenu] = useState(null);
+  const [localErrorMenu, setLocalErrorMenu] = useState(null);
+
+  const { setGlobalErrorAction } = useAuthStore.getState();
 
   useEffect(() => {
     async function fetchMenu() {
       setLoadingMenu(true);
-      setErrorMenu(null);
+      setLocalErrorMenu(null);
+
+      setGlobalErrorAction(null);
 
       try {
         const menuData = await getMenu();
@@ -23,7 +28,13 @@ function useMenu() {
         */
 
         const handledError = errorHandler(error); // converte erro
-        setErrorMenu(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+
+        if (handledError.scope === 'global') {
+          // Seta 'globalError' (global)
+          setGlobalErrorAction(handledError);
+        } else if (handledError.scope === 'local') {
+          setLocalErrorMenu(handledError); // obj puro para o estado, contendo: msg, scope, status e action
+        }
       } finally {
         setLoadingMenu(false);
       }
@@ -34,9 +45,9 @@ function useMenu() {
     const interval = setInterval(fetchMenu, 60000); // atualização periódica, polling
 
     return () => clearInterval(interval); // limpeza
-  }, []);
+  }, [setGlobalErrorAction]);
 
-  return { menuItems, loadingMenu, errorMenu };
+  return { menuItems, loadingMenu, localErrorMenu };
 }
 
 export default useMenu;
