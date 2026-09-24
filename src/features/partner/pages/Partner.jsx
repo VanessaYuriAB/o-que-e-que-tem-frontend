@@ -296,7 +296,7 @@ function Partner() {
                 id="district"
                 type="text"
                 name="district"
-                pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
+                pattern="^[a-zA-ZÀ-ÿ0-9\s]*$" /* apenas números, letras, acentos, e espaços em branco */
                 title="O bairro do estabelecimento. Apenas números e/ou letras."
                 placeholder="E o bairro."
                 value={formData.district}

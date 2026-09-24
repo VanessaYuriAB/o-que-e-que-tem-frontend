@@ -638,7 +638,7 @@ function Subscription() {
                 type="text"
                 id="district"
                 name="district"
-                pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
+                pattern="^[a-zA-ZÀ-ÿ0-9\s]*$" /* apenas números, letras, acentos, e espaços em branco */
                 title="O bairro do seu endereço para delivery: apenas números e/ou letras."
                 placeholder="O bairro"
                 value={formData.district}
