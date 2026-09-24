@@ -25,7 +25,6 @@ function errorHandler(error) {
           message: 'Não foi possível autenticar sua solicitação. E-mail ou senha inválidos.',
           scope: 'local',
           status: error.cause.status,
-          action: 'OPEN_LOGIN',
         };
       case 403:
         return {
