@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import Toast from '../../ui/toast/Toast.jsx';
 import useCartStore from '../../../../store/useCartStore.js';
+import Button from '../../ui/button/Button.jsx';
 import './MainContainer.css';
 
 function MainContainer() {
@@ -11,14 +12,21 @@ function MainContainer() {
   return (
     <main className="content page__content">
       {globalError && (
-        <Toast
-          className="content__toast content__toast_global"
-          message={
-            globalError.source === 'refresh'
-              ? `Não foi possível verificar a sua sessão. ${globalError.message}`
-              : globalError.message
-          }
-        />
+        <div className="content__toast-modal">
+          <div className="content__toast-container">
+            <Button className="content__toast-button" onClick={() => {}}>
+              X
+            </Button>
+            <Toast
+              className="content__toast content__toast_global"
+              message={
+                globalError.source === 'refresh'
+                  ? `Não foi possível verificar a sua sessão. ${globalError.message}`
+                  : globalError.message
+              }
+            />
+          </div>
+        </div>
       )}
 
       {syncCartError && (
