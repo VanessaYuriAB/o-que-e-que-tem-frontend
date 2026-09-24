@@ -67,6 +67,7 @@ export async function register(newUserData) {
 }
 
 export async function login(credentials) {
+  // Servidor cria o cookie e retorna status de sucesso
   try {
     const mockFn = async () => {
       if (FAKE_ERRORS.login) {
@@ -111,10 +112,12 @@ export async function login(credentials) {
         subscriptionDetails,
       };
 
-      // Seta persistência para fakeApi (refresh)
+      // Login mock, simulando o cookie de sessão do backend
+      // Simula a persistência da sessão > Em produção a sessão é mantida pelo cookie HttpOnly
+      // Seta persistência para fakeApi (refresh) > Login cria a sessão
       localStorage.setItem('mockUser', JSON.stringify(userDataWithoutPassword));
 
-      return await fakeApi(userDataWithoutPassword);
+      return await fakeApi({ success: true });
     };
 
     const apiFn = async () => {
@@ -141,6 +144,7 @@ export async function logout() {
         await fakeApiError('mockFn com err = true no logout do authService');
       }
 
+      // Remove sessão existente > logout remove a sessão
       // Limpa persistência para fakeApi (refresh)
       localStorage.removeItem('mockUser');
 
@@ -170,6 +174,7 @@ export async function refresh() {
         await fakeApiError('mockFn com err = true no refresh do authService');
       }
 
+      // Recupera sessão existente > refresh apenas lê a sessão para validação, simulando o cookie httpOnly
       // Busca persistência para fakeApi (refresh)
       const fakeUserStoraged = localStorage.getItem('mockUser');
 

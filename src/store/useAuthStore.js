@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import * as authService from '../features/auth/services/authService.js';
 import errorHandler from '../shared/utils/errorHandler';
+import useCartStore from './useCartStore.js';
 
 /*
 
@@ -62,14 +63,21 @@ const useAuthStore = create((set, get) => ({
     }
   },
 
-  // login chama authService.login e define user, ativando login
+  // login chama authService.login, retornado status de sucesso > chama refreshAction, hidratando a sessão > e migrateAnonymousCartAction, ajustando chave de persisitência do carrinho
   loginAction: async (credentials) => {
     set({ loading: true });
+
     get().setGlobalErrorAction(null);
+
     try {
-      const data = await authService.login(credentials);
-      get().setUserAction(data);
-      return { success: true, data };
+      await authService.login(credentials);
+
+      await get().refreshAction();
+
+      const user = get().user;
+      await useCartStore.getState().migrateAnonymousCartAction(user._id);
+
+      return { success: true };
     } catch (error) {
       const handledError = errorHandler(error);
 
@@ -104,9 +112,11 @@ const useAuthStore = create((set, get) => ({
     }
   },
 
-  // refresh chama authService.refresh e seta user + authChecked, mantendo login caso credenciais ok ou limpando user caso ñ ok
+  // Bootstrap de autenticação da aplicação: lógica de hidratação da sessão de usuário (App e loginAction)
+  // refresh chama authService.refresh e seta user + authChecked, ativando login caso credenciais ok ou limpando user caso ñ ok
   refreshAction: async () => {
     set({ loading: true });
+
     get().setGlobalErrorAction(null);
 
     try {

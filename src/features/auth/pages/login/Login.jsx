@@ -7,17 +7,15 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import useCartStore from '../../../../store/useCartStore.js';
 import '../../styles/auth-form.css';
 
 function Login() {
-  const [data, setData] = useState({ email: '', tel: '', password: '' });
-
-  const [localError, setLocalError] = useState(null);
-
   const navigate = useNavigate();
 
   const location = useLocation();
+
+  const [data, setData] = useState({ email: '', tel: '', password: '' });
+  const [localError, setLocalError] = useState(null);
 
   const { loginAction, loading, globalError } = useAuthStore(
     useShallow((state) => ({
@@ -26,8 +24,6 @@ function Login() {
       globalError: state.globalError,
     }))
   );
-
-  const migrateAnonymousCartAction = useCartStore((state) => state.migrateAnonymousCartAction);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,12 +37,10 @@ function Login() {
 
     const result = await loginAction(data);
 
-    // Se chegou aqui, login ok e cookie (httpOnly) setado pelo backend > Sucesso: cookie já foi definido automaticamente > credentials: 'include' na apiFetch
     // Front não vê o token, só o sucesso
+    // Se chegou aqui, login ok e cookie (httpOnly) setado pelo backend > Sucesso: cookie já foi definido automaticamente > credentials: 'include' na apiFetch
 
     if (result.success === true) {
-      await migrateAnonymousCartAction(result.data._id);
-
       const from = location.state?.from;
       const redirectPath = from ? `${from.pathname}${from.search}${from.hash}` : '/profile'; // preserva a rota completa originalmente acessada, incluindo query params (?page=2) e âncoras (#section) e o usuário volta exatamente para onde estava
 

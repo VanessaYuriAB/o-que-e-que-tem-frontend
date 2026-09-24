@@ -17,7 +17,7 @@ function App() {
 
   const syncCartStorageAction = useCartStore((state) => state.syncCartStorageAction);
 
-  // Verifica usuário logado
+  // App Bootstrap: verifica e hidrata sessão de usuário
   useEffect(() => {
     async function verifyUserSession() {
       await refreshAction();
@@ -26,7 +26,7 @@ function App() {
     verifyUserSession();
   }, [refreshAction]);
 
-  // Seta persistência do carrinho
+  // Seta persistência do carrinho certo, já verificado pelo migrateAnonymousCartAction
   useEffect(() => {
     if (!authChecked) return;
 
@@ -37,6 +37,7 @@ function App() {
     setCartPersistence();
   }, [authChecked, user?._id, syncCartStorageAction]);
 
+  // Loading do bootstrap
   if (!authChecked) {
     return <Loader />;
   }
