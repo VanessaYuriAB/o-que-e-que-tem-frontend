@@ -3,10 +3,32 @@ import useAuthStore from '../../../../store/useAuthStore.js';
 import Toast from '../../ui/toast/Toast.jsx';
 import useCartStore from '../../../../store/useCartStore.js';
 import Button from '../../ui/button/Button.jsx';
+import { useShallow } from 'zustand/react/shallow';
+import { useEffect } from 'react';
 import './MainContainer.css';
 
 function MainContainer() {
-  const globalError = useAuthStore((state) => state.globalError);
+  const { globalError, setGlobalErrorAction } = useAuthStore(
+    useShallow((state) => ({
+      globalError: state.globalError,
+      setGlobalErrorAction: state.setGlobalErrorAction,
+    }))
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setGlobalErrorAction(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [setGlobalErrorAction]);
+
   const syncCartError = useCartStore((state) => state.syncCartError);
 
   return (
@@ -14,7 +36,7 @@ function MainContainer() {
       {globalError && (
         <div className="content__toast-modal">
           <div className="content__toast-container">
-            <Button className="content__toast-button" onClick={() => {}}>
+            <Button className="content__toast-button" onClick={() => setGlobalErrorAction(null)}>
               X
             </Button>
             <Toast
