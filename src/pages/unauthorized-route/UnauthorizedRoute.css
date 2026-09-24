@@ -35,4 +35,7 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
+  .protected-route {
+    width: 80%;
+  }
 }
