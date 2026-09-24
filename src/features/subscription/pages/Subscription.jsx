@@ -8,7 +8,6 @@ import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useSubscription from '../hooks/useSubscription.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useShallow } from 'zustand/react/shallow';
 import './Subscription.css';
 
 function Subscription() {
@@ -16,12 +15,7 @@ function Subscription() {
 
   const [toast, setToast] = useState(null);
 
-  const { user, globalError } = useAuthStore(
-    useShallow((state) => ({
-      user: state.user,
-      globalError: state.globalError,
-    }))
-  );
+  const user = useAuthStore((state) => state.user);
 
   const { sendSubscribe, loading, error } = useSubscription(user);
 
@@ -805,10 +799,6 @@ function Subscription() {
 
         {loading && (
           <Loader className="subscription__loader">Enviando dados de assinatura...</Loader>
-        )}
-
-        {globalError && (
-          <Toast className="subscription__error-toast" message={globalError.message} />
         )}
 
         {error && error.status !== 401 && (

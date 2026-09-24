@@ -2,7 +2,6 @@ import Button from '../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
-import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import usePartner from '../hooks/usePartner.js';
 import './Partner.css';
@@ -10,12 +9,7 @@ import './Partner.css';
 function Partner() {
   const [confirmActionMsg, setConfirmActionMsg] = useState(null);
 
-  const { user, globalError } = useAuthStore(
-    useShallow((state) => ({
-      user: state.user,
-      globalError: state.globalError,
-    }))
-  );
+  const user = useAuthStore((state) => state.user);
 
   const [formData, setFormData] = useState({
     userName: user?.userName || '',
@@ -312,16 +306,10 @@ function Partner() {
           </div>
         </fieldset>
 
-        {(confirmActionMsg || localError || globalError) && (
+        {(confirmActionMsg || localError) && (
           <Toast
             className="partner__toast"
-            message={
-              confirmActionMsg
-                ? confirmActionMsg
-                : localError
-                  ? localError.message
-                  : globalError.message
-            }
+            message={confirmActionMsg ? confirmActionMsg : localError.message}
           />
         )}
 

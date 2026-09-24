@@ -1,7 +1,6 @@
 import Button from '../../../../../shared/components/ui/button/Button.jsx';
 import useAuthStore from '../../../../../store/useAuthStore.js';
 import { useState } from 'react';
-import { useShallow } from 'zustand/react/shallow';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../shared/components/ui/input/Input.jsx';
@@ -15,12 +14,7 @@ function UserProfile() {
 
   const { loading, error, setError, updateUser } = useProfile();
 
-  const { user, globalError } = useAuthStore(
-    useShallow((state) => ({
-      user: state.user,
-      globalError: state.globalError,
-    }))
-  );
+  const user = useAuthStore((state) => state.user);
 
   const [formData, setFormData] = useState({
     userName: user.userName ?? '',
@@ -218,10 +212,6 @@ function UserProfile() {
           <Loader className="user-form__loader profile-form__loader">
             Atualizando dados de perfil...
           </Loader>
-        )}
-
-        {globalError && !isEditing && (
-          <Toast className="user-form__toast profile-form__toast" message={globalError.message} />
         )}
 
         {error && <Toast className="user-form__toast profile-form__toast" message={error} />}

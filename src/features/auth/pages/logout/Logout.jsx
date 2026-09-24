@@ -13,11 +13,10 @@ function Logout() {
 
   const navigate = useNavigate();
 
-  const { logoutAction, loading, globalError, authChecked } = useAuthStore(
+  const { logoutAction, loading, authChecked } = useAuthStore(
     useShallow((state) => ({
       logoutAction: state.logoutAction,
       loading: state.loading,
-      globalError: state.globalError,
       authChecked: state.authChecked,
     }))
   );
@@ -49,8 +48,6 @@ function Logout() {
       {loading && authChecked && <Loader className="logout__loader">Desconectando...</Loader>}
 
       {localError && <Toast className="logout__toast" message={localError} />}
-
-      {globalError && <Toast className="logout__toast" message={globalError.message} />}
 
       <Button className="logout__button" onClick={handleLogout}>
         Deslogar

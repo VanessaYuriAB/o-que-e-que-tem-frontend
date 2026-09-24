@@ -4,19 +4,13 @@ import Textarea from '../../../shared/components/ui/textarea/Textarea.jsx';
 import { useState } from 'react';
 import useAuthStore from '../../../store/useAuthStore.js';
 import useContact from '../hooks/useContact.js';
-import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import './Contact.css';
 
 function Contact() {
   const [confirmActionMsg, setConfirmActionMsg] = useState(null);
 
-  const { user, globalError } = useAuthStore(
-    useShallow((state) => ({
-      user: state.user,
-      globalError: state.globalError,
-    }))
-  );
+  const user = useAuthStore((state) => state.user);
 
   const [formData, setFormData] = useState({
     userName: user?.userName ?? '',
@@ -170,12 +164,10 @@ function Contact() {
           </div>
         </fieldset>
 
-        {(confirmActionMsg || error || globalError) && (
+        {(confirmActionMsg || error) && (
           <Toast
             className="contact__toast"
-            message={
-              confirmActionMsg ? confirmActionMsg : error ? error.message : globalError.message
-            }
+            message={confirmActionMsg ? confirmActionMsg : error.message}
           />
         )}
 

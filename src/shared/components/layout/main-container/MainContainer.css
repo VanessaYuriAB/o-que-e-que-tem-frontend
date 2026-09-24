@@ -17,7 +17,20 @@
   align-items: center;
 }
 
-.content__toast {
+.content__toast_global {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(
+    -50%
+  ); /* para centralizar o elemento horizontalmente, independente da largura da tela */
+  z-index: 9999;
+
+  margin: 0;
+  border: 1px solid #ffffff;
+}
+
+.content__toast_sync-cart {
   padding: 0.5em;
   padding-inline: 0.75em;
   width: 100%;

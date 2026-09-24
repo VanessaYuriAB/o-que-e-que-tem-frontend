@@ -3,7 +3,6 @@ import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import { useState } from 'react';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import useAuthStore from '../../../../../store/useAuthStore.js';
-import { useShallow } from 'zustand/react/shallow';
 import { Link } from 'react-router-dom';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import useProfile from '../../../hooks/useProfile.js';
@@ -17,12 +16,7 @@ function SubscriptionProfile() {
 
   const { loading, error, setError, updateSubscription } = useProfile();
 
-  const { user, globalError } = useAuthStore(
-    useShallow((state) => ({
-      user: state.user,
-      globalError: state.globalError,
-    }))
-  );
+  const user = useAuthStore((state) => state.user);
 
   const [formData, setFormData] = useState({
     daysOn: user?.subscriptionDetails?.daysOn ?? [],
@@ -474,13 +468,6 @@ function SubscriptionProfile() {
             *Você pode alterar algumas escolhas na sua assinatura a qualquer momento e, também,
             pausá-la por um período máximo de 2 meses, uma vez ao ano.
           </p>
-
-          {globalError && !isEditing && (
-            <Toast
-              className="subscription-form__toast profile-form__toast"
-              message={globalError.message}
-            />
-          )}
 
           {error && (
             <Toast className="subscription-form__toast profile-form__toast" message={error}></Toast>

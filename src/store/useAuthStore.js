@@ -29,9 +29,10 @@ Se for erro local, de api, não seta, apenas retorna
 const useAuthStore = create((set, get) => ({
   user: null,
   loading: false,
+
   globalError: null,
+
   authChecked: false,
-  refreshError: null,
 
   setUserAction: (userData) => {
     set({ user: userData });
@@ -106,7 +107,7 @@ const useAuthStore = create((set, get) => ({
   // refresh chama authService.refresh e seta user + authChecked, mantendo login caso credenciais ok ou limpando user caso ñ ok
   refreshAction: async () => {
     set({ loading: true });
-    set({ refreshError: null });
+    get().setGlobalErrorAction(null);
 
     try {
       const data = await authService.refresh();
@@ -117,7 +118,10 @@ const useAuthStore = create((set, get) => ({
       const handledError = errorHandler(error);
 
       if (handledError.scope === 'global') {
-        set({ refreshError: handledError });
+        get().setGlobalErrorAction({
+          ...handledError,
+          source: 'refresh',
+        });
       }
     } finally {
       set({ loading: false, authChecked: true });
