@@ -72,7 +72,7 @@ const useAuthStore = create((set, get) => ({
     try {
       await authService.login(credentials);
 
-      await get().refreshAction();
+      await get().refreshAction('login');
 
       const user = get().user;
       await useCartStore.getState().migrateAnonymousCartAction(user._id);
@@ -114,7 +114,7 @@ const useAuthStore = create((set, get) => ({
 
   // Bootstrap de autenticação da aplicação: lógica de hidratação da sessão de usuário (App e loginAction)
   // refresh chama authService.refresh e seta user + authChecked, ativando login caso credenciais ok ou limpando user caso ñ ok
-  refreshAction: async () => {
+  refreshAction: async (source) => {
     set({ loading: true });
 
     get().setGlobalErrorAction(null);
@@ -127,11 +127,17 @@ const useAuthStore = create((set, get) => ({
 
       const handledError = errorHandler(error);
 
-      if (handledError.scope === 'global') {
-        get().setGlobalErrorAction({
-          ...handledError,
-          source: 'refresh',
-        });
+      if (source === 'bootstrap') {
+        if (handledError.scope === 'global') {
+          get().setGlobalErrorAction({
+            ...handledError,
+            source: 'refresh',
+          });
+        }
+      }
+
+      if (source === 'login') {
+        throw error;
       }
     } finally {
       set({ loading: false, authChecked: true });

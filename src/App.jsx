@@ -20,7 +20,7 @@ function App() {
   // App Bootstrap: verifica e hidrata sessão de usuário
   useEffect(() => {
     async function verifyUserSession() {
-      await refreshAction();
+      await refreshAction('bootstrap');
     }
 
     verifyUserSession();

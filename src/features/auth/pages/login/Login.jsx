@@ -119,7 +119,7 @@ function Login() {
           </Loader>
         )}
 
-        {localError && (
+        {localError && !globalError && (
           <Toast className="form-login__toast auth-form__toast" message={localError} />
         )}
 
