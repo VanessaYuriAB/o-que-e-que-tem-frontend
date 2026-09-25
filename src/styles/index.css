@@ -4,8 +4,8 @@
 
 @import url(./base.css);
 
-@import url(./nav.css);
+@import url(./patterns/nav.css);
 
-@import url(./link-to-button.css);
+@import url(./patterns/link-to-button.css);
 
 @import url(./utilities.css);
