@@ -128,7 +128,7 @@ function Partner() {
               maxLength={15}
               pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
               title="Telefone fixo ou celular. Formato: (xx) xxxxx-xxxx."
-              placeholder="Telefone válido para contato, no formato: (XX) XXXXX-XXXX"
+              placeholder="Telefone válido para contato, no formato: (XX) XXXXX-XXXX."
               value={formData.tel}
               onChange={handleChange}
               required
