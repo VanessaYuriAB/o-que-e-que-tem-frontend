@@ -42,7 +42,7 @@
 .sidebar__list {
   display: flex;
   column-gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: balance;
   width: 110%;
 }
 
