@@ -23,7 +23,7 @@
 }
 
 .recipes__item {
-  background-color: #6b8e23;
+  background-color: rgba(35, 142, 62, 0.271);
   padding: 1em;
   border: 1px solid #ffffff;
   width: 100%;
@@ -32,6 +32,7 @@
 
 .recipes__item_searched {
   margin-top: 2rem;
+  background-color: rgba(35, 142, 62, 0.478);
 }
 
 .recipes__subtitle {
