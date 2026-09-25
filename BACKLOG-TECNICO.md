@@ -69,8 +69,7 @@ Exemplo:
 
 ## CSS
 
-- Criar arquivo `utilities.css` para estilos utilitários compartilhados. Como:
-  - .list-reset
+- Enriquecer `utilities.css` para estilos utilitários compartilhados. Exemplos:
   - .link-reset
   - .visually-hidden
   - .flex-center
