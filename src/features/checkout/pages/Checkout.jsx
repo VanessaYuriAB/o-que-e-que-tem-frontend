@@ -210,7 +210,7 @@ function Checkout() {
                 <div className="checkout__detail checkout__detail_list">
                   <dt className="checkout__item-term">Items:</dt>
                   <dd className="checkout__item-description">
-                    <ul className="checkout__item-list nav__list">
+                    <ul className="checkout__item-list list-reset">
                       {cartItems.map((item) => {
                         return (
                           <li className="checkout__item-item" key={item._id}>

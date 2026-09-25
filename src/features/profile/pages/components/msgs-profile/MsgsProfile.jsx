@@ -40,7 +40,7 @@ function MsgsProfile() {
       <h3 className="profile__msgs-title">Histórico de mensagens</h3>
 
       {hasMsgs ? (
-        <ul className="profile__msgs-list profile-history__list nav__list">
+        <ul className="profile__msgs-list profile-history__list list-reset">
           {orderedUserMsgs.map((msg) => {
             const formattedCreatedAt = new Date(msg.createdAt).toLocaleString('pt-BR');
             const msgCreatedAt = msg.createdAt.includes('T') ? formattedCreatedAt : msg.createdAt;

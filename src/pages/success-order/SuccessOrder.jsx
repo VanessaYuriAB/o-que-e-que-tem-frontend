@@ -127,7 +127,7 @@ function SuccessOrder() {
               <div className="order__detail-box">
                 <dt className="order__term">Ingredientes:</dt>
                 <dd className="order__description">
-                  <ul className="order__ingredients-list nav__list">
+                  <ul className="order__ingredients-list list-reset">
                     {hasOrder.itemsSnapshot.map((item) => {
                       return (
                         <li className="order__ingredients-item" key={item._id}>

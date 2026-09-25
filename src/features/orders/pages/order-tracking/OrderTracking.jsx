@@ -146,7 +146,7 @@ function OrderTracking() {
               <div className="tracker__detail-box">
                 <dt className="tracker__detail">Ingredientes:</dt>
                 <dd className="tracker__description">
-                  <ul className="tracker__items-list nav__list">
+                  <ul className="tracker__items-list list-reset">
                     {orderTracked.itemsSnapshot.map((item) => {
                       return (
                         <li className="tracker__item-list" key={item._id}>
@@ -201,7 +201,7 @@ function OrderTracking() {
               <div className="tracker__detail-box">
                 <dt className="tracker__detail">Ingredientes:</dt>
                 <dd className="tracker__description">
-                  <ul className="tracker__items-list nav__list">
+                  <ul className="tracker__items-list list-reset">
                     {orderTracked.itemsSnapshot.map((item) => {
                       return (
                         <li className="tracker__item-list" key={item._id}>

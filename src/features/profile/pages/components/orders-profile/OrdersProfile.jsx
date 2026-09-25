@@ -52,7 +52,7 @@ function OrdersProfile() {
           </Link>
         </Toast>
       ) : (
-        <ul className="profile__orders-list profile-history__list nav__list">
+        <ul className="profile__orders-list profile-history__list list-reset">
           {orderedUserAllOrders.map((order) => {
             const isSubscriptionOrder = order.orderNumber.startsWith('S');
 
@@ -157,7 +157,7 @@ function OrdersProfile() {
                     <div className="profile__orders-item-box profile-history__item-box">
                       <dt className="profile__orders-term profile-history__term">Itens:</dt>
                       <dd className="profile__orders-description profile-history__description">
-                        <ul className="profile__orders-description-list nav__list">
+                        <ul className="profile__orders-description-list list-reset">
                           {order.itemsSnapshot.map((item) => {
                             return (
                               <li className="profile__orders-description-item" key={item._id}>
@@ -252,7 +252,7 @@ function OrdersProfile() {
                     <div className="profile__orders-item-box profile-history__item-box">
                       <dt className="profile__orders-term profile-history__term">Itens:</dt>
                       <dd className="profile__orders-description profile-history__description">
-                        <ul className="profile__orders-description-list nav__list">
+                        <ul className="profile__orders-description-list list-reset">
                           {order.itemsSnapshot.map((item) => {
                             return (
                               <li className="profile__orders-description-item" key={item._id}>

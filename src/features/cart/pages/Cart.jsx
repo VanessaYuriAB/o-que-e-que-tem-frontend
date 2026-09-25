@@ -146,7 +146,7 @@ function Cart() {
               <section className="cart__pack-card">
                 <h3 className="cart__pack-card-title">Detalhes do pedido:</h3>
 
-                <ul className="cart__pack-card-list nav__list">
+                <ul className="cart__pack-card-list list-reset">
                   {cartItems.map((item) => {
                     return (
                       <li className="cart__pack-card-item" key={item._id}>
