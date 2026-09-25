@@ -155,6 +155,7 @@ function Cart() {
                           <Button
                             className="cart__pack-card-button"
                             type="button"
+                            title="Remover item"
                             onClick={() => handleRemoveItem(item)}
                           ></Button>
                         </div>
