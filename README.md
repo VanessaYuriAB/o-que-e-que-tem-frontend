@@ -26,11 +26,13 @@
 15. [Stack atual 🛠️](#-15-stack-atual)
 16. [Como executar ▶️](#-16-como-executar)
 17. [Status atual 🔄](#-17-status-atual)
-18. [Principais desafios 🏔️](#-18-principais-desafios-técnicos)
-19. [Principais aprendizados 🎓](#-19-principais-aprendizados)
-20. [Roadmap 🗺️](#-20-roadmap)
-21. [Próximos passos 🚀](#-21-próximos-passos)
-22. [Autora 🌱](#-22-autora)
+18. [Pagamentos 💳](#-18-pagamentos)
+19. [Principais desafios 🏔️](#-19-principais-desafios-técnicos)
+20. [Principais aprendizados 🎓](#-20-principais-aprendizados)
+21. [Melhorias 🔧](#-21-melhorias)
+22. [Roadmap 🗺️](#-22-roadmap)
+23. [Próximos passos 🚀](#-23-próximos-passos)
+24. [Autora 🌱](#-24-autora)
 
 <a id="-1-sobre-o-projeto"></a>
 
@@ -147,10 +149,10 @@ A equipe de triagem atua em duas frentes:
 ### Atualmente implementadas
 
 - Cardápio dinâmico baseado na disponibilidade de ingredientes
-- Atualização periódica da disponibilidade através de polling
+- Atualização periódica da disponibilidade através de `polling`
 - Filtragem de ingredientes por categoria alimentar
 - Cadastro, login e autenticação de usuários
-- Persistência de sessão (refresh mock)
+- Persistência de sessão (`refresh mock`)
 - Rotas públicas, protegidas e condicionais
 - Perfil de usuário editável
 - Gerenciamento de assinatura flexível
@@ -167,10 +169,10 @@ A equipe de triagem atua em duas frentes:
 - Página institucional Sobre Nós
 - Página institucional Nosso Impacto
 - Formulário de solicitação de parceria
-- Persistência simulada através de Mock API
-- Gerenciamento de estado com Zustand
+- Persistência simulada através de `Mock API`
+- Gerenciamento de estado com `Zustand`
 - Tratamento padronizado de erros
-- Layout responsivo mobile-first
+- Layout responsivo `mobile-first`
 
 [Voltar ao topo 🔝](#top)
 
@@ -180,11 +182,13 @@ A equipe de triagem atua em duas frentes:
 
 ## ✅ 5. Boas práticas adotadas
 
-- Feature-Based Architecture
+- Feature-Based Architecture (abordagem leve / adaptada)
 - Component-Based Design
 - Mobile First
-- Colocation de estilos
-- Convenção BEM
+- Colocation de estilos (os estilos permanecem próximos aos componentes aos quais pertencem,
+  facilitando manutenção, navegação e evolução da interface)
+- Convenção BEM (utilização da metodologia BEM para promover previsibilidade, escalabilidade e
+  reutilização dos estilos)
 - Lazy Loading
 - Code Splitting
 - Variáveis de ambiente centralizadas
@@ -338,7 +342,8 @@ acesso a dados
 shared/ → recursos reutilizáveis por toda a aplicação
 
 store/ → gerenciamento de estado global da aplicação utilizando Zustand; responsável pela
-autenticação, controle de loading, erros globais, atualização de perfil, sincronização de sessão
+autenticação, controle de loading, erros globais, atualização de perfil, sincronização de sessão,
+persistência local para carrinho
 
 styles/ → estilos globais da aplicação
 
@@ -350,7 +355,7 @@ styles/ → estilos globais da aplicação
 
 ## 🧠 9. Decisões de arquitetura
 
-### Feature-Based Architecture
+### Feature-Based Architecture (leve)
 
 A aplicação é organizada por domínio de negócio.
 
@@ -391,6 +396,9 @@ Toast
 Logo
 Layout
 ```
+
+Os componentes reutilizáveis são desenvolvidos com foco em composição, reutilização e validação de
+propriedades através de `PropTypes`.
 
 ### Configuração por ambiente
 
@@ -530,9 +538,9 @@ apiFetch
 ↓
 Service
 ↓
-errorHandler
-↓
 Store
+↓
+errorHandler
 ↓
 UI
 ```
@@ -552,13 +560,13 @@ network
 
 Adiciona contexto.
 
-#### errorHandler
-
-Traduz erros técnicos para mensagens amigáveis.
-
 #### Store
 
 Gerencia estado global.
+
+#### errorHandler
+
+Traduz erros técnicos para mensagens amigáveis.
 
 #### UI
 
@@ -568,7 +576,7 @@ Decide como apresentar o erro ao usuário.
 
 ---
 
-<a id="-10-gerenciamento-de-estad0-global"></a>
+<a id="-10-gerenciamento-de-estado-global"></a>
 
 ## ⚡ 10. Gerenciamento de estado global
 
@@ -586,7 +594,8 @@ Principais características:
 - uso de `useShallow`;
 - controle de loading;
 - tratamento de erros globais;
-- controle de autenticação via `authChecked`.
+- controle de autenticação via `authChecked`;
+- uso de `persist`, `setOptions`, `rehydrate` e `partialize`.
 
 [Voltar ao topo 🔝](#top)
 
@@ -626,6 +635,9 @@ PublicRoute
 SubscriptionRoute
 ```
 
+Após login, o usuário é redirecionado para a rota originalmente solicitada, com `useLocation`,
+preservando `pathname`, `query parameters` e `hash` da navegação anterior.
+
 [Voltar ao topo 🔝](#top)
 
 ---
@@ -636,13 +648,15 @@ SubscriptionRoute
 
 Implementações adotadas:
 
-### Lazy Loading
+### Carregamento da aplicação
+
+#### Lazy Loading
 
 ```js
 lazy();
 ```
 
-### Suspense
+#### Suspense
 
 ```js
 <Suspense />
@@ -653,6 +667,77 @@ Benefícios:
 - Code Splitting;
 - menor bundle inicial;
 - carregamento sob demanda.
+
+### Otimização de renderização
+
+#### Zustand
+
+O gerenciamento de estado utiliza seletores e `useShallow` para minimizar renderizações
+desnecessárias dos componentes que consomem dados globais.
+
+Benefícios:
+
+- menos re-renderizações;
+- atualização mais eficiente da interface;
+- menor custo de atualização do estado;
+- maior escalabilidade da aplicação.
+
+### Otimização de requisições e sincronização de dados
+
+#### Compartilhamento de estado entre rotas via `Outlet Context`
+
+O módulo de cardápio utiliza rotas aninhadas do React Router.
+
+Para evitar múltiplas requisições ao alternar entre categorias, os dados são carregados uma única
+vez no componente pai e compartilhados com as rotas filhas através do `Outlet Context`.
+
+Fluxo:
+
+```
+Menu
+↓
+useMenu()
+↓
+Outlet Context
+↓
+Categorias do Cardápio
+```
+
+Benefícios:
+
+- evita requisições redundantes;
+- reduz consumo de recursos;
+- melhora a experiência de navegação;
+- mantém os dados sincronizados entre as categorias;
+- elimina refetches ao trocar de categoria.
+
+#### Atualização periódica de disponibilidade (Polling)
+
+A disponibilidade dos ingredientes pode sofrer alterações durante a navegação do usuário.
+
+Para manter o cardápio atualizado, a aplicação realiza consultas periódicas utilizando
+`setInterval`, permitindo sincronizar a interface com a fonte de dados sem a necessidade de
+recarregar a página.
+
+Fluxo:
+
+```
+fetch inicial
+↓
+setInterval()
+↓
+consulta periódica
+↓
+atualização da interface
+```
+
+Benefícios:
+
+- atualização automática do cardápio;
+- redução da divergência entre estoque e interface;
+- preparação para integração com APIs reais;
+- melhor experiência para o usuário;
+- menor necessidade de atualização manual da página.
 
 [Voltar ao topo 🔝](#top)
 
@@ -666,7 +751,9 @@ Práticas implementadas:
 
 - aria-label;
 - role="status";
+- role="alert";
 - aria-live="polite";
+- aria-live="assertive";
 - menu colapsável utilizando `<details>` e `<summary>`;
 - conteúdo visualmente oculto para leitores de tela;
 - semântica HTML, com uso de elementos como `<section>`, `<fieldset>`, `<legend>`, `<dl>`, `<dt>`,
@@ -710,6 +797,9 @@ Utilizando:
 - React Router DOM
 - Zustand
 - PropTypes
+
+`PropTypes` é utilizado para validação de propriedades em runtime, contribuindo para a
+previsibilidade e manutenção dos componentes.
 
 ### Qualidade de código
 
@@ -821,9 +911,25 @@ npm run format
 
 ---
 
-<a id="-18-principais-desafios-técnicos"></a>
+<a id="-18-pagamentos"></a>
 
-## 🧠 18. Principais desafios técnicos
+## 💳 18. Pagamentos
+
+O checkout presente na aplicação representa apenas uma simulação da experiência de compra.
+
+Por se tratar de um MVP desenvolvido para fins educacionais e de portfólio, nenhum gateway de
+pagamento real foi integrado e nenhuma transação financeira é processada pela aplicação.
+
+Os campos de pagamento possuem finalidade exclusivamente demonstrativa, servindo apenas para validar
+e apresentar o fluxo de compra da plataforma.
+
+[Voltar ao topo 🔝](#top)
+
+---
+
+<a id="-19-principais-desafios-técnicos"></a>
+
+## 🧠 19. Principais desafios técnicos
 
 Durante o desenvolvimento do projeto alguns desafios exigiram modelagem, refatorações e ajustes
 arquiteturais relevantes.
@@ -890,9 +996,9 @@ da aplicação.
 
 ---
 
-<a id="-19-principais-aprendizados"></a>
+<a id="-20-principais-aprendizados"></a>
 
-## 🎓 19. Principais aprendizados
+## 🎓 20. Principais aprendizados
 
 Este projeto foi o primeiro projeto autoral desenvolvido após a conclusão do Bootcamp de
 Desenvolvimento Web da TripleTen Brasil.
@@ -902,7 +1008,8 @@ Durante o desenvolvimento foram estudados e aplicados conceitos como:
 - arquitetura escalável;
 - `feature-based architecture`;
 - `component-driven design`;
-- semântica HTML avançada (fieldset, legend, dl, dt, dd, address);
+- `Lazy Loading` e `<Suspense />`;
+- semântica HTML avançada (`<fieldset>`, `<legend>`, `<dl>`, `<dt>`, `<dd>`, `<address>`);
 - acessibilidade desde a modelagem dos componentes;
 - recursos modernos de CSS, como: `margin-inline`, `dvh`, `decimal-leading-zero` e
   `flex-wrap: balance`;
@@ -912,17 +1019,17 @@ Durante o desenvolvimento foram estudados e aplicados conceitos como:
 - rastreamento e histórico de pedidos;
 - modelagem de fluxos de assinatura;
 - fluxo completo de checkout;
-- padronização de datas utilizando ISO 8601;
-- tratamento de timezone e formatação localizada;
+- padronização de datas utilizando `ISO 8601`;
+- tratamento de `timezone` e formatação localizada;
 - gerenciamento de estado com Zustand;
 - persistência avançada com Zustand;
 - reidratação de estado após autenticação;
 - separação clara de responsabilidades (camada de serviço e camada de apresentação);
 - arquitetura baseada em hooks, services e stores;
 - contratos de API;
-- mock backend;
-- Outlet Context do React Router;
-- polling com setInterval;
+- `mock backend`;
+- `Outlet Context` do React Router;
+- `polling` com `setInterval`;
 - tooling profissional;
 - organização de projetos para crescimento futuro.
 
@@ -938,9 +1045,43 @@ modelagem de produto.
 
 ---
 
-<a id="-20-roadmap"></a>
+<a id="-21-melhorias"></a>
 
-## 🗺️ 20. Roadmap
+## 🔧 21. Melhorias
+
+Durante a evolução do MVP foram identificadas oportunidades de melhoria relacionadas à experiência
+do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
+
+### Autenticação e experiência do usuário
+
+- Inclusão de um fluxo direto de cadastro a partir do carrinho para usuários não autenticados que
+  desejam finalizar uma compra.
+- Exibição do formulário de autenticação em modal sobre a página atual, reduzindo interrupções na
+  navegação e proporcionando uma experiência mais moderna.
+- Possibilidade de autenticação utilizando e-mail ou telefone, sem obrigatoriedade do preenchimento
+  de ambos.
+- Implementação da funcionalidade "Esqueceu sua senha?" para recuperação de acesso.
+- Inclusão da opção "Lembrar-me" para persistência de sessão de forma opcional.
+
+### Checkout e modelagem de pedidos
+
+- Refatoração da estrutura de carrinho e checkout para permitir múltiplos pedidos dentro de uma
+  mesma ordem de compra.
+- Suporte a múltiplos destinatários, responsáveis e endereços de entrega em uma única compra,
+  ampliando cenários de uso para presentes, compras corporativas e pedidos compartilhados.
+
+### Navegação e localização
+
+- Integração do endereço exibido no rodapé com serviços de mapas, permitindo acesso direto à
+  localização da operação por meio de clique.
+
+[Voltar ao topo 🔝](#top)
+
+---
+
+<a id="-22-roadmap"></a>
+
+## 🗺️ 22. Roadmap
 
 ### Frontend
 
@@ -961,6 +1102,7 @@ modelagem de produto.
 - APIs RESTful
 - Sistema de pedidos
 - Sistema de assinatura
+- APIs externas
 
 ### Evolução do Produto
 
@@ -973,21 +1115,21 @@ modelagem de produto.
 
 ---
 
-<a id="-21-próximos-passos"></a>
+<a id="-23-próximos-passos"></a>
 
-## 🚀 21. Próximos passos
+## 🚀 23. Próximos passos
 
-  A versão atual representa a construção da base arquitetural do frontend e da experiência do
-usuário, preparada para futuras integrações com APIs RESTful, autenticação via JWT com cookies
-HttpOnly e persistência em MongoDB.
+A versão atual representa a construção da base arquitetural do frontend e da experiência do usuário,
+preparada para futuras integrações com APIs RESTful, autenticação via JWT com cookies HttpOnly e
+persistência em MongoDB.
 
 [Voltar ao topo 🔝](#top)
 
 ---
 
-<a id="-22-autora"></a>
+<a id="-24-autora"></a>
 
-## 🌱 22. Autora
+## 🌱 24. Autora
 
 ##### Desenvolvido por Vanessa Yuri A. Brito
 
@@ -995,6 +1137,6 @@ Projeto autoral desenvolvido para portfólio, experimentação arquitetural e ev
 Full Stack baseada no ecossistema MERN.
 
 O objetivo foi transformar uma ideia de impacto socioambiental em um produto digital escalável,
-conectando sustentabilidade, tecnologia, economia circular e redução de desperdício alimentar.
+conectando tecnologia, sustentabilidade, redução de desperdício alimentar e economia circular.
 
 [Voltar ao topo 🔝](#top)
