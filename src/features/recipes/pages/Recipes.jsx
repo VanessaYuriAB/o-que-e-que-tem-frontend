@@ -1,7 +1,7 @@
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import Input from '../../../shared/components/ui/input/Input.jsx';
 import RecipeCard from '../components/RecipeCard.jsx';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import useTodayRecipes from '../hooks/useTodayRecipes.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
@@ -9,6 +9,8 @@ import useSearchRecipes from '../hooks/useSearchRecipes.js';
 import './Recipes.css';
 
 function Recipes() {
+  const searchedResultsRef = useRef(null);
+
   const [recipeToSearch, setRecipeToSearch] = useState('');
 
   const { todayRecipes, loading: todayLoading, localError: todayError } = useTodayRecipes();
@@ -19,6 +21,15 @@ function Recipes() {
     localError: searchError,
     searchedRecipes,
   } = useSearchRecipes();
+
+  useEffect(() => {
+    if (searchedRecipes.length > 0) {
+      searchedResultsRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [searchedRecipes]);
 
   const handleChange = (e) => {
     setRecipeToSearch(e.target.value);
@@ -68,33 +79,36 @@ function Recipes() {
           );
         })}
       </ul>
-      <h2 className="recipes__subtitle">Quer alguma outra sugestão?</h2>
-      <form className="recipes__form" name="recipes" onSubmit={handleSubmit} /*noValidate*/>
-        <label className="recipes__label" htmlFor="search">
-          Pesquise você mesmo :)
-        </label>
-        <Input
-          className="recipes__input"
-          id="search"
-          type="text"
-          name="recipe"
-          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
-          title="Qual receita gostaria de pesquisar? Não são permitidos '<' e '>'."
-          placeholder="Qual receita gostaria de pesquisar?"
-          value={recipeToSearch}
-          onChange={handleChange}
-          required
-        />
 
-        {searchError && <Toast className="recipes__toast" message={searchError.message} />}
+      <div className="recipes__form-box">
+        <h2 className="recipes__subtitle">Quer alguma outra sugestão?</h2>
+        <form className="recipes__form" name="recipes" onSubmit={handleSubmit} /*noValidate*/>
+          <label className="recipes__label" htmlFor="search">
+            Pesquise você mesmo :)
+          </label>
+          <Input
+            className="recipes__input"
+            id="search"
+            type="text"
+            name="recipe"
+            pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+            title="Qual receita gostaria de pesquisar? Não são permitidos '<' e '>'."
+            placeholder="Qual receita gostaria de pesquisar?"
+            value={recipeToSearch}
+            onChange={handleChange}
+            required
+          />
 
-        <Button className="recipes__button" type="submit">
-          {searchLoading ? 'Pesquisando...' : 'Pesquisar'}
-        </Button>
-      </form>
+          {searchError && <Toast className="recipes__toast" message={searchError.message} />}
+
+          <Button className="recipes__button" type="submit">
+            {searchLoading ? 'Pesquisando...' : 'Pesquisar'}
+          </Button>
+        </form>
+      </div>
 
       {searchedRecipes.length > 0 && (
-        <ul className="recipes__list recipes__list_searched">
+        <ul className="recipes__list recipes__list_searched" ref={searchedResultsRef}>
           {searchedRecipes.map((recipe) => {
             return (
               <li className="recipes__item recipes__item_searched" key={recipe.id}>

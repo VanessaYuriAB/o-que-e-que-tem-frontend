@@ -22,6 +22,10 @@
   justify-content: center;
 }
 
+.recipes__list_searched {
+  scroll-margin-top: 25rem;
+}
+
 .recipes__item {
   background-color: rgba(35, 142, 62, 0.271);
   padding: 1em;
@@ -33,6 +37,11 @@
 .recipes__item_searched {
   margin-top: 2rem;
   background-color: rgba(35, 142, 62, 0.478);
+}
+
+.recipes__form-box {
+  position: sticky;
+  top: 10rem;
 }
 
 .recipes__subtitle {
