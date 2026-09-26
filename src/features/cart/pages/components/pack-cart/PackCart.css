@@ -1,0 +1,110 @@
+/* Mobile first (padrão) */
+
+.pack__title {
+  margin-top: 3.5rem;
+  margin-bottom: 3rem;
+}
+
+.pack__aside {
+  width: 80%;
+  margin-inline: auto;
+}
+
+.pack__details {
+  text-align: center;
+  padding-bottom: 1em;
+}
+
+.pack__details-title {
+  max-width: 90%;
+  margin-inline: auto;
+}
+
+.pack__details-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 1rem;
+}
+
+.pack__details-product {
+  text-align: left;
+}
+
+.pack__details-toast {
+  padding: 0.5em;
+  margin: 1.5rem auto;
+  margin-top: 1rem;
+  width: 80%;
+}
+
+.pack__details-link-box {
+  margin-bottom: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.pack__details-link {
+  background-color: #f0f0f0;
+  padding-top: 0.75em;
+  border: none;
+  color: #503202;
+}
+
+.pack__details-line {
+  width: 90%;
+  border: 0.5px solid #d6d2d2;
+  margin: 0 auto;
+}
+
+.pack__details-term {
+  text-align: left;
+}
+
+.pack__details-description {
+  margin-left: 0;
+}
+
+.pack__details-button {
+  padding: 0.5em;
+  margin: 1rem 0;
+  width: 25px;
+  height: 25px;
+  background-image: url('../../../../../assets/icons/trash.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.pack__details-msg {
+  background-color: #503202;
+  padding: 0.25em;
+  color: #faebd7;
+  width: fit-content;
+  max-width: 90%;
+  margin: 0.5rem auto 0;
+  font-weight: 350;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .pack__title {
+    margin-bottom: 3rem;
+  }
+
+  .pack__container {
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+  }
+
+  .pack__aside {
+    width: 30%;
+    margin-top: 0.5rem;
+  }
+
+  .pack__details {
+    border: 1px solid #f0f0f0;
+  }
+}

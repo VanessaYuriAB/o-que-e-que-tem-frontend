@@ -1,0 +1,78 @@
+/* Mobile first (padrão) */
+
+.pack__form {
+  margin-top: 3rem;
+}
+
+.form {
+  text-align: left;
+}
+
+.form__fieldset {
+  margin-bottom: 1rem;
+}
+
+.form__fieldset_radio {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.form__input-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+}
+
+.form__input-box_radio {
+  display: block;
+  padding: 0;
+}
+
+.form__input {
+  padding: 0;
+}
+
+.form__input_radio {
+  margin-left: 0.5rem;
+}
+
+.form__input_radio:hover {
+  cursor: pointer;
+}
+
+.form__input_date,
+.form__input_schedule {
+  width: min-content;
+}
+
+.form__toast {
+  margin-bottom: 0.75rem;
+}
+
+.form__button {
+  width: 100%;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .pack__form {
+    width: 65%;
+    margin-top: 0;
+  }
+
+  .form__fieldset_radio {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .form__radio-box:last-of-type {
+    margin-left: 0.5rem;
+  }
+
+  .form__fieldset_next {
+    display: flex;
+  }
+}
