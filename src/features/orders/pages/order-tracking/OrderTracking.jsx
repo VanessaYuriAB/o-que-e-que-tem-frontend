@@ -46,7 +46,7 @@ function OrderTracking() {
       <h1 className="tracker__title">Quer saber sobre um pedido feito?</h1>
       <form
         className="tracker__form"
-        name="tracker-form"
+        name="tracker"
         onSubmit={handleSubmit}
         /*noValidate*/
       >

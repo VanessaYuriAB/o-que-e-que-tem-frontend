@@ -56,7 +56,7 @@ function UserProfile() {
 
       <form
         className="user-form profile__user-form profile-form"
-        name="profile-form"
+        name="profile-user"
         onSubmit={handleSubmit} /*noValidate*/
       >
         <fieldset className="user-form__field profile-form__field">
