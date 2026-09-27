@@ -7,7 +7,7 @@ import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 import useSubscription from '../../subscription/hooks/useSubscription.js';
-import CheckoutForm from './components/CheckoutForm.jsx';
+import CheckoutForm from './components/checkout-form/CheckoutForm.jsx';
 import CheckoutEmpty from './components/checkout-empty/CheckoutEmpty.jsx';
 import './Checkout.css';
 

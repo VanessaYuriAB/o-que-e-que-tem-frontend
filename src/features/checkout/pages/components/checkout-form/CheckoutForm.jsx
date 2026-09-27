@@ -1,10 +1,10 @@
-import qrCodeImg from '../../../../assets/images/qrcode.jpg';
-import Input from '../../../../shared/components/ui/input/Input.jsx';
-import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
-import Button from '../../../../shared/components/ui/button/Button.jsx';
-import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
+import qrCodeImg from '../../../../../assets/images/qrcode.jpg';
+import Input from '../../../../../shared/components/ui/input/Input.jsx';
+import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
+import Button from '../../../../../shared/components/ui/button/Button.jsx';
+import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useState } from 'react';
-import useOrders from '../../../orders/hooks/useOrders.js';
+import useOrders from '../../../../orders/hooks/useOrders.js';
 import PropTypes from 'prop-types';
 import './CheckoutForm.css';
 
