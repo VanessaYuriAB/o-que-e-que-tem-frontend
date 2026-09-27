@@ -1,0 +1,122 @@
+/* Mobile first (padrão) */
+
+.form__fieldset {
+  margin-top: 1.5rem;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 1.5rem;
+}
+
+.form__fieldset_radio {
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.form__legend {
+  font-weight: 650;
+}
+
+.form__input-box {
+  margin-bottom: 0.5rem;
+  margin-inline: auto;
+}
+
+.form__input-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.form__input-box_radio {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 0.5rem;
+  justify-content: left;
+}
+
+.form__input-box_pay {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  font-weight: 600;
+  text-wrap-mode: nowrap;
+  margin-right: 0.25rem;
+}
+
+.form__input {
+  padding: 0.25em;
+}
+
+.form__input_radio:hover {
+  cursor: pointer;
+}
+
+.form__pix-term,
+.form__pix-label {
+  font-weight: 600;
+  text-wrap-mode: nowrap;
+}
+
+.form__pix-description {
+  margin-left: 0;
+}
+
+.form__pix-qr-img {
+  width: 100px;
+  height: 100px;
+}
+
+.form__notice {
+  width: 80%;
+  max-width: 432px;
+  margin-inline: auto;
+  margin-bottom: 0;
+}
+
+.form__loader {
+  padding: 0;
+  margin-top: 4rem;
+}
+
+.form__toast {
+  padding: 1em;
+  margin: 4rem auto 0;
+}
+
+.form__button {
+  margin-bottom: 0;
+  margin-top: 2rem;
+  border: none;
+  width: 100%;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .checkout__form {
+    margin-top: 2rem;
+  }
+
+  .form__fieldset_radio {
+    margin-top: 0;
+  }
+
+  .form__pix-details {
+    display: flex;
+    justify-content: center;
+    column-gap: 0.5rem;
+  }
+
+  .form__notice {
+    width: 100%;
+  }
+
+  .form__toast {
+    width: 70%;
+  }
+
+  .form__button {
+    padding: 0.5em;
+    padding-top: 0.75em;
+  }
+}

@@ -1,35 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import Button from '../../../shared/components/ui/button/Button.jsx';
 import useCartStore from '../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
-import qrCodeImg from '../../../assets/images/qrcode.jpg';
-import Input from '../../../shared/components/ui/input/Input.jsx';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import getNextDate from '../../../shared/utils/nextSubscriptionDate.js';
 import useAuthStore from '../../../store/useAuthStore.js';
-import useOrders from '../../orders/hooks/useOrders.js';
 import useSubscription from '../../subscription/hooks/useSubscription.js';
+import CheckoutForm from './components/CheckoutForm.jsx';
 import './Checkout.css';
 
 function Checkout() {
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    pay: '',
-  });
-
-  const typeOfPay =
-    formData.pay === 'debito'
-      ? 'débito'
-      : formData.pay === 'credito'
-        ? 'crédito'
-        : formData.pay === 'pix'
-          ? 'PIX'
-          : '';
-
-  const { loadingSendOrder, localErrorSendOrder, sendOrder } = useOrders();
 
   const { loadingSendSubscribeOrder, localErrorSendSubscribeOrder, sendSubscribeOrder } =
     useSubscription();
@@ -66,14 +48,6 @@ function Checkout() {
   const nextDayAt = nextMeal ? weekDays[new Date(nextMeal).getDay()] : '';
 
   const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => {
-      return { ...prev, [name]: value };
-    });
-  };
 
   const handleSubscribeOrderCheckout = async () => {
     const subscriptionOrder = {
@@ -115,55 +89,6 @@ function Checkout() {
       cleanCartAction(user?._id);
       navigate('/success-order');
     }
-  };
-
-  const handleOrderCheckout = async (orderData) => {
-    // Service (+ hook)
-    const result = await sendOrder(orderData);
-
-    // Se success
-    if (result.success === true) {
-      // Seta persistência para SucessOrder com dados retornados da API ou fake
-      localStorage.setItem('successOrder', JSON.stringify(result.data));
-
-      setFormData({ pay: '' });
-      cleanCartAction(user?._id);
-      navigate('/success-order');
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const order = {
-      meal: cartData.meal,
-      method: cartData.method,
-      payment: formData.pay,
-      amount: cartData.amount,
-
-      customerSnapshot: {
-        userName: cartData.userName,
-        email: cartData.email,
-        tel: cartData.tel,
-      },
-
-      addressSnapshot:
-        cartData.method === 'delivery'
-          ? {
-              address: cartData.address,
-              number: cartData.number,
-              complement: cartData.complement,
-              district: cartData.district,
-              cep: cartData.cep,
-            }
-          : undefined,
-
-      itemsSnapshot: cartItems,
-
-      obs: cartData.infoText,
-    };
-
-    handleOrderCheckout(order);
   };
 
   return (
@@ -278,174 +203,27 @@ function Checkout() {
             </aside>
 
             {canBuy && (
-              <form
-                className="order-form checkout__order-form"
-                name="order"
-                onSubmit={handleSubmit} /*noValidate*/
-              >
-                <fieldset className="order-form__field order-form__field_radio">
-                  <legend className="order-form__legend ">Forma de pagamento:</legend>
-                  <div className="order-form__input-box order-form__input-box_radio">
-                    <label className="order-form__label" htmlFor="pix">
-                      PIX
-                    </label>
-                    <Input
-                      className="order-form__input order-form__input_radio"
-                      type="radio"
-                      id="pix"
-                      name="pay"
-                      value="pix"
-                      checked={formData.pay === 'pix'}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="order-form__input-box order-form__input-box_radio">
-                    <label className="order-form__label" htmlFor="debito">
-                      Cartão de débito
-                    </label>
-                    <Input
-                      className="order-form__input order-form__input_radio"
-                      type="radio"
-                      id="debito"
-                      name="pay"
-                      value="debito"
-                      checked={formData.pay === 'debito'}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="order-form__input-box order-form__input-box_radio">
-                    <label className="order-form__label" htmlFor="credito">
-                      Cartão de crédito
-                    </label>
-                    <Input
-                      className="order-form__input order-form__input_radio"
-                      type="radio"
-                      id="credito"
-                      name="pay"
-                      value="credito"
-                      checked={formData.pay === 'credito'}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </fieldset>
-
-                {formData.pay === 'pix' && (
-                  <fieldset className="order-form__field">
-                    <legend className="order-form__legend">Dados para PIX:</legend>
-                    <dl className="order-form__pix-details">
-                      <dt className="order-form__pix-term">Chave PIX: </dt>
-                      <dd className="order-form__pix-description">portfolio@exemplo.com</dd>
-                    </dl>
-
-                    <p className="order-form__pix-label">QR Code:</p>
-                    <img
-                      className="order-form__pix-qr-img"
-                      src={qrCodeImg}
-                      alt="Imagem demonstrativa de um QR Code com desenho centralizado de coração."
-                    />
-                  </fieldset>
-                )}
-
-                {formData.pay === 'debito' && (
-                  <fieldset className="order-form__field">
-                    <legend className="order-form__legend">Dados do cartão de débito:</legend>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Nome: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Nº do cartão: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Bandeira: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Validade: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Código: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                  </fieldset>
-                )}
-
-                {formData.pay === 'credito' && (
-                  <fieldset className="order-form__field">
-                    <legend className="order-form__legend">Dados do cartão de crédito:</legend>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Nome: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Nº do cartão: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Bandeira: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Validade: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Código: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                    <div className="order-form__input-box order-form__input-box_pay">
-                      <label className="order-form__label">Parcelas: </label>
-                      <input className="order-form__input" disabled />
-                    </div>
-                  </fieldset>
-                )}
-
-                <p className="order-form__notice">
-                  ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
-                </p>
-
-                {(loadingSendOrder || loadingSendSubscribeOrder) && (
-                  <Loader className="order-form__loader">
-                    Mais um pouco menos de desperdício... Enviando pedido...
-                  </Loader>
-                )}
-
-                {(localErrorSendOrder || localErrorSendSubscribeOrder) && (
-                  <Toast
-                    className="order-form__toast"
-                    message={
-                      localErrorSendOrder
-                        ? localErrorSendOrder.message
-                        : localErrorSendSubscribeOrder.message
-                    }
-                  ></Toast>
-                )}
-
-                <Button className="order-form__button" type="submit">
-                  Comprar {formData.pay !== '' && `no ${typeOfPay}`}
-                </Button>
-              </form>
+              <CheckoutForm
+                cleanCartAction={cleanCartAction}
+                user={user}
+                navigate={navigate}
+                cartData={cartData}
+                cartItems={cartItems}
+              />
             )}
 
             {!canBuy && (
               <>
-                {(loadingSendOrder || loadingSendSubscribeOrder) && (
+                {loadingSendSubscribeOrder && (
                   <Loader className="checkout__loader">
                     Mais um pouco menos de desperdício... Enviando pedido...
                   </Loader>
                 )}
 
-                {(localErrorSendOrder || localErrorSendSubscribeOrder) && (
+                {localErrorSendSubscribeOrder && (
                   <Toast
                     className="checkout__toast"
-                    message={
-                      localErrorSendOrder
-                        ? localErrorSendOrder.message
-                        : localErrorSendSubscribeOrder.message
-                    }
+                    message={localErrorSendSubscribeOrder.message}
                   ></Toast>
                 )}
 
