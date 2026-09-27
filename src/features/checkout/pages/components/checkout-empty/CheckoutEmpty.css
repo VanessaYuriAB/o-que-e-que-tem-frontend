@@ -1,6 +1,6 @@
 /* Mobile first (padrão) */
 
-.checkout__empty-box {
+.empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,22 +8,21 @@
   justify-content: space-between;
 }
 
-.checkout__empty-text {
+.empty__text {
   width: 85%;
 }
-
-.checkout__empty-links-toast {
+.empty__toast {
   justify-items: center;
   width: 100%;
   margin: 3rem auto 0;
 }
 
-.checkout__empty-links {
+.empty__links {
   width: 100%;
   margin-top: 2rem;
 }
 
-.checkout__empty-link {
+.empty__link {
   display: block;
   margin-inline: auto;
   max-width: 75%;
@@ -32,25 +31,25 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .checkout__empty-text {
+  .empty__text {
     width: 45%;
   }
 
-  .checkout__empty-text_toast {
+  .empty__text_toast {
     width: 90%;
   }
 
-  .checkout__empty-links-toast {
+  .empty__toast {
     max-width: 50%;
   }
 
-  .checkout__empty-list {
+  .empty__list {
     display: flex;
     column-gap: 2rem;
     justify-content: center;
   }
 
-  .checkout__empty-link {
+  .empty__link {
     margin-inline: 0;
     max-width: fit-content;
   }
