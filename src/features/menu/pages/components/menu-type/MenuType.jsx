@@ -85,44 +85,44 @@ function MenuType({ category }) {
   /* EARLY RETURNS DEPOIS DE HOOKS */
 
   if (loadingMenu) {
-    return <Loader className="menu__section-loader" />;
+    return <Loader className="type__loader" />;
   }
 
   if (localErrorMenu) {
-    return <Toast className="menu__section-toast" message={localErrorMenu.message} />;
+    return <Toast className="type__toast" message={localErrorMenu.message} />;
   }
 
   /* RETURN: TODOS OU POR CATEGORIA */
 
   return (
-    <section className="menu__section">
-      <ul className="menu__section-list">
+    <section className="type menu__type">
+      <ul className="type__list">
         {typeItems.map((item) => {
           const isItemAdded =
             cartItems?.some((cartItem) => cartItem.productName === item.productName) ?? false;
 
           return (
-            <li className="menu__section-item" key={item._id}>
-              <h3 className="menu__section-title">{item.productName}</h3>
-              {category === 'todos' && <p className="menu__section-type">{item.category}</p>}
+            <li className="type__card" key={item._id}>
+              <h3 className="type__title">{item.productName}</h3>
+              {category === 'todos' && <p className="type__category">{item.category}</p>}
 
               {loading && activeItemId === item._id && (
-                <Loader className="menu__section-loader">Adicionando item...</Loader>
+                <Loader className="type__loader">Adicionando item...</Loader>
               )}
 
               {removeLoading && activeItemId === item._id && (
-                <Loader className="menu__section-loader">Removendo item...</Loader>
+                <Loader className="type__loader">Removendo item...</Loader>
               )}
 
               {localItemError.id === item._id && (
                 <Toast
-                  className="menu__section-toast menu__section-toast_item"
+                  className="type__toast type__toast_item"
                   message={localItemError.message}
                 ></Toast>
               )}
 
               <Button
-                className={`menu__section-button ${isItemAdded ? 'menu__section-button_added' : ''}`}
+                className={`type__button ${isItemAdded ? 'type__button_added' : ''}`}
                 onClick={() => handleToggleItem(item, isItemAdded)}
               >
                 {isItemAdded ? 'REMOVER' : 'ADICIONAR'}
@@ -132,7 +132,7 @@ function MenuType({ category }) {
         })}
       </ul>
       <Button
-        className="menu__section-button menu__section-button_pack"
+        className="type__button type__button_pack"
         type="button"
         onClick={() => {
           navigate('/cart');
