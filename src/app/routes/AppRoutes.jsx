@@ -39,9 +39,7 @@ const OrdersProfile = lazy(
   () => import('../../features/profile/pages/components/orders-profile/OrdersProfile.jsx')
 );
 
-const OrderTracking = lazy(
-  () => import('../../features/orders/pages/order-tracking/OrderTracking.jsx')
-);
+const OrderTracking = lazy(() => import('../../features/orders/pages/OrderTracking.jsx'));
 
 const MsgsProfile = lazy(
   () => import('../../features/profile/pages/components/msgs-profile/MsgsProfile.jsx')

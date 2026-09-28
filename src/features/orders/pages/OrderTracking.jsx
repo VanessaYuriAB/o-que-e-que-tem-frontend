@@ -1,8 +1,8 @@
-import Input from '../../../../shared/components/ui/input/Input.jsx';
-import Button from '../../../../shared/components/ui/button/Button.jsx';
+import Input from '../../../shared/components/ui/input/Input.jsx';
+import Button from '../../../shared/components/ui/button/Button.jsx';
 import { useState } from 'react';
-import useOrders from '../../hooks/useOrders.js';
-import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
+import useOrders from '../hooks/useOrders.js';
+import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import './OrderTracking.css';
 
 function OrderTracking() {
