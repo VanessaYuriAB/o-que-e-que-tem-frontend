@@ -39,61 +39,7 @@ function MsgsProfile() {
     <section className="profile__msgs profile-history__section">
       <h3 className="profile__msgs-title">Histórico de mensagens</h3>
 
-      {hasMsgs ? (
-        <ul className="profile__msgs-list profile-history__list list-reset">
-          {orderedUserMsgs.map((msg) => {
-            const formattedCreatedAt = new Date(msg.createdAt).toLocaleString('pt-BR');
-            const msgCreatedAt = msg.createdAt.includes('T') ? formattedCreatedAt : msg.createdAt;
-
-            return (
-              <li className="profile__msgs-item" key={msg._id}>
-                <dl className="profile__msgs-details profile-history__details">
-                  <div className="profile__msgs-item-box profile__msgs-item-box_center profile-history__item-box profile-history__item-box_center">
-                    <dt className="profile__msgs-term profile-history__term">Data:</dt>
-                    <dd className="profile__msgs-description profile-history__description">
-                      {msgCreatedAt}
-                    </dd>
-                  </div>
-                  <div className="profile__msgs-item-box profile-history__item-box">
-                    <dt className="profile__msgs-term profile-history__term">Mensagem:</dt>
-                    <dd className="profile__msgs-description profile-history__description">
-                      {msg.message}
-                    </dd>
-                  </div>
-                  <div className="profile__msgs-item-box profile-history__item-box">
-                    <dt className="profile__msgs-term profile-history__term">Forma de contato:</dt>
-                    <dd className="profile__msgs-description profile-history__description">
-                      {msg.method === 'email' ? msg.email : msg.whatsapp}
-                    </dd>
-                  </div>
-                  <div className="profile__msgs-item-box profile-history__item-box">
-                    <dt className="profile__msgs-term profile-history__term">Status:</dt>
-                    <dd className="profile__msgs-description profile-history__description">
-                      {msg?.status ? 'respondida' : 'pendente'}
-                    </dd>
-                  </div>
-                  {msg?.status && (
-                    <>
-                      <div className="profile__msgs-item-box profile-history__item-box">
-                        <dt className="profile__msgs-term profile-history__term">Em:</dt>
-                        <dd className="profile__msgs-description profile-history__description">
-                          {msg.responseAt}
-                        </dd>
-                      </div>
-                      <div className="profile__msgs-item-box profile-history__item-box">
-                        <dt className="profile__msgs-term profile-history__term">Resposta:</dt>
-                        <dd className="profile__msgs-description profile-history__description">
-                          {msg.response}
-                        </dd>
-                      </div>
-                    </>
-                  )}
-                </dl>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
+      {!hasMsgs ? (
         <Toast className="profile__no-msgs-toast profile-history__no-content-toast">
           <p className="profile__no-msgs-text profile-history__no-content-text">
             Você ainda não nos enviou nenhuma mensagem.
@@ -105,6 +51,64 @@ function MsgsProfile() {
             Fale conosco
           </Link>
         </Toast>
+      ) : (
+        <ul className="profile__msgs-list profile-history__list list-reset">
+          {orderedUserMsgs.map((msg) => {
+            const formattedCreatedAt = new Date(msg.createdAt).toLocaleString('pt-BR');
+            const msgCreatedAt = msg.createdAt.includes('T') ? formattedCreatedAt : msg.createdAt;
+
+            return (
+              <li className="profile__msgs-item" key={msg._id}>
+                <article className="profile__msgs-card">
+                  <dl className="profile__msgs-details profile-history__details">
+                    <div className="profile__msgs-item-box profile__msgs-item-box_center profile-history__item-box profile-history__item-box_center">
+                      <dt className="profile__msgs-term profile-history__term">Data:</dt>
+                      <dd className="profile__msgs-description profile-history__description">
+                        {msgCreatedAt}
+                      </dd>
+                    </div>
+                    <div className="profile__msgs-item-box profile-history__item-box">
+                      <dt className="profile__msgs-term profile-history__term">Mensagem:</dt>
+                      <dd className="profile__msgs-description profile-history__description">
+                        {msg.message}
+                      </dd>
+                    </div>
+                    <div className="profile__msgs-item-box profile-history__item-box">
+                      <dt className="profile__msgs-term profile-history__term">
+                        Forma de contato:
+                      </dt>
+                      <dd className="profile__msgs-description profile-history__description">
+                        {msg.method === 'email' ? msg.email : msg.whatsapp}
+                      </dd>
+                    </div>
+                    <div className="profile__msgs-item-box profile-history__item-box">
+                      <dt className="profile__msgs-term profile-history__term">Status:</dt>
+                      <dd className="profile__msgs-description profile-history__description">
+                        {msg?.status ? 'respondida' : 'pendente'}
+                      </dd>
+                    </div>
+                    {msg?.status && (
+                      <>
+                        <div className="profile__msgs-item-box profile-history__item-box">
+                          <dt className="profile__msgs-term profile-history__term">Em:</dt>
+                          <dd className="profile__msgs-description profile-history__description">
+                            {msg.responseAt}
+                          </dd>
+                        </div>
+                        <div className="profile__msgs-item-box profile-history__item-box">
+                          <dt className="profile__msgs-term profile-history__term">Resposta:</dt>
+                          <dd className="profile__msgs-description profile-history__description">
+                            {msg.response}
+                          </dd>
+                        </div>
+                      </>
+                    )}
+                  </dl>
+                </article>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </section>
   );
