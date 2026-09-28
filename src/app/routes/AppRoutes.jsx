@@ -13,7 +13,7 @@ const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
 const Register = lazy(() => import('../../features/auth/pages/register/Register.jsx'));
 
 const Menu = lazy(() => import('../../features/menu/pages/Menu.jsx'));
-const MenuType = lazy(() => import('../../features/menu/pages/components/menu-type/MenuType.jsx'));
+const MenuType = lazy(() => import('../../features/menu/pages/components/MenuType.jsx'));
 
 const Contact = lazy(() => import('../../features/contact/pages/Contact.jsx'));
 const Subscription = lazy(() => import('../../features/subscription/pages/Subscription.jsx'));

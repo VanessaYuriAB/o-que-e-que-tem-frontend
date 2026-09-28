@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
-import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
-import Button from '../../../../../shared/components/ui/button/Button.jsx';
+import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
+import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
+import Button from '../../../../shared/components/ui/button/Button.jsx';
 import { useMemo, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import useCartStore from '../../../../../store/useCartStore.js';
+import useCartStore from '../../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
-import useAuthStore from '../../../../../store/useAuthStore.js';
+import useAuthStore from '../../../../store/useAuthStore.js';
 import './MenuType.css';
 
 function MenuType({ category }) {
