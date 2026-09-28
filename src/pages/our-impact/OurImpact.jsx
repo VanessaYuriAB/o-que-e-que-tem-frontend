@@ -1,6 +1,39 @@
 import './OurImpact.css';
 
 function OurImpact() {
+  const kpiList = [
+    {
+      id: 1,
+      title: '85% de alimentos reaproveitados',
+      text: 'Eficiência na redução do desperdício.',
+    },
+    {
+      id: 2,
+      title: '4.200 refeições produzidas',
+      text: 'Escala do impacto gerado.',
+    },
+    {
+      id: 3,
+      title: 'R$ 96.500 em receita acumulada',
+      text: 'Sustentabilidade financeira do negócio.',
+    },
+    {
+      id: 4,
+      title: '12 parceiros participantes',
+      text: 'Crescimento da rede de mercados parceiros.',
+    },
+    {
+      id: 5,
+      title: '78% de renovação de assinaturas',
+      text: 'Satisfação e fidelização dos clientes.',
+    },
+    {
+      id: 6,
+      title: '1.050 kg de desperdício evitado',
+      text: 'Impacto ambiental positivo.',
+    },
+  ];
+
   return (
     <section className="impact content__impact">
       <h1 className="impact__title">Impactamos positivamente:</h1>
@@ -68,37 +101,16 @@ function OurImpact() {
       <h2 className="impact__subtitle">📈 Indicadores de Impacto (KPIs)</h2>
 
       <ul className="impact__list impact__list_kpi">
-        <li className="impact__item impact__item_kpi">
-          <h3 className="impact__subtitle impact__subtitle_kpi">85% de alimentos reaproveitados</h3>
-          <p className="impact__text impact__text_kpi">Eficiência na redução do desperdício.</p>
-        </li>
-
-        <li className="impact__item impact__item_kpi">
-          <h3 className="impact__subtitle impact__subtitle_kpi">4.200 refeições produzidas</h3>
-          <p className="impact__text impact__text_kpi">Escala do impacto gerado.</p>
-        </li>
-
-        <li className="impact__item impact__item_kpi">
-          <h3 className="impact__subtitle impact__subtitle_kpi">R$ 96.500 em receita acumulada</h3>
-          <p className="impact__text impact__text_kpi">Sustentabilidade financeira do negócio.</p>
-        </li>
-
-        <li className="impact__item impact__item_kpi">
-          <h3 className="impact__subtitle impact__subtitle_kpi">12 parceiros participantes</h3>
-          <p className="impact__text impact__text_kpi">
-            Crescimento da rede de mercados parceiros.
-          </p>
-        </li>
-
-        <li className="impact__item impact__item_kpi">
-          <h3 className="impact__subtitle impact__subtitle_kpi">78% de renovação de assinaturas</h3>
-          <p className="impact__text impact__text_kpi">Satisfação e fidelização dos clientes.</p>
-        </li>
-
-        <li className="impact__item impact__item_kpi">
-          <h3 className="impact__subtitle impact__subtitle_kpi">1.050 kg de desperdício evitado</h3>
-          <p className="impact__text impact__text_kpi">Impacto ambiental positivo.</p>
-        </li>
+        {kpiList.map((kpiItem) => {
+          return (
+            <li className="impact__item impact__item_kpi" key={kpiItem.id}>
+              <article className="impact__card">
+                <h3 className="impact__subtitle impact__subtitle_kpi">{kpiItem.title}</h3>
+                <p className="impact__text impact__text_kpi">{kpiItem.text}</p>
+              </article>
+            </li>
+          );
+        })}
       </ul>
 
       <h2 className="impact__subtitle">💚 Histórias Reais</h2>

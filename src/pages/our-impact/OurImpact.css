@@ -21,9 +21,6 @@
   padding: 0.75em;
   text-align: center;
   font-size: 0.875rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .impact__item_kpi:nth-of-type(1) {
@@ -47,6 +44,12 @@
 
 .impact__item_kpi:nth-of-type(6) {
   background-color: #ff6347;
+}
+
+.impact__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .impact__subtitle_kpi {
