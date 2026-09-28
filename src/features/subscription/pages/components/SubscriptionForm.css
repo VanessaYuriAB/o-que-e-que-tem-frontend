@@ -1,0 +1,147 @@
+/* Mobile first (padrão) */
+
+.subscription__form {
+  margin-top: 3rem;
+}
+
+.form__field {
+  padding: 0.75rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form__field:nth-of-type(5n) {
+  margin-bottom: 0;
+}
+
+.form__field_payment {
+  margin-top: 1.75rem;
+}
+
+.form__legend {
+  text-align: left;
+}
+
+.form__input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.form__input-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.form__input-box_inline {
+  flex-direction: row-reverse;
+  column-gap: 0.5rem;
+  align-items: center;
+  justify-content: left;
+}
+
+.form__label {
+  text-align: left;
+}
+
+.form__label_bold {
+  font-weight: 600;
+}
+
+.form__input_time {
+  width: fit-content;
+}
+
+.form__radios-box {
+  margin-bottom: 1.5rem;
+}
+
+.form__radios-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.form__radios-name {
+  text-align: left;
+  font-weight: 600;
+}
+
+.form__checkboxes-box {
+  margin-bottom: 1.5rem;
+}
+
+.form__checkboxes-name {
+  text-align: left;
+  font-weight: 600;
+}
+
+.form__times-name {
+  text-align: left;
+  font-weight: 600;
+}
+
+.form__times-small {
+  display: block;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.form__times-text {
+  text-align: left;
+}
+
+.form__pix-details {
+  text-align: left;
+}
+
+.form__pix-description {
+  margin-left: 0;
+}
+
+.form__pix-qr-label {
+  text-align: left;
+}
+
+.form__pix-qr-img {
+  width: 150px;
+  height: 150px;
+}
+
+.form__toast {
+  padding: 1em;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form__loader {
+  padding-bottom: 0.5em;
+}
+
+.form__error-toast {
+  margin-bottom: 1rem;
+}
+
+.form__button {
+  margin-bottom: 21.44px; /* margin-top do title */
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .subscription__form {
+    max-width: 80%;
+    margin-inline: auto;
+  }
+
+  .form__pix-details {
+    display: flex;
+    column-gap: 0.5rem;
+    justify-content: center;
+  }
+
+  .form__pix-qr-label {
+    text-align: center;
+  }
+
+  .form__toast {
+    max-width: fit-content;
+  }
+}
