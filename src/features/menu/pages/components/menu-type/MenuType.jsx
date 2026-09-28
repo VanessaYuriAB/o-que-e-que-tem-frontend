@@ -95,38 +95,37 @@ function MenuType({ category }) {
   /* RETURN: TODOS OU POR CATEGORIA */
 
   return (
-    <section className="type menu__type">
+    <div className="type menu__type">
       <ul className="type__list">
         {typeItems.map((item) => {
           const isItemAdded =
             cartItems?.some((cartItem) => cartItem.productName === item.productName) ?? false;
 
+          const removeText =
+            removeLoading && activeItemId === item._id ? 'Removendo item...' : 'REMOVER';
+          const addText =
+            loading && activeItemId === item._id ? 'Adicionando item...' : 'ADICIONAR';
+
           return (
-            <li className="type__card" key={item._id}>
-              <h3 className="type__title">{item.productName}</h3>
-              {category === 'todos' && <p className="type__category">{item.category}</p>}
+            <li className="type__item" key={item._id}>
+              <article className="type__card">
+                <h3 className="type__title">{item.productName}</h3>
+                {category === 'todos' && <p className="type__category">{item.category}</p>}
 
-              {loading && activeItemId === item._id && (
-                <Loader className="type__loader">Adicionando item...</Loader>
-              )}
+                {localItemError.id === item._id && (
+                  <Toast
+                    className="type__toast type__toast_item"
+                    message={localItemError.message}
+                  ></Toast>
+                )}
 
-              {removeLoading && activeItemId === item._id && (
-                <Loader className="type__loader">Removendo item...</Loader>
-              )}
-
-              {localItemError.id === item._id && (
-                <Toast
-                  className="type__toast type__toast_item"
-                  message={localItemError.message}
-                ></Toast>
-              )}
-
-              <Button
-                className={`type__button ${isItemAdded ? 'type__button_added' : ''}`}
-                onClick={() => handleToggleItem(item, isItemAdded)}
-              >
-                {isItemAdded ? 'REMOVER' : 'ADICIONAR'}
-              </Button>
+                <Button
+                  className={`type__button ${isItemAdded ? 'type__button_added' : ''}`}
+                  onClick={() => handleToggleItem(item, isItemAdded)}
+                >
+                  {isItemAdded ? removeText : addText}
+                </Button>
+              </article>
             </li>
           );
         })}
@@ -140,7 +139,7 @@ function MenuType({ category }) {
       >
         Navegar ao Carrinho de sopas, cremes ou patês... :)
       </Button>
-    </section>
+    </div>
   );
 }
 
