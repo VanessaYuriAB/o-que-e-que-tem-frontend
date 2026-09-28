@@ -73,13 +73,13 @@ function errorHandler(error) {
     switch (error.code) {
       case 'ITEM_ADD_FAILED':
         return {
-          message: 'Erro ao adicionar item, tente novamente.',
+          message: `Erro ao adicionar '${error.data.productName}', tente novamente.`,
           scope: 'local',
           code: 'ITEM_ADD_FAILED',
         };
       case 'ITEM_REMOVE_FAILED':
         return {
-          message: 'Erro ao remover item, tente novamente.',
+          message: `Erro ao remover '${error.data.productName}', tente novamente.`,
           scope: 'local',
           code: 'ITEM_REMOVE_FAILED',
         };
