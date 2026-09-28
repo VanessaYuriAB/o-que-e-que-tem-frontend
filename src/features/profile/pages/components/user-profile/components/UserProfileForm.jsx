@@ -1,0 +1,251 @@
+import Button from '../../../../../../shared/components/ui/button/Button.jsx';
+import useAuthStore from '../../../../../../store/useAuthStore.js';
+import { useState } from 'react';
+import Loader from '../../../../../../shared/components/ui/loader/Loader.jsx';
+import Toast from '../../../../../../shared/components/ui/toast/Toast.jsx';
+import Input from '../../../../../../shared/components/ui/input/Input.jsx';
+import Textarea from '../../../../../../shared/components/ui/textarea/Textarea.jsx';
+import useProfile from '../../../../hooks/useProfile.js';
+import '../../../../styles/profile-form.css';
+
+function UserProfileForm() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [confirmActionMsg, setConfirmActionMsg] = useState(null);
+
+  const { loading, localError, setLocalError, updateUser } = useProfile();
+
+  const user = useAuthStore((state) => state.user);
+
+  const [formData, setFormData] = useState({
+    userName: user.userName ?? '',
+    email: user.email ?? '',
+    tel: user.tel ?? '',
+    address: user.address ?? '',
+    number: user.number ?? '',
+    complement: user.complement ?? '',
+    district: user.district ?? '',
+    cep: user.cep ?? '',
+    infoText: user.infoText ?? '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleUpdate = async (data) => {
+    // Envia dados de atualização e seta perfil
+    const result = await updateUser(data);
+
+    if (result.success === true) {
+      setConfirmActionMsg('Perfil atualizado');
+    }
+
+    // Reativa 'disabled', desativando edição e voltando para botão 'Editar'
+    setIsEditing(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleUpdate(formData);
+  };
+
+  return (
+    <form
+      className="user-form profile__user-form profile-form"
+      name="profile-user"
+      onSubmit={handleSubmit} /*noValidate*/
+    >
+      <fieldset className="user-form__field profile-form__field">
+        <legend className="user-form__title profile-form__title">Dados de Contato</legend>
+        <label className="user-form__label profile-form__label" htmlFor="userName">
+          Nome completo:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="text"
+          id="userName"
+          name="userName"
+          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+          title="Seu nome: não são permitidos '<' e '>'."
+          placeholder="Digite seu nome completo"
+          value={formData.userName}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+        <label className="user-form__label profile-form__label" htmlFor="email">
+          E-mail:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="email"
+          id="email"
+          name="email"
+          pattern="^[a-zA-Z0-9_.\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+          title="E-mail válido: contento apenas letras, números, sublinhados, pontos ou hífens."
+          placeholder="O seu e-mail, válido"
+          value={formData.email}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+        <label className="user-form__label profile-form__label" htmlFor="tel">
+          Telefone:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="tel"
+          id="tel"
+          name="tel"
+          inputMode="numeric"
+          minLength={14}
+          maxLength={15}
+          pattern="^\([1-9]{2}\)\s[0-9]?[0-9]{4}-[0-9]{4}$"
+          title="Fixo ou celular. Formato: (xx) xxxxx-xxxx."
+          placeholder="Seu telefone, fixo ou celular"
+          value={formData.tel}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+      </fieldset>
+      <fieldset className="user-form__field profile-form__field">
+        <legend className="user-form__title profile-form__title">Dados de Endereço</legend>
+        <label className="user-form__label profile-form__label" htmlFor="address">
+          Logradouro (rua, avenida, praça, etc):
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="text"
+          id="address"
+          name="address"
+          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+          title="Seu endereço para delivery: não são permitidos '<' e '>'."
+          placeholder="O seu endereço padrão, caso a entrega seja por delivery"
+          value={formData.address}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+        <label className="user-form__label profile-form__label" htmlFor="number">
+          Nº:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="text"
+          id="number"
+          name="number"
+          inputMode="numeric"
+          pattern="^[a-zA-Z0-9\s]*$" /* apenas números, letras e espaços em branco */
+          title="O número do seu endereço para delivery: apenas números e/ou letras."
+          placeholder="O nº do endereço"
+          value={formData.number}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+        <label className="user-form__label profile-form__label" htmlFor="complement">
+          Complemento:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="text"
+          id="complement"
+          name="complement"
+          pattern="^[a-zA-Z0-9\s.\-]*$" /* apenas números, letras, espaços em branco, pontos e traços */
+          title="O complemento do seu endereço para delivery: apenas números, letras, espaços em branco, pontos e/ou traços."
+          placeholder="Se não houver, digite traço (-)"
+          value={formData.complement}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+        <label className="user-form__label profile-form__label" htmlFor="district">
+          Bairro:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="text"
+          id="district"
+          name="district"
+          pattern="^[a-zA-ZÀ-ÿ0-9\s]*$" /* apenas números, letras, acentos, e espaços em branco */
+          title="O bairro do seu endereço para delivery: apenas números e/ou letras."
+          placeholder="O bairro"
+          value={formData.district}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+        <label className="user-form__label profile-form__label" htmlFor="cep">
+          CEP:
+        </label>
+        <Input
+          className="user-form__input profile-form__input"
+          type="text"
+          id="cep"
+          name="cep"
+          inputMode="numeric"
+          pattern="^[0-9]{5}-[0-9]{3}$" /* apenas números e traço */
+          title="O CEP do seu endereço para delivery: apenas números e traço."
+          placeholder="E o CEP"
+          value={formData.cep}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+      </fieldset>
+      <fieldset className="user-form__field profile-form__field">
+        <legend className="user-form__title profile-form__title">Informações Adicionais</legend>
+        <label className="user-form__label profile-form__label" htmlFor="infoText">
+          Observação:
+        </label>
+        <Textarea
+          className="user-form__textarea profile-form__textarea"
+          id="infoText"
+          name="infoText"
+          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+          title="Informações relevantes, exemplo: ponto de referência ou contato para entrega (nome, tel e RG/CPF)."
+          placeholder="Opcional. Por exemplo, um ponto de referência ou um contato oficial para entrega (nome, tel e RG/CPF)."
+          value={formData.infoText}
+          onChange={handleChange}
+          disabled={!isEditing}
+        />
+      </fieldset>
+
+      {loading && (
+        <Loader className="user-form__loader profile-form__loader">
+          Atualizando dados de perfil...
+        </Loader>
+      )}
+
+      {localError && (
+        <Toast className="user-form__toast profile-form__toast" message={localError.message} />
+      )}
+
+      {confirmActionMsg && (
+        <Toast className="user-form__toast profile-form__toast" message={confirmActionMsg}></Toast>
+      )}
+
+      <div className="user-form__button-box">
+        {!isEditing && (
+          <Button
+            className="user-form__button profile-form__button"
+            type="button"
+            onClick={() => {
+              setLocalError(null);
+              setConfirmActionMsg(null);
+              setIsEditing(true); // desativa atributo 'disabled', habilitando edição e alternando para botão 'Enviar'
+            }}
+          >
+            Editar
+          </Button>
+        )}
+
+        {isEditing && (
+          <Button
+            className="user-form__button profile-form__button"
+            type="submit"
+            disabled={loading}
+          >
+            Enviar
+          </Button>
+        )}
+      </div>
+    </form>
+  );
+}
+
+export default UserProfileForm;
