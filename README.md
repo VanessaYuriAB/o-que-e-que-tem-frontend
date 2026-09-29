@@ -1015,6 +1015,42 @@ Algumas decisões exigiram validação conceitual:
 Esse processo exigiu a tradução de regras de negócio para entidades, estados e fluxos de navegação
 da aplicação.
 
+Fluxo de Compra Avulsa:
+
+```
+Autenticação
+↓
+Menu (escolha dos ingredientes do pedido avulso)
+↓
+Carrinho
+↓
+Checkout para pagamento
+↓
+Pedido
+↓
+Histórico
+↓
+Rastreamento
+```
+
+Fluxo de Compra de Assinatura:
+
+```
+Autenticação
+↓
+Assinatura
+↓
+Menu (escolha de ingredientes do próximo pedido)
+↓
+Checkout para confirmação
+↓
+Pedido recorrente
+↓
+Histórico
+↓
+Rastreamento
+```
+
 [Voltar ao topo 🔝](#top)
 
 ---
