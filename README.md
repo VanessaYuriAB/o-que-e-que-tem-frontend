@@ -300,6 +300,11 @@ src
 │ ├── orders
 │ ├── partner
 │ ├── profile
+│ │ ├── hooks
+│ │ ├── pages
+│ │ ├── services
+│ │ ├── styles
+│ │ └── utils
 │ ├── recipe-widget
 │ ├── recipes
 │ ├── subscription
@@ -314,11 +319,11 @@ src
 ├── shared
 │ ├── components
 │ ├── constants
+│ ├── styles
 │ └── utils
 │
-├── store
-│
-└── styles
+└── store
+
 ```
 
 ### 🏛️ Organização da arquitetura
@@ -344,8 +349,6 @@ shared/ → recursos reutilizáveis por toda a aplicação
 store/ → gerenciamento de estado global da aplicação utilizando Zustand; responsável pela
 autenticação, controle de loading, erros globais, atualização de perfil, sincronização de sessão,
 persistência local para carrinho
-
-styles/ → estilos globais da aplicação
 
 [Voltar ao topo 🔝](#top)
 
