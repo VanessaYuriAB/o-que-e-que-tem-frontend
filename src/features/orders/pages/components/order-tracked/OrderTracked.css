@@ -1,0 +1,54 @@
+/* Mobile first (padrão) */
+
+.tracker__result {
+  margin-top: 1rem;
+}
+
+.result__details {
+  text-align: left;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.result__detail-box {
+  margin-bottom: 0.5rem;
+}
+
+.result__detail-box:last-of-type {
+  margin-bottom: 0;
+}
+
+.result__detail-box_inline {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.result__detail {
+  font-weight: 650;
+}
+
+.result__description {
+  margin-left: 0;
+}
+
+.result__items-list {
+  list-style: decimal-leading-zero;
+  padding-left: 1.75em;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .result__result {
+    margin-top: 2rem;
+  }
+
+  .result__details {
+    width: 80%;
+  }
+
+  .result__detail-box {
+    display: flex;
+    column-gap: 0.5rem;
+  }
+}

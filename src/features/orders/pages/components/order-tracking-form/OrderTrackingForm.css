@@ -1,0 +1,48 @@
+/* Mobile first (padrão) */
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.form__legend {
+  margin-bottom: 2rem;
+}
+
+.form__input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__input {
+  width: 90%;
+  align-self: center;
+}
+
+.form__toast {
+  margin: 2rem auto 0;
+  width: 90%;
+  padding: 1em;
+}
+
+.form__button {
+  width: fit-content;
+  align-self: center;
+}
+
+/* Tablet e acima */
+
+@media (min-width: 768px) {
+  .form__input-box {
+    flex-direction: row;
+    column-gap: 0.5rem;
+    align-self: center;
+    align-items: center;
+    width: 90%;
+  }
+
+  .form__label {
+    width: 30%;
+  }
+}
