@@ -951,6 +951,22 @@ Foi implementado um mecanismo que permite:
 - carrinhos independentes por usuário;
 - restauração correta dos dados após login, logout e atualização da página.
 
+Fluxo:
+
+```
+Visitante
+↓
+Adiciona itens
+↓
+localStorage temporário
+↓
+Login
+↓
+Migração automática
+↓
+Persistência do usuário
+```
+
 Esse fluxo exigiu cuidados especiais com persistência local, sincronização de estado e reidratação
 do Zustand.
 
