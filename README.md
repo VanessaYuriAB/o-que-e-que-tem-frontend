@@ -250,6 +250,10 @@ API
 Mock API / Backend
 ```
 
+Os hooks concentram estados locais, loading, tratamento de erro e orquestração dos fluxos da
+feature. Os services são responsáveis exclusivamente pela comunicação com APIs e transformação dos
+dados.
+
 **Exemplo:**
 
 ```
