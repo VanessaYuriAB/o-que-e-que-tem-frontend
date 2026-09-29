@@ -169,7 +169,7 @@ A equipe de triagem atua em duas frentes:
 - Página institucional Sobre Nós
 - Página institucional Nosso Impacto
 - Formulário de solicitação de parceria
-- Persistência simulada através de `Mock API`
+- Persistência de desenvolvimento simulada através de `Mock API`
 - Gerenciamento de estado com `Zustand`
 - Tratamento padronizado de erros
 - Layout responsivo `mobile-first`
@@ -275,6 +275,16 @@ Essa separação facilita:
 - escalabilidade;
 - testes;
 - substituição de mocks por APIs reais.
+
+### Mock Backend
+
+O projeto utiliza uma camada de mock backend desenvolvida para simular uma API REST real, incluindo:
+
+- contratos padronizados;
+- status HTTP;
+- erros simulados;
+- persistência em memória;
+- alternância Mock/API por configuração.
 
 [Voltar ao topo 🔝](#top)
 
