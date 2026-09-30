@@ -11,16 +11,12 @@ import SubscriptionRoute from './SubscriptionRoute.jsx';
 const Home = lazy(() => import('../../pages/home/Home.jsx'));
 const Login = lazy(() => import('../../features/auth/pages/login/Login.jsx'));
 const Register = lazy(() => import('../../features/auth/pages/register/Register.jsx'));
-
 const Menu = lazy(() => import('../../features/menu/pages/Menu.jsx'));
 const MenuType = lazy(() => import('../../features/menu/pages/components/MenuType.jsx'));
-
 const Contact = lazy(() => import('../../features/contact/pages/Contact.jsx'));
 const Subscription = lazy(() => import('../../features/subscription/pages/Subscription.jsx'));
-
 const Profile = lazy(() => import('../../features/profile/pages/Profile.jsx'));
 const Logout = lazy(() => import('../../features/auth/pages/logout/Logout.jsx'));
-
 const UserProfile = lazy(
   () => import('../../features/profile/pages/components/user-profile/UserProfile.jsx')
 );
@@ -28,29 +24,19 @@ const SubscriptionProfile = lazy(
   () =>
     import('../../features/profile/pages/components/subscription-profile/SubscriptionProfile.jsx')
 );
-
 const Cart = lazy(() => import('../../features/cart/pages/Cart.jsx'));
-
 const Checkout = lazy(() => import('../../features/checkout/pages/Checkout.jsx'));
-
 const SuccessOrder = lazy(() => import('../../pages/success-order/SuccessOrder.jsx'));
-
 const OrdersProfile = lazy(
   () => import('../../features/profile/pages/components/orders-profile/OrdersProfile.jsx')
 );
-
 const OrderTracking = lazy(() => import('../../features/orders/pages/OrderTracking.jsx'));
-
 const MsgsProfile = lazy(
   () => import('../../features/profile/pages/components/msgs-profile/MsgsProfile.jsx')
 );
-
 const AboutUs = lazy(() => import('../../pages/about-us/AboutUs.jsx'));
-
 const OurImpact = lazy(() => import('../../pages/our-impact/OurImpact.jsx'));
-
 const Partner = lazy(() => import('../../features/partner/pages/Partner.jsx'));
-
 const Recipes = lazy(() => import('../../features/recipes/pages/Recipes.jsx'));
 
 function AppRoutes() {
