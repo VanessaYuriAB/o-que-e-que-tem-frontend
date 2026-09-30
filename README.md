@@ -10,29 +10,30 @@
 ## Índice
 
 1. [Sobre o projeto 📖](#-1-sobre-o-projeto)
-2. [Problema 🎯](#-2-problema)
-3. [Solução 💡](#-3-solução)
-4. [Principais funcionalidades ✨](#-4-principais-funcionalidades)
-5. [Boas práticas adotadas ✅](#-5-boas-práticas-adotadas)
-6. [Setup profissional 🧰](#-6-setup-profissional)
-7. [Arquitetura do projeto 🏗️](#-7-arquitetura-do-projeto)
-8. [Estrutura de diretórios 📂](#-8-estrutura-de-diretórios)
-9. [Decisões de arquitetura 🧠](#-9-decisões-de-arquitetura)
-10. [Gerenciamento de estado global 🗃️](#-10-gerenciamento-de-estado-global)
-11. [Autenticação 🔒](#-11-autenticação)
-12. [Performance ⚡](#-12-performance)
-13. [Acessibilidade ♿](#-13-acessibilidade)
-14. [Responsividade 📱](#-14-responsividade)
-15. [Stack atual 🛠️](#-15-stack-atual)
-16. [Como executar ▶️](#-16-como-executar)
-17. [Status atual 🔄](#-17-status-atual)
-18. [Pagamentos 💳](#-18-pagamentos)
-19. [Principais desafios 🏔️](#-19-principais-desafios-técnicos)
-20. [Principais aprendizados 🎓](#-20-principais-aprendizados)
-21. [Melhorias 🔧](#-21-melhorias)
-22. [Roadmap 🗺️](#-22-roadmap)
-23. [Próximos passos 🚀](#-23-próximos-passos)
-24. [Autora 🌱](#-24-autora)
+2. [Screenshots 📸](#-2-screenshots)
+3. [Problema 🎯](#-3-problema)
+4. [Solução 💡](#-4-solução)
+5. [Principais funcionalidades ✨](#-5-principais-funcionalidades)
+6. [Boas práticas adotadas ✅](#-6-boas-práticas-adotadas)
+7. [Setup profissional 🧰](#-7-setup-profissional)
+8. [Arquitetura do projeto 🏗️](#-8-arquitetura-do-projeto)
+9. [Estrutura de diretórios 📂](#-9-estrutura-de-diretórios)
+10. [Decisões de arquitetura 🧠](#-10-decisões-de-arquitetura)
+11. [Gerenciamento de estado global 🗃️](#-11-gerenciamento-de-estado-global)
+12. [Autenticação 🔒](#-12-autenticação)
+13. [Performance ⚡](#-13-performance)
+14. [Acessibilidade ♿](#-14-acessibilidade)
+15. [Responsividade 📱](#-15-responsividade)
+16. [Stack atual 🛠️](#-16-stack-atual)
+17. [Como executar ▶️](#-17-como-executar)
+18. [Status atual 🔄](#-18-status-atual)
+19. [Pagamentos 💳](#-19-pagamentos)
+20. [Principais desafios 🏔️](#-20-principais-desafios-técnicos)
+21. [Principais aprendizados 🎓](#-21-principais-aprendizados)
+22. [Melhorias 🔧](#-22-melhorias)
+23. [Roadmap 🗺️](#-23-roadmap)
+24. [Próximos passos 🚀](#-24-próximos-passos)
+25. [Autora 🌱](#-25-autora)
 
 <a id="-1-sobre-o-projeto"></a>
 
@@ -58,9 +59,71 @@ O projeto propõe uma solução baseada em tecnologia, sustentabilidade e econom
 
 ---
 
-<a id="-2-problema"></a>
+<a id="-2-screenshots"></a>
 
-## 🎯 2. Problema
+## 📸 Screenshots
+
+### 🏠 Página Inicial (📱 Experiência Mobile-First)
+
+Versão responsiva da plataforma desenvolvida com abordagem Mobile First: tela inicial apresentando o
+propósito do negócio, os benefícios da plataforma e o modelo de assinatura flexível.
+
+A página explica a proposta de reduzir o desperdício alimentar por meio da transformação de
+ingredientes próximos ao vencimento em refeições personalizadas. Também apresenta os diferenciais do
+produto, como sustentabilidade, flexibilidade na assinatura e adaptação do cardápio à
+disponibilidade real dos insumos.
+
+![Home - Mobile First](./screenshots/home-mobile.png)
+
+### 🍲 Cardápio Dinâmico
+
+Tela principal de navegação do cardápio, exibindo os ingredientes disponíveis organizados por
+categorias alimentares e atualizados de acordo com a disponibilidade simulada do estoque.
+
+![Menu](./screenshots/menu.png)
+
+### 🛒 Carrinho Persistente
+
+Fluxo de finalização de pedidos com gerenciamento de itens persistidos entre sessões e integração
+preparada para autenticação.
+
+A aplicação permite personalizar a experiência de compra, possibilitando a escolha entre sopa, creme
+ou patê, definição do método de entrega, agendamento da próxima entrega e informações
+complementares. O fluxo foi modelado para suportar tanto pedidos avulsos quanto assinaturas
+recorrentes.
+
+![Cart - Order1](./screenshots/cart-order1.png)
+
+![Cart - Order2](./screenshots/cart-order2.png)
+
+![Cart - Subscription](./screenshots/cart-subscription.png)
+
+### ✅ Checkout e Finalização do Pedido
+
+A etapa de checkout permite ao usuário revisar os itens selecionados e outras informações do pedido.
+A interface foi preparada para suportar fluxos de pedidos avulsos e recorrentes, simulando um
+cenário próximo ao de aplicações reais de e-commerce e delivery.
+
+![Checkout - Order](./screenshots/checkout-order.png)
+
+![Checkout - Subscription](./screenshots/checkout-subscription.png)
+
+### 👤 Área do Usuário (Perfil)
+
+Painel de gerenciamento do usuário. A área autenticada centraliza as informações do usuário e
+permite gerenciar diferentes aspectos da plataforma em um único local. O módulo foi estruturado para
+suportar dados cadastrais, configurações de assinatura, acesso ao histórico de pedidos, mensagens
+enviadas.
+
+![Profile](./screenshots/profile.png)
+
+[Voltar ao topo 🔝](#top)
+
+---
+
+<a id="-3-problema"></a>
+
+## 🎯 3. Problema
 
 O desperdício de alimentos gera impactos ambientais, sociais e econômicos significativos.
 
@@ -79,9 +142,9 @@ Os principais desafios identificados foram:
 
 ---
 
-<a id="-3-solução"></a>
+<a id="-4-solução"></a>
 
-## 💡 3. Solução
+## 💡 4. Solução
 
 A plataforma funciona como uma cozinha sustentável de operação digital.
 
@@ -142,9 +205,9 @@ A equipe de triagem atua em duas frentes:
 
 ---
 
-<a id="-4-principais-funcionalidades"></a>
+<a id="-5-principais-funcionalidades"></a>
 
-## ✨ 4. Principais funcionalidades
+## ✨ 5. Principais funcionalidades
 
 ### Atualmente implementadas
 
@@ -178,9 +241,9 @@ A equipe de triagem atua em duas frentes:
 
 ---
 
-<a id="-5-boas-práticas-adotadas"></a>
+<a id="-6-boas-práticas-adotadas"></a>
 
-## ✅ 5. Boas práticas adotadas
+## ✅ 6. Boas práticas adotadas
 
 - Feature-Based Architecture (abordagem leve / adaptada)
 - Component-Based Design
@@ -204,9 +267,9 @@ A equipe de triagem atua em duas frentes:
 
 ---
 
-<a id="-6-setup-profissional"></a>
+<a id="-7-setup-profissional"></a>
 
-## 🧰 6. Setup profissional
+## 🧰 7. Setup profissional
 
 O projeto foi configurado com um pipeline completo de qualidade de código:
 
@@ -225,9 +288,9 @@ Garantindo consistência, padronização e qualidade desde o início do desenvol
 
 ---
 
-<a id="-7-arquitetura-do-projeto"></a>
+<a id="-8-arquitetura-do-projeto"></a>
 
-## 🏗️ 7. Arquitetura do projeto
+## 🏗️ 8. Arquitetura do projeto
 
 O frontend foi estruturado utilizando uma combinação entre:
 
@@ -290,9 +353,9 @@ O projeto utiliza uma camada de mock backend desenvolvida para simular uma API R
 
 ---
 
-<a id="-8-estrutura-do-projeto"></a>
+<a id="-9-estrutura-do-projeto"></a>
 
-## 📂 8. Estrutura de diretórios
+## 📂 9. Estrutura de diretórios
 
 ```
 src
@@ -368,9 +431,9 @@ persistência local para carrinho
 
 ---
 
-<a id="-9-decisões-de-arquitetura"></a>
+<a id="-10-decisões-de-arquitetura"></a>
 
-## 🧠 9. Decisões de arquitetura
+## 🧠 10. Decisões de arquitetura
 
 ### Feature-Based Architecture (leve)
 
@@ -593,9 +656,9 @@ Decide como apresentar o erro ao usuário.
 
 ---
 
-<a id="-10-gerenciamento-de-estado-global"></a>
+<a id="-11-gerenciamento-de-estado-global"></a>
 
-## ⚡ 10. Gerenciamento de estado global
+## ⚡ 11. Gerenciamento de estado global
 
 O projeto utiliza:
 
@@ -618,9 +681,9 @@ Principais características:
 
 ---
 
-<a id="-11-autenticação"></a>
+<a id="-12-autenticação"></a>
 
-## 🔒 11. Autenticação
+## 🔒 12. Autenticação
 
 Arquitetura preparada para:
 
@@ -659,9 +722,9 @@ preservando `pathname`, `query parameters` e `hash` da navegação anterior.
 
 ---
 
-<a id="-12-performance"></a>
+<a id="-13-performance"></a>
 
-## 🚀 12. Performance
+## 🚀 13. Performance
 
 Implementações adotadas:
 
@@ -760,9 +823,9 @@ Benefícios:
 
 ---
 
-<a id="-13-acessibilidade"></a>
+<a id="-14-acessibilidade"></a>
 
-## ♿ 13. Acessibilidade
+## ♿ 14. Acessibilidade
 
 Práticas implementadas:
 
@@ -782,9 +845,9 @@ Práticas implementadas:
 
 ---
 
-<a id="-14-responsividade"></a>
+<a id="-15-responsividade"></a>
 
-## 📱 14. Responsividade
+## 📱 15. Responsividade
 
 Estratégia adotada:
 
@@ -803,9 +866,9 @@ Utilizando:
 
 ---
 
-<a id="-15-stack-atual"></a>
+<a id="-16-stack-atual"></a>
 
-## 🛠️ 15. Stack atual
+## 🛠️ 16. Stack atual
 
 ### Frontend
 
@@ -837,9 +900,9 @@ previsibilidade e manutenção dos componentes.
 
 ---
 
-<a id="-16-como-executar"></a>
+<a id="-17-como-executar"></a>
 
-## ▶️ 16. Como executar
+## ▶️ 17. Como executar
 
 ### Pré-requisitos
 
@@ -887,9 +950,9 @@ npm run format
 
 ---
 
-<a id="-17-status-atual"></a>
+<a id="-18-status-atual"></a>
 
-## 🔄 17. Status atual
+## 🔄 18. Status atual
 
 ### Implementado
 
@@ -928,9 +991,9 @@ npm run format
 
 ---
 
-<a id="-18-pagamentos"></a>
+<a id="-19-pagamentos"></a>
 
-## 💳 18. Pagamentos
+## 💳 19. Pagamentos
 
 O checkout presente na aplicação representa apenas uma simulação da experiência de compra.
 
@@ -944,9 +1007,9 @@ e apresentar o fluxo de compra da plataforma.
 
 ---
 
-<a id="-19-principais-desafios-técnicos"></a>
+<a id="-20-principais-desafios-técnicos"></a>
 
-## 🧠 19. Principais desafios técnicos
+## 🧠 20. Principais desafios técnicos
 
 Durante o desenvolvimento do projeto alguns desafios exigiram modelagem, refatorações e ajustes
 arquiteturais relevantes.
@@ -1065,9 +1128,9 @@ Rastreamento
 
 ---
 
-<a id="-20-principais-aprendizados"></a>
+<a id="-21-principais-aprendizados"></a>
 
-## 🎓 20. Principais aprendizados
+## 🎓 21. Principais aprendizados
 
 Este projeto foi o primeiro projeto autoral desenvolvido após a conclusão do Bootcamp de
 Desenvolvimento Web da TripleTen Brasil.
@@ -1114,9 +1177,9 @@ modelagem de produto.
 
 ---
 
-<a id="-21-melhorias"></a>
+<a id="-22-melhorias"></a>
 
-## 🔧 21. Melhorias
+## 🔧 22. Melhorias
 
 Durante a evolução do MVP foram identificadas oportunidades de melhoria relacionadas à experiência
 do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
@@ -1148,9 +1211,9 @@ do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
 
 ---
 
-<a id="-22-roadmap"></a>
+<a id="-23-roadmap"></a>
 
-## 🗺️ 22. Roadmap
+## 🗺️ 23. Roadmap
 
 ### Frontend
 
@@ -1184,9 +1247,9 @@ do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
 
 ---
 
-<a id="-23-próximos-passos"></a>
+<a id="-24-próximos-passos"></a>
 
-## 🚀 23. Próximos passos
+## 🚀 24. Próximos passos
 
 A versão atual representa a construção da base arquitetural do frontend e da experiência do usuário,
 preparada para futuras integrações com APIs RESTful, autenticação via JWT com cookies HttpOnly e
@@ -1196,9 +1259,9 @@ persistência em MongoDB.
 
 ---
 
-<a id="-24-autora"></a>
+<a id="-25-autora"></a>
 
-## 🌱 24. Autora
+## 🌱 25. Autora
 
 ##### Desenvolvido por Vanessa Yuri A. Brito
 
