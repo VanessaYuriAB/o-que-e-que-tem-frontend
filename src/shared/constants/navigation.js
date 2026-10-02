@@ -69,10 +69,8 @@ export const menuLinks = [
 
 /* Footer */
 
-const itemFooterClassName = 'footer__item';
-
 export const footerLinks = [
-  { to: '/our-impact', class: itemFooterClassName, label: 'Nosso impacto' },
-  { to: '/to-be-a-partner-market', class: itemFooterClassName, label: 'Seja um mercado parceiro' },
-  { to: '/talk-to-us', class: itemFooterClassName, label: 'Fale conosco' },
+  { to: '/our-impact', label: 'Nosso impacto' },
+  { to: '/to-be-a-partner-market', label: 'Seja um mercado parceiro' },
+  { to: '/talk-to-us', label: 'Fale conosco' },
 ];

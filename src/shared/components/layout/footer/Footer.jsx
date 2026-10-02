@@ -16,7 +16,7 @@ function Footer() {
           <nav className={styles.footer__links} aria-label="Menu secundário">
             <ul className={`${styles.footer__list} nav__list`}>
               {footerLinks.map((link) => (
-                <li key={link.to} className={styles[link.class]}>
+                <li key={link.to} className={styles.footer__item}>
                   <NavLink className={customClassName} to={link.to}>
                     {link.label}
                   </NavLink>
