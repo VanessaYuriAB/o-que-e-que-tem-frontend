@@ -7,7 +7,7 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import '../../styles/auth-form.css';
+import styles from '../../styles/auth-form.module.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -57,13 +57,17 @@ function Login() {
 
   return (
     <AuthFormModal>
-      <form className="form-login auth-form" name="login" onSubmit={handleSubmit} /*noValidate*/>
-        <h1 className="form-login__title auth-form__title">Entrar</h1>
-        <fieldset className="form-login__field auth-form__field">
-          <label className="form-login__label auth-form__label">
+      <form
+        className={`form-login ${styles['auth-form']}`}
+        name="login"
+        onSubmit={handleSubmit} /*noValidate*/
+      >
+        <h1 className={`form-login__title ${styles['auth-form__title']}`}>Entrar</h1>
+        <fieldset className={`form-login__field ${styles['auth-form__field']}`}>
+          <label className={`form-login__label ${styles['auth-form__label']}`}>
             E-mail:
             <Input
-              className="form-login__input auth-form__input"
+              className={`form-login__input ${styles['auth-form__input']}`}
               type="email"
               id="email"
               name="email"
@@ -76,10 +80,10 @@ function Login() {
               required
             />
           </label>
-          <label className="form-login__label auth-form__label">
+          <label className={`form-login__label ${styles['auth-form__label']}`}>
             Telefone:
             <Input
-              className="form-login__input auth-form__input"
+              className={`form-login__input ${styles['auth-form__input']}`}
               type="tel"
               id="tel"
               name="tel"
@@ -94,11 +98,11 @@ function Login() {
               required
             />
           </label>
-          <div className="form-login__line auth-form__line"></div>
-          <label className="form-login__label auth-form__label">
+          <div className={`form-login__line ${styles['auth-form__line']}`}></div>
+          <label className={`form-login__label ${styles['auth-form__label']}`}>
             Senha:
             <Input
-              className="form-login__input auth-form__input"
+              className={`form-login__input ${styles['auth-form__input']}`}
               type="password"
               id="password"
               name="password"
@@ -114,17 +118,23 @@ function Login() {
         </fieldset>
 
         {loading && (
-          <Loader className="form-login__loader auth-form__loader">
+          <Loader className={`form-login__loader ${styles['auth-form__loader']}`}>
             Enviando dados de login...
           </Loader>
         )}
 
         {localError && !globalError && (
-          <Toast className="form-login__toast auth-form__toast" message={localError} />
+          <Toast
+            className={`form-login__toast ${styles['auth-form__toast']}`}
+            message={localError}
+          />
         )}
 
         {globalError && (
-          <Toast className="form-login__toast auth-form__toast" message={globalError.message} />
+          <Toast
+            className={`form-login__toast ${styles['auth-form__toast']}`}
+            message={globalError.message}
+          />
         )}
 
         <Button className="form-login__button" type="submit">

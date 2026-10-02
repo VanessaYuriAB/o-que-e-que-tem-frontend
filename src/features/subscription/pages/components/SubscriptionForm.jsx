@@ -8,7 +8,7 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import useSubscription from '../../hooks/useSubscription.js';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useNavigate } from 'react-router-dom';
-import './SubscriptionForm.css';
+import styles from './SubscriptionForm.module.css';
 
 function SubscriptionForm() {
   const navigate = useNavigate();
@@ -167,22 +167,22 @@ function SubscriptionForm() {
 
   return (
     <form
-      className="form subscription__form"
+      className={`${styles.form} ${styles.subscription__form}`}
       name="subscription"
       onSubmit={handleSubmit}
       /*noValidate*/
     >
-      <h2 className="form__title">Assine aqui</h2>
+      <h2 className={styles.form__title}>Assine aqui</h2>
 
-      <fieldset className="form__field">
-        <legend className="form__legend">Dados cadastrais</legend>
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Dados cadastrais</legend>
 
-        <div className="form__input-box">
-          <label className="form__label form__label_bold" htmlFor="userName">
+        <div className={styles['form__input-box']}>
+          <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="userName">
             Seu nome completo:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="text"
             id="userName"
             name="userName"
@@ -196,12 +196,12 @@ function SubscriptionForm() {
           />
         </div>
 
-        <div className="form__input-box">
-          <label className="form__label form__label_bold" htmlFor="email">
+        <div className={styles['form__input-box']}>
+          <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="email">
             E-mail:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="email"
             id="email"
             name="email"
@@ -215,12 +215,15 @@ function SubscriptionForm() {
         </div>
 
         {!user && (
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="confirmEmail">
+          <div className={styles['form__input-box']}>
+            <label
+              className={`${styles.form__label} ${styles.form__label_bold}`}
+              htmlFor="confirmEmail"
+            >
               Confirmação de e-mail:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="email"
               id="confirmEmail"
               name="confirmEmail"
@@ -234,12 +237,12 @@ function SubscriptionForm() {
           </div>
         )}
 
-        <div className="form__input-box">
-          <label className="form__label form__label_bold" htmlFor="tel">
+        <div className={styles['form__input-box']}>
+          <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="tel">
             Telefone:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="tel"
             id="tel"
             name="tel"
@@ -256,12 +259,15 @@ function SubscriptionForm() {
         </div>
 
         {!user && (
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="password">
+          <div className={styles['form__input-box']}>
+            <label
+              className={`${styles.form__label} ${styles.form__label_bold}`}
+              htmlFor="password"
+            >
               Senha:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="password"
               id="password"
               name="password"
@@ -277,12 +283,15 @@ function SubscriptionForm() {
         )}
 
         {!user && (
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="confirmPassword">
-              Confirmação se senha:
+          <div className={styles['form__input-box']}>
+            <label
+              className={`${styles.form__label} ${styles.form__label_bold}`}
+              htmlFor="confirmPassword"
+            >
+              Confirmação de senha:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="password"
               id="confirmPassword"
               name="confirmPassword"
@@ -297,18 +306,18 @@ function SubscriptionForm() {
         )}
       </fieldset>
 
-      <fieldset className="form__field">
-        <legend className="form__legend">Configurações da assinatura</legend>
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Configurações da assinatura</legend>
 
-        <div className="form__radios-box">
-          <p className="form__radios-name">Por quanto tempo?</p>
+        <div className={styles['form__radios-box']}>
+          <p className={styles['form__radios-name']}>Por quanto tempo?</p>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="two">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="two">
               Dois meses
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="radio"
               id="two"
               name="howLong"
@@ -319,12 +328,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="four">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="four">
               Quatro meses
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="radio"
               id="four"
               name="howLong"
@@ -334,12 +343,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="six">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="six">
               Seis meses
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="radio"
               id="six"
               name="howLong"
@@ -349,12 +358,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="twelve">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="twelve">
               Um ano
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="radio"
               id="twelve"
               name="howLong"
@@ -365,17 +374,17 @@ function SubscriptionForm() {
           </div>
         </div>
 
-        <div className="form__checkboxes-box">
-          <p className="form__checkboxes-name">Em quais dias da semana e horários?</p>
+        <div className={styles['form__checkboxes-box']}>
+          <p className={styles['form__checkboxes-name']}>Em quais dias da semana e horários?</p>
 
-          <p className="form__checkboxes-name">Dias:</p>
+          <p className={styles['form__checkboxes-name']}>Dias:</p>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="seg">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="seg">
               Segunda
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="checkbox"
               id="seg"
               name="daysOn"
@@ -385,12 +394,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="ter">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="ter">
               Terça
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="checkbox"
               id="ter"
               name="daysOn"
@@ -400,12 +409,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="qua">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="qua">
               Quarta
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="checkbox"
               id="qua"
               name="daysOn"
@@ -415,12 +424,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="qui">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="qui">
               Quinta
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="checkbox"
               id="qui"
               name="daysOn"
@@ -430,12 +439,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="sex">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="sex">
               Sexta
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="checkbox"
               id="sex"
               name="daysOn"
@@ -446,15 +455,15 @@ function SubscriptionForm() {
           </div>
         </div>
 
-        <div className="form__times-box">
-          <p className="form__times-name">Horários:</p>
+        <div className={styles['form__times-box']}>
+          <p className={styles['form__times-name']}>Horários:</p>
 
           {formData.daysOn.length > 0 ? (
             <>
               {formData.daysOn.map((day) => {
                 return (
-                  <div key={day} className="form__input-box">
-                    <label className="form__label" htmlFor={`schedule-${day}`}>
+                  <div key={day} className={styles['form__input-box']}>
+                    <label className={styles.form__label} htmlFor={`schedule-${day}`}>
                       {day === 'seg' && 'Segunda'}
                       {day === 'ter' && 'Terça'}
                       {day === 'qua' && 'Quarta'}
@@ -463,7 +472,7 @@ function SubscriptionForm() {
                     </label>
 
                     <Input
-                      className="form__input form__input_time"
+                      className={`${styles.form__input} ${styles.form__input_time}`}
                       type="time"
                       id={`schedule-${day}`}
                       name={day}
@@ -475,26 +484,26 @@ function SubscriptionForm() {
                   </div>
                 );
               })}
-              <small className="form__times-small">
+              <small className={styles['form__times-small']}>
                 *Horário de funcionamento: 10h45 às 19h45.*
               </small>
             </>
           ) : (
-            <p className="form__times-text">
+            <p className={styles['form__times-text']}>
               Selecione os dias para poder definir cada horário aqui.
             </p>
           )}
         </div>
 
-        <div className="form__radios-box">
-          <p className="form__radios-name">Qual a forma de entrega padrão?</p>
+        <div className={styles['form__radios-box']}>
+          <p className={styles['form__radios-name']}>Qual a forma de entrega padrão?</p>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="delivery">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="delivery">
               Delivery
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="radio"
               id="delivery"
               name="method"
@@ -505,12 +514,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box form__input-box_inline">
-            <label className="form__label" htmlFor="drive-thru">
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+            <label className={styles.form__label} htmlFor="drive-thru">
               Drive-thru
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="radio"
               id="drive-thru"
               name="method"
@@ -523,15 +532,15 @@ function SubscriptionForm() {
       </fieldset>
 
       {formData.method === 'delivery' && (
-        <fieldset className="form__field">
-          <legend className="form__legend">Endereço para entrega</legend>
+        <fieldset className={styles.form__field}>
+          <legend className={styles.form__legend}>Endereço para entrega</legend>
 
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="cep">
+          <div className={styles['form__input-box']}>
+            <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="cep">
               CEP:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="cep"
               name="cep"
@@ -545,12 +554,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="address">
+          <div className={styles['form__input-box']}>
+            <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="address">
               Logradouro (rua, avenida, praça, etc):
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="address"
               name="address"
@@ -563,12 +572,12 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="number">
+          <div className={styles['form__input-box']}>
+            <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="number">
               Nº:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="number"
               name="number"
@@ -582,12 +591,15 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="complement">
+          <div className={styles['form__input-box']}>
+            <label
+              className={`${styles.form__label} ${styles.form__label_bold}`}
+              htmlFor="complement"
+            >
               Complemento:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="complement"
               name="complement"
@@ -600,12 +612,15 @@ function SubscriptionForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label form__label_bold" htmlFor="district">
+          <div className={styles['form__input-box']}>
+            <label
+              className={`${styles.form__label} ${styles.form__label_bold}`}
+              htmlFor="district"
+            >
               Bairro:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="district"
               name="district"
@@ -620,14 +635,14 @@ function SubscriptionForm() {
         </fieldset>
       )}
 
-      <fieldset className="form__field">
-        <legend className="form__legend">Observação</legend>
-        <div className="form__input-box">
-          <label className="form__label form__label_bold" htmlFor="infoText">
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Observação</legend>
+        <div className={styles['form__input-box']}>
+          <label className={`${styles.form__label} ${styles.form__label_bold}`} htmlFor="infoText">
             Informações adicionais:
           </label>
           <Textarea
-            className="form__textarea"
+            className={styles.form__textarea}
             id="infoText"
             name="infoText"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
@@ -639,15 +654,15 @@ function SubscriptionForm() {
         </div>
       </fieldset>
 
-      <fieldset className="form__field">
-        <legend className="form__legend">Forma de pagamento:</legend>
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Forma de pagamento:</legend>
 
-        <div className="form__input-box form__input-box_inline">
-          <label className="form__label" htmlFor="pix">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+          <label className={styles.form__label} htmlFor="pix">
             PIX
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="radio"
             id="pix"
             name="pay"
@@ -658,12 +673,12 @@ function SubscriptionForm() {
           />
         </div>
 
-        <div className="form__input-box form__input-box_inline">
-          <label className="form__label" htmlFor="debito">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+          <label className={styles.form__label} htmlFor="debito">
             Cartão de débito
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="radio"
             id="debito"
             name="pay"
@@ -673,12 +688,12 @@ function SubscriptionForm() {
           />
         </div>
 
-        <div className="form__input-box form__input-box_inline">
-          <label className="form__label" htmlFor="credito">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_inline']}`}>
+          <label className={styles.form__label} htmlFor="credito">
             Cartão de crédito
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="radio"
             id="credito"
             name="pay"
@@ -690,16 +705,16 @@ function SubscriptionForm() {
       </fieldset>
 
       {formData.pay === 'pix' && (
-        <fieldset className="form__field form__field_payment">
-          <legend className="form__legend">Dados para PIX:</legend>
-          <dl className="form__pix-details">
-            <dt className="form__pix-term">Chave PIX: </dt>
-            <dd className="form__pix-description">portfolio@exemplo.com</dd>
+        <fieldset className={`${styles.form__field} ${styles.form__field_payment}`}>
+          <legend className={styles.form__legend}>Dados para PIX:</legend>
+          <dl className={styles['form__pix-details']}>
+            <dt className={styles['form__pix-term']}>Chave PIX: </dt>
+            <dd className={styles['form__pix-description']}>portfolio@exemplo.com</dd>
           </dl>
 
-          <p className="form__pix-qr-label">QR Code:</p>
+          <p className={styles['form__pix-qr-label']}>QR Code:</p>
           <img
-            className="form__pix-qr-img"
+            className={styles['form__pix-qr-img']}
             src={qrCodeImg}
             alt="Imagem demonstrativa de um QR Code com desenho centralizado de coração."
           />
@@ -707,79 +722,79 @@ function SubscriptionForm() {
       )}
 
       {formData.pay === 'debito' && (
-        <fieldset className="form__field form__field_payment">
-          <legend className="form__legend">Dados do cartão de débito:</legend>
-          <div className="form__input-box">
-            <label className="form__label">Nome: </label>
-            <input className="form__input" disabled />
+        <fieldset className={`${styles.form__field} ${styles.form__field_payment}`}>
+          <legend className={styles.form__legend}>Dados do cartão de débito:</legend>
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Nome: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Nº do cartão: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Nº do cartão: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Bandeira: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Bandeira: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Validade: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Validade: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Código: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Código: </label>
+            <input className={styles.form__input} disabled />
           </div>
         </fieldset>
       )}
 
       {formData.pay === 'credito' && (
-        <fieldset className="form__field form__field_payment">
-          <legend className="form__legend">Dados do cartão de crédito:</legend>
-          <div className="form__input-box">
-            <label className="form__label">Nome: </label>
-            <input className="form__input" disabled />
+        <fieldset className={`${styles.form__field} ${styles.form__field_payment}`}>
+          <legend className={styles.form__legend}>Dados do cartão de crédito:</legend>
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Nome: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Nº do cartão: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Nº do cartão: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Bandeira: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Bandeira: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Validade: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Validade: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Código: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Código: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box">
-            <label className="form__label">Parcelas: </label>
-            <input className="form__input" disabled />
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label}>Parcelas: </label>
+            <input className={styles.form__input} disabled />
           </div>
         </fieldset>
       )}
 
-      <p className="form__note">
+      <p className={styles.form__note}>
         ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
       </p>
 
-      {toast && <Toast className="form__toast" message={toast.message} />}
+      {toast && <Toast className={styles.form__toast} message={toast.message} />}
 
-      {loading && <Loader className="form__loader">Enviando dados de assinatura...</Loader>}
+      {loading && <Loader className={styles.form__loader}>Enviando dados de assinatura...</Loader>}
 
       {localError && localError.status !== 401 && (
-        <Toast className="form__error-toast" message={localError.message} />
+        <Toast className={styles['form__error-toast']} message={localError.message} />
       )}
 
       {isSuccess ? (
-        <Button className="form__button" onClick={() => navigate('/menu')}>
+        <Button className={styles.form__button} onClick={() => navigate('/menu')}>
           Montar minha primeira sopa, meu primeiro creme ou patê :)
         </Button>
       ) : (
-        <Button className="form__button" type="submit">
+        <Button className={styles.form__button} type="submit">
           Assinar {formData.howLong && `por ${howLong}`} :)
         </Button>
       )}

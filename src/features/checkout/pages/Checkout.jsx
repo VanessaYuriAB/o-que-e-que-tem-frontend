@@ -9,7 +9,7 @@ import useAuthStore from '../../../store/useAuthStore.js';
 import useSubscription from '../../subscription/hooks/useSubscription.js';
 import CheckoutForm from './components/checkout-form/CheckoutForm.jsx';
 import CheckoutEmpty from './components/checkout-empty/CheckoutEmpty.jsx';
-import './Checkout.css';
+import styles from './Checkout.module.css';
 
 function Checkout() {
   const navigate = useNavigate();
@@ -93,25 +93,25 @@ function Checkout() {
   };
 
   return (
-    <section className="checkout content__checkout">
+    <section className={`${styles.checkout} ${styles.content__checkout}`}>
       {!isCartReady ? (
         <CheckoutEmpty />
       ) : (
-        <section className="checkout__container">
-          <h1 className="checkout__title">
+        <section className={styles.checkout__container}>
+          <h1 className={styles.checkout__title}>
             {canBuy ? 'Finalize sua compra' : 'Confirme seu próximo pedido'} (:
           </h1>
-          <div className="checkout__box">
-            <aside className="checkout__aside">
-              <h2 className="checkout__subtitle">Detalhes{canBuy ? ' do pedido' : ''}:</h2>
-              <dl className="checkout__details">
-                <div className="checkout__detail checkout__detail_list">
-                  <dt className="checkout__item-term">Items:</dt>
-                  <dd className="checkout__item-description">
-                    <ul className="checkout__item-list list-reset">
+          <div className={styles.checkout__box}>
+            <aside className={styles.checkout__aside}>
+              <h2 className={styles.checkout__subtitle}>Detalhes{canBuy ? ' do pedido' : ''}:</h2>
+              <dl className={styles.checkout__details}>
+                <div className={`${styles.checkout__detail} ${styles.checkout__detail_list}`}>
+                  <dt className={styles['checkout__item-term']}>Items:</dt>
+                  <dd className={styles['checkout__item-description']}>
+                    <ul className={`${styles['checkout__item-list']} list-reset`}>
                       {cartItems.map((item) => {
                         return (
-                          <li className="checkout__item-item" key={item._id}>
+                          <li className={styles['checkout__item-item']} key={item._id}>
                             {item.productName}
                           </li>
                         );
@@ -120,22 +120,22 @@ function Checkout() {
                   </dd>
                 </div>
 
-                <div className="checkout__detail">
-                  <dt className="checkout__item-term">Tipo:</dt>
-                  <dd className="checkout__item-description">
+                <div className={styles.checkout__detail}>
+                  <dt className={styles['checkout__item-term']}>Tipo:</dt>
+                  <dd className={styles['checkout__item-description']}>
                     {cartData.meal === 'pate' ? 'patê' : cartData.meal}
                   </dd>
                 </div>
 
-                <div className="checkout__detail">
-                  <dt className="checkout__item-term">Entrega:</dt>
-                  <dd className="checkout__item-description">{cartData.method}</dd>
+                <div className={styles.checkout__detail}>
+                  <dt className={styles['checkout__item-term']}>Entrega:</dt>
+                  <dd className={styles['checkout__item-description']}>{cartData.method}</dd>
                 </div>
 
                 {cartData.method === 'delivery' && (
-                  <div className="checkout__detail checkout__detail_address">
-                    <dt className="checkout__item-term">Endereço:</dt>
-                    <dd className="checkout__item-description">
+                  <div className={`${styles.checkout__detail} ${styles.checkout__detail_address}`}>
+                    <dt className={styles['checkout__item-term']}>Endereço:</dt>
+                    <dd className={styles['checkout__item-description']}>
                       {cartData.address}, {cartData.number},
                       {cartData.complement === '-' ? ' ' : ' ' + cartData.complement + ', '}
                       {cartData.district}, {cartData.cep}
@@ -144,31 +144,33 @@ function Checkout() {
                 )}
 
                 {cartData.infoText !== '' && (
-                  <div className="checkout__detail checkout__detail_obs">
-                    <dt className="checkout__item-term">Observação:</dt>
-                    <dd className="checkout__item-description">{cartData.infoText}</dd>
+                  <div className={`${styles.checkout__detail} ${styles.checkout__detail_obs}`}>
+                    <dt className={styles['checkout__item-term']}>Observação:</dt>
+                    <dd className={styles['checkout__item-description']}>{cartData.infoText}</dd>
                   </div>
                 )}
 
                 {canBuy && (
-                  <div className="checkout__detail">
-                    <dt className="checkout__item-term">Total:</dt>
-                    <dd className="checkout__item-description">R$ {cartData.amount},00</dd>
+                  <div className={styles.checkout__detail}>
+                    <dt className={styles['checkout__item-term']}>Total:</dt>
+                    <dd className={styles['checkout__item-description']}>
+                      R$ {cartData.amount},00
+                    </dd>
                   </div>
                 )}
 
                 {!canBuy && (
                   <>
-                    <div className="checkout__detail">
-                      <dt className="checkout__item-term">Data:</dt>
-                      <dd className="checkout__item-description">
+                    <div className={styles.checkout__detail}>
+                      <dt className={styles['checkout__item-term']}>Data:</dt>
+                      <dd className={styles['checkout__item-description']}>
                         {nextMealAt} ({nextDayAt})
                       </dd>
                     </div>
 
-                    <div className="checkout__detail">
-                      <dt className="checkout__item-term">Às:</dt>
-                      <dd className="checkout__item-description">{nextTimeAt}</dd>
+                    <div className={styles.checkout__detail}>
+                      <dt className={styles['checkout__item-term']}>Às:</dt>
+                      <dd className={styles['checkout__item-description']}>{nextTimeAt}</dd>
                     </div>
                   </>
                 )}
@@ -188,20 +190,20 @@ function Checkout() {
             {!canBuy && (
               <>
                 {loadingSendSubscribeOrder && (
-                  <Loader className="checkout__loader">
+                  <Loader className={styles.checkout__loader}>
                     Mais um pouco menos de desperdício... Enviando pedido...
                   </Loader>
                 )}
 
                 {localErrorSendSubscribeOrder && (
                   <Toast
-                    className="checkout__toast"
+                    className={styles.checkout__toast}
                     message={localErrorSendSubscribeOrder.message}
                   ></Toast>
                 )}
 
                 <Button
-                  className="checkout__button"
+                  className={styles.checkout__button}
                   type="submit"
                   onClick={handleSubscribeOrderCheckout}
                 >
@@ -210,15 +212,15 @@ function Checkout() {
               </>
             )}
 
-            <nav className="checkout__links" aria-label="Ações para editar a compra">
-              <ul className="checkout__list nav__list">
-                <li className="checkout__list-item">
-                  <Link className="checkout__link link-to-button" to="/menu">
+            <nav className={styles.checkout__links} aria-label="Ações para editar a compra">
+              <ul className={`${styles.checkout__list} nav__list`}>
+                <li className={styles['checkout__list-item']}>
+                  <Link className={`${styles.checkout__link} link-to-button`} to="/menu">
                     Voltar ao cardápio
                   </Link>
                 </li>
-                <li className="checkout__list-item">
-                  <Link className="checkout__link link-to-button" to="/cart">
+                <li className={styles['checkout__list-item']}>
+                  <Link className={`${styles.checkout__link} link-to-button`} to="/cart">
                     Voltar ao carrinho
                   </Link>
                 </li>

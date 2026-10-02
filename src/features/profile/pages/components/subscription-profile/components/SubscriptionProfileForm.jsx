@@ -6,8 +6,8 @@ import Loader from '../../../../../../shared/components/ui/loader/Loader.jsx';
 import useProfile from '../../../../hooks/useProfile.js';
 import getNextDate from '../../../../../../shared/utils/nextSubscriptionDate.js';
 import PropTypes from 'prop-types';
-import '../../../../styles/profile-form.css';
-import './SubscriptionProfileForm.css';
+import profileFormStyles from '../../../../styles/profile-form.module.css';
+import styles from './SubscriptionProfileForm.module.css';
 
 function SubscriptionProfileForm({ user }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -135,25 +135,30 @@ function SubscriptionProfileForm({ user }) {
 
   return (
     <form
-      className="subscription-form profile__subscription-form profile-form"
+      className={`${styles['subscription-form']} ${styles['profile__subscription-form']} ${profileFormStyles['profile-form']}`}
       name="profile-subscription"
       onSubmit={handleSubmit} /*noValidate*/
     >
-      <fieldset className="subscription-form__field profile-form__field">
-        <div className="subscription-form__status-box">
+      <fieldset
+        className={`${styles['subscription-form__field']} ${profileFormStyles['profile-form__field']}`}
+      >
+        <div className={styles['subscription-form__status-box']}>
           <h3
-            className="subscription-form__title profile-form__title"
+            className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
             title="O status da sua assinatura: on ou off."
           >
             Status:
           </h3>
-          <div className="subscription-form__on-off-box">
-            <div className="subscription-form__item-box">
-              <label className="subscription-form__label profile-form__label" htmlFor="on">
+          <div className={styles['subscription-form__on-off-box']}>
+            <div className={styles['subscription-form__item-box']}>
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="on"
+              >
                 On
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="radio"
                 id="on"
                 name="status"
@@ -163,12 +168,15 @@ function SubscriptionProfileForm({ user }) {
               />
             </div>
 
-            <div className="subscription-form__item-box">
-              <label className="subscription-form__label profile-form__label" htmlFor="drive-thru">
+            <div className={styles['subscription-form__item-box']}>
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="drive-thru"
+              >
                 Off
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="radio"
                 id="off"
                 name="status"
@@ -180,13 +188,19 @@ function SubscriptionProfileForm({ user }) {
           </div>
         </div>
 
-        <div className="subscription-form__period-box">
-          <h3 className="subscription-form__title profile-form__title" title="O período assinado.">
+        <div className={styles['subscription-form__period-box']}>
+          <h3
+            className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
+            title="O período assinado."
+          >
             Período:
           </h3>
-          <label className="subscription-form__label profile-form__label" htmlFor="period">
+          <label
+            className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+            htmlFor="period"
+          >
             <Input
-              className="subscription-form__input profile-form__input"
+              className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
               type="text"
               id="period"
               name="period"
@@ -196,12 +210,19 @@ function SubscriptionProfileForm({ user }) {
           </label>
         </div>
 
-        <div className="subscription-form__begin-end-box">
-          <div className="subscription-form__item-box">
-            <h3 className="subscription-form__title profile-form__title">Início:</h3>
-            <label className="subscription-form__label profile-form__label" htmlFor="begin">
+        <div className={styles['subscription-form__begin-end-box']}>
+          <div className={styles['subscription-form__item-box']}>
+            <h3
+              className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
+            >
+              Início:
+            </h3>
+            <label
+              className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+              htmlFor="begin"
+            >
               <Input
-                className="subscription-form__input profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="date"
                 id="begin"
                 name="begin"
@@ -212,11 +233,18 @@ function SubscriptionProfileForm({ user }) {
             </label>
           </div>
 
-          <div className="subscription-form__item-box">
-            <h3 className="subscription-form__title profile-form__title">Fim:</h3>
-            <label className="subscription-form__label profile-form__label" htmlFor="end">
+          <div className={styles['subscription-form__item-box']}>
+            <h3
+              className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
+            >
+              Fim:
+            </h3>
+            <label
+              className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+              htmlFor="end"
+            >
               <Input
-                className="subscription-form__input profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="date"
                 id="end"
                 name="end"
@@ -228,16 +256,19 @@ function SubscriptionProfileForm({ user }) {
           </div>
         </div>
 
-        <div className="subscription-form__payment-box">
+        <div className={styles['subscription-form__payment-box']}>
           <h3
-            className="subscription-form__title profile-form__title"
+            className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
             title="A forma de pagamento de sua assinatura."
           >
             Forma de pagamento:
           </h3>
-          <label className="subscription-form__label profile-form__label" htmlFor="payment">
+          <label
+            className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+            htmlFor="payment"
+          >
             <Input
-              className="subscription-form__input profile-form__input"
+              className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
               type="text"
               id="payment"
               name="payment"
@@ -248,21 +279,28 @@ function SubscriptionProfileForm({ user }) {
         </div>
       </fieldset>
 
-      <fieldset className="subscription-form__field profile-form__field">
-        <div className="subscription-form__days-on-box">
+      <fieldset
+        className={`${styles['subscription-form__field']} ${profileFormStyles['profile-form__field']}`}
+      >
+        <div className={styles['subscription-form__days-on-box']}>
           <h3
-            className="subscription-form__title profile-form__title"
+            className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
             title="Os dias da semana selecionados na sua assinatura."
           >
             Dias da semana:
           </h3>
-          <div className="subscription-form__days-box">
-            <div className="subscription-form__item-box subscription-form__item-box_days">
-              <label className="subscription-form__label profile-form__label" htmlFor="seg">
+          <div className={styles['subscription-form__days-box']}>
+            <div
+              className={`${styles['subscription-form__item-box']} ${styles['subscription-form__item-box_days']}`}
+            >
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="seg"
+              >
                 Segunda
               </label>
               <Input
-                className="subscription-form__input profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="checkbox"
                 id="seg"
                 name="daysOn"
@@ -272,12 +310,17 @@ function SubscriptionProfileForm({ user }) {
                 disabled={!isEditing}
               />
             </div>
-            <div className="subscription-form__item-box subscription-form__item-box_days">
-              <label className="subscription-form__label profile-form__label" htmlFor="ter">
+            <div
+              className={`${styles['subscription-form__item-box']} ${styles['subscription-form__item-box_days']}`}
+            >
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="ter"
+              >
                 Terça
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="checkbox"
                 id="ter"
                 name="daysOn"
@@ -287,12 +330,17 @@ function SubscriptionProfileForm({ user }) {
                 disabled={!isEditing}
               />
             </div>
-            <div className="subscription-form__item-box subscription-form__item-box_days">
-              <label className="subscription-form__label profile-form__label" htmlFor="qua">
+            <div
+              className={`${styles['subscription-form__item-box']} ${styles['subscription-form__item-box_days']}`}
+            >
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="qua"
+              >
                 Quarta
               </label>
               <Input
-                className="subscription-form__input profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="checkbox"
                 id="qua"
                 name="daysOn"
@@ -302,12 +350,17 @@ function SubscriptionProfileForm({ user }) {
                 disabled={!isEditing}
               />
             </div>
-            <div className="subscription-form__item-box subscription-form__item-box_days">
-              <label className="subscription-form__label profile-form__label" htmlFor="qui">
+            <div
+              className={`${styles['subscription-form__item-box']} ${styles['subscription-form__item-box_days']}`}
+            >
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="qui"
+              >
                 Quinta
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="checkbox"
                 id="qui"
                 name="daysOn"
@@ -317,12 +370,17 @@ function SubscriptionProfileForm({ user }) {
                 disabled={!isEditing}
               />
             </div>
-            <div className="subscription-form__item-box subscription-form__item-box_days">
-              <label className="subscription-form__label profile-form__label" htmlFor="sex">
+            <div
+              className={`${styles['subscription-form__item-box']} ${styles['subscription-form__item-box_days']}`}
+            >
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="sex"
+              >
                 Sexta
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="checkbox"
                 id="sex"
                 name="daysOn"
@@ -336,19 +394,19 @@ function SubscriptionProfileForm({ user }) {
         </div>
 
         {formData.daysOn.length > 0 && (
-          <div className="subscription-form__schedules-box">
+          <div className={styles['subscription-form__schedules-box']}>
             <h3
-              className="subscription-form__title profile-form__title"
+              className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
               title="O horário selecionada para cada data assinada."
             >
               Horários:
             </h3>
-            <div className="subscription-form__schedules-container">
+            <div className={styles['subscription-form__schedules-container']}>
               {formData.daysOn.map((day) => {
                 return (
-                  <div key={day} className="subscription-form__times-box">
+                  <div key={day} className={styles['subscription-form__times-box']}>
                     <label
-                      className="subscription-form__label profile-form__label"
+                      className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
                       htmlFor={`schedule-${day}`}
                     >
                       {day === 'seg' && 'Segunda:'}
@@ -359,7 +417,7 @@ function SubscriptionProfileForm({ user }) {
                     </label>
 
                     <Input
-                      className="subscription-form__input profile-form__input"
+                      className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                       type="time"
                       id={`schedule-${day}`}
                       name={day}
@@ -373,26 +431,29 @@ function SubscriptionProfileForm({ user }) {
                 );
               })}
             </div>
-            <small className="subscription-form__schedules-small">
+            <small className={styles['subscription-form__schedules-small']}>
               *Horário de funcionamento: 10h45 às 19h45.*
             </small>
           </div>
         )}
 
-        <div className="subscription-form__method-box">
+        <div className={styles['subscription-form__method-box']}>
           <h3
-            className="subscription-form__title profile-form__title"
+            className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
             title="A forma de entrega selecionada na sua assinatura."
           >
             Forma de entrega:
           </h3>
-          <div className="subscription-form__delivery-drive-box">
-            <div className="subscription-form__item-box">
-              <label className="subscription-form__label profile-form__label" htmlFor="delivery">
+          <div className={styles['subscription-form__delivery-drive-box']}>
+            <div className={styles['subscription-form__item-box']}>
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="delivery"
+              >
                 Delivery
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="radio"
                 id="delivery"
                 name="method"
@@ -403,12 +464,15 @@ function SubscriptionProfileForm({ user }) {
               />
             </div>
 
-            <div className="subscription-form__item-box">
-              <label className="subscription-form__label profile-form__label" htmlFor="drive-thru">
+            <div className={styles['subscription-form__item-box']}>
+              <label
+                className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+                htmlFor="drive-thru"
+              >
                 Drive-thru
               </label>
               <Input
-                className="subscription-form__input  profile-form__input"
+                className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
                 type="radio"
                 id="drive-thru"
                 name="method"
@@ -422,17 +486,22 @@ function SubscriptionProfileForm({ user }) {
         </div>
       </fieldset>
 
-      <fieldset className="subscription-form__field profile-form__field">
-        <div className="subscription-form__next-box">
+      <fieldset
+        className={`${styles['subscription-form__field']} ${profileFormStyles['profile-form__field']}`}
+      >
+        <div className={styles['subscription-form__next-box']}>
           <h3
-            className="subscription-form__title profile-form__title"
+            className={`${styles['subscription-form__title']} ${profileFormStyles['profile-form__title']}`}
             title="A data da próxima refeição."
           >
             Próxima entrega em:
           </h3>
-          <label className="subscription-form__label profile-form__label" htmlFor="next">
+          <label
+            className={`${styles['subscription-form__label']} ${profileFormStyles['profile-form__label']}`}
+            htmlFor="next"
+          >
             <Input
-              className="subscription-form__input profile-form__input"
+              className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
               type="date"
               id="next"
               name="next"
@@ -443,36 +512,38 @@ function SubscriptionProfileForm({ user }) {
         </div>
       </fieldset>
 
-      <p className="subscription-form__note">
+      <p className={styles['subscription-form__note']}>
         *Você pode alterar algumas escolhas na sua assinatura a qualquer momento e, também, pausá-la
         por um período máximo de 2 meses, uma vez ao ano.
       </p>
 
       {localError && (
         <Toast
-          className="subscription-form__toast profile-form__toast"
+          className={`${styles['subscription-form__toast']} ${profileFormStyles['profile-form__toast']}`}
           message={localError.message}
         ></Toast>
       )}
 
       {confirmActionMsg && (
         <Toast
-          className="subscription-form__toast profile-form__toast"
+          className={`${styles['subscription-form__toast']} ${profileFormStyles['profile-form__toast']}`}
           message={confirmActionMsg}
         ></Toast>
       )}
 
       {loading && (
-        <Loader className="subscription-form__loader profile-form__loader">
+        <Loader
+          className={`${styles['subscription-form__loader']} ${profileFormStyles['profile-form__loader']}`}
+        >
           Atualizando configuração de assinatura...
         </Loader>
       )}
 
-      <div className="subscription-form__buttons-box">
+      <div className={styles['subscription-form__buttons-box']}>
         {!isEditing && (
           <>
             <Button
-              className="subscription-form__button profile-form__button"
+              className={`${styles['subscription-form__button']} ${profileFormStyles['profile-form__button']}`}
               type="button"
               onClick={() => {
                 setLocalError(null);
@@ -485,7 +556,7 @@ function SubscriptionProfileForm({ user }) {
 
             {user.subscriptionDetails.status === true ? (
               <Button
-                className="subscription-form__button profile-form__button"
+                className={`${styles['subscription-form__button']} ${profileFormStyles['profile-form__button']}`}
                 type="submit"
                 value="pause"
                 disabled={loading}
@@ -494,7 +565,7 @@ function SubscriptionProfileForm({ user }) {
               </Button>
             ) : (
               <Button
-                className="subscription-form__button profile-form__button"
+                className={`${styles['subscription-form__button']} ${profileFormStyles['profile-form__button']}`}
                 type="submit"
                 value="retake"
                 disabled={loading}
@@ -507,7 +578,7 @@ function SubscriptionProfileForm({ user }) {
 
         {isEditing && (
           <Button
-            className="subscription-form__button profile-form__button"
+            className={`${styles['subscription-form__button']} ${profileFormStyles['profile-form__button']}`}
             type="submit"
             value="send"
             disabled={loading}

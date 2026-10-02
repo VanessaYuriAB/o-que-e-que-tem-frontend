@@ -6,7 +6,7 @@ import useTodayRecipes from '../hooks/useTodayRecipes.js';
 import Loader from '../../../shared/components/ui/loader/Loader.jsx';
 import Toast from '../../../shared/components/ui/toast/Toast.jsx';
 import useSearchRecipes from '../hooks/useSearchRecipes.js';
-import './Recipes.css';
+import styles from './Recipes.module.css';
 
 function Recipes() {
   const searchedResultsRef = useRef(null);
@@ -50,26 +50,28 @@ function Recipes() {
 
   if (todayLoading) {
     return (
-      <Loader className="recipes__loader content__recipes-loader">Carregando receitas...</Loader>
+      <Loader className={`${styles.recipes__loader} ${styles['content__recipes-loader']}`}>
+        Carregando receitas...
+      </Loader>
     );
   }
 
   if (todayError) {
     return (
       <Toast
-        className="recipes__toast content__recipes-toast"
+        className={`${styles.recipes__toast} ${styles['content__recipes-toast']}`}
         message={`Erro ao carregar receitas. ${todayError.message}`}
       />
     );
   }
 
   return (
-    <section className="recipes content__recipes">
-      <h1 className="recipes__title">Sugestões de hoje</h1>
-      <ul className="recipes__list">
+    <section className={`${styles.recipes} ${styles.content__recipes}`}>
+      <h1 className={styles.recipes__title}>Sugestões de hoje</h1>
+      <ul className={styles.recipes__list}>
         {todayRecipes.map((recipe) => {
           return (
-            <li className="recipes__item" key={recipe.id}>
+            <li className={styles.recipes__item} key={recipe.id}>
               <RecipeCard
                 name={recipe.name}
                 ingredients={recipe.ingredients}
@@ -80,14 +82,18 @@ function Recipes() {
         })}
       </ul>
 
-      <div className="recipes__form-box">
-        <h2 className="recipes__subtitle">Quer alguma outra sugestão?</h2>
-        <form className="recipes__form" name="recipes" onSubmit={handleSubmit} /*noValidate*/>
-          <label className="recipes__label" htmlFor="search">
+      <div className={styles['recipes__form-box']}>
+        <h2 className={styles.recipes__subtitle}>Quer alguma outra sugestão?</h2>
+        <form
+          className={styles.recipes__form}
+          name="recipes"
+          onSubmit={handleSubmit} /*noValidate*/
+        >
+          <label className={styles.recipes__label} htmlFor="search">
             Pesquise você mesmo :)
           </label>
           <Input
-            className="recipes__input"
+            className={styles.recipes__input}
             id="search"
             type="text"
             name="recipe"
@@ -99,19 +105,25 @@ function Recipes() {
             required
           />
 
-          {searchError && <Toast className="recipes__toast" message={searchError.message} />}
+          {searchError && <Toast className={styles.recipes__toast} message={searchError.message} />}
 
-          <Button className="recipes__button" type="submit">
+          <Button className={styles.recipes__button} type="submit">
             {searchLoading ? 'Pesquisando...' : 'Pesquisar'}
           </Button>
         </form>
       </div>
 
       {searchedRecipes.length > 0 && (
-        <ul className="recipes__list recipes__list_searched" ref={searchedResultsRef}>
+        <ul
+          className={`${styles.recipes__list} ${styles.recipes__list_searched}`}
+          ref={searchedResultsRef}
+        >
           {searchedRecipes.map((recipe) => {
             return (
-              <li className="recipes__item recipes__item_searched" key={recipe.id}>
+              <li
+                className={`${styles.recipes__item} ${styles.recipes__item_searched}`}
+                key={recipe.id}
+              >
                 <RecipeCard
                   name={recipe.name}
                   ingredients={recipe.ingredients}

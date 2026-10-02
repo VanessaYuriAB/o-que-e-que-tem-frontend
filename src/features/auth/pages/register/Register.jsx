@@ -7,7 +7,7 @@ import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import '../../styles/auth-form.css';
+import styles from '../../styles/auth-form.module.css';
 
 function Register() {
   /* Estados */
@@ -76,16 +76,16 @@ function Register() {
   return (
     <AuthFormModal>
       <form
-        className="form-register auth-form"
+        className={`form-register ${styles['auth-form']}`}
         name="register"
         onSubmit={handleSubmit} /*noValidate*/
       >
-        <h1 className="form-register__title auth-form__title">Inscrever-se</h1>
-        <fieldset className="form-register__field auth-form__field">
-          <label className="form-register__label auth-form__label">
+        <h1 className={`form-register__title ${styles['auth-form__title']}`}>Inscrever-se</h1>
+        <fieldset className={`form-register__field ${styles['auth-form__field']}`}>
+          <label className={`form-register__label ${styles['auth-form__label']}`}>
             Nome completo
             <Input
-              className="form-register__input auth-form__input"
+              className={`form-register__input ${styles['auth-form__input']}`}
               type="text"
               id="userName"
               name="userName"
@@ -98,10 +98,10 @@ function Register() {
               required
             />
           </label>
-          <label className="form-register__label auth-form__label">
+          <label className={`form-register__label ${styles['auth-form__label']}`}>
             E-mail
             <Input
-              className="form-register__input auth-form__input"
+              className={`form-register__input ${styles['auth-form__input']}`}
               type="email"
               id="email"
               name="email"
@@ -113,10 +113,10 @@ function Register() {
               required
             />
           </label>
-          <label className="form-register__label auth-form__label">
+          <label className={`form-register__label ${styles['auth-form__label']}`}>
             Confirmação de e-mail
             <Input
-              className="form-register__input auth-form__input"
+              className={`form-register__input ${styles['auth-form__input']}`}
               type="email"
               id="confirmEmail"
               name="confirmEmail"
@@ -128,10 +128,10 @@ function Register() {
               required
             />
           </label>
-          <label className="form-register__label auth-form__label">
+          <label className={`form-register__label ${styles['auth-form__label']}`}>
             Telefone
             <Input
-              className="form-register__input auth-form__input"
+              className={`form-register__input ${styles['auth-form__input']}`}
               type="tel"
               id="tel"
               name="tel"
@@ -146,11 +146,11 @@ function Register() {
               required
             />
           </label>
-          <div className="form-register__line auth-form__line"></div>
-          <label className="form-register__label auth-form__label">
+          <div className={`form-register__line ${styles['auth-form__line']}`}></div>
+          <label className={`form-register__label ${styles['auth-form__label']}`}>
             Senha
             <Input
-              className="form-register__input auth-form__input"
+              className={`form-register__input ${styles['auth-form__input']}`}
               type="password"
               id="password"
               name="password"
@@ -163,10 +163,10 @@ function Register() {
               required
             />
           </label>
-          <label className="form-register__label auth-form__label">
+          <label className={`form-register__label ${styles['auth-form__label']}`}>
             Confirmação de senha
             <Input
-              className="form-register__input auth-form__input"
+              className={`form-register__input ${styles['auth-form__input']}`}
               type="password"
               id="confirmPassword"
               name="confirmPassword"
@@ -181,15 +181,23 @@ function Register() {
         </fieldset>
 
         {loading && (
-          <Loader className="form-register__loader auth-form__loader">Enviando inscrição...</Loader>
+          <Loader className={`form-register__loader ${styles['auth-form__loader']}`}>
+            Enviando inscrição...
+          </Loader>
         )}
 
         {localError && (
-          <Toast className="form-register__toast auth-form__toast" message={localError} />
+          <Toast
+            className={`form-register__toast ${styles['auth-form__toast']}`}
+            message={localError}
+          />
         )}
 
         {globalError && (
-          <Toast className="form-register__toast auth-form__toast" message={globalError.message} />
+          <Toast
+            className={`form-register__toast ${styles['auth-form__toast']}`}
+            message={globalError.message}
+          />
         )}
 
         <Button className="form-register__button" type="submit">

@@ -7,7 +7,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import useCartStore from '../../../../store/useCartStore.js';
 import { useShallow } from 'zustand/react/shallow';
 import useAuthStore from '../../../../store/useAuthStore.js';
-import './MenuType.css';
+import styles from './MenuType.module.css';
 
 function MenuType({ category }) {
   /* HOOKS PRIMEIRO, ANTES DE QLQR RETURN */
@@ -85,18 +85,18 @@ function MenuType({ category }) {
   /* EARLY RETURNS DEPOIS DE HOOKS */
 
   if (loadingMenu) {
-    return <Loader className="type__loader" />;
+    return <Loader className={styles.type__loader} />;
   }
 
   if (localErrorMenu) {
-    return <Toast className="type__toast" message={localErrorMenu.message} />;
+    return <Toast className={styles.type__toast} message={localErrorMenu.message} />;
   }
 
   /* RETURN: TODOS OU POR CATEGORIA */
 
   return (
-    <div className="type menu__type">
-      <ul className="type__list">
+    <div className={`${styles.type} ${styles.menu__type}`}>
+      <ul className={styles.type__list}>
         {typeItems.map((item) => {
           const isItemAdded =
             cartItems?.some((cartItem) => cartItem.productName === item.productName) ?? false;
@@ -107,20 +107,20 @@ function MenuType({ category }) {
             loading && activeItemId === item._id ? 'Adicionando item...' : 'ADICIONAR';
 
           return (
-            <li className="type__item" key={item._id}>
-              <article className="type__card">
-                <h3 className="type__title">{item.productName}</h3>
-                {category === 'todos' && <p className="type__category">{item.category}</p>}
+            <li className={styles.type__item} key={item._id}>
+              <article className={styles.type__card}>
+                <h3 className={styles.type__title}>{item.productName}</h3>
+                {category === 'todos' && <p className={styles.type__category}>{item.category}</p>}
 
                 {localItemError.id === item._id && (
                   <Toast
-                    className="type__toast type__toast_item"
+                    className={`${styles.type__toast} ${styles.type__toast_item}`}
                     message={localItemError.message}
                   ></Toast>
                 )}
 
                 <Button
-                  className={`type__button ${isItemAdded ? 'type__button_added' : ''}`}
+                  className={`${styles.type__button} ${isItemAdded ? styles['type__button_added'] : ''}`}
                   onClick={() => handleToggleItem(item, isItemAdded)}
                 >
                   {isItemAdded ? removeText : addText}
@@ -131,7 +131,7 @@ function MenuType({ category }) {
         })}
       </ul>
       <Button
-        className="type__button type__button_pack"
+        className={`${styles.type__button} ${styles.type__button_pack}`}
         type="button"
         onClick={() => {
           navigate('/cart');

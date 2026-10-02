@@ -4,7 +4,7 @@ import { useState } from 'react';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
 import usePartner from '../../hooks/usePartner.js';
-import './PartnerForm.css';
+import styles from './PartnerForm.module.css';
 
 function PartnerForm() {
   const [confirmActionMsg, setConfirmActionMsg] = useState(null);
@@ -64,16 +64,20 @@ function PartnerForm() {
   };
 
   return (
-    <form className="form partner__form" name="partner" onSubmit={handleSubmit} /*noValidate*/>
-      <fieldset className="form__field">
-        <legend className="form__legend">Dados cadastrais (responsável)</legend>
+    <form
+      className={`${styles.form} ${styles.partner__form}`}
+      name="partner"
+      onSubmit={handleSubmit} /*noValidate*/
+    >
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Dados cadastrais (responsável)</legend>
 
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="userName">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="userName">
             Nome completo:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             id="userName"
             type="text"
             name="userName"
@@ -87,12 +91,12 @@ function PartnerForm() {
           />
         </div>
 
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="email">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="email">
             E-mail:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             id="email"
             type="email"
             name="email"
@@ -105,12 +109,12 @@ function PartnerForm() {
           />
         </div>
 
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="tel">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="tel">
             Telefone (WhatsApp):
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             id="tel"
             type="tel"
             name="tel"
@@ -127,15 +131,15 @@ function PartnerForm() {
         </div>
       </fieldset>
 
-      <fieldset className="form__field">
-        <legend className="form__legend">Forma de contato</legend>
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Forma de contato</legend>
 
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="emailMethod">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="emailMethod">
             Prefiro e-mail
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             id="emailMethod"
             type="radio"
             name="contactMethod"
@@ -146,12 +150,12 @@ function PartnerForm() {
           />
         </div>
 
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="telMethod">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="telMethod">
             Prefiro telefone (WhatsApp)
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             id="telMethod"
             type="radio"
             name="contactMethod"
@@ -163,15 +167,15 @@ function PartnerForm() {
         </div>
       </fieldset>
 
-      <fieldset className="form__field">
-        <legend className="form__legend">Dados cadastrais (empresa)</legend>
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Dados cadastrais (empresa)</legend>
 
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="companyName">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="companyName">
             Razão socail:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             id="companyName"
             type="text"
             name="companyName"
@@ -184,12 +188,12 @@ function PartnerForm() {
           />
         </div>
 
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="cnpj">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="cnpj">
             CNPJ:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             id="cnpj"
             type="text"
             name="cnpj"
@@ -204,13 +208,13 @@ function PartnerForm() {
           />
         </div>
 
-        <div className="form__inputs-container">
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="cep">
+        <div className={styles['form__inputs-container']}>
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="cep">
               CEP:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               id="cep"
               type="text"
               name="cep"
@@ -226,12 +230,12 @@ function PartnerForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="address">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="address">
               Logradouro:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               id="address"
               type="text"
               name="address"
@@ -243,12 +247,12 @@ function PartnerForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="numberAddress">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="numberAddress">
               Nº:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               id="numberAddress"
               type="text"
               name="numberAddress"
@@ -261,12 +265,12 @@ function PartnerForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="complementAddress">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="complementAddress">
               Complemento:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               id="complementAddress"
               type="text"
               name="complementAddress"
@@ -278,12 +282,12 @@ function PartnerForm() {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="district">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="district">
               Bairro:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               id="district"
               type="text"
               name="district"
@@ -299,12 +303,12 @@ function PartnerForm() {
 
       {(confirmActionMsg || localError) && (
         <Toast
-          className="form__toast"
+          className={styles.form__toast}
           message={confirmActionMsg ? confirmActionMsg : localError.message}
         />
       )}
 
-      <Button className="form__button" type="submit">
+      <Button className={styles.form__button} type="submit">
         {loading ? 'ENVIANDO...' : 'ENVIAR'}
       </Button>
     </form>

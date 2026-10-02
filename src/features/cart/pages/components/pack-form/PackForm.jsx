@@ -6,7 +6,7 @@ import getNextDate from '../../../../../shared/utils/nextSubscriptionDate.js';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Button from '../../../../../shared/components/ui/button/Button.jsx';
 import PropTypes from 'prop-types';
-import './PackForm.css';
+import styles from './PackForm.module.css';
 
 function PackForm(props) {
   const { user, setFormData, total, setCartDataAction, formData, setLoading, typeOfMeal } = props;
@@ -72,15 +72,19 @@ function PackForm(props) {
   };
 
   return (
-    <form className="form pack__form" name="pack" onSubmit={handleSubmit} /*noValidate*/>
-      <fieldset className="form__fieldset form__fieldset_radio">
-        <legend className="form__legend">Sua opção de refeição:</legend>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="sopa">
+    <form
+      className={`${styles.form} ${styles.pack__form}`}
+      name="pack"
+      onSubmit={handleSubmit} /*noValidate*/
+    >
+      <fieldset className={`${styles.form__fieldset} ${styles.form__fieldset_radio}`}>
+        <legend className={styles.form__legend}>Sua opção de refeição:</legend>
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="sopa">
             Sopa
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             type="radio"
             id="sopa"
             name="meal"
@@ -90,12 +94,12 @@ function PackForm(props) {
             required
           />
         </div>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="creme">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="creme">
             Creme
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             type="radio"
             id="creme"
             name="meal"
@@ -104,12 +108,12 @@ function PackForm(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="pate">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="pate">
             Patê
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             type="radio"
             id="pate"
             name="meal"
@@ -121,15 +125,15 @@ function PackForm(props) {
       </fieldset>
 
       {isSubscribeActive ? (
-        <fieldset className="form__fieldset form__fieldset_radio">
-          <legend className="form__legend">Forma de entrega:</legend>
-          <div className="form__radio-box">
-            <div className="form__input-box form__input-box_radio">
-              <label className="form__label" htmlFor="delivery">
+        <fieldset className={`${styles.form__fieldset} ${styles.form__fieldset_radio}`}>
+          <legend className={styles.form__legend}>Forma de entrega:</legend>
+          <div className={styles['form__radio-box']}>
+            <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+              <label className={styles.form__label} htmlFor="delivery">
                 Delivery
               </label>
               <Input
-                className="form__input form__input_radio"
+                className={`${styles.form__input} ${styles.form__input_radio}`}
                 type="radio"
                 id="delivery"
                 name="method"
@@ -139,13 +143,13 @@ function PackForm(props) {
               />
             </div>
           </div>
-          <div className="form__radio-box">
-            <div className="form__input-box form__input-box_radio">
-              <label className="form__label" htmlFor="drive-thru">
+          <div className={styles['form__radio-box']}>
+            <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+              <label className={styles.form__label} htmlFor="drive-thru">
                 Drive-thru
               </label>
               <Input
-                className="form__input form__input_radio"
+                className={`${styles.form__input} ${styles.form__input_radio}`}
                 type="radio"
                 id="drive-thru"
                 name="method"
@@ -157,15 +161,15 @@ function PackForm(props) {
           </div>
         </fieldset>
       ) : (
-        <fieldset className="form__fieldset form__fieldset_radio">
-          <legend className="form__legend">Forma de entrega:</legend>
-          <div className="form__radio-box">
-            <div className="form__input-box form__input-box_radio">
-              <label className="form__label" htmlFor="delivery">
+        <fieldset className={`${styles.form__fieldset} ${styles.form__fieldset_radio}`}>
+          <legend className={styles.form__legend}>Forma de entrega:</legend>
+          <div className={styles['form__radio-box']}>
+            <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+              <label className={styles.form__label} htmlFor="delivery">
                 Delivery
               </label>
               <Input
-                className="form__input form__input_radio"
+                className={`${styles.form__input} ${styles.form__input_radio}`}
                 type="radio"
                 id="delivery"
                 name="method"
@@ -175,15 +179,15 @@ function PackForm(props) {
                 required
               />
             </div>
-            <span className="form__span">Entregue na sua porta (R$10,00)</span>
+            <span className={styles.form__span}>Entregue na sua porta (R$10,00)</span>
           </div>
-          <div className="form__radio-box">
-            <div className="form__input-box form__input-box_radio">
-              <label className="form__label" htmlFor="drive-thru">
+          <div className={styles['form__radio-box']}>
+            <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+              <label className={styles.form__label} htmlFor="drive-thru">
                 Drive-thru
               </label>
               <Input
-                className="form__input form__input_radio"
+                className={`${styles.form__input} ${styles.form__input_radio}`}
                 type="radio"
                 id="drive-thru"
                 name="method"
@@ -192,20 +196,20 @@ function PackForm(props) {
                 onChange={handleChange}
               />
             </div>
-            <span className="form__span">Retire no nosso endereço (grátis)</span>
+            <span className={styles.form__span}>Retire no nosso endereço (grátis)</span>
           </div>
         </fieldset>
       )}
 
       {isSubscribeActive && (
-        <fieldset className="form__fieldset form__fieldset_next">
-          <legend className="form__legend">Data e hora:</legend>
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="nextMeal">
+        <fieldset className={`${styles.form__fieldset} ${styles.form__fieldset_next}`}>
+          <legend className={styles.form__legend}>Data e hora:</legend>
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="nextMeal">
               Próxima entrega em:
             </label>
             <Input
-              className="form__input form__input_date"
+              className={`${styles.form__input} ${styles.form__input_date}`}
               type="date"
               id="nextMeal"
               name="nextMeal"
@@ -213,12 +217,12 @@ function PackForm(props) {
               disabled
             />
           </div>
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="schedule">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="schedule">
               Horário:
             </label>
             <Input
-              className="form__input form__input_schedule"
+              className={`${styles.form__input} ${styles.form__input_schedule}`}
               type="time"
               id="schedule"
               name="schedule"
@@ -231,14 +235,14 @@ function PackForm(props) {
         </fieldset>
       )}
 
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">Informações de contato:</legend>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="userName">
+      <fieldset className={styles.form__fieldset}>
+        <legend className={styles.form__legend}>Informações de contato:</legend>
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="userName">
             Nome completo:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="text"
             id="userName"
             name="userName"
@@ -250,12 +254,12 @@ function PackForm(props) {
             required
           />
         </div>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="email">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="email">
             E-mail:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="email"
             id="email"
             name="email"
@@ -267,12 +271,12 @@ function PackForm(props) {
             required
           />
         </div>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="tel">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="tel">
             Telefone:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="tel"
             id="tel"
             name="tel"
@@ -290,14 +294,14 @@ function PackForm(props) {
       </fieldset>
 
       {formData.method === 'delivery' && (
-        <fieldset className="form__fieldset">
-          <legend className="form__legend">Endereço para entrega:</legend>
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="address">
+        <fieldset className={styles.form__fieldset}>
+          <legend className={styles.form__legend}>Endereço para entrega:</legend>
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="address">
               Logradouro (rua, avenida, praça, etc):
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="address"
               name="address"
@@ -310,12 +314,12 @@ function PackForm(props) {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="number">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="number">
               Nº:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="number"
               name="number"
@@ -329,12 +333,12 @@ function PackForm(props) {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="complement">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="complement">
               Complemento:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="complement"
               name="complement"
@@ -347,12 +351,12 @@ function PackForm(props) {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="district">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="district">
               Bairro:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="district"
               name="district"
@@ -365,12 +369,12 @@ function PackForm(props) {
             />
           </div>
 
-          <div className="form__input-box">
-            <label className="form__label" htmlFor="cep">
+          <div className={styles['form__input-box']}>
+            <label className={styles.form__label} htmlFor="cep">
               CEP:
             </label>
             <Input
-              className="form__input"
+              className={styles.form__input}
               type="text"
               id="cep"
               name="cep"
@@ -386,14 +390,14 @@ function PackForm(props) {
         </fieldset>
       )}
 
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">Informações adicionais:</legend>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="infoText">
+      <fieldset className={styles.form__fieldset}>
+        <legend className={styles.form__legend}>Informações adicionais:</legend>
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="infoText">
             Observações relevantes:
           </label>
           <Textarea
-            className="form__textarea"
+            className={styles.form__textarea}
             id="infoText"
             name="infoText"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
@@ -405,10 +409,10 @@ function PackForm(props) {
         </div>
       </fieldset>
 
-      {localCartError && <Toast className="form__toast" message={localCartError}></Toast>}
+      {localCartError && <Toast className={styles.form__toast} message={localCartError}></Toast>}
 
       {isSubscribeActive ? (
-        <Button className="form__button" type="submit">
+        <Button className={styles.form__button} type="submit">
           {!setLoading && typeOfMeal !== ''
             ? `Finalizar ${typeOfMeal}`
             : setLoading && typeOfMeal !== ''
@@ -416,7 +420,7 @@ function PackForm(props) {
               : 'Finalizar'}
         </Button>
       ) : (
-        <Button className="form__button" type="submit">
+        <Button className={styles.form__button} type="submit">
           {!setLoading && typeOfMeal !== ''
             ? `Finalizar ${typeOfMeal}: R$ ${total},00`
             : setLoading && typeOfMeal !== ''

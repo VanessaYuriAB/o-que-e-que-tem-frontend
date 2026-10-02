@@ -5,7 +5,7 @@ import { useState } from 'react';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import useContact from '../../hooks/useContact.js';
 import Toast from '../../../../shared/components/ui/toast/Toast.jsx';
-import './ContactForm.css';
+import styles from './ContactForm.module.css';
 
 function ContactForm() {
   const [confirmActionMsg, setConfirmActionMsg] = useState(null);
@@ -52,15 +52,19 @@ function ContactForm() {
   };
 
   return (
-    <form className="form contact__form" name="contact" onSubmit={handleSubmit} /*noValidate*/>
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">Seus dados</legend>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="userName">
+    <form
+      className={`${styles.form} ${styles.contact__form}`}
+      name="contact"
+      onSubmit={handleSubmit} /*noValidate*/
+    >
+      <fieldset className={styles.form__fieldset}>
+        <legend className={styles.form__legend}>Seus dados</legend>
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="userName">
             Nome:
           </label>
           <Input
-            className="form__input form__input_space"
+            className={`${styles.form__input} ${styles.form__input_space}`}
             type="text"
             id="userName"
             name="userName"
@@ -73,12 +77,12 @@ function ContactForm() {
             required
           />
         </div>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="email">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="email">
             E-mail:
           </label>
           <Input
-            className="form__input form__input_space"
+            className={`${styles.form__input} ${styles.form__input_space}`}
             type="email"
             id="email"
             name="email"
@@ -90,12 +94,12 @@ function ContactForm() {
             required
           />
         </div>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="whatsapp">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="whatsapp">
             WhatsApp:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="tel"
             id="whatsapp"
             name="whatsapp"
@@ -111,14 +115,14 @@ function ContactForm() {
           />
         </div>
       </fieldset>
-      <fieldset className="form__fieldset">
-        <legend className="form__legend">Sua mensagem</legend>
-        <div className="form__textarea-box">
-          <label className="form__label" htmlFor="message">
+      <fieldset className={styles.form__fieldset}>
+        <legend className={styles.form__legend}>Sua mensagem</legend>
+        <div className={styles['form__textarea-box']}>
+          <label className={styles.form__label} htmlFor="message">
             Costumamos responder rápido :)
           </label>
           <Textarea
-            className="form__textarea"
+            className={styles.form__textarea}
             id="message"
             name="message"
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
@@ -130,14 +134,17 @@ function ContactForm() {
           />
         </div>
       </fieldset>
-      <fieldset className="form__fieldset form__fieldset_radio">
-        <legend className="form__legend">Como prefere que retornemos?</legend>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label form__label_radio" htmlFor="email-radio">
+      <fieldset className={`${styles.form__fieldset} ${styles.form__fieldset_radio}`}>
+        <legend className={styles.form__legend}>Como prefere que retornemos?</legend>
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label
+            className={`${styles.form__label} ${styles.form__label_radio}`}
+            htmlFor="email-radio"
+          >
             E-mail
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="radio"
             id="email-radio"
             name="method"
@@ -146,12 +153,15 @@ function ContactForm() {
             onChange={handleChange}
           />
         </div>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label form__label_radio" htmlFor="whatsapp-radio">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label
+            className={`${styles.form__label} ${styles.form__label_radio}`}
+            htmlFor="whatsapp-radio"
+          >
             WhatsApp
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="radio"
             id="whatsapp-radio"
             name="method"
@@ -164,12 +174,12 @@ function ContactForm() {
 
       {(confirmActionMsg || localError) && (
         <Toast
-          className="form__toast"
+          className={styles.form__toast}
           message={confirmActionMsg ? confirmActionMsg : localError.message}
         />
       )}
 
-      <Button className="form__button" type="submit">
+      <Button className={styles.form__button} type="submit">
         {loading ? 'Enviando mensagem...' : 'Enviar'}
       </Button>
     </form>

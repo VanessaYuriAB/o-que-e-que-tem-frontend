@@ -1,10 +1,10 @@
 import ContactForm from './components/ContactForm.jsx';
-import './Contact.css';
+import styles from './Contact.module.css';
 
 function Contact() {
   return (
-    <section className="contact content__contact">
-      <h1 className="contact__title">Fale conosco</h1>
+    <section className={`${styles.contact} ${styles.content__contact}`}>
+      <h1 className={styles.contact__title}>Fale conosco</h1>
 
       <ContactForm />
     </section>

@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
-import './RecipeCard.css';
+import styles from './RecipeCard.module.css';
 
 function RecipeCard({ name, ingredients, preparation }) {
   return (
-    <article className="recipe-card recipes__recipe-card">
-      <h3 className="recipe-card__title">{name}</h3>
-      <div className="recipe-card__ingredients">
-        <h4 className="recipe-card__subtitle">Ingredientes:</h4>
-        <ul className="recipe-card__list">
+    <article className={`${styles.card} ${styles.recipes__card}`}>
+      <h3 className={styles.card__title}>{name}</h3>
+      <div className={styles.card__ingredients}>
+        <h4 className={styles.card__subtitle}>Ingredientes:</h4>
+        <ul className={styles.card__list}>
           {ingredients.map((ingredient) => {
             return (
-              <li className="recipe-card__item" key={ingredient.id}>
-                <p className="recipe-card__text">{ingredient.name}</p>
+              <li className={styles.card__item} key={ingredient.id}>
+                <p className={styles.card__text}>{ingredient.name}</p>
               </li>
             );
           })}
         </ul>
       </div>
-      <div className="recipe-card__preparation">
-        <h4 className="recipe-card__subtitle">Modo de preparo:</h4>
-        <p className="recipe-card__text">{preparation}</p>
+      <div className={styles.card__preparation}>
+        <h4 className={styles.card__subtitle}>Modo de preparo:</h4>
+        <p className={styles.card__text}>{preparation}</p>
       </div>
     </article>
   );

@@ -3,7 +3,7 @@ import Input from '../../../../../shared/components/ui/input/Input.jsx';
 import Button from '../../../../../shared/components/ui/button/Button.jsx';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import PropTypes from 'prop-types';
-import './OrderTrackingForm.css';
+import styles from './OrderTrackingForm.module.css';
 
 function OrderTrackingForm(props) {
   const { loadingTracker, localErrorTracker, trackOrder } = props;
@@ -39,19 +39,19 @@ function OrderTrackingForm(props) {
 
   return (
     <form
-      className="form tracker__form"
+      className={`${styles.form} ${styles.tracker__form}`}
       name="tracker"
       onSubmit={handleSubmit}
       /*noValidate*/
     >
-      <fieldset className="form__field">
-        <legend className="form__legend">Rastreamento de pedidos:</legend>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="order">
+      <fieldset className={styles.form__field}>
+        <legend className={styles.form__legend}>Rastreamento de pedidos:</legend>
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="order">
             Nº do pedido:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="text"
             id="order"
             name="orderNumber"
@@ -66,12 +66,12 @@ function OrderTrackingForm(props) {
             required
           />
         </div>
-        <div className="form__input-box">
-          <label className="form__label" htmlFor="email">
+        <div className={styles['form__input-box']}>
+          <label className={styles.form__label} htmlFor="email">
             E-mail:
           </label>
           <Input
-            className="form__input"
+            className={styles.form__input}
             type="email"
             id="email"
             name="email"
@@ -84,9 +84,11 @@ function OrderTrackingForm(props) {
           />
         </div>
 
-        {localErrorTracker && <Toast className="form__toast" message={localErrorTracker.message} />}
+        {localErrorTracker && (
+          <Toast className={styles.form__toast} message={localErrorTracker.message} />
+        )}
 
-        <Button className="form__button" type="submit">
+        <Button className={styles.form__button} type="submit">
           {loadingTracker ? 'Rastreando...' : 'Rastrear'}
         </Button>
       </fieldset>

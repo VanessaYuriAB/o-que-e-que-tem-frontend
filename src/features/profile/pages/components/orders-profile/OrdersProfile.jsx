@@ -5,7 +5,7 @@ import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useEffect } from 'react';
 import useProfile from '../../../hooks/useProfile.js';
 import OrdersProfileCard from './components/OrdersProfileCard.jsx';
-import '../../../styles/profile-history.css';
+import styles from '../../../styles/profile-history.module.css';
 
 function OrdersProfile() {
   const user = useAuthStore((state) => state.user);
@@ -23,22 +23,24 @@ function OrdersProfile() {
   if (localErrorAllOrders) {
     return (
       <Toast
-        className="profile__orders-toast profile-history__toast"
+        className={`profile__orders-toast ${styles['profile-history__toast']}`}
         message={localErrorAllOrders.message}
       />
     );
   }
 
   return (
-    <section className="profile__orders profile-history__section">
+    <section className={`profile__orders ${styles['profile-history__section']}`}>
       <h3 className="profile__orders-title">Histórico de pedidos</h3>
 
       {userAllOrders.length === 0 ? (
-        <Toast className="profile__no-orders-toast profile-history__no-content-toast">
-          <p className="profile__no-orders-text profile-history__no-content-text">
+        <Toast
+          className={`profile__no-orders-toast ${styles['profile-history__no-content-toast']}`}
+        >
+          <p className={`profile__no-orders-text ${styles['profile-history__no-content-text']}`}>
             Você ainda não comprou nenhuma sopa, creme ou patê...
           </p>
-          <p className="profile__no-orders-text profile-history__no-content-text">
+          <p className={`profile__no-orders-text ${styles['profile-history__no-content-text']}`}>
             Quer escolher os ingredientes para fazer seu primeiro pedido? :)
           </p>
           <Link className="profile__no-orders-link link-to-button" to="/menu">

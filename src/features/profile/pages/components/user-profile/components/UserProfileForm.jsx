@@ -6,7 +6,7 @@ import Toast from '../../../../../../shared/components/ui/toast/Toast.jsx';
 import Input from '../../../../../../shared/components/ui/input/Input.jsx';
 import Textarea from '../../../../../../shared/components/ui/textarea/Textarea.jsx';
 import useProfile from '../../../../hooks/useProfile.js';
-import '../../../../styles/profile-form.css';
+import styles from '../../../../styles/profile-form.module.css';
 
 function UserProfileForm() {
   const [isEditing, setIsEditing] = useState(false);
@@ -52,17 +52,19 @@ function UserProfileForm() {
 
   return (
     <form
-      className="user-form profile__user-form profile-form"
+      className={`user-form profile__user-form ${styles['profile-form']}`}
       name="profile-user"
       onSubmit={handleSubmit} /*noValidate*/
     >
-      <fieldset className="user-form__field profile-form__field">
-        <legend className="user-form__title profile-form__title">Dados de Contato</legend>
-        <label className="user-form__label profile-form__label" htmlFor="userName">
+      <fieldset className={`user-form__field ${styles['profile-form__field']}`}>
+        <legend className={`user-form__title ${styles['profile-form__title']}`}>
+          Dados de Contato
+        </legend>
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="userName">
           Nome completo:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="text"
           id="userName"
           name="userName"
@@ -73,11 +75,11 @@ function UserProfileForm() {
           onChange={handleChange}
           disabled={!isEditing}
         />
-        <label className="user-form__label profile-form__label" htmlFor="email">
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="email">
           E-mail:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="email"
           id="email"
           name="email"
@@ -88,11 +90,11 @@ function UserProfileForm() {
           onChange={handleChange}
           disabled={!isEditing}
         />
-        <label className="user-form__label profile-form__label" htmlFor="tel">
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="tel">
           Telefone:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="tel"
           id="tel"
           name="tel"
@@ -107,13 +109,15 @@ function UserProfileForm() {
           disabled={!isEditing}
         />
       </fieldset>
-      <fieldset className="user-form__field profile-form__field">
-        <legend className="user-form__title profile-form__title">Dados de Endereço</legend>
-        <label className="user-form__label profile-form__label" htmlFor="address">
+      <fieldset className={`user-form__field ${styles['profile-form__field']}`}>
+        <legend className={`user-form__title ${styles['profile-form__title']}`}>
+          Dados de Endereço
+        </legend>
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="address">
           Logradouro (rua, avenida, praça, etc):
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="text"
           id="address"
           name="address"
@@ -124,11 +128,11 @@ function UserProfileForm() {
           onChange={handleChange}
           disabled={!isEditing}
         />
-        <label className="user-form__label profile-form__label" htmlFor="number">
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="number">
           Nº:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="text"
           id="number"
           name="number"
@@ -140,11 +144,11 @@ function UserProfileForm() {
           onChange={handleChange}
           disabled={!isEditing}
         />
-        <label className="user-form__label profile-form__label" htmlFor="complement">
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="complement">
           Complemento:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="text"
           id="complement"
           name="complement"
@@ -155,11 +159,11 @@ function UserProfileForm() {
           onChange={handleChange}
           disabled={!isEditing}
         />
-        <label className="user-form__label profile-form__label" htmlFor="district">
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="district">
           Bairro:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="text"
           id="district"
           name="district"
@@ -170,11 +174,11 @@ function UserProfileForm() {
           onChange={handleChange}
           disabled={!isEditing}
         />
-        <label className="user-form__label profile-form__label" htmlFor="cep">
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="cep">
           CEP:
         </label>
         <Input
-          className="user-form__input profile-form__input"
+          className={`user-form__input ${styles['profile-form__input']}`}
           type="text"
           id="cep"
           name="cep"
@@ -187,13 +191,15 @@ function UserProfileForm() {
           disabled={!isEditing}
         />
       </fieldset>
-      <fieldset className="user-form__field profile-form__field">
-        <legend className="user-form__title profile-form__title">Informações Adicionais</legend>
-        <label className="user-form__label profile-form__label" htmlFor="infoText">
+      <fieldset className={`user-form__field ${styles['profile-form__field']}`}>
+        <legend className={`user-form__title ${styles['profile-form__title']}`}>
+          Informações Adicionais
+        </legend>
+        <label className={`user-form__label ${styles['profile-form__label']}`} htmlFor="infoText">
           Observação:
         </label>
         <Textarea
-          className="user-form__textarea profile-form__textarea"
+          className={`user-form__textarea ${styles['profile-form__textarea']}`}
           id="infoText"
           name="infoText"
           pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
@@ -206,23 +212,29 @@ function UserProfileForm() {
       </fieldset>
 
       {loading && (
-        <Loader className="user-form__loader profile-form__loader">
+        <Loader className={`user-form__loader ${styles['profile-form__loader']}`}>
           Atualizando dados de perfil...
         </Loader>
       )}
 
       {localError && (
-        <Toast className="user-form__toast profile-form__toast" message={localError.message} />
+        <Toast
+          className={`user-form__toast ${styles['profile-form__toast']}`}
+          message={localError.message}
+        />
       )}
 
       {confirmActionMsg && (
-        <Toast className="user-form__toast profile-form__toast" message={confirmActionMsg}></Toast>
+        <Toast
+          className={`user-form__toast ${styles['profile-form__toast']}`}
+          message={confirmActionMsg}
+        ></Toast>
       )}
 
       <div className="user-form__button-box">
         {!isEditing && (
           <Button
-            className="user-form__button profile-form__button"
+            className={`user-form__button ${styles['profile-form__button']}`}
             type="button"
             onClick={() => {
               setLocalError(null);
@@ -236,7 +248,7 @@ function UserProfileForm() {
 
         {isEditing && (
           <Button
-            className="user-form__button profile-form__button"
+            className={`user-form__button ${styles['profile-form__button']}`}
             type="submit"
             disabled={loading}
           >

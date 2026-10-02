@@ -6,7 +6,7 @@ import Loader from '../../../../shared/components/ui/loader/Loader.jsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useState } from 'react';
 import useCartStore from '../../../../store/useCartStore.js';
-import './Logout.css';
+import styles from './Logout.module.css';
 
 function Logout() {
   const [localError, setLocalError] = useState(null);
@@ -41,19 +41,21 @@ function Logout() {
   };
 
   return (
-    <section className="logout content__logout">
-      <h1 className="logout__title">Você quer desconectar da sua conta?</h1>
+    <section className={`${styles.logout} ${styles.content__logout}`}>
+      <h1 className={styles.logout__title}>Você quer desconectar da sua conta?</h1>
 
       {/* Se estiver em loading de logout, com checagem de autenticação concluída (true) */}
-      {loading && authChecked && <Loader className="logout__loader">Desconectando...</Loader>}
+      {loading && authChecked && (
+        <Loader className={styles.logout__loader}>Desconectando...</Loader>
+      )}
 
-      {localError && <Toast className="logout__toast" message={localError} />}
+      {localError && <Toast className={styles.logout__toast} message={localError} />}
 
-      <Button className="logout__button" onClick={handleLogout}>
+      <Button className={styles.logout__button} onClick={handleLogout}>
         Deslogar
       </Button>
 
-      <Button className="logout__button" onClick={() => navigate(-1)}>
+      <Button className={styles.logout__button} onClick={() => navigate(-1)}>
         Voltar para página anterior
       </Button>
     </section>

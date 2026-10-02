@@ -6,7 +6,7 @@ import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import { useState } from 'react';
 import useOrders from '../../../../orders/hooks/useOrders.js';
 import PropTypes from 'prop-types';
-import './CheckoutForm.css';
+import styles from './CheckoutForm.module.css';
 
 function CheckoutForm(props) {
   const { cleanCartAction, user, navigate, cartData, cartItems } = props;
@@ -84,15 +84,19 @@ function CheckoutForm(props) {
   };
 
   return (
-    <form className="form checkout__form" name="checkout" onSubmit={handleSubmit} /*noValidate*/>
-      <fieldset className="form__fieldset form__fieldset_radio">
-        <legend className="form__legend ">Forma de pagamento:</legend>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="pix">
+    <form
+      className={`${styles.form} ${styles.checkout__form}`}
+      name="checkout"
+      onSubmit={handleSubmit} /*noValidate*/
+    >
+      <fieldset className={`${styles.form__fieldset} ${styles.form__fieldset_radio}`}>
+        <legend className={styles.form__legend}>Forma de pagamento:</legend>
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="pix">
             PIX
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             type="radio"
             id="pix"
             name="pay"
@@ -102,12 +106,12 @@ function CheckoutForm(props) {
             required
           />
         </div>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="debito">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="debito">
             Cartão de débito
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             type="radio"
             id="debito"
             name="pay"
@@ -116,12 +120,12 @@ function CheckoutForm(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="form__input-box form__input-box_radio">
-          <label className="form__label" htmlFor="credito">
+        <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
+          <label className={styles.form__label} htmlFor="credito">
             Cartão de crédito
           </label>
           <Input
-            className="form__input form__input_radio"
+            className={`${styles.form__input} ${styles.form__input_radio}`}
             type="radio"
             id="credito"
             name="pay"
@@ -133,16 +137,16 @@ function CheckoutForm(props) {
       </fieldset>
 
       {formData.pay === 'pix' && (
-        <fieldset className="form__fieldset">
-          <legend className="form__legend">Dados para PIX:</legend>
-          <dl className="form__pix-details">
-            <dt className="form__pix-term">Chave PIX: </dt>
-            <dd className="form__pix-description">portfolio@exemplo.com</dd>
+        <fieldset className={styles.form__fieldset}>
+          <legend className={styles.form__legend}>Dados para PIX:</legend>
+          <dl className={styles['form__pix-details']}>
+            <dt className={styles['form__pix-term']}>Chave PIX: </dt>
+            <dd className={styles['form__pix-description']}>portfolio@exemplo.com</dd>
           </dl>
 
-          <p className="form__pix-label">QR Code:</p>
+          <p className={styles['form__pix-label']}>QR Code:</p>
           <img
-            className="form__pix-qr-img"
+            className={styles['form__pix-qr-img']}
             src={qrCodeImg}
             alt="Imagem demonstrativa de um QR Code com desenho centralizado de coração."
           />
@@ -150,76 +154,76 @@ function CheckoutForm(props) {
       )}
 
       {formData.pay === 'debito' && (
-        <fieldset className="form__fieldset">
-          <legend className="form__legend">Dados do cartão de débito:</legend>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Nome: </label>
-            <input className="form__input" disabled />
+        <fieldset className={styles.form__fieldset}>
+          <legend className={styles.form__legend}>Dados do cartão de débito:</legend>
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Nome: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Nº do cartão: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Nº do cartão: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Bandeira: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Bandeira: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Validade: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Validade: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Código: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Código: </label>
+            <input className={styles.form__input} disabled />
           </div>
         </fieldset>
       )}
 
       {formData.pay === 'credito' && (
-        <fieldset className="form__fieldset">
-          <legend className="form__legend">Dados do cartão de crédito:</legend>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Nome: </label>
-            <input className="form__input" disabled />
+        <fieldset className={styles.form__fieldset}>
+          <legend className={styles.form__legend}>Dados do cartão de crédito:</legend>
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Nome: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Nº do cartão: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Nº do cartão: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Bandeira: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Bandeira: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Validade: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Validade: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Código: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Código: </label>
+            <input className={styles.form__input} disabled />
           </div>
-          <div className="form__input-box form__input-box_pay">
-            <label className="form__label">Parcelas: </label>
-            <input className="form__input" disabled />
+          <div className={`${styles['form__input-box']} ${styles['form__input-box_pay']}`}>
+            <label className={styles.form__label}>Parcelas: </label>
+            <input className={styles.form__input} disabled />
           </div>
         </fieldset>
       )}
 
-      <p className="form__notice">
+      <p className={styles.form__notice}>
         ***Ambiente de demonstração. Nenhum dado de pagamento é processado ou armazenado.
       </p>
 
       {loadingSendOrder && (
-        <Loader className="form__loader">
+        <Loader className={styles.form__loader}>
           Mais um pouco menos de desperdício... Enviando pedido...
         </Loader>
       )}
 
       {localErrorSendOrder && (
-        <Toast className="form__toast" message={localErrorSendOrder.message}></Toast>
+        <Toast className={styles.form__toast} message={localErrorSendOrder.message}></Toast>
       )}
 
-      <Button className="form__button" type="submit">
+      <Button className={styles.form__button} type="submit">
         Comprar {formData.pay !== '' && `no ${typeOfPay}`}
       </Button>
     </form>

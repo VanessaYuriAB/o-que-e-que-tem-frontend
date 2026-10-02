@@ -7,7 +7,7 @@ import { useShallow } from 'zustand/react/shallow';
 import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import useAuthStore from '../../../../../store/useAuthStore.js';
 import PackForm from '../pack-form/PackForm.jsx';
-import './PackCart.css';
+import styles from './PackCart.module.css';
 
 function PackCart() {
   const [localRemovedError, setLocalRemovedError] = useState(null);
@@ -61,22 +61,22 @@ function PackCart() {
   };
 
   return (
-    <section className="pack cart__pack">
-      <h2 className="pack__title">Finalize seu pedido</h2>
+    <section className={`${styles.pack} ${styles.cart__pack}`}>
+      <h2 className={styles.pack__title}>Finalize seu pedido</h2>
 
-      <div className="pack__container">
-        <aside className="pack__aside">
-          <section className="pack__details">
-            <h3 className="pack__details-title">Detalhes do pedido:</h3>
+      <div className={styles.pack__container}>
+        <aside className={styles.pack__aside}>
+          <section className={styles.pack__details}>
+            <h3 className={styles['pack__details-title']}>Detalhes do pedido:</h3>
 
-            <ul className="pack__details-list list-reset">
+            <ul className={`${styles['pack__details-list']} list-reset`}>
               {cartItems.map((item) => {
                 return (
-                  <li className="pack__details-item" key={item._id}>
-                    <div className="pack__details-box">
-                      <p className="pack__details-product">{item.productName}</p>
+                  <li className={styles['pack__details-item']} key={item._id}>
+                    <div className={styles['pack__details-box']}>
+                      <p className={styles['pack__details-product']}>{item.productName}</p>
                       <Button
-                        className="pack__details-button"
+                        className={styles['pack__details-button']}
                         type="button"
                         title="Remover item"
                         onClick={() => handleRemoveItem(item)}
@@ -87,49 +87,51 @@ function PackCart() {
               })}
             </ul>
 
-            {removeLoading && <Loader className="pack__details-loader">Removendo item...</Loader>}
-
-            {localRemovedError && (
-              <Toast className="pack__details-toast" message={localRemovedError}></Toast>
+            {removeLoading && (
+              <Loader className={styles['pack__details-loader']}>Removendo item...</Loader>
             )}
 
-            <div className="pack__details-link-box">
-              <Link className="pack__details-link link-to-button" to="/menu">
+            {localRemovedError && (
+              <Toast className={styles['pack__details-toast']} message={localRemovedError}></Toast>
+            )}
+
+            <div className={styles['pack__details-link-box']}>
+              <Link className={`${styles['pack__details-link']} link-to-button`} to="/menu">
                 Voltar ao cardápio
               </Link>
             </div>
 
-            <dl className="pack__details-resume">
-              <div className="pack__details-line"></div>
-              <div className="pack__details-box">
-                <dt className="pack__details-term">Tipo de refeição</dt>
-                <dd className="pack__details-description">
+            <dl className={styles['pack__details-resume']}>
+              <div className={styles['pack__details-line']}></div>
+              <div className={styles['pack__details-box']}>
+                <dt className={styles['pack__details-term']}>Tipo de refeição</dt>
+                <dd className={styles['pack__details-description']}>
                   {formData.meal === '' ? '-' : typeOfMeal}
                 </dd>
               </div>
 
               {user?.subscription !== true && (
                 <>
-                  <div className="pack__details-line"></div>
-                  <div className="pack__details-box">
-                    <dt className="pack__details-term">Subtotal</dt>
-                    <dd className="pack__details-description">R$ {subtotal},00</dd>
+                  <div className={styles['pack__details-line']}></div>
+                  <div className={styles['pack__details-box']}>
+                    <dt className={styles['pack__details-term']}>Subtotal</dt>
+                    <dd className={styles['pack__details-description']}>R$ {subtotal},00</dd>
                   </div>
-                  <div className="pack__details-box">
-                    <dt className="pack__details-term">Entrega</dt>
-                    <dd className="pack__details-description">
+                  <div className={styles['pack__details-box']}>
+                    <dt className={styles['pack__details-term']}>Entrega</dt>
+                    <dd className={styles['pack__details-description']}>
                       R$ {formData.method === 'delivery' ? 10 : 0},00
                     </dd>
                   </div>
-                  <div className="pack__details-line"></div>
-                  <div className="pack__details-box">
-                    <dt className="pack__details-term">Total</dt>
-                    <dd className="pack__details-description">R$ {total},00</dd>
+                  <div className={styles['pack__details-line']}></div>
+                  <div className={styles['pack__details-box']}>
+                    <dt className={styles['pack__details-term']}>Total</dt>
+                    <dd className={styles['pack__details-description']}>R$ {total},00</dd>
                   </div>
                 </>
               )}
             </dl>
-            <p className="pack__details-msg">Mais um pouco menos de desperdício :)</p>
+            <p className={styles['pack__details-msg']}>Mais um pouco menos de desperdício :)</p>
           </section>
         </aside>
 
