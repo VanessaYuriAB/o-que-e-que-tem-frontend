@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import './Input.css';
+import styles from './Input.module.css';
 
 function Input({ placeholder, name, id, type, className = '', ...props }) {
   return (
     <input
-      className={`input ${className}`}
+      className={`${styles.input} ${className}`}
       type={type}
       id={id}
       name={name}

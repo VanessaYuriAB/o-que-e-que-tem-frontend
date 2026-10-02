@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import './Toast.css';
+import styles from './Toast.module.css';
 
 function Toast({ message = '', children = '', className = '' }) {
   return (
-    <div className={`toast ${className}`} role="alert" aria-live="assertive">
-      {message && <p className="toast__message">{message}</p>}
+    <div className={`${styles.toast} ${className}`} role="alert" aria-live="assertive">
+      {message && <p className={styles.toast__message}>{message}</p>}
       {children && children}
     </div>
   );

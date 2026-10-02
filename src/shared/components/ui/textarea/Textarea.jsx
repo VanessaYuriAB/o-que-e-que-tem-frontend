@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import './Textarea.css';
+import styles from './Textarea.module.css';
 
 function Textarea({ placeholder, name, id, className = '', ...props }) {
   return (
     <textarea
-      className={`textarea ${className}`}
+      className={`${styles.textarea} ${className}`}
       id={id}
       name={name}
       placeholder={placeholder}

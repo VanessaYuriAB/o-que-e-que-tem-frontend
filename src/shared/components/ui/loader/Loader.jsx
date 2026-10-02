@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
-import './Loader.css';
+import styles from './Loader.module.css';
 
 function Loader({ children = '', className = '' }) {
   return (
-    <div className={`loader ${className}`} role="status" aria-live="polite">
-      {children && typeof children === 'string' && <p className="loader__text">{children}</p>}
+    <div className={`${styles.loader} ${className}`} role="status" aria-live="polite">
+      {children && typeof children === 'string' && (
+        <p className={styles.loader__text}>{children}</p>
+      )}
 
-      {!children && <p className="loader__text">Carregando...</p>}
+      {!children && <p className={styles.loader__text}>Carregando...</p>}
 
       {children && typeof children !== 'string' && (
-        <div className="loader__content">{children}</div>
+        <div className={styles.loader__content}>{children}</div>
       )}
     </div>
   );
