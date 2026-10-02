@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore.js';
 import Toast from '../../shared/components/ui/toast/Toast.jsx';
-import './SuccessOrder.css';
+import styles from './SuccessOrder.module.css';
 
 function SuccessOrder() {
   const user = useAuthStore((state) => state.user);
@@ -15,8 +15,8 @@ function SuccessOrder() {
   }
 
   return (
-    <section className="order content__order">
-      <h1 className={hasOrder !== null ? 'order__title' : 'order__empty-title'}>
+    <section className={`${styles.order} ${styles.content__order}`}>
+      <h1 className={hasOrder !== null ? styles.order__title : styles['order__empty-title']}>
         {hasOrder !== null
           ? 'Pedido enviado com sucesso'
           : 'Ops, você não tem um pedido finalizado e enviado salvo no seu navegador'}
@@ -24,41 +24,47 @@ function SuccessOrder() {
 
       {hasOrder !== null ? (
         <>
-          <div className="order__box">
-            <p className="order__text">
+          <div className={styles.order__box}>
+            <p className={styles.order__text}>
               Logo você pode saborear uma super refeição nutritiva preparada com muito amor e
               carinho s2
             </p>
-            <p className="order__text">
+            <p className={styles.order__text}>
               E ainda ajudou a reduzir um pouquinho o desperdício alimentar e o meio ambiente
             </p>
-            <p className="order__text">Agradecemos muito :)</p>
+            <p className={styles.order__text}>Agradecemos muito :)</p>
           </div>
 
-          <article className="order__card">
-            <h2 className="order__subtitle">
+          <article className={styles.order__card}>
+            <h2 className={styles.order__subtitle}>
               Aqui estão as informações {hasOrder.meal === 'sopa' ? 'da sua' : 'do seu'}{' '}
               {hasOrder.meal === 'pate' ? 'patê' : hasOrder.meal}:
             </h2>
-            <dl className="order__details">
-              <div className="order__detail-box order__detail-box_inline">
-                <dt className="order__term">Nº do pedido:</dt>
-                <dd className="order__description">{hasOrder.orderNumber}</dd>
+            <dl className={styles.order__details}>
+              <div
+                className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+              >
+                <dt className={styles.order__term}>Nº do pedido:</dt>
+                <dd className={styles.order__description}>{hasOrder.orderNumber}</dd>
               </div>
-              <div className="order__detail-box order__detail-box_inline">
-                <dt className="order__term">Data: </dt>
-                <dd className="order__description">
+              <div
+                className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+              >
+                <dt className={styles.order__term}>Data: </dt>
+                <dd className={styles.order__description}>
                   {new Date(hasOrder.createdAt).toLocaleString('pt-BR')}
                 </dd>
               </div>
-              <div className="order__detail-box order__detail-box_inline">
-                <dt className="order__term">Forma de entrega:</dt>
-                <dd className="order__description">{hasOrder.method}</dd>
+              <div
+                className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+              >
+                <dt className={styles.order__term}>Forma de entrega:</dt>
+                <dd className={styles.order__description}>{hasOrder.method}</dd>
               </div>
               {hasOrder.method === 'delivery' && (
-                <div className="order__detail-box">
-                  <dt className="order__term">Endereço:</dt>
-                  <dd className="order__description">
+                <div className={styles['order__detail-box']}>
+                  <dt className={styles.order__term}>Endereço:</dt>
+                  <dd className={styles.order__description}>
                     {hasOrder.addressSnapshot.address}, {hasOrder.addressSnapshot.number}
                     {hasOrder.addressSnapshot.complement !== '-' &&
                       `, ${hasOrder.addressSnapshot.complement}`}
@@ -67,16 +73,16 @@ function SuccessOrder() {
                 </div>
               )}
               {hasOrder.obs && (
-                <div className="order__detail-box">
-                  <dt className="order__term">Infos adicionais:</dt>
-                  <dd className="order__description">{hasOrder.obs}</dd>
+                <div className={styles['order__detail-box']}>
+                  <dt className={styles.order__term}>Infos adicionais:</dt>
+                  <dd className={styles.order__description}>{hasOrder.obs}</dd>
                 </div>
               )}
 
-              <div className="order__detail-box">
-                <dt className="order__term">Contato:</dt>
-                <dd className="order__description">
-                  <address className="order__address">
+              <div className={styles['order__detail-box']}>
+                <dt className={styles.order__term}>Contato:</dt>
+                <dd className={styles.order__description}>
+                  <address className={styles.order__address}>
                     {hasOrder.customerSnapshot.userName} | {hasOrder.customerSnapshot.email} |{' '}
                     {hasOrder.customerSnapshot.tel}
                   </address>
@@ -85,9 +91,11 @@ function SuccessOrder() {
 
               {hasOrder.orderNumber.startsWith('2') && (
                 <>
-                  <div className="order__detail-box order__detail-box_inline">
-                    <dt className="order__term">Forma de pagamento:</dt>
-                    <dd className="order__description">
+                  <div
+                    className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+                  >
+                    <dt className={styles.order__term}>Forma de pagamento:</dt>
+                    <dd className={styles.order__description}>
                       {hasOrder.payment === 'pix'
                         ? 'PIX'
                         : hasOrder.payment === 'debito'
@@ -95,42 +103,50 @@ function SuccessOrder() {
                           : 'cartão de crédito'}
                     </dd>
                   </div>
-                  <div className="order__detail-box order__detail-box_inline">
-                    <dt className="order__term">R$:</dt>
-                    <dd className="order__description">{hasOrder.amount},00</dd>
+                  <div
+                    className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+                  >
+                    <dt className={styles.order__term}>R$:</dt>
+                    <dd className={styles.order__description}>{hasOrder.amount},00</dd>
                   </div>
                 </>
               )}
 
               {hasOrder.orderNumber.startsWith('S') && (
                 <>
-                  <div className="order__detail-box order__detail-box_inline">
-                    <dt className="order__term">
+                  <div
+                    className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+                  >
+                    <dt className={styles.order__term}>
                       Data de {hasOrder.method === 'delivery' ? 'entrega' : 'retirada'}:
                     </dt>
-                    <dd className="order__description">{hasOrder.day}</dd>
+                    <dd className={styles.order__description}>{hasOrder.day}</dd>
                   </div>
 
-                  <div className="order__detail-box order__detail-box_inline">
-                    <dt className="order__term">Às:</dt>
-                    <dd className="order__description">{hasOrder.time}</dd>
+                  <div
+                    className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+                  >
+                    <dt className={styles.order__term}>Às:</dt>
+                    <dd className={styles.order__description}>{hasOrder.time}</dd>
                   </div>
                 </>
               )}
 
-              <div className="order__detail-box order__detail-box_inline">
-                <dt className="order__term">Tipo de refeição:</dt>
-                <dd className="order__description">
+              <div
+                className={`${styles['order__detail-box']} ${styles['order__detail-box_inline']}`}
+              >
+                <dt className={styles.order__term}>Tipo de refeição:</dt>
+                <dd className={styles.order__description}>
                   {hasOrder.meal === 'pate' ? 'patê' : hasOrder.meal}
                 </dd>
               </div>
-              <div className="order__detail-box">
-                <dt className="order__term">Ingredientes:</dt>
-                <dd className="order__description">
-                  <ul className="order__ingredients-list list-reset">
+              <div className={styles['order__detail-box']}>
+                <dt className={styles.order__term}>Ingredientes:</dt>
+                <dd className={styles.order__description}>
+                  <ul className={`${styles['order__ingredients-list']} list-reset`}>
                     {hasOrder.itemsSnapshot.map((item) => {
                       return (
-                        <li className="order__ingredients-item" key={item._id}>
+                        <li className={styles['order__ingredients-item']} key={item._id}>
                           {item.productName}
                         </li>
                       );
@@ -142,35 +158,38 @@ function SuccessOrder() {
           </article>
         </>
       ) : (
-        <Toast className="order__empty-toast">
-          <p className="order__empty-prompt">
+        <Toast className={styles['order__empty-toast']}>
+          <p className={styles['order__empty-prompt']}>
             Você pode rastrear um pedido pelo nº do pedido + e-mail:
           </p>
-          <Link className="order__empty-link link-to-button" to="/order-tracker">
+          <Link className={`${styles['order__empty-link']} link-to-button`} to="/order-tracker">
             Rastrear um pedido
           </Link>
 
           {user !== null && (
             <>
-              <p className="order__empty-prompt">Quer ver seu histórico de pedidos?</p>
-              <Link className="order__empty-link link-to-button" to="/profile/orders-profile">
+              <p className={styles['order__empty-prompt']}>Quer ver seu histórico de pedidos?</p>
+              <Link
+                className={`${styles['order__empty-link']} link-to-button`}
+                to="/profile/orders-profile"
+              >
                 Pedidos anteriores
               </Link>
             </>
           )}
 
-          <p className="order__empty-prompt">Quer fazer um novo pedido?</p>
-          <Link className="order__empty-link link-to-button" to="/menu">
+          <p className={styles['order__empty-prompt']}>Quer fazer um novo pedido?</p>
+          <Link className={`${styles['order__empty-link']} link-to-button`} to="/menu">
             Ver cardápio
           </Link>
 
-          <p className="order__empty-prompt">Quer finalizar um pedido em andamento?</p>
-          <Link className="order__empty-link link-to-button" to="/cart">
+          <p className={styles['order__empty-prompt']}>Quer finalizar um pedido em andamento?</p>
+          <Link className={`${styles['order__empty-link']} link-to-button`} to="/cart">
             Ir para carrinho
           </Link>
 
-          <p className="order__empty-prompt">Precisa apenas fazer o pagamento?</p>
-          <Link className="order__empty-link link-to-button" to="/checkout">
+          <p className={styles['order__empty-prompt']}>Precisa apenas fazer o pagamento?</p>
+          <Link className={`${styles['order__empty-link']} link-to-button`} to="/checkout">
             Ir para checkout
           </Link>
         </Toast>

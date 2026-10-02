@@ -1,11 +1,9 @@
 /* Mobile first (padrão) */
 
-.content__not-found {
+.not-found {
   background-color: #9fbe68;
   flex: 1; /* para ajuste do 'background-color', preenchimento total */
-}
-
-.not-found {
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

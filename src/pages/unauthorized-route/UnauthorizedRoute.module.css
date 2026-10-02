@@ -1,13 +1,14 @@
 /* Mobile first (padrão) */
 
 .protected-route {
+  display: flex;
+  flex: 1;
   width: 100%;
 }
 
 .protected-route__toast {
   margin: 0;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,7 +36,4 @@
 /* Tablet e acima */
 
 @media (min-width: 768px) {
-  .protected-route {
-    width: 80%;
-  }
 }
