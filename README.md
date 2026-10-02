@@ -28,7 +28,7 @@
 17. [Como executar ▶️](#-17-como-executar)
 18. [Status atual 🔄](#-18-status-atual)
 19. [Pagamentos 💳](#-19-pagamentos)
-20. [Principais desafios 🏔️](#-20-principais-desafios-técnicos)
+20. [Principais desafios técnicos 🏔️](#-20-principais-desafios-técnicos)
 21. [Principais aprendizados 🎓](#-21-principais-aprendizados)
 22. [Melhorias 🔧](#-22-melhorias)
 23. [Roadmap 🗺️](#-23-roadmap)
@@ -61,7 +61,7 @@ O projeto propõe uma solução baseada em tecnologia, sustentabilidade e econom
 
 <a id="-2-screenshots"></a>
 
-## 📸 Screenshots
+## 📸 2. Screenshots
 
 ### 🏠 Página Inicial (📱 Experiência Mobile-First)
 
@@ -659,7 +659,7 @@ Decide como apresentar o erro ao usuário.
 
 <a id="-11-gerenciamento-de-estado-global"></a>
 
-## ⚡ 11. Gerenciamento de estado global
+## 🗃️ 11. Gerenciamento de estado global
 
 O projeto utiliza:
 
@@ -725,7 +725,7 @@ preservando `pathname`, `query parameters` e `hash` da navegação anterior.
 
 <a id="-13-performance"></a>
 
-## 🚀 13. Performance
+## ⚡ 13. Performance
 
 Implementações adotadas:
 
@@ -1011,7 +1011,7 @@ e apresentar o fluxo de compra da plataforma.
 
 <a id="-20-principais-desafios-técnicos"></a>
 
-## 🧠 20. Principais desafios técnicos
+## 🏔️ 20. Principais desafios técnicos
 
 Durante o desenvolvimento do projeto alguns desafios exigiram modelagem, refatorações e ajustes
 arquiteturais relevantes.
