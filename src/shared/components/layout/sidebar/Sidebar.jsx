@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import useAuthStore from '../../../../store/useAuthStore.js';
 import { sidebarLinksLoggedOn, sidebarLinksLoggedOff } from '../../../constants/navigation.js';
-import './Sidebar.css';
+import styles from './Sidebar.module.css';
 
 function Sidebar() {
   const user = useAuthStore((state) => state.user);
@@ -12,19 +12,19 @@ function Sidebar() {
   );
 
   const customClassName = ({ isActive }) =>
-    `sidebar__link nav__link ${isActive ? 'sidebar__link_active' : ''}`;
+    `${styles.sidebar__link} nav__link ${isActive ? styles.sidebar__link_active : ''}`;
 
   return (
-    <div className="sidebar header__sidebar">
-      <details className="sidebar__details">
-        <summary className="sidebar__summary" title="Menu">
+    <div className={`${styles.sidebar} ${styles.header__sidebar}`}>
+      <details className={styles.sidebar__details}>
+        <summary className={styles.sidebar__summary} title="Menu">
           {/* Apenas para acessibilidade */}
-          <span className="sidebar__summary-hidden">Menu</span>
+          <span className={styles['sidebar__summary-hidden']}>Menu</span>
         </summary>
-        <nav className="sidebar__links nav" aria-label="Menu principal">
-          <ul className="sidebar__list nav__list nav__list_sidebar">
+        <nav className={`${styles.sidebar__links} nav`} aria-label="Menu principal">
+          <ul className={`${styles.sidebar__list} nav__list nav__list_sidebar`}>
             {sidebarLinks.map((link) => (
-              <li key={link.to} className={link.class}>
+              <li key={link.to} className={styles[link.class]}>
                 <NavLink className={customClassName} to={link.to}>
                   {link.label}
                 </NavLink>

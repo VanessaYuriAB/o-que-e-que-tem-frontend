@@ -1,11 +1,11 @@
 import Header from '../header/Header.jsx';
 import Footer from '../footer/Footer.jsx';
 import MainContainer from '../main-container/MainContainer.jsx';
-import './Layout.css';
+import styles from './Layout.module.css';
 
 function Layout() {
   return (
-    <div className="page">
+    <div className={styles.page}>
       <Header />
       <MainContainer />
       <Footer />

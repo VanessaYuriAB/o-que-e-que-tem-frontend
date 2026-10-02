@@ -5,7 +5,7 @@ import useCartStore from '../../../../store/useCartStore.js';
 import Button from '../../ui/button/Button.jsx';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect } from 'react';
-import './MainContainer.css';
+import styles from './MainContainer.module.css';
 
 function MainContainer() {
   const { globalError, setGlobalErrorAction } = useAuthStore(
@@ -32,15 +32,18 @@ function MainContainer() {
   const syncCartError = useCartStore((state) => state.syncCartError);
 
   return (
-    <main className="content page__content">
+    <main className={`${styles.content} ${styles.page__content}`}>
       {globalError && (
-        <div className="content__toast-modal">
-          <div className="content__toast-container">
-            <Button className="content__toast-button" onClick={() => setGlobalErrorAction(null)}>
+        <div className={styles['content__toast-modal']}>
+          <div className={styles['content__toast-container']}>
+            <Button
+              className={styles['content__toast-button']}
+              onClick={() => setGlobalErrorAction(null)}
+            >
               X
             </Button>
             <Toast
-              className="content__toast content__toast_global"
+              className={`${styles.content__toast} ${styles.content__toast_global}`}
               message={
                 globalError.source === 'refresh'
                   ? `Não foi possível verificar a sua sessão. ${globalError.message}`
@@ -53,7 +56,7 @@ function MainContainer() {
 
       {syncCartError && (
         <Toast
-          className="content__toast content__toast_sync-cart"
+          className={`${styles.content__toast} ${styles['content__toast_sync-cart']}`}
           message="Não foi possível ajustar os dados para o carrinho. Algumas funcionalidades de compra podem ficar indisponíveis. Tente recarregar a página."
         />
       )}
