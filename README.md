@@ -248,6 +248,7 @@ A equipe de triagem atua em duas frentes:
 - Feature-Based Architecture (abordagem leve / adaptada)
 - Component-Based Design
 - Mobile First
+- CSS Modules
 - Colocation de estilos (os estilos permanecem próximos aos componentes aos quais pertencem,
   facilitando manutenção, navegação e evolução da interface)
 - Convenção BEM (utilização da metodologia BEM para promover previsibilidade, escalabilidade e
@@ -877,6 +878,7 @@ Utilizando:
 - React Router DOM
 - Zustand
 - PropTypes
+- CSS Modules
 
 `PropTypes` é utilizado para validação de propriedades em runtime, contribuindo para a
 previsibilidade e manutenção dos componentes.
@@ -1072,6 +1074,55 @@ A evolução do projeto também exigiu sucessivas refatorações para:
 
 Esse processo resultou em uma arquitetura mais próxima de aplicações Full Stack reais.
 
+### Migração de CSS Puro (Escopo Global) para CSS Modules
+
+Durante a evolução da interface foi identificado um comportamento inconsistente na renderização de
+alguns componentes.
+
+Em determinadas situações, estilos CSS eram aplicados de forma incorreta durante o carregamento
+inicial da aplicação, fazendo com que elementos fossem exibidos desconfigurados visualmente. A
+aparência correta dos componentes era restaurada apenas após uma atualização manual da página,
+indicando inconsistências na aplicação inicial dos estilos.
+
+Após investigação do problema, foi realizada uma refatoração gradual da camada de estilos, migrando
+componentes de `CSS Puro` para `CSS Modules`.
+
+Fluxo anterior:
+
+```
+CSS Puro
+↓
+Escopo global dos estilos
+↓
+Renderização inconsistente
+↓
+Correção apenas após recarregamento
+```
+
+Fluxo atual:
+
+```
+CSS Modules
+↓
+Escopo isolado por componente
+↓
+Aplicação previsível dos estilos
+↓
+Renderização consistente
+```
+
+Benefícios obtidos:
+
+- isolamento dos estilos por componente;
+- redução do risco de conflitos entre classes;
+- maior previsibilidade durante a renderização;
+- melhor manutenção da base de código e
+- correção dos problemas visuais observados no carregamento inicial da aplicação.
+
+Essa refatoração também contribuiu para fortalecer a separação de responsabilidades da interface,
+mantendo cada componente responsável por seus próprios estilos e aumentando a previsibilidade da
+camada de apresentação.
+
 ### Modelagem do domínio de negócio
 
 Antes mesmo da implementação técnica, foi necessário transformar uma ideia de economia circular em
@@ -1162,6 +1213,8 @@ Durante o desenvolvimento foram estudados e aplicados conceitos como:
 - `mock backend`;
 - `Outlet Context` do React Router;
 - `polling` com `setInterval`;
+- `CSS Modules` e escopo isolado de estilos, migrando estilos globais para estilos encapsulados por
+  componente;
 - tooling profissional;
 - organização de projetos para crescimento futuro.
 
