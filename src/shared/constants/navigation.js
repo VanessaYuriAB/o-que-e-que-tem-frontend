@@ -56,21 +56,15 @@ export const navbarLinksLoggedOff = [navbarLinkRegister, navbarLinkLogin, navbar
 
 /* Menu */
 
-const itemMenuClassName = 'menu__item';
-
 export const menuLinks = [
-  { to: 'todos', class: itemMenuClassName, label: 'Todos' },
-  { to: 'carboidratos', class: itemMenuClassName, label: 'Carboidratos' },
-  { to: 'verduras-legumes', class: itemMenuClassName, label: 'Verduras e legumes' },
-  { to: 'leites-derivados', class: itemMenuClassName, label: 'Leites e derivados' },
-  { to: 'carnes-ovos-peixes', class: itemMenuClassName, label: 'Carnes, ovos e peixes' },
-  {
-    to: 'leguminosas-oleaginosas',
-    class: itemMenuClassName,
-    label: 'Leguminosas e oleaginosas',
-  },
-  { to: 'oleos-gorduras', class: itemMenuClassName, label: 'Óleos e gorduras' },
-  { to: 'acucares-doces', class: itemMenuClassName, label: 'Açúcares e Doces' },
+  { to: 'todos', label: 'Todos' },
+  { to: 'carboidratos', label: 'Carboidratos' },
+  { to: 'verduras-legumes', label: 'Verduras e legumes' },
+  { to: 'leites-derivados', label: 'Leites e derivados' },
+  { to: 'carnes-ovos-peixes', label: 'Carnes, ovos e peixes' },
+  { to: 'leguminosas-oleaginosas', label: 'Leguminosas e oleaginosas' },
+  { to: 'oleos-gorduras', label: 'Óleos e gorduras' },
+  { to: 'acucares-doces', label: 'Açúcares e Doces' },
 ];
 
 /* Footer */

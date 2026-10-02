@@ -25,7 +25,7 @@ function Menu() {
         <nav className={styles.menu__links} aria-label="Categorias dos ingredientes disponíveis.">
           <ul className={`${styles.menu__list} nav__list`}>
             {menuLinks.map((link) => (
-              <li key={link.to} className={styles[link.class]}>
+              <li key={link.to} className={styles.menu__item}>
                 <NavLink className={customClassName} to={link.to}>
                   {link.label}
                 </NavLink>
