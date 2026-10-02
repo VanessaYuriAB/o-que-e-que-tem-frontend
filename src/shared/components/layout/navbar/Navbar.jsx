@@ -18,7 +18,7 @@ function Navbar() {
       <nav className={`${styles.navbar__links} nav`} aria-label="Ações do usuário">
         <ul className={`${styles.navbar__list} nav__list`}>
           {navbarLinks.map((link) => (
-            <li key={link.to} className={styles[link.liClass]}>
+            <li key={link.to} className={styles.navbar__item}>
               <NavLink
                 className={customClassName}
                 to={link.to}
@@ -28,7 +28,7 @@ function Navbar() {
                 aria-label={link.label}
                 title={link.title}
               >
-                <img className={styles[link.imgClass]} src={link.imgSrc} alt="" />
+                <img className={styles.navbar__icon} src={link.imgSrc} alt="" />
               </NavLink>
             </li>
           ))}

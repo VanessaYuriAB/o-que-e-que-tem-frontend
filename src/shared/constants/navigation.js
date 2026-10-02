@@ -24,37 +24,29 @@ export const sidebarLinksLoggedOff = sidebarLinksFixed;
 
 const navbarLinkRegister = {
   to: '/register',
-  liClass: 'navbar__item nav__item',
   label: 'Ir para página de cadastro',
   title: 'Cadastro',
-  imgClass: 'navbar__icon',
   imgSrc: imgRegister,
 };
 
 const navbarLinkLogin = {
   to: '/login',
-  liClass: 'navbar__item nav__item',
   label: 'Ir para página de login',
   title: 'Login',
-  imgClass: 'navbar__icon',
   imgSrc: imgLogin,
 };
 
 const navbarLinkLogout = {
   to: '/logout',
-  liClass: 'navbar__item nav__item',
   label: 'Deslogar',
   title: 'Logout',
-  imgClass: 'navbar__icon',
   imgSrc: imgLogout,
 };
 
 const navbarLinkCart = {
   to: '/cart',
-  liClass: 'navbar__item nav__item',
   label: 'Ir para carrinho de compras',
   title: 'Carrinho de compras',
-  imgClass: 'navbar__icon',
   imgSrc: imgCart,
 };
 
