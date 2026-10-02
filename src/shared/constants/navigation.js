@@ -5,19 +5,15 @@ import imgLogout from '../../assets/icons/logout.svg';
 
 /* Sidebar */
 
-const sidebarLinkOn = { to: '/profile', class: 'sidebar__item nav__item', label: 'PERFIL' };
+const sidebarLinkOn = { to: '/profile', label: 'PERFIL' };
 
 const sidebarLinksFixed = [
-  { to: '/order-tracker', class: 'sidebar__item nav__item', label: 'LOCALIZAR PEDIDO' },
-  { to: '/', class: 'sidebar__item nav__item', label: 'HOME' },
-  { to: '/menu', class: 'sidebar__item nav__item', label: 'CARDÁPIO' },
-  { to: '/subscription', class: 'sidebar__item nav__item', label: 'ASSINATURA' },
-  {
-    to: '/recipes',
-    class: 'sidebar__item nav__item',
-    label: 'RECEITAS',
-  },
-  { to: '/about-us', class: 'sidebar__item nav__item', label: 'SOBRE A GENTE' },
+  { to: '/order-tracker', label: 'LOCALIZAR PEDIDO' },
+  { to: '/', label: 'HOME' },
+  { to: '/menu', label: 'CARDÁPIO' },
+  { to: '/subscription', label: 'ASSINATURA' },
+  { to: '/recipes', label: 'RECEITAS' },
+  { to: '/about-us', label: 'SOBRE A GENTE' },
 ];
 
 export const sidebarLinksLoggedOn = [sidebarLinkOn, ...sidebarLinksFixed];

@@ -21,10 +21,10 @@ function Sidebar() {
           {/* Apenas para acessibilidade */}
           <span className={styles['sidebar__summary-hidden']}>Menu</span>
         </summary>
-        <nav className={`${styles.sidebar__links} nav`} aria-label="Menu principal">
+        <nav className={styles.sidebar__links} aria-label="Menu principal">
           <ul className={`${styles.sidebar__list} nav__list nav__list_sidebar`}>
             {sidebarLinks.map((link) => (
-              <li key={link.to} className={styles[link.class]}>
+              <li key={link.to} className={styles.sidebar__item}>
                 <NavLink className={customClassName} to={link.to}>
                   {link.label}
                 </NavLink>
