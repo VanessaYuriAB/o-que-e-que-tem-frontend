@@ -52,8 +52,11 @@
   margin: 0;
 }
 
-.footer__logo {
-  margin-bottom: 0.75rem;
+.footer__logo-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
 }
 
 .footer__logo .logo__name {

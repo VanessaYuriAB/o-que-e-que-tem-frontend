@@ -60,6 +60,7 @@ function Footer() {
           <p className={styles.footer__operation}>Seg-Sex | 10am-8pm</p>
         </address>
       </div>
+
       <div className={styles['footer__logo-link']}>
         <div className={styles.footer__logo}>
           <Logo />
