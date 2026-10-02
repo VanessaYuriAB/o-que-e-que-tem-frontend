@@ -110,7 +110,7 @@ function MenuType({ category }) {
             <li className={styles.type__item} key={item._id}>
               <article className={styles.type__card}>
                 <h3 className={styles.type__title}>{item.productName}</h3>
-                {category === 'todos' && <p className={styles.type__category}>{item.category}</p>}
+                <p className={styles.type__category}>{item.category}</p>
 
                 {localItemError.id === item._id && (
                   <Toast
