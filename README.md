@@ -5,7 +5,26 @@
 > MVP de uma plataforma digital sustentável para redução do desperdício alimentar através da
 > transformação de produtos próximos ao vencimento em sopas, cremes e patês personalizados.
 
-🌐 **Aplicação:** https://o-que-e-que-tem-frontend.vercel.app
+[![Deploy na Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-bagde&logoColor=white)](https://o-que-e-que-tem-frontend.vercel.app)
+
+![Vite](https://img.shields.io/badge/Vite-646CFF)
+![React 19](https://img.shields.io/badge/React_19-61DAFB)
+![React Router DOM](https://img.shields.io/badge/React_Router_DOM-CA4245)
+![Zustand](https://img.shields.io/badge/Zustand-8B5E3C)
+![PropTypes](https://img.shields.io/badge/PropTypes-E10098)
+![CSS Modules](https://img.shields.io/badge/CSS_Modules-1572B6)
+
+![EditorConfig](https://img.shields.io/badge/EditorConfig-FCAF17)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3)
+![Prettier](https://img.shields.io/badge/Prettier-F7B93E)
+![Husky](https://img.shields.io/badge/Husky-000000)
+![lint-staged](https://img.shields.io/badge/lint--staged-7C3AED)
+
+![Node.js](https://img.shields.io/badge/Node.js_20_LTS-5FA04E)
+![NVM](https://img.shields.io/badge/NVM-539E43)
+![PostCSS](https://img.shields.io/badge/PostCSS-DD3A0A)
+![Autoprefixer](https://img.shields.io/badge/Autoprefixer-DD3735)
+![VS_Code_Workspace_Settings](https://img.shields.io/badge/VS_Code_Workspace_Settings-007ACC)
 
 ## Índice
 
