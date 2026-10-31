@@ -20,39 +20,69 @@ function useSubscription(isUser) {
 
     setGlobalErrorAction(null);
 
-    const dataWithVerifiedAddress = { ...data };
+    // Payload para cadastro, caso necessário
+    const registerData = {
+      userName: data.userName,
+      email: data.email,
+      confirmEmail: data.confirmEmail,
+      tel: data.tel,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    };
+
+    // Payload para login, caso necessário
+    const loginData = {
+      email: data.email,
+      tel: data.tel,
+      password: data.password,
+    };
+
+    // Payload para atualização de perfil cadastral
+    // Com verificação de campos, para ñ sobrescrever dados, caso já existam cadastrado no servidor
+    const userProfileData = {
+      userName: data.userName,
+      email: data.email,
+      tel: data.tel,
+
+      address: data.address,
+      number: data.number,
+      complement: data.complement,
+      district: data.district,
+      cep: data.cep,
+      infoText: data.infoText,
+    };
 
     const addressFields = ['cep', 'address', 'number', 'complement', 'district'];
-
     addressFields.forEach((field) => {
-      if (dataWithVerifiedAddress[field] === '') {
-        delete dataWithVerifiedAddress[field];
+      if (userProfileData[field] === '') {
+        delete userProfileData[field];
       }
     });
 
-    const dataWithoutPassword = { ...dataWithVerifiedAddress };
-
-    delete dataWithoutPassword.password;
-    delete dataWithoutPassword.confirmPassword;
+    // Payload para assinatura
+    // Com dados gerais (exceto senha), pq o service atualiza e retorna o objeto completo de 'user', contendo os dados de assinatura - dados de endereço são gerenciados no próprio service (para mock) - para persistência real no backend, os dados não são utilizados
+    const subscribeData = { ...data };
+    delete subscribeData.password;
+    delete subscribeData.confirmPassword;
 
     try {
       // Se não houver usuário logado
       if (!isUser) {
         // Verifica se já existe cadastro
         // Tenta logar
-        const loginResult = await loginAction(dataWithVerifiedAddress);
+        const loginResult = await loginAction(loginData);
 
         // Se insucesso
         if (!loginResult.success) {
           // Realiza o cadastro do usuário
-          const registerResult = await registerAction(dataWithVerifiedAddress);
+          const registerResult = await registerAction(registerData);
 
           if (!registerResult.success) {
             throw registerResult.error;
           }
 
           // Depois loga
-          const loginResult = await loginAction(dataWithVerifiedAddress);
+          const loginResult = await loginAction(loginData);
 
           if (!loginResult.success) {
             throw loginResult.error;
@@ -63,10 +93,11 @@ function useSubscription(isUser) {
       // Neste ponto, o usuário já está logado
 
       // Atualiza dados do usuário
-      await updateUserProfile(dataWithoutPassword);
+      // Usando service, não hook, pq o set global é definido aqui no próprio hook de assinatura
+      await updateUserProfile(userProfileData);
 
       // Então, inscreve assinatura
-      const subscriptionData = await subscribe(dataWithoutPassword);
+      const subscriptionData = await subscribe(subscribeData);
 
       // E seta 'user' (global)
       setUserAction(subscriptionData);
