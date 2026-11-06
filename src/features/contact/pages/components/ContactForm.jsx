@@ -151,6 +151,7 @@ function ContactForm() {
             value="email"
             checked={formData.method === 'email'}
             onChange={handleChange}
+            required
           />
         </div>
         <div className={`${styles['form__input-box']} ${styles['form__input-box_radio']}`}>
