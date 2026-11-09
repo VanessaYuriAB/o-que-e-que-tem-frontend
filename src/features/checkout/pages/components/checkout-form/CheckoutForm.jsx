@@ -56,7 +56,6 @@ function CheckoutForm(props) {
       meal: cartData.meal,
       method: cartData.method,
       payment: formData.pay,
-      amount: cartData.amount,
 
       customerSnapshot: {
         userName: cartData.userName,
