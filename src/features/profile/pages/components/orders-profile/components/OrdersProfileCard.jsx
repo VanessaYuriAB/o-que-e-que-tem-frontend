@@ -1,23 +1,28 @@
-import parsePtBrDate from '../../../../utils/parsePtBrDate';
 import PropTypes from 'prop-types';
 import styles from './OrdersProfileCard.module.css';
 import profileHistoryStyles from '../../../../styles/profile-history.module.css';
+import { USE_MOCK } from '../../../../../../config/env.js';
 
 function OrdersProfileCard({ userAllOrders }) {
-  const orderedUserAllOrders =
+  const orderedAllOrdersMock =
     userAllOrders.length > 0
-      ? [...userAllOrders].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
+      ? [...userAllOrders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       : [];
+
+  const AllOrdersList = USE_MOCK ? orderedAllOrdersMock : userAllOrders;
 
   return (
     <ul
       className={`${styles['profile__orders-list']} ${profileHistoryStyles['profile-history__list']} list-reset`}
     >
-      {orderedUserAllOrders.map((order) => {
+      {AllOrdersList.map((order) => {
         const isSubscriptionOrder = order.orderNumber.startsWith('S');
 
         const formattedCreatedAt = new Date(order.createdAt).toLocaleString('pt-BR');
-        const orderCreatedAt = order.createdAt.includes('T') ? formattedCreatedAt : order.createdAt;
+
+        const formattedDay = isSubscriptionOrder
+          ? new Date(order.day).toLocaleDateString('pt-BR')
+          : null;
 
         const meal = order.meal === 'pate' ? 'patê' : order.meal === 'sopa' ? 'sopa' : 'creme';
         const typeOfMeal = order ? meal : '';
@@ -76,7 +81,7 @@ function OrdersProfileCard({ userAllOrders }) {
                     <dd
                       className={`${styles['profile__orders-description']} ${profileHistoryStyles['profile-history__description']}`}
                     >
-                      {orderCreatedAt}
+                      {formattedCreatedAt}
                     </dd>
                   </div>
                   <div
@@ -156,7 +161,7 @@ function OrdersProfileCard({ userAllOrders }) {
                     <dd
                       className={`${styles['profile__orders-description']} ${profileHistoryStyles['profile-history__description']}`}
                     >
-                      {order.day}
+                      {formattedDay}
                     </dd>
                   </div>
                   <div
@@ -256,7 +261,7 @@ function OrdersProfileCard({ userAllOrders }) {
                     <dd
                       className={`${styles['profile__orders-description']} ${profileHistoryStyles['profile-history__description']}`}
                     >
-                      {orderCreatedAt}
+                      {formattedCreatedAt}
                     </dd>
                   </div>
                   <div

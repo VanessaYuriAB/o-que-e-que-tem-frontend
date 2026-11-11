@@ -10,7 +10,7 @@ const subscriptionOrder1 = {
 
   meal: 'pate',
   method: user1.subscriptionDetails.method,
-  day: '01/09/2026',
+  day: new Date('2026-09-01T10:00:56').toISOString(),
   time: '10:50',
 
   customerSnapshot: {
@@ -84,7 +84,7 @@ const subscriptionOrder2 = {
 
   meal: 'sopa',
   method: user1.subscriptionDetails.method,
-  day: '03/09/2026',
+  day: new Date('2026-09-03T10:40:27').toISOString(),
   time: '11:20',
 
   customerSnapshot: {
@@ -144,7 +144,7 @@ const subscriptionOrder3 = {
 
   meal: 'creme',
   method: user2.subscriptionDetails.method,
-  day: '04/09/2026',
+  day: new Date('2026-09-04T19:02:18').toISOString(),
   time: '19:45',
 
   customerSnapshot: {

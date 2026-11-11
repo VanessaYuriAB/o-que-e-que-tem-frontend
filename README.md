@@ -5,7 +5,7 @@
 > MVP de uma plataforma digital sustentável para redução do desperdício alimentar através da
 > transformação de produtos próximos ao vencimento em sopas, cremes e patês personalizados.
 
-[![Deploy na Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-bagde&logoColor=white)](https://o-que-e-que-tem-frontend.vercel.app)
+[![Deploy na Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://o-que-e-que-tem-frontend.vercel.app)
 
 ![Vite](https://img.shields.io/badge/Vite-646CFF)
 ![React 19](https://img.shields.io/badge/React_19-61DAFB)
@@ -131,8 +131,8 @@ cenário próximo ao de aplicações reais de e-commerce e delivery.
 
 Painel de gerenciamento do usuário. A área autenticada centraliza as informações do usuário e
 permite gerenciar diferentes aspectos da plataforma em um único local. O módulo foi estruturado para
-suportar dados cadastrais, configurações de assinatura, acesso ao histórico de pedidos, mensagens
-enviadas.
+suportar dados cadastrais, configurações de assinatura, histórico de pedidos e histórico de
+mensagens enviadas.
 
 ![Profile](./screenshots/profile.png)
 
@@ -234,7 +234,7 @@ A equipe de triagem atua em duas frentes:
 - Atualização periódica da disponibilidade através de `polling`
 - Filtragem de ingredientes por categoria alimentar
 - Cadastro, login e autenticação de usuários
-- Persistência de sessão (`refresh mock`)
+- Fluxo de refresh de sessão simulado (persistência de sessão com `refresh mock`)
 - Rotas públicas, protegidas e condicionais
 - Perfil de usuário editável
 - Gerenciamento de assinatura flexível
@@ -400,8 +400,7 @@ src
 │ │ ├── hooks
 │ │ ├── pages
 │ │ ├── services
-│ │ ├── styles
-│ │ └── utils
+│ │ └── styles
 │ ├── recipe-widget
 │ ├── recipes
 │ ├── subscription
@@ -705,13 +704,7 @@ Principais características:
 
 ## 🔒 12. Autenticação
 
-Arquitetura preparada para:
-
-```
-JWT
-+
-Cookies HttpOnly
-```
+Arquitetura desenvolvida para integração com JWT e Cookies HttpOnly.
 
 Fluxo planejado:
 
@@ -1082,6 +1075,30 @@ a responsabilidade pela formatação exibida ao usuário.
 Essa separação aproximou o frontend de uma integração real com APIs REST e reduziu inconsistências
 relacionadas a timezone.
 
+```text
+Backend
+↓
+ISO String
+
+Mock
+↓
+ISO String
+
+Frontend
+↓
+new Date()
+↓
+ordenação
+
+Frontend
+↓
+toLocaleString('pt-BR') / toLocaleDateString('pt-BR')
+↓
+exibição
+```
+
+Assim `mock` e API usam exatamente o mesmo formato de dados.
+
 ### Separação de responsabilidades
 
 A evolução do projeto também exigiu sucessivas refatorações para:
@@ -1289,6 +1306,27 @@ do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
 
 ### Frontend
 
+#### Principais funcionalidades implementadas
+
+- Cadastro de usuário
+- Login
+- Perfil de usuário
+  - Dados cadastrais
+  - Configuração de assinatura
+  - Histórico de pedidos
+  - Histórico de mensagens
+- Assinatura
+- Cardápio
+- Carrinho
+- Checkout
+- Localizador de pedidos
+- Fale conosco
+- Incrição de parceria (mercados)
+- Home
+- Receitas
+
+#### Planejado
+
 - Loader avançado
 - OAuth
 - Receitas salvas
@@ -1297,21 +1335,19 @@ do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
 - TypeScript
 - Preferências alimentares avançadas
 
-### Backend (planejado)
+### Backend (em evolução)
 
 - Node.js
 - Express
 - MongoDB Atlas
-- JWT HttpOnly
-- APIs RESTful
-- Sistema de pedidos
-- Sistema de assinatura
-- APIs externas
+- JWT (httpOnly)
+- API RESTful
+- Integração com APIs externas
+- Deploy em produção
 
 ### Evolução do Produto
 
-- Painel do lojista
-- Algoritmo de recomendação
+- Painel do lojista (dashboard admin)
 - Gestão de estoque
 - Delivery com agendamento
 

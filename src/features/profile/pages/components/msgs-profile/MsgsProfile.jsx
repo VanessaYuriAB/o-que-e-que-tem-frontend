@@ -4,23 +4,25 @@ import Loader from '../../../../../shared/components/ui/loader/Loader.jsx';
 import { useEffect } from 'react';
 import useProfile from '../../../hooks/useProfile.js';
 import useAuthStore from '../../../../../store/useAuthStore.js';
-import parsePtBrDate from '../../../utils/parsePtBrDate.js';
 import styles from '../../../styles/profile-history.module.css';
+import { USE_MOCK } from '../../../../../config/env.js';
 
 function MsgsProfile() {
   const { getUserMsgs, loadingMsgs, localErrorMsgs, userMsgs } = useProfile();
 
   const user = useAuthStore((state) => state.user);
 
-  const orderedUserMsgs = userMsgs
-    ? [...userMsgs].sort((a, b) => parsePtBrDate(b.createdAt) - parsePtBrDate(a.createdAt))
+  const orderedMsgsMock = userMsgs
+    ? [...userMsgs].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     : [];
+
+  const MsgsList = USE_MOCK ? orderedMsgsMock : userMsgs;
 
   useEffect(() => {
     getUserMsgs(user._id);
   }, [user._id, getUserMsgs]);
 
-  const hasMsgs = userMsgs.length > 0;
+  const hasMsgs = MsgsList.length > 0;
 
   if (loadingMsgs) {
     return <Loader className="profile__msgs-loader" />;
@@ -53,9 +55,12 @@ function MsgsProfile() {
         </Toast>
       ) : (
         <ul className={`profile__msgs-list ${styles['profile-history__list']} list-reset`}>
-          {orderedUserMsgs.map((msg) => {
+          {MsgsList.map((msg) => {
             const formattedCreatedAt = new Date(msg.createdAt).toLocaleString('pt-BR');
-            const msgCreatedAt = msg.createdAt.includes('T') ? formattedCreatedAt : msg.createdAt;
+
+            const formattedResponseAt = msg.responseAt
+              ? new Date(msg.responseAt).toLocaleString('pt-BR')
+              : null;
 
             return (
               <li className="profile__msgs-item" key={msg._id}>
@@ -70,7 +75,7 @@ function MsgsProfile() {
                       <dd
                         className={`profile__msgs-description ${styles['profile-history__description']}`}
                       >
-                        {msgCreatedAt}
+                        {formattedCreatedAt}
                       </dd>
                     </div>
                     <div
@@ -120,7 +125,7 @@ function MsgsProfile() {
                           <dd
                             className={`profile__msgs-description ${styles['profile-history__description']}`}
                           >
-                            {msg.responseAt}
+                            {formattedResponseAt}
                           </dd>
                         </div>
                         <div
