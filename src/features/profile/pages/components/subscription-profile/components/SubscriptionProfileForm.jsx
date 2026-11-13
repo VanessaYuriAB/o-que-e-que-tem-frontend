@@ -30,14 +30,13 @@ function SubscriptionProfileForm({ user }) {
           ? 'Seis meses'
           : 'Um ano';
 
-  const formatDate = (dateValue) => {
-    const date = new Date(dateValue);
-    // Verifica se a data é válida conferindo se o seu valor numérico não é NaN, para prevenção de crash (RangeError)
-    return !isNaN(date.getTime()) ? date.toLocaleDateString('sv-SE') : '';
-  };
+  const beginDate = user?.subscriptionDetails?.createdAt
+    ? new Date(user.subscriptionDetails.createdAt).toLocaleDateString('pt-BR')
+    : '';
 
-  const beginDate = formatDate(user?.subscriptionDetails?.begin);
-  const endDate = formatDate(user?.subscriptionDetails?.end);
+  const endDate = user?.subscriptionDetails?.endAt
+    ? new Date(user.subscriptionDetails.endAt).toLocaleDateString('pt-BR')
+    : '';
 
   const pay =
     user?.subscriptionDetails?.pay === 'pix'
@@ -223,11 +222,11 @@ function SubscriptionProfileForm({ user }) {
             >
               <Input
                 className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
-                type="date"
+                type="text"
                 id="begin"
                 name="begin"
                 title="A data de início da sua assinatura."
-                defaultValue={beginDate}
+                value={beginDate}
                 disabled
               />
             </label>
@@ -245,7 +244,7 @@ function SubscriptionProfileForm({ user }) {
             >
               <Input
                 className={`${styles['subscription-form__input']} ${profileFormStyles['profile-form__input']}`}
-                type="date"
+                type="text"
                 id="end"
                 name="end"
                 title="A data final de sua assinatura."

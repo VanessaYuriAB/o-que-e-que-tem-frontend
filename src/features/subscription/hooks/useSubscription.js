@@ -38,7 +38,7 @@ function useSubscription(isUser) {
     };
 
     // Payload para atualização de perfil cadastral
-    // Com verificação de campos, para ñ sobrescrever dados, caso já existam cadastrado no servidor
+    // Com verificação de campos, para ñ sobrescrever dados, caso já existam cadastrado
     const userProfileData = {
       userName: data.userName,
       email: data.email,
@@ -52,7 +52,7 @@ function useSubscription(isUser) {
       infoText: data.infoText,
     };
 
-    const addressFields = ['cep', 'address', 'number', 'complement', 'district'];
+    const addressFields = ['address', 'number', 'complement', 'district', 'cep', 'infoText'];
     addressFields.forEach((field) => {
       if (userProfileData[field] === '') {
         delete userProfileData[field];
@@ -60,10 +60,15 @@ function useSubscription(isUser) {
     });
 
     // Payload para assinatura
-    // Com dados gerais (exceto senha), pq o service atualiza e retorna o objeto completo de 'user', contendo os dados de assinatura - dados de endereço são gerenciados no próprio service (para mock) - para persistência real no backend, os dados não são utilizados
-    const subscribeData = { ...data };
-    delete subscribeData.password;
-    delete subscribeData.confirmPassword;
+    const subscribeData = {
+      howLong: data.howLong,
+      daysOn: data.daysOn,
+      schedules: data.schedules,
+      method: data.method,
+      pay: data.pay,
+    };
+
+    // A requisição atualiza e retorna o objeto completo de 'user', contendo os dados de assinatura
 
     try {
       // Se não houver usuário logado
@@ -93,10 +98,10 @@ function useSubscription(isUser) {
       // Neste ponto, o usuário já está logado
 
       // Atualiza dados do usuário
-      // Usando service, não hook, pq o set global é definido aqui no próprio hook de assinatura
+      // Utilizando service, não hook, pq o set global é definido aqui no próprio hook de assinatura
       await updateUserProfile(userProfileData);
 
-      // Então, inscreve assinatura
+      // Então, inscreve assinatura, retornando o objeto completo de 'user', contendo 'subscriptionDetails'
       const subscriptionData = await subscribe(subscribeData);
 
       // E seta 'user' (global)

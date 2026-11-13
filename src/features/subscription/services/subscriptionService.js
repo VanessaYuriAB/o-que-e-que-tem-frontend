@@ -5,6 +5,7 @@ import apiFetch from '../../../services/api.js';
 import useAuthStore from '../../../store/useAuthStore.js';
 import subscriptionOrders from '../../../mocks/fakeSubscriptionOrdersDb.js';
 import generateMockOrderNumber from '../../../shared/utils/generateMockOrderNumber.js';
+import { updateWithoutUserMsg } from '../../../mocks/fakeAuthDb.js';
 
 export async function subscribe(newSubscriptionData) {
   try {
@@ -15,9 +16,7 @@ export async function subscribe(newSubscriptionData) {
         await fakeApiError('mockFn com err = true no subscribe do subscriptionService');
       }
 
-      // Ajusta dados
-      const createdAt = new Date();
-
+      // Calcula 'endAt'
       const months =
         newSubscriptionData.howLong === 'two'
           ? 2
@@ -27,47 +26,44 @@ export async function subscribe(newSubscriptionData) {
               ? 6
               : 12;
 
-      const end = new Date(createdAt);
+      const end = new Date();
       end.setMonth(end.getMonth() + months);
 
-      // Define mock (mantendo dados de endereço, caso assinatura seja feita sem)
-      const mockSubscribe = {
+      // Busca persistência do usuário fake
+      const fakeUserStoraged = JSON.parse(localStorage.getItem('mockUser'));
+
+      if (!fakeUserStoraged) {
+        await fakeApiError(updateWithoutUserMsg, 401);
+      }
+
+      // Atualiza objeto de dados do usuário: define mock com dados de assinatura (mantendo dados de endereço, caso assinatura seja feita sem)
+      const fakeUpdatedUserWithSubscription = {
+        ...fakeUserStoraged,
+
         _id: user._id ?? 'user-mock',
-
-        userName: newSubscriptionData.userName,
-        email: newSubscriptionData.email,
-        confirmEmail: newSubscriptionData.confirmEmail,
-        tel: newSubscriptionData.tel,
-
-        cep: newSubscriptionData.cep ?? user.cep,
-        address: newSubscriptionData.address ?? user.address,
-        number: newSubscriptionData.number ?? user.number,
-        complement: newSubscriptionData.complement ?? user.complement,
-        district: newSubscriptionData.district ?? user.district,
-
-        infoText: newSubscriptionData.infoText,
 
         subscription: true,
 
         subscriptionDetails: {
+          owner: user._id ?? 'user-mock',
+          status: true,
+
           howLong: newSubscriptionData.howLong,
           daysOn: newSubscriptionData.daysOn,
           schedules: newSubscriptionData.schedules,
           method: newSubscriptionData.method,
           pay: newSubscriptionData.pay,
 
-          owner: user._id ?? 'user-mock',
-          status: true,
-          begin: createdAt.toISOString(),
-          end: end.toISOString(),
+          createdAt: new Date().toISOString(),
+          endAt: end.toISOString(),
         },
       };
 
-      // Ajusta persistência
-      localStorage.setItem('mockUser', JSON.stringify(mockSubscribe));
+      // Ajusta persistência, atualizando armazemanento local
+      localStorage.setItem('mockUser', JSON.stringify(fakeUpdatedUserWithSubscription));
 
       // Retorna dados (201)
-      return await fakeApi(mockSubscribe, 201);
+      return await fakeApi(fakeUpdatedUserWithSubscription, 201);
     };
 
     const apiFn = async () => {

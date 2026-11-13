@@ -35,8 +35,9 @@ export const user1 = {
   subscriptionDetails: {
     owner: 'user-1',
     status: true,
-    begin: '2026-06-27', // input date : "o formato da data mostrada difere do value atual — o formato da data mostrada será escolhido baseado na localização definida no navegador do usuário, enquanto que a data em value sempre será formatado como yyyy-mm-dd"
-    end: '2027-12-27', // input date (begin + 6 meses)
+
+    createdAt: new Date('2026-06-27T09:05:10').toISOString(),
+    endAt: new Date('2026-12-27T09:05:10').toISOString(), // (createdAt + howLong)
 
     howLong: 'six',
     daysOn: ['ter', 'qui'], // input checkbox
@@ -68,8 +69,9 @@ export const user2 = {
   subscriptionDetails: {
     owner: 'user-2',
     status: false,
-    begin: '2026-07-21',
-    end: '2027-07-21',
+
+    createdAt: new Date('2026-07-21T10:01:56').toISOString(),
+    endAt: new Date('2027-07-21T10:01:56').toISOString(),
 
     howLong: 'twelve',
     daysOn: ['seg', 'qua', 'sex'],
@@ -145,8 +147,8 @@ export const users = [
     subscriptionDetails: {
       owner: 'user-1',
       status: true,
-      begin: '2026-06-27', // input date : "o formato da data mostrada difere do value atual — o formato da data mostrada será escolhido baseado na localização definida no navegador do usuário, enquanto que a data em value sempre será formatado como yyyy-mm-dd"
-      end: '2027-12-27', // input date (begin + 6 meses)
+      createdAt: new Date('2026-06-27T09:05:10').toISOString(),
+      endAt: new Date('2026-12-27T09:05:10').toISOString(), // (createdAt + howLong)
       howLong: 'six',
       daysOn: ['ter', 'qui'], // input checkbox
       schedules: { ter: '10:50', qui: '11:20' },
@@ -172,8 +174,8 @@ export const users = [
     subscriptionDetails: {
       owner: 'user-2',
       status: false,
-      begin: '2026-07-21',
-      end: '2027-07-21',
+      createdAt: new Date('2026-07-21T10:01:56').toISOString(),
+      endAt: new Date('2027-07-21T10:01:56').toISOString(),
       howLong: 'twelve',
       daysOn: ['seg', 'qua', 'sex'],
       schedules: { seg: '18:50', qua: '19:20', sex: '19:45' },
@@ -229,4 +231,4 @@ export const refreshWithoutUserMsg =
 /* Update */
 
 export const updateWithoutUserMsg =
-  'Falha no profileService.updateUserProfile: Não autorizado, não existe usuário local salvo (storaged)';
+  'Falha no profileService.updateUserProfile/updateSubscriptionProfile ou no subscriptionService.subscribe: Não autorizado, não existe usuário local salvo (storaged)';
