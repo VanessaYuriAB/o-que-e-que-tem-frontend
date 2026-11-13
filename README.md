@@ -238,19 +238,19 @@ A equipe de triagem atua em duas frentes:
 - Rotas públicas, protegidas e condicionais
 - Perfil de usuário editável
 - Gerenciamento de assinatura flexível
+- Histórico de pedidos do usuário
+- Histórico de mensagens no perfil
 - Carrinho de compras persistente
 - Migração automática de carrinho anônimo para usuário autenticado
 - Checkout completo para pedidos avulsos e assinaturas
-- Geração automática de número de pedido
 - Página de confirmação de pedidos
+- Geração automática de número de pedido
 - Rastreamento de pedidos por número
-- Histórico de pedidos do usuário
-- Formulário de contato (envio de mensagens)
-- Histórico de mensagens no perfil
+- Formulário de contato (fale conosco)
+- Formulário de solicitação de parceria
 - Página de receitas com campo para busca
 - Página institucional Sobre Nós
 - Página institucional Nosso Impacto
-- Formulário de solicitação de parceria
 - Persistência de desenvolvimento simulada através de `Mock API`
 - Gerenciamento de estado com `Zustand`
 - Tratamento padronizado de erros
@@ -524,7 +524,7 @@ Benefícios:
 
 ### Contrato de API definido antes do backend
 
-Mesmo utilizando mocks, foi definido um padrão de resposta compatível com a futura API:
+Utilizando mocks, foi definido um padrão de resposta compatível com a futura API:
 
 ```
 {
@@ -704,7 +704,7 @@ Principais características:
 
 ## 🔒 12. Autenticação
 
-Arquitetura desenvolvida para integração com JWT e Cookies HttpOnly.
+Arquitetura desenvolvida para integração com `JWT` e `Cookies HttpOnly`.
 
 Fluxo planejado:
 
@@ -971,20 +971,19 @@ npm run format
 ### Implementado
 
 - Autenticação mockada com persistência de sessão
+- Perfil de usuário
+- Sistema de assinatura
+- Histórico de pedidos
+- Histórico de mensagens
 - Cardápio dinâmico
 - Carrinho de compras
 - Checkout
-- Sistema de pedidos
 - Rastreamento de pedidos
-- Histórico de pedidos
-- Perfil de usuário
-- Sistema de assinatura
 - Formulário de contato
-- Histórico de mensagens
+- Cadastro de parceiros
 - Página de receitas
 - Página Sobre Nós
 - Página Nosso Impacto
-- Cadastro de parceiros
 - Mock API
 - Zustand
 - Proteção de rotas
@@ -995,11 +994,11 @@ npm run format
 
 ### Em desenvolvimento
 
-- Integração com APIs externas reais (Widgets de clima e receitas)
-- Painel administrativo
+- JWT com Cookies HttpOnly
 - Backend Node.js + Express
 - MongoDB Atlas
-- JWT com Cookies HttpOnly
+- Integração com APIs externas reais
+- Painel administrativo
 
 [Voltar ao topo 🔝](#top)
 
@@ -1088,7 +1087,7 @@ Frontend
 ↓
 new Date()
 ↓
-ordenação
+ordenação de mock
 
 Frontend
 ↓
@@ -1110,7 +1109,7 @@ A evolução do projeto também exigiu sucessivas refatorações para:
 
 Esse processo resultou em uma arquitetura mais próxima de aplicações Full Stack reais.
 
-### Migração de CSS Puro (Escopo Global) para CSS Modules
+### Migração de CSS Puro (escopo global) para CSS Modules
 
 Durante a evolução da interface foi identificado um comportamento inconsistente na renderização de
 alguns componentes.
@@ -1340,8 +1339,8 @@ do usuário, modelagem de negócio e flexibilidade dos fluxos da aplicação.
 - Node.js
 - Express
 - MongoDB Atlas
-- JWT (httpOnly)
 - API RESTful
+- JWT (httpOnly)
 - Integração com APIs externas
 - Deploy em produção
 
