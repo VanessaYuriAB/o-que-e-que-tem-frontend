@@ -239,7 +239,7 @@ function PartnerForm() {
               id="address"
               type="text"
               name="address"
-              pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+              pattern="^[^<>]*$" /* bloqueia os caracteres < e > */
               title="O endereço. Não são permitidos '<' e '>', por questões de segurança."
               placeholder="O endereço."
               value={formData.address}

@@ -68,7 +68,7 @@ function UserProfileForm() {
           type="text"
           id="userName"
           name="userName"
-          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+          pattern="^[^<>]*$" /* bloqueia os caracteres < e > */
           title="Seu nome: não são permitidos '<' e '>'."
           placeholder="Digite seu nome completo"
           value={formData.userName}
@@ -121,7 +121,7 @@ function UserProfileForm() {
           type="text"
           id="address"
           name="address"
-          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+          pattern="^[^<>]*$" /* bloqueia os caracteres < e > */
           title="Seu endereço para delivery: não são permitidos '<' e '>'."
           placeholder="O seu endereço padrão, caso a entrega seja por delivery"
           value={formData.address}
@@ -202,7 +202,7 @@ function UserProfileForm() {
           className={`user-form__textarea ${styles['profile-form__textarea']}`}
           id="infoText"
           name="infoText"
-          pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
+          pattern="^[^<>]*$" /* bloqueia os caracteres < e > */
           title="Informações relevantes, exemplo: ponto de referência ou contato para entrega (nome, tel e RG/CPF)."
           placeholder="Opcional. Por exemplo, um ponto de referência ou um contato oficial para entrega (nome, tel e RG/CPF)."
           value={formData.infoText}
