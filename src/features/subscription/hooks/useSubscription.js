@@ -38,7 +38,7 @@ function useSubscription(isUser) {
     };
 
     // Payload para atualização de perfil cadastral
-    // Com verificação de campos, para ñ sobrescrever dados, caso já existam cadastrado
+    // Com verificação de campos, para ñ sobrescrever dados, caso já existam cadastrados
     const userProfileData = {
       userName: data.userName,
       email: data.email,

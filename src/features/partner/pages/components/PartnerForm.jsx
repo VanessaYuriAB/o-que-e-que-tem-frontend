@@ -81,6 +81,8 @@ function PartnerForm() {
             id="userName"
             type="text"
             name="userName"
+            minLength={2}
+            maxLength={40}
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
             title="O nome completo do responsável para contato. Não são permitidos os caracteres '<' e '>', por questão de segurança."
             placeholder="O nome completo do responsável para contato."

@@ -246,6 +246,8 @@ function PackForm(props) {
             type="text"
             id="userName"
             name="userName"
+            minLength={2}
+            maxLength={40}
             pattern="^[^<>]+$" /* bloqueia os caracteres < e > */
             title="Seu nome: não são permitidos '<' e '>'."
             placeholder="Seu nome completo"
