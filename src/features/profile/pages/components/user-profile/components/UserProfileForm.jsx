@@ -156,7 +156,7 @@ function UserProfileForm() {
           name="complement"
           pattern="^[a-zA-Z0-9\s.\-]*$" /* apenas números, letras, espaços em branco, pontos e traços */
           title="O complemento do seu endereço para delivery: apenas números, letras, espaços em branco, pontos e/ou traços."
-          placeholder="Se não houver, digite traço (-)"
+          placeholder="O complemento, se houver"
           value={formData.complement}
           onChange={handleChange}
           disabled={!isEditing}
