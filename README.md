@@ -1062,11 +1062,13 @@ Outro desafio importante foi a padronização das datas da aplicação.
 
 Durante o desenvolvimento foram exploradas diferentes estratégias envolvendo:
 
-- `toISOString()`;
-- `toLocaleString('pt-BR')`;
-- renderização de datas em inputs;
-- renderização de datas em componentes visuais;
-- compatibilidade entre serviços, mocks e interface.
+- datas em `pt-BR`;
+- criação de `parsePtBrDate`;
+- problemas de ordenação/timezone;
+- migração para ISO;
+- remoção do parser;
+- utilização de Date;
+- criação de um utilitário específico apenas para inputs HTML (`formatDateInput()`).
 
 A solução adotada passou a utilizar datas padronizadas na camada de serviços, delegando à interface
 a responsabilidade pela formatação exibida ao usuário.
@@ -1091,12 +1093,15 @@ ordenação de mock
 
 Frontend
 ↓
-toLocaleString('pt-BR') / toLocaleDateString('pt-BR')
+toLocaleString('pt-BR') / toLocaleDateString('pt-BR') / formatDateInput()
 ↓
 exibição
 ```
 
 Assim `mock` e API usam exatamente o mesmo formato de dados.
+
+A interface converte datas para formatos específicos apenas quando necessário, como na exibição
+localizada ao usuário ou no preenchimento de campos HTML do tipo `date`.
 
 ### Separação de responsabilidades
 
