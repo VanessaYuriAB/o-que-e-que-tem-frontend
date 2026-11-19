@@ -8,6 +8,8 @@ function OrderTracked({ orderTracked }) {
 
   const typeOfMeal = orderTracked.meal === 'pate' ? 'patê' : orderTracked.meal;
 
+  const formattedDay = orderTracked ? new Date(orderTracked.day).toLocaleDateString('pt-BR') : '';
+
   return (
     <section className={`${styles.result} ${styles.tracker__result}`}>
       <h2 className={styles.result__title}>Pedido nº {orderTracked.orderNumber}:</h2>
@@ -82,7 +84,7 @@ function OrderTracked({ orderTracked }) {
           </div>
           <div className={`${styles['result__detail-box']} ${styles['result__detail-box_inline']}`}>
             <dt className={styles.result__detail}>Em:</dt>
-            <dd className={styles.result__description}>{orderTracked.day}</dd>
+            <dd className={styles.result__description}>{formattedDay}</dd>
           </div>
           <div className={`${styles['result__detail-box']} ${styles['result__detail-box_inline']}`}>
             <dt className={styles.result__detail}>Às:</dt>

@@ -6,6 +6,7 @@ import getNextDate from '../../../../../shared/utils/nextSubscriptionDate.js';
 import Toast from '../../../../../shared/components/ui/toast/Toast.jsx';
 import Button from '../../../../../shared/components/ui/button/Button.jsx';
 import PropTypes from 'prop-types';
+import formatDateInput from '../../../../../shared/utils/formatDateInput.js';
 import styles from './PackForm.module.css';
 
 function PackForm(props) {
@@ -15,14 +16,26 @@ function PackForm(props) {
 
   const [localCartError, setLocalCartError] = useState(null);
 
-  const nextMealAt = getNextDate(
+  const nextMeal = getNextDate(
     user?.subscriptionDetails?.daysOn || [],
     user?.subscriptionDetails?.schedules || {}
   );
 
-  const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
-  const nextDayAt = nextMealAt ? weekDays[new Date(nextMealAt).getDay()] : '';
+  // Reflete os índices do JS, para uso do .getDay()
+  const weekDayMap = {
+    0: 'dom',
+    1: 'seg',
+    2: 'ter',
+    3: 'qua',
+    4: 'qui',
+    5: 'sex',
+    6: 'sab',
+  };
+
+  const nextDayAt = nextMeal ? weekDayMap[nextMeal.getDay()] : '';
   const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
+
+  const nextMealAt = formatDateInput(nextMeal);
 
   const isSubscribeActive =
     user?.subscription === true && user?.subscriptionDetails?.status === true;

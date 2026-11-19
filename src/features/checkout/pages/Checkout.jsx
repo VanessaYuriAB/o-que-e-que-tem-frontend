@@ -42,19 +42,27 @@ function Checkout() {
     user?.subscriptionDetails?.schedules || {}
   );
 
-  const [year, month, day] = nextMeal ? nextMeal.split('-') : '';
-  const nextMealAt = `${day}/${month}/${year}`;
+  // Reflete os índices do JS, para uso do .getDay()
+  const weekDayMap = {
+    0: 'dom',
+    1: 'seg',
+    2: 'ter',
+    3: 'qua',
+    4: 'qui',
+    5: 'sex',
+    6: 'sab',
+  };
 
-  const weekDays = ['seg', 'ter', 'qua', 'qui', 'sex'];
-  const nextDayAt = nextMeal ? weekDays[new Date(nextMeal).getDay()] : '';
-
+  const nextDayAt = nextMeal ? weekDayMap[nextMeal.getDay()] : '';
   const nextTimeAt = user?.subscriptionDetails?.schedules?.[nextDayAt] || '';
+
+  const nextMealAt = nextMeal ? nextMeal.toLocaleDateString('pt-BR') : '';
 
   const handleSubscribeOrderCheckout = async () => {
     const subscriptionOrder = {
       meal: cartData.meal,
       method: cartData.method,
-      day: `${nextMealAt} (${nextDayAt})`,
+      day: nextMeal.toISOString(), // envia data em formato ISO para compatibilidade com JSON e campo Date do backend > ajusta dados para uso de mock e deixa explícito formatação automática do JSON.stringify() convertendo um Date para ISO
       time: nextTimeAt,
 
       customerSnapshot: {

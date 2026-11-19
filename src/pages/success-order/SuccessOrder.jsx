@@ -120,7 +120,9 @@ function SuccessOrder() {
                     <dt className={styles.order__term}>
                       Data de {hasOrder.method === 'delivery' ? 'entrega' : 'retirada'}:
                     </dt>
-                    <dd className={styles.order__description}>{hasOrder.day}</dd>
+                    <dd className={styles.order__description}>
+                      {new Date(hasOrder.day).toLocaleDateString('pt-BR')}
+                    </dd>
                   </div>
 
                   <div

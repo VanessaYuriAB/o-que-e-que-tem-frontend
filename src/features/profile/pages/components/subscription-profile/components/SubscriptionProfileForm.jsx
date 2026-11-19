@@ -6,6 +6,7 @@ import Loader from '../../../../../../shared/components/ui/loader/Loader.jsx';
 import useProfile from '../../../../hooks/useProfile.js';
 import getNextDate from '../../../../../../shared/utils/nextSubscriptionDate.js';
 import PropTypes from 'prop-types';
+import formatDateInput from '../../../../../../shared/utils/formatDateInput.js';
 import profileFormStyles from '../../../../styles/profile-form.module.css';
 import styles from './SubscriptionProfileForm.module.css';
 
@@ -45,10 +46,12 @@ function SubscriptionProfileForm({ user }) {
         ? 'Cartão de débito'
         : 'Cartão de crédito';
 
-  const nextMealAt = getNextDate(
+  const nextMeal = getNextDate(
     user?.subscriptionDetails?.daysOn || [],
     user?.subscriptionDetails?.schedules || {}
   );
+
+  const nextMealAt = formatDateInput(nextMeal);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
