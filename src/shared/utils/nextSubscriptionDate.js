@@ -38,7 +38,8 @@ const getNextDate = (daysOn, schedules, fromDate = new Date()) => {
     const weekday = date.getDay();
 
     if (validDays.includes(weekday)) {
-      return date.toLocaleDateString('sv-SE');
+      date.setHours(0, 0, 0, 0); // para evitar problema de fuso horário > .toISOString() > JavaScript converte de 'Horário de Brasília (-03:00)' para 'UTC'
+      return date;
     }
   }
 
